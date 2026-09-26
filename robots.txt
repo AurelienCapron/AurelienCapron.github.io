@@ -1,0 +1,6 @@
+# 🌐 À ADAPTER une fois le site en ligne : remplace VOTRE-PSEUDO par ton pseudo GitHub
+# (même remarque que pour og:image et le sitemap ci-dessous).
+User-agent: *
+Allow: /
+
+Sitemap: https://VOTRE-PSEUDO.github.io/sitemap.xml

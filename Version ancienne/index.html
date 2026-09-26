@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!--
+  ╔══════════════════════════════════════════════════════════════════════╗
+  ║  PORTFOLIO — Aurélien CAPRON                                         ║
+  ║  Fichier unique : index.html (Tailwind CSS via CDN)                  ║
+  ║                                                                      ║
+  ║  CHECKLIST DE PERSONNALISATION (cherche ces repères dans le code) :  ║
+  ║   📸 IMAGE   → photo de profil + visuels des projets et hobbies       ║
+  ║   🔗 LIEN    → ton pseudo GitHub + liens des dépôts                  ║
+  ║   📄 CV      → dépose ton PDF dans assets/CV_Aurelien_Capron.pdf     ║
+  ║   🌐 SEO     → image de partage (og:image) une fois le site en ligne ║
+  ║                                                                      ║
+  ║  Arborescence conseillée du dépôt GitHub :                           ║
+  ║   index.html                                                         ║
+  ║   assets/photo.jpg                                                   ║
+  ║   assets/CV_Aurelien_Capron.pdf                                      ║
+  ║   assets/projets/domethic.jpg | telecommande.jpg | tipe.jpg          ║
+  ║   assets/hobbies/judo.jpg | perouges.jpg | sacha-heritage.jpg        ║
+  ║                                                                      ║
+  ║  Astuce : si une image est absente, un visuel de remplacement        ║
+  ║  élégant s'affiche automatiquement (le site ne « casse » jamais).    ║
+  ╚══════════════════════════════════════════════════════════════════════╝
+  -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aurélien CAPRON — Portfolio | Élève-ingénieur Systèmes Embarqués</title>
+  <meta name="description" content="Portfolio d'Aurélien Capron, élève-ingénieur à Grenoble INP - Phelma (Systèmes Électroniques Intégrés). Systèmes embarqués, microélectronique, conception hardware.">
+  <meta name="theme-color" content="#0c0e11">
+  <meta name="color-scheme" content="dark">
+
+  <!-- 🌐 SEO / partage sur les réseaux (LinkedIn, Slack, etc.) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Aurélien CAPRON — Portfolio">
+  <meta property="og:description" content="Élève-ingénieur à Grenoble INP - Phelma, spécialisé en systèmes embarqués et microélectronique.">
+  <!-- 🌐 Une fois le site en ligne, décommente et adapte (URL ABSOLUE, image ~1200×630) : -->
+  <!-- <meta property="og:image" content="https://VOTRE-PSEUDO.github.io/assets/og-image.jpg"> -->
+
+  <!-- Favicon (monogramme « AC » intégré, aucun fichier requis) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23121519'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='28' font-weight='700' text-anchor='middle' fill='%2310b981'%3EAC%3C/text%3E%3C/svg%3E">
+
+  <!-- Polices : Inter (texte) + JetBrains Mono (touches « tech ») -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS (CDN) + thème personnalisé -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'monospace']
+          },
+          colors: {
+            // Gris anthracite
+            ink: { 950: '#0c0e11', 900: '#121519', 800: '#181c21', 700: '#232830', 600: '#333a45' },
+            // Vert émeraude (boutons principaux, disponibilité)
+            accent: { DEFAULT: '#10b981', soft: '#34d399' },
+            // Bleu électrique (survols, dégradés, code)
+            volt: { DEFAULT: '#3b82f6', soft: '#60a5fa' }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Composants réutilisables (change les couleurs / arrondis ici, ça s'applique partout) -->
+  <style type="text/tailwindcss">
+    @layer components {
+      .surface   { @apply rounded-2xl border border-white/10 bg-ink-900/70; }
+      .tag       { @apply inline-flex items-center rounded-md border border-white/10 bg-white/5 px-2.5 py-1 font-mono text-xs text-slate-200 transition-colors hover:border-volt/50 hover:text-white; }
+      .btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-5 py-3 text-sm font-semibold text-ink-950 shadow-lg shadow-accent/10 transition hover:-translate-y-0.5 hover:bg-accent-soft; }
+      .btn-ghost { @apply inline-flex items-center justify-center gap-2 rounded-lg border border-white/15 px-5 py-3 text-sm font-semibold text-slate-100 transition hover:-translate-y-0.5 hover:border-volt/60 hover:bg-volt/10; }
+      .eyebrow   { @apply font-mono text-sm text-accent-soft; }
+      .h2        { @apply mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl; }
+      .nav-link  { @apply text-sm text-slate-400 transition-colors hover:text-white; }
+      .nav-link[aria-current="true"] { @apply text-white; }
+      .lang-btn  { @apply rounded-md px-2.5 py-1 text-slate-400 transition-colors hover:text-white; }
+      .lang-btn[aria-pressed="true"] { @apply bg-white/10 text-white; }
+      .filter-btn { @apply rounded-full border border-white/10 px-4 py-1.5 text-sm text-slate-400 transition-colors hover:text-white; }
+      .filter-btn[aria-pressed="true"] { @apply border-accent/40 bg-accent/10 text-accent-soft; }
+      .icon-btn  { @apply grid h-12 w-12 place-items-center rounded-full border border-white/10 bg-ink-900 text-slate-300 transition hover:-translate-y-1 hover:border-accent/50 hover:text-accent-soft; }
+    }
+  </style>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    section[id], footer[id] { scroll-margin-top: 5rem; }
+    ::selection { background: rgba(16,185,129,.35); color: #fff; }
+    :focus-visible { outline: 2px solid #10b981; outline-offset: 3px; border-radius: 6px; }
+
+    /* Quadrillage discret façon « papier millimétré / PCB » */
+    .grid-bg {
+      background-image:
+        linear-gradient(to right, rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 44px 44px;
+      -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 25%, transparent 75%);
+              mask-image: radial-gradient(ellipse at 50% 30%, #000 25%, transparent 75%);
+    }
+
+    /* Apparition douce au scroll */
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .animate-ping { animation: none; }
+    }
+  </style>
+  <noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
+
+  <!-- Données structurées (référencement Google) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Aurélien Capron",
+    "jobTitle": "Élève-ingénieur — Systèmes Électroniques Intégrés",
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "Grenoble INP - Phelma" },
+    "email": "mailto:aurelien-capron@outlook.fr",
+    "sameAs": [
+      "https://www.linkedin.com/in/aurelien-capron",
+      "https://github.com/VOTRE-PSEUDO"
+    ]
+  }
+  </script>
+</head>
+
+<body class="bg-ink-950 font-sans text-slate-300 antialiased">
+
+  <!-- Lien d'accessibilité (visible au clavier uniquement) -->
+  <a href="#main" data-i18n="skip"
+     class="sr-only z-[60] rounded-md bg-accent px-4 py-2 font-semibold text-ink-950 focus:not-sr-only focus:fixed focus:left-4 focus:top-4">Aller au contenu</a>
+
+  <!-- Bibliothèque d'icônes (SVG inline, aucune dépendance externe) -->
+  <svg xmlns="http://www.w3.org/2000/svg" class="absolute h-0 w-0 overflow-hidden" aria-hidden="true" focusable="false">
+    <symbol id="i-github" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol>
+    <symbol id="i-linkedin" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+    <symbol id="i-cpu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></symbol>
+    <symbol id="i-activity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></symbol>
+  </svg>
+
+  <!-- ═════════════════════════ NAVIGATION ═════════════════════════ -->
+  <header class="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-ink-950/75 backdrop-blur-md">
+    <!-- Barre de progression de lecture -->
+    <div id="progress" class="absolute left-0 top-0 h-[2px] w-0 bg-gradient-to-r from-accent to-volt"></div>
+
+    <nav class="mx-auto flex h-16 max-w-6xl items-center justify-between px-6" aria-label="Navigation principale">
+      <a href="#accueil" class="flex items-center gap-3">
+        <span class="grid h-8 w-8 place-items-center rounded-lg border border-white/10 bg-ink-800 font-mono text-xs font-bold text-accent">AC</span>
+        <span class="hidden text-sm font-semibold text-white sm:inline">Aurélien Capron</span>
+      </a>
+
+      <ul class="hidden items-center gap-8 md:flex">
+        <li><a class="nav-link" href="#competences" data-i18n="nav.skills">Compétences</a></li>
+        <li><a class="nav-link" href="#projets" data-i18n="nav.projects">Projets</a></li>
+        <li><a class="nav-link" href="#parcours" data-i18n="nav.path">Parcours</a></li>
+        <li><a class="nav-link" href="#hobbies" data-i18n="nav.hobbies">Hobbies</a></li>
+        <li><a class="nav-link" href="#contact" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+
+      <div class="flex items-center gap-3">
+        <!-- Sélecteur de langue FR / EN -->
+        <div class="flex items-center rounded-lg border border-white/10 p-0.5 font-mono text-xs" role="group" aria-label="Langue / Language">
+          <button type="button" class="lang-btn" data-lang="fr" aria-pressed="true">FR</button>
+          <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <button id="menu-btn" type="button" class="grid h-9 w-9 place-items-center rounded-lg border border-white/10 text-slate-300 md:hidden"
+                aria-expanded="false" aria-controls="mobile-menu" data-i18n-aria="aria.menu" aria-label="Ouvrir le menu">
+          <svg class="h-5 w-5"><use href="#i-menu"/></svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Menu mobile -->
+    <div id="mobile-menu" class="hidden border-t border-white/5 bg-ink-950/95 md:hidden">
+      <ul class="mx-auto flex max-w-6xl flex-col gap-1 px-6 py-4">
+        <li><a class="nav-link block rounded-md px-2 py-2.5" href="#competences" data-i18n="nav.skills">Compétences</a></li>
+        <li><a class="nav-link block rounded-md px-2 py-2.5" href="#projets" data-i18n="nav.projects">Projets</a></li>
+        <li><a class="nav-link block rounded-md px-2 py-2.5" href="#parcours" data-i18n="nav.path">Parcours</a></li>
+        <li><a class="nav-link block rounded-md px-2 py-2.5" href="#hobbies" data-i18n="nav.hobbies">Hobbies</a></li>
+        <li><a class="nav-link block rounded-md px-2 py-2.5" href="#contact" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1" class="outline-none">
+
+    <!-- ═════════════════════════ 1. HERO ═════════════════════════ -->
+    <section id="accueil" class="relative flex min-h-screen items-center overflow-hidden pb-16 pt-28">
+      <!-- Décor : quadrillage + halos lumineux -->
+      <div class="grid-bg pointer-events-none absolute inset-0"></div>
+      <div class="pointer-events-none absolute -top-40 right-0 h-[28rem] w-[28rem] rounded-full bg-volt/10 blur-3xl"></div>
+      <div class="pointer-events-none absolute -bottom-40 -left-20 h-[26rem] w-[26rem] rounded-full bg-accent/10 blur-3xl"></div>
+
+      <div class="relative mx-auto grid w-full max-w-6xl items-center gap-14 px-6 lg:grid-cols-[1.35fr_1fr]">
+
+        <!-- Texte -->
+        <div>
+          <!-- Badge de disponibilité -->
+          <a href="#contact" class="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-3.5 py-1.5 text-xs font-medium text-accent-soft transition hover:bg-accent/15">
+            <span class="relative flex h-2 w-2">
+              <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75"></span>
+              <span class="relative inline-flex h-2 w-2 rounded-full bg-accent"></span>
+            </span>
+            <span data-i18n="hero.badge">Disponible · Stage de 16 semaines dès mi-mai 2027</span>
+          </a>
+
+          <p class="mt-8 font-mono text-sm text-volt-soft">// embedded · microelectronics · hardware</p>
+
+          <!-- ✏️ Nom -->
+          <h1 class="mt-3 text-4xl font-extrabold tracking-tight text-white sm:text-6xl">
+            Aurélien
+            <span class="bg-gradient-to-r from-accent-soft to-volt-soft bg-clip-text text-transparent">CAPRON</span>
+          </h1>
+
+          <!-- ✏️ Sous-titre -->
+          <p class="mt-4 text-lg font-medium text-slate-200 sm:text-xl" data-i18n="hero.role">Élève-Ingénieur à Grenoble INP - Phelma (Systèmes Électroniques Intégrés)</p>
+
+          <!-- ✏️ Bio -->
+          <p class="mt-5 max-w-xl leading-relaxed text-slate-400" data-i18n="hero.bio">Passionné par la conception hardware et l'architecture des systèmes embarqués. Actuellement à la recherche d'un stage d'assistant ingénieur de 16 semaines.</p>
+
+          <!-- Boutons d'action -->
+          <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+            <a href="#projets" class="btn-primary">
+              <span data-i18n="hero.cta1">Voir mes projets</span>
+              <svg class="h-4 w-4"><use href="#i-arrow"/></svg>
+            </a>
+            <!-- 📄 CV : place ton PDF dans assets/CV_Aurelien_Capron.pdf (évite les accents dans le nom du fichier) -->
+            <a href="assets/CV_Aurelien_Capron.pdf" download class="btn-ghost">
+              <svg class="h-4 w-4"><use href="#i-download"/></svg>
+              <span data-i18n="hero.cta2">Télécharger mon CV</span>
+            </a>
+          </div>
+
+          <!-- Infos rapides -->
+          <ul class="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-400">
+            <li class="flex items-center gap-2"><svg class="h-4 w-4 text-accent-soft"><use href="#i-pin"/></svg>Grenoble</li>
+            <li class="flex items-center gap-2"><span class="h-1 w-1 rounded-full bg-slate-500"></span><span data-i18n="chip.degree">Diplôme d'ingénieur 2028</span></li>
+            <li class="flex items-center gap-2"><span class="h-1 w-1 rounded-full bg-slate-500"></span><span data-i18n="chip.english">Anglais C1</span></li>
+            <li class="flex items-center gap-2"><span class="h-1 w-1 rounded-full bg-slate-500"></span><span data-i18n="chip.licence">Permis B</span></li>
+          </ul>
+        </div>
+
+        <!-- Portrait -->
+        <div class="relative mx-auto w-64 max-w-sm sm:w-72 lg:w-full">
+          <div class="absolute -inset-3 rounded-3xl bg-gradient-to-br from-accent/20 to-volt/20 blur-2xl"></div>
+          <div class="relative aspect-[4/5] overflow-hidden rounded-3xl border border-white/10 bg-ink-800">
+            <!-- Visuel de remplacement (affiché si la photo est absente) -->
+            <div class="absolute inset-0 grid place-items-center font-mono text-6xl font-bold text-ink-600">AC</div>
+            <!-- 📸 IMAGE : ta photo de profil → assets/photo.jpg (format portrait 4:5 conseillé, ~800×1000 px) -->
+            <img src="assets/photo.jpg" alt="Portrait d'Aurélien Capron"
+                 class="absolute inset-0 h-full w-full object-cover" onerror="this.remove()">
+          </div>
+          <!-- Petite carte « statut » façon code -->
+          <div class="absolute -bottom-4 -left-3 rounded-xl border border-white/10 bg-ink-900/90 px-4 py-3 font-mono text-xs shadow-xl backdrop-blur sm:-left-6">
+            <p><span class="text-volt-soft">status</span> <span class="text-slate-500">=</span> <span class="text-accent-soft">"open_to_work"</span></p>
+            <p><span class="text-volt-soft">school</span> <span class="text-slate-500">=</span> <span class="text-accent-soft">"Phelma · SEI"</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════ 2. COMPÉTENCES ═════════════════════════ -->
+    <section id="competences" class="py-24">
+      <div class="mx-auto max-w-6xl px-6">
+        <div class="reveal mb-12">
+          <p class="eyebrow">01 — <span data-i18n="skills.eyebrow">Compétences</span></p>
+          <h2 class="h2" data-i18n="skills.title">Boîte à outils technique</h2>
+          <p class="mt-3 max-w-xl text-slate-400" data-i18n="skills.sub">De la conception sur CAO jusqu'au banc de test.</p>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-3">
+          <!-- Électronique & CAO -->
+          <div class="surface reveal p-6">
+            <div class="grid h-10 w-10 place-items-center rounded-lg bg-accent/10 text-accent-soft"><svg class="h-5 w-5"><use href="#i-cpu"/></svg></div>
+            <h3 class="mt-5 text-lg font-semibold text-white" data-i18n="skills.cat1">Électronique &amp; CAO</h3>
+            <ul class="mt-4 flex flex-wrap gap-2">
+              <li class="tag">KiCad</li><li class="tag">EasyEDA</li><li class="tag">Matlab</li><li class="tag">SolidWorks</li>
+            </ul>
+          </div>
+          <!-- Embarqué & Code -->
+          <div class="surface reveal p-6" style="transition-delay:.1s">
+            <div class="grid h-10 w-10 place-items-center rounded-lg bg-volt/10 text-volt-soft"><svg class="h-5 w-5"><use href="#i-code"/></svg></div>
+            <h3 class="mt-5 text-lg font-semibold text-white" data-i18n="skills.cat2">Embarqué &amp; Code</h3>
+            <ul class="mt-4 flex flex-wrap gap-2">
+              <li class="tag">C/C++</li><li class="tag">Verilog</li><li class="tag">Python</li><li class="tag">Arduino</li><li class="tag">Linux</li>
+            </ul>
+          </div>
+          <!-- Instrumentation -->
+          <div class="surface reveal p-6" style="transition-delay:.2s">
+            <div class="grid h-10 w-10 place-items-center rounded-lg bg-accent/10 text-accent-soft"><svg class="h-5 w-5"><use href="#i-activity"/></svg></div>
+            <h3 class="mt-5 text-lg font-semibold text-white" data-i18n="skills.cat3">Instrumentation</h3>
+            <ul class="mt-4 flex flex-wrap gap-2">
+              <li class="tag" data-i18n="tag.scope">Oscilloscope</li>
+              <li class="tag" data-i18n="tag.sigGen">Générateur de signaux</li>
+              <li class="tag" data-i18n="tag.emcTest">Test CEM</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════ 3. PROJETS ═════════════════════════ -->
+    <section id="projets" class="border-y border-white/5 bg-ink-900/40 py-24">
+      <div class="mx-auto max-w-6xl px-6">
+        <div class="reveal mb-8 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p class="eyebrow">02 — <span data-i18n="proj.eyebrow">Projets</span></p>
+            <h2 class="h2" data-i18n="proj.title">Réalisations sélectionnées</h2>
+            <p class="mt-3 max-w-xl text-slate-400" data-i18n="proj.sub">Des cartes électroniques aux simulations numériques.</p>
+          </div>
+          <!-- Filtres -->
+          <div class="flex flex-wrap gap-2" role="group" aria-label="Filtres">
+            <button type="button" class="filter-btn" data-filter="all" aria-pressed="true" data-i18n="f.all">Tous</button>
+            <button type="button" class="filter-btn" data-filter="hardware" aria-pressed="false" data-i18n="f.hw">Hardware</button>
+            <button type="button" class="filter-btn" data-filter="embedded" aria-pressed="false" data-i18n="f.emb">Embarqué</button>
+            <button type="button" class="filter-btn" data-filter="simulation" aria-pressed="false" data-i18n="f.sim">Simulation</button>
+          </div>
+        </div>
+
+        <!--
+          ➕ AJOUTER UN PROJET : copie une balise <article class="project ..."> complète, colle-la ci-dessous,
+          puis change data-cat (hardware / embedded / simulation — plusieurs valeurs possibles séparées par un espace).
+        -->
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+
+          <!-- ───────── Projet 1 : Domethic System ───────── -->
+          <article class="project surface group reveal flex flex-col overflow-hidden" data-cat="hardware embedded">
+            <div class="relative aspect-video overflow-hidden bg-gradient-to-br from-ink-700 to-ink-800">
+              <div class="absolute inset-0 grid place-items-center text-ink-600"><svg class="h-12 w-12"><use href="#i-cpu"/></svg></div>
+              <!-- 📸 IMAGE PROJET 1 : photo de tes cartes / boîtiers → assets/projets/domethic.jpg (16:9, ~1200×675 px) -->
+              <img src="assets/projets/domethic.jpg" alt="Cartes électroniques Domethic System" loading="lazy"
+                   class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" onerror="this.remove()">
+            </div>
+            <div class="flex flex-1 flex-col p-6">
+              <p class="font-mono text-xs text-slate-400"><span data-i18n="p1.kind">Projet entrepreneurial</span> · <span data-i18n="p1.date">Fév. 2022 — Présent</span></p>
+              <h3 class="mt-2 text-xl font-semibold text-white">Domethic System</h3>
+              <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-400" data-i18n="p1.desc">Assemblage de cartes électroniques (soudure, modules radio, mémoire EEPROM), paramétrage du firmware et tests de robustesse : charges de forte puissance et vérification de la CEM.</p>
+              <ul class="mt-5 flex flex-wrap gap-2">
+                <li class="tag">Firmware</li><li class="tag">Hardware</li><li class="tag">EEPROM</li><li class="tag" data-i18n="tag.radio">Modules radio</li>
+              </ul>
+              <div class="mt-6 flex flex-wrap gap-2">
+                <a href="domethic.html" class="btn-primary !px-4 !py-2.5 !text-xs">
+                  <span data-i18n="proj.more">En savoir plus</span><svg class="h-3.5 w-3.5"><use href="#i-arrow"/></svg>
+                </a>
+                <!-- 🔗 LIEN : remplace par ton dépôt. Si le code est confidentiel (projet commercial), supprime ce bouton. -->
+                <a href="https://github.com/VOTRE-PSEUDO/domethic-system" target="_blank" rel="noopener noreferrer" class="btn-ghost !px-4 !py-2.5 !text-xs">
+                  <svg class="h-3.5 w-3.5"><use href="#i-github"/></svg><span data-i18n="proj.code">Code source</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ───────── Projet 2 : Télécommande autonome ───────── -->
+          <article class="project surface group reveal flex flex-col overflow-hidden" data-cat="embedded hardware" style="transition-delay:.1s">
+            <div class="relative aspect-video overflow-hidden bg-gradient-to-br from-ink-700 to-ink-800">
+              <div class="absolute inset-0 grid place-items-center text-ink-600"><svg class="h-12 w-12"><use href="#i-code"/></svg></div>
+              <!-- 📸 IMAGE PROJET 2 : photo du prototype → assets/projets/telecommande.jpg (16:9, ~1200×675 px) -->
+              <img src="assets/projets/telecommande.jpg" alt="Prototype de télécommande autonome" loading="lazy"
+                   class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" onerror="this.remove()">
+            </div>
+            <div class="flex flex-1 flex-col p-6">
+              <p class="font-mono text-xs text-slate-400"><span data-i18n="p2.kind">Projet industriel · Phelma</span> · <span data-i18n="p2.date">Mars — Mai 2026</span></p>
+              <h3 class="mt-2 text-xl font-semibold text-white" data-i18n="p2.title">Télécommande Autonome</h3>
+              <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-400" data-i18n="p2.desc">Conception d'une télécommande autonome pour vidéoprojecteurs : intégration matérielle, prototypage et développement du code embarqué.</p>
+              <ul class="mt-5 flex flex-wrap gap-2">
+                <li class="tag">Arduino</li><li class="tag">C/C++</li><li class="tag">Python</li><li class="tag">Raspberry Pi</li><li class="tag" data-i18n="tag.ir">Infrarouge</li>
+              </ul>
+              <div class="mt-6 flex flex-wrap gap-2">
+                <a href="telecommande.html" class="btn-primary !px-4 !py-2.5 !text-xs">
+                  <span data-i18n="proj.more">En savoir plus</span><svg class="h-3.5 w-3.5"><use href="#i-arrow"/></svg>
+                </a>
+                <!-- 🔗 LIEN : dépôt du projet -->
+                <a href="https://github.com/VOTRE-PSEUDO/telecommande-autonome" target="_blank" rel="noopener noreferrer" class="btn-ghost !px-4 !py-2.5 !text-xs">
+                  <svg class="h-3.5 w-3.5"><use href="#i-github"/></svg><span data-i18n="proj.code">Code source</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ───────── Projet 3 : TIPE ───────── -->
+          <article class="project surface group reveal flex flex-col overflow-hidden" data-cat="simulation" style="transition-delay:.2s">
+            <div class="relative aspect-video overflow-hidden bg-gradient-to-br from-ink-700 to-ink-800">
+              <div class="absolute inset-0 grid place-items-center text-ink-600"><svg class="h-12 w-12"><use href="#i-activity"/></svg></div>
+              <!-- 📸 IMAGE PROJET 3 : graphique de trajectoires / capture de simulation → assets/projets/tipe.jpg (16:9) -->
+              <img src="assets/projets/tipe.jpg" alt="Simulation de trajectoires du TIPE" loading="lazy"
+                   class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" onerror="this.remove()">
+            </div>
+            <div class="flex flex-1 flex-col p-6">
+              <p class="font-mono text-xs text-slate-400"><span data-i18n="p3.kind">TIPE · Classes préparatoires</span> · <span data-i18n="p3.date">Jan. 2023 — Avr. 2025</span></p>
+              <h3 class="mt-2 text-xl font-semibold text-white" data-i18n="p3.title">Simulation Cinématique (TIPE)</h3>
+              <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-400" data-i18n="p3.desc">Modélisation cinématique d'une assistance mécanique au badminton (détection du joueur et lancer). Simulation de trajectoires en Python, vision par ordinateur et analyse d'incertitudes : erreur de mesure réduite de 80 %.</p>
+              <ul class="mt-5 flex flex-wrap gap-2">
+                <li class="tag">Python</li><li class="tag" data-i18n="tag.cv">Vision par ordinateur</li><li class="tag" data-i18n="tag.unc">Analyse d'incertitudes</li>
+              </ul>
+              <div class="mt-6 flex flex-wrap gap-2">
+                <a href="tipe.html" class="btn-primary !px-4 !py-2.5 !text-xs">
+                  <span data-i18n="proj.more">En savoir plus</span><svg class="h-3.5 w-3.5"><use href="#i-arrow"/></svg>
+                </a>
+                <a href="https://github.com/AurelienCapron/Lanceur-de-volant-de-badminton" target="_blank" rel="noopener noreferrer" class="btn-ghost !px-4 !py-2.5 !text-xs">
+                  <svg class="h-3.5 w-3.5"><use href="#i-github"/></svg><span data-i18n="proj.code">Code source</span>
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════ 4. PARCOURS ═════════════════════════ -->
+    <section id="parcours" class="py-24">
+      <div class="mx-auto max-w-6xl px-6">
+        <div class="reveal mb-12">
+          <p class="eyebrow">03 — <span data-i18n="path.eyebrow">Parcours</span></p>
+          <h2 class="h2" data-i18n="path.title">Formation &amp; expérience</h2>
+        </div>
+
+        <div class="grid gap-14 lg:grid-cols-2">
+
+          <!-- Colonne gauche : formation + engagement -->
+          <div>
+            <h3 class="reveal mb-6 font-mono text-sm uppercase tracking-widest text-slate-400" data-i18n="path.edu">Formation</h3>
+            <ol class="relative space-y-9 border-l border-white/10 pl-6">
+              <li class="reveal relative">
+                <span class="absolute -left-[30px] top-1.5 h-2.5 w-2.5 rounded-full bg-accent ring-4 ring-ink-950"></span>
+                <p class="font-mono text-xs text-slate-400">2025 — 2028 · Grenoble</p>
+                <h4 class="mt-1 text-lg font-semibold text-white">Grenoble INP - Phelma</h4>
+                <p class="mt-1 text-sm text-slate-400" data-i18n="e1.sub">Diplôme d'ingénieur (attendu en 2028) · Systèmes Électroniques Intégrés (SEI)</p>
+                <ul class="mt-3 flex flex-wrap gap-2">
+                  <li class="tag" data-i18n="c1">Systèmes embarqués</li>
+                  <li class="tag" data-i18n="c2">Traitement du signal</li>
+                  <li class="tag" data-i18n="c3">Électronique</li>
+                  <li class="tag" data-i18n="c4">Physique des capteurs</li>
+                </ul>
+              </li>
+              <li class="reveal relative">
+                <span class="absolute -left-[30px] top-1.5 h-2.5 w-2.5 rounded-full bg-slate-500 ring-4 ring-ink-950"></span>
+                <p class="font-mono text-xs text-slate-400">2023 — 2025 · Nantes</p>
+                <h4 class="mt-1 text-lg font-semibold text-white">Lycée Saint Stanislas</h4>
+                <p class="mt-1 text-sm text-slate-400" data-i18n="e2.sub">Classes préparatoires aux Grandes Écoles (MPSI / PSI)</p>
+              </li>
+            </ol>
+
+            <!-- Engagement associatif -->
+            <div class="surface reveal mt-10 p-6">
+              <h3 class="font-mono text-sm uppercase tracking-widest text-slate-400" data-i18n="eng.title">Engagement associatif</h3>
+              <p class="mt-3 font-semibold text-white" data-i18n="eng.role">Responsable partenariats du bureau des sports de Phelma</p>
+              <p class="mt-1 text-sm text-slate-400" data-i18n="eng.desc">Négociation de sponsoring et gestion de budget.</p>
+            </div>
+          </div>
+
+          <!-- Colonne droite : expérience professionnelle -->
+          <div>
+            <h3 class="reveal mb-6 font-mono text-sm uppercase tracking-widest text-slate-400" data-i18n="path.exp">Expérience professionnelle</h3>
+            <ol class="relative space-y-9 border-l border-white/10 pl-6">
+              <li class="reveal relative">
+                <span class="absolute -left-[30px] top-1.5 h-2.5 w-2.5 rounded-full bg-accent ring-4 ring-ink-950"></span>
+                <p class="font-mono text-xs text-slate-400"><span data-i18n="x1.date">Mai 2026 — Présent</span> · Isère</p>
+                <h4 class="mt-1 text-lg font-semibold text-white">Sacha Heritage</h4>
+                <p class="text-sm font-medium text-accent-soft" data-i18n="x1.role">Co-fondateur &amp; Commercial itinérant</p>
+                <p class="mt-2 text-sm text-slate-400" data-i18n="x1.desc">Importation et commercialisation de poivre de Kampot : prospection, vente directe en salons professionnels, gestion des stocks et préparation des commandes.</p>
+              </li>
+              <li class="reveal relative">
+                <span class="absolute -left-[30px] top-1.5 h-2.5 w-2.5 rounded-full bg-slate-500 ring-4 ring-ink-950"></span>
+                <p class="font-mono text-xs text-slate-400"><span data-i18n="x2.date">Juil. — Août 2026</span> · Bretagne</p>
+                <h4 class="mt-1 text-lg font-semibold text-white">Yves Rocher</h4>
+                <p class="text-sm font-medium text-accent-soft" data-i18n="x2.role">Opérateur de production (Intérim)</p>
+                <p class="mt-2 text-sm text-slate-400" data-i18n="x2.desc">Pilotage des transferts de fluides entre les cuves de fabrication et les lignes de conditionnement, sanitisation et maintenance de premier niveau des équipements industriels.</p>
+              </li>
+              <li class="reveal relative">
+                <span class="absolute -left-[30px] top-1.5 h-2.5 w-2.5 rounded-full bg-slate-500 ring-4 ring-ink-950"></span>
+                <p class="font-mono text-xs text-slate-400"><span data-i18n="x3.date">Juin — Août 2024</span> · Bretagne</p>
+                <h4 class="mt-1 text-lg font-semibold text-white">EARL du Maye</h4>
+                <p class="text-sm font-medium text-accent-soft" data-i18n="x3.role">Saisonnier agricole (CDD)</p>
+                <p class="mt-2 text-sm text-slate-400" data-i18n="x3.desc">Alimentation et surveillance de la santé des bovins, nettoyage des installations et maintenance de base du matériel agricole.</p>
+              </li>
+              <li class="reveal relative">
+                <span class="absolute -left-[30px] top-1.5 h-2.5 w-2.5 rounded-full bg-slate-500 ring-4 ring-ink-950"></span>
+                <p class="font-mono text-xs text-slate-400"><span data-i18n="x4.date">Avril 2022 — Fév. 2023</span> · Ain</p>
+                <h4 class="mt-1 text-lg font-semibold text-white">Proxitec Services</h4>
+                <p class="text-sm font-medium text-accent-soft" data-i18n="x4.role">Manutentionnaire (CDD à temps partiel)</p>
+                <p class="mt-2 text-sm text-slate-400" data-i18n="x4.desc">Chargement, déchargement et acheminement des équipements ; aide à l'artisan lors des installations.</p>
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- Langues / soft skills / centres d'intérêt -->
+        <div class="mt-14 grid gap-6 md:grid-cols-2">
+          <div class="surface reveal p-6">
+            <h3 class="font-mono text-sm uppercase tracking-widest text-slate-400" data-i18n="lang.title">Langues &amp; soft skills</h3>
+            <ul class="mt-4 flex flex-wrap gap-2">
+              <li class="tag" data-i18n="lang.en">Anglais — C1</li>
+              <li class="tag" data-i18n="lang.fr">Français — Natif</li>
+              <li class="tag" data-i18n="lang.de">Allemand — Notions</li>
+              <li class="tag" data-i18n="soft.team">Esprit d'équipe</li>
+              <li class="tag" data-i18n="soft.adapt">Adaptabilité</li>
+            </ul>
+          </div>
+          <div class="surface reveal p-6" style="transition-delay:.1s">
+            <h3 class="font-mono text-sm uppercase tracking-widest text-slate-400" data-i18n="int.title">Centres d'intérêt</h3>
+            <ul class="mt-4 flex flex-wrap gap-2">
+              <li class="tag">Volleyball</li>
+              <li class="tag">Judo</li>
+              <li class="tag" data-i18n="int.chess">Échecs</li>
+              <li class="tag" data-i18n="int.strategy">Jeux de stratégie</li>
+              <li class="tag" data-i18n="int.cooking">Cuisine</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════ HOBBIES & À CÔTÉ ═════════════════════════ -->
+    <section id="hobbies" class="border-t border-white/5 bg-ink-900/40 py-24">
+      <div class="mx-auto max-w-6xl px-6">
+        <div class="reveal mb-12">
+          <p class="eyebrow">04 — <span data-i18n="hob.eyebrow">À côté des études</span></p>
+          <h2 class="h2" data-i18n="hob.title">Hobbies &amp; engagements</h2>
+          <p class="mt-3 max-w-xl text-slate-400" data-i18n="hob.sub">Quelques activités qui montrent d'autres facettes, avec les preuves qui vont avec.</p>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-3">
+
+          <!-- ───────── Hobby 1 : Judo ───────── -->
+          <article class="surface group reveal flex flex-col overflow-hidden">
+            <div class="relative aspect-video overflow-hidden bg-gradient-to-br from-ink-700 to-ink-800">
+              <div class="absolute inset-0 grid place-items-center text-ink-600"><svg class="h-12 w-12"><use href="#i-activity"/></svg></div>
+              <!-- 📸 IMAGE : photo du championnat / remise de médaille → assets/hobbies/judo.jpg (16:9) -->
+              <img src="assets/hobbies/judo.jpg" alt="Championnat de France de kata, judo" loading="lazy"
+                   class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" onerror="this.remove()">
+            </div>
+            <div class="flex flex-1 flex-col p-6">
+              <p class="font-mono text-xs text-slate-400" data-i18n="hob1.kind">Judo · Kata</p>
+              <h3 class="mt-2 text-lg font-semibold text-white" data-i18n="hob1.title">Championnat de France de kata</h3>
+              <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-400" data-i18n="hob1.desc">Participation au championnat de France de kata en judo, aboutissement de plusieurs années d'entraînement régulier.</p>
+              <!-- 🔗 LIEN : remplace par l'article de presse qui en parle -->
+              <a href="https://www.leprogres.fr/sport/2023/03/25/deux-judokas-villetois-a-l-honneur-aux-championnats-de-france" target="_blank" rel="noopener noreferrer" class="btn-ghost mt-6 !px-4 !py-2.5 !text-xs">
+                <svg class="h-3.5 w-3.5"><use href="#i-arrow"/></svg><span data-i18n="hob.press">Article de presse</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- ───────── Hobby 2 : Modèle salon du mariage ───────── -->
+          <article class="surface group reveal flex flex-col overflow-hidden" style="transition-delay:.1s">
+            <div class="relative aspect-video overflow-hidden bg-gradient-to-br from-ink-700 to-ink-800">
+              <div class="absolute inset-0 grid place-items-center text-ink-600"><svg class="h-12 w-12"><use href="#i-activity"/></svg></div>
+              <!-- 📸 IMAGE : photo du défilé → assets/hobbies/perouges.jpg (16:9) -->
+              <img src="assets/hobbies/perouges.jpg" alt="Salon du mariage de Pérouges, défilé" loading="lazy"
+                   class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" onerror="this.remove()">
+            </div>
+            <div class="flex flex-1 flex-col p-6">
+              <p class="font-mono text-xs text-slate-400" data-i18n="hob2.kind">Mannequinat</p>
+              <h3 class="mt-2 text-lg font-semibold text-white" data-i18n="hob2.title">Salon du mariage de Pérouges</h3>
+              <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-400" data-i18n="hob2.desc">Modèle lors d'un défilé au salon du mariage de Pérouges, une expérience à l'opposé du travail en laboratoire.</p>
+              <!-- 🔗 LIEN : remplace par le compte Instagram de l'organisateur / photographe -->
+              <a href="https://www.instagram.com/p/Da7NMi7DZCE/" target="_blank" rel="noopener noreferrer" class="btn-ghost mt-6 !px-4 !py-2.5 !text-xs">
+                <svg class="h-3.5 w-3.5"><use href="#i-arrow"/></svg><span data-i18n="hob.instagram">Voir sur Instagram</span>
+              </a>
+            </div>
+          </article>
+
+          <!-- ───────── Hobby 3 : Salons de vente Sacha Heritage ───────── -->
+          <article class="surface group reveal flex flex-col overflow-hidden" style="transition-delay:.2s">
+            <div class="relative aspect-video overflow-hidden bg-gradient-to-br from-ink-700 to-ink-800">
+              <div class="absolute inset-0 grid place-items-center text-ink-600"><svg class="h-12 w-12"><use href="#i-activity"/></svg></div>
+              <!-- 📸 IMAGE : photo de stand / salon → assets/hobbies/sacha-heritage.jpg (16:9) -->
+              <img src="assets/hobbies/sacha-heritage.jpg" alt="Salon de vente Sacha Heritage" loading="lazy"
+                   class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" onerror="this.remove()">
+            </div>
+            <div class="flex flex-1 flex-col p-6">
+              <p class="font-mono text-xs text-slate-400" data-i18n="hob3.kind">Entrepreneuriat</p>
+              <h3 class="mt-2 text-lg font-semibold text-white" data-i18n="hob3.title">Salons de vente — Sacha Heritage</h3>
+              <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-400" data-i18n="hob3.desc">Tenue de stand sur différents salons professionnels pour la vente directe de poivre de Kampot.</p>
+              <!-- 🔗 LIEN : compte Instagram de Sacha Heritage -->
+              <a href="https://www.instagram.com/p/DZKxIWPl6Nq/?img_index=1" target="_blank" rel="noopener noreferrer" class="btn-ghost mt-6 !px-4 !py-2.5 !text-xs">
+                <svg class="h-3.5 w-3.5"><use href="#i-arrow"/></svg><span data-i18n="hob.instagram">Voir sur Instagram</span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ═════════════════════════ 5. CONTACT (FOOTER) ═════════════════════════ -->
+  <footer id="contact" class="relative overflow-hidden border-t border-white/5 bg-ink-900/40">
+    <div class="pointer-events-none absolute left-1/2 top-0 h-64 w-[36rem] -translate-x-1/2 rounded-full bg-accent/10 blur-3xl"></div>
+
+    <div class="relative mx-auto max-w-3xl px-6 py-24 text-center">
+      <p class="eyebrow reveal" data-i18n="contact.eyebrow">Contact</p>
+      <h2 class="h2 reveal" data-i18n="contact.title">Prêt à échanger sur vos projets technologiques ?</h2>
+      <p class="reveal mx-auto mt-4 max-w-lg text-slate-400" data-i18n="contact.sub">Stage d'assistant ingénieur en électronique — 16 semaines, dès mi-mai 2027.</p>
+
+      <!-- Icônes de contact -->
+      <div class="reveal mt-10 flex items-center justify-center gap-4">
+        <a class="icon-btn" href="https://www.linkedin.com/in/aurelien-capron" target="_blank" rel="noopener noreferrer" aria-label="Profil LinkedIn" data-i18n-aria="aria.linkedin">
+          <svg class="h-5 w-5"><use href="#i-linkedin"/></svg>
+        </a>
+        <!-- 🔗 LIEN : remplace VOTRE-PSEUDO par ton nom d'utilisateur GitHub -->
+        <a class="icon-btn" href="https://github.com/VOTRE-PSEUDO" target="_blank" rel="noopener noreferrer" aria-label="Profil GitHub" data-i18n-aria="aria.github">
+          <svg class="h-5 w-5"><use href="#i-github"/></svg>
+        </a>
+        <a class="icon-btn" href="mailto:aurelien-capron@outlook.fr" aria-label="Envoyer un email" data-i18n-aria="aria.email">
+          <svg class="h-5 w-5"><use href="#i-mail"/></svg>
+        </a>
+        <a class="icon-btn" href="tel:+33783073311" aria-label="Appeler" data-i18n-aria="aria.phone">
+          <svg class="h-5 w-5"><use href="#i-phone"/></svg>
+        </a>
+      </div>
+
+      <!-- Email en clair + copie rapide -->
+      <div class="reveal mt-6 inline-flex items-center gap-3 rounded-full border border-white/10 bg-ink-900 py-1.5 pl-5 pr-1.5 font-mono text-sm text-slate-300">
+        <span>aurelien-capron@outlook.fr</span>
+        <button id="copy-email" type="button" class="inline-flex items-center gap-1.5 rounded-full bg-white/5 px-3 py-1.5 text-xs text-slate-200 transition hover:bg-accent/15 hover:text-accent-soft"
+                aria-label="Copier l'adresse email" data-i18n-aria="aria.copy">
+          <svg class="h-3.5 w-3.5"><use href="#i-copy"/></svg><span data-i18n="contact.copy">Copier</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="relative border-t border-white/5 py-6 text-center font-mono text-xs text-slate-500">
+      © <span id="year">2026</span> Aurélien Capron · <span data-i18n="footer.built">Conçu avec HTML &amp; Tailwind CSS</span>
+    </div>
+  </footer>
+
+  <!-- Retour en haut de page -->
+  <button id="to-top" type="button" aria-label="Retour en haut" data-i18n-aria="aria.top"
+          class="pointer-events-none fixed bottom-6 right-6 z-40 grid h-11 w-11 place-items-center rounded-full border border-white/10 bg-ink-800/90 text-slate-200 opacity-0 shadow-lg backdrop-blur transition-opacity hover:border-accent/50 hover:text-accent-soft">
+    <svg class="h-5 w-5"><use href="#i-up"/></svg>
+  </button>
+
+  <!-- Notification (copie de l'email) -->
+  <div id="toast" role="status" aria-live="polite"
+       class="pointer-events-none fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-lg border border-accent/30 bg-ink-800 px-4 py-2 text-sm text-accent-soft opacity-0 shadow-xl transition-opacity duration-300"></div>
+
+  <!-- ═════════════════════════ JAVASCRIPT ═════════════════════════ -->
+  <script>
+  (() => {
+    const $  = (s, r = document) => r.querySelector(s);
+    const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+    $('#year').textContent = new Date().getFullYear();
+
+    /* ───────── Traduction FR / EN ─────────
+       Le français est la langue source (texte présent dans le HTML) : il est mémorisé automatiquement.
+       Seul l'anglais est listé ci-dessous. Pour modifier un texte EN, change la valeur de sa clé. */
+    const FR = {};
+    $$('[data-i18n]').forEach(el => { FR[el.dataset.i18n] = el.textContent.trim(); });
+    $$('[data-i18n-aria]').forEach(el => { FR[el.dataset.i18nAria] = el.getAttribute('aria-label'); });
+    FR['meta.title'] = document.title;
+    FR['meta.desc']  = $('meta[name="description"]').content;
+
+    const EN = {
+      "meta.title": "Aurélien CAPRON — Portfolio | Embedded Systems Engineering Student",
+      "meta.desc": "Portfolio of Aurélien Capron, engineering student at Grenoble INP - Phelma (Integrated Electronic Systems). Embedded systems, microelectronics, hardware design.",
+      "skip": "Skip to content",
+      "nav.skills": "Skills", "nav.projects": "Projects", "nav.path": "Background", "nav.hobbies": "Hobbies", "nav.contact": "Contact",
+      "hero.badge": "Available · 16-week internship from mid-May 2027",
+      "hero.role": "Engineering Student at Grenoble INP - Phelma (Integrated Electronic Systems)",
+      "hero.bio": "Passionate about hardware design and embedded systems architecture. Currently looking for a 16-week engineering assistant internship.",
+      "hero.cta1": "View my projects", "hero.cta2": "Download my CV",
+      "chip.degree": "Engineering degree 2028", "chip.english": "English C1", "chip.licence": "Driving licence (B)",
+      "skills.eyebrow": "Skills", "skills.title": "Technical toolbox",
+      "skills.sub": "From CAD design to the test bench.",
+      "skills.cat1": "Electronics & CAD", "skills.cat2": "Embedded & Code", "skills.cat3": "Instrumentation",
+      "tag.scope": "Oscilloscope", "tag.sigGen": "Signal generator", "tag.emcTest": "EMC testing",
+      "proj.eyebrow": "Projects", "proj.title": "Selected work",
+      "proj.sub": "From electronic boards to numerical simulations.",
+      "f.all": "All", "f.hw": "Hardware", "f.emb": "Embedded", "f.sim": "Simulation",
+      "proj.code": "Source code", "proj.more": "Learn more",
+      "p1.kind": "Entrepreneurial project", "p1.date": "Feb 2022 — Present",
+      "p1.desc": "Electronic board assembly (soldering, radio modules, EEPROM memory), firmware configuration and robustness testing: high-power loads and EMC verification.",
+      "tag.radio": "Radio modules",
+      "p2.kind": "Industrial project · Phelma", "p2.date": "Mar — May 2026", "p2.title": "Standalone Remote Control",
+      "p2.desc": "Design of a standalone remote control for video projectors: hardware integration, prototyping and embedded software development.",
+      "tag.ir": "Infrared",
+      "p3.kind": "TIPE · Preparatory classes", "p3.date": "Jan 2023 — Apr 2025", "p3.title": "Kinematic Simulation (TIPE)",
+      "p3.desc": "Kinematic modelling of a mechanical assistance device for badminton (player detection and shuttle launch). Trajectory simulation in Python, computer vision and uncertainty analysis: measurement error reduced by 80%.",
+      "tag.cv": "Computer vision", "tag.unc": "Uncertainty analysis",
+      "path.eyebrow": "Background", "path.title": "Education & experience",
+      "path.edu": "Education", "path.exp": "Work experience",
+      "e1.sub": "Engineering degree (expected 2028) · Integrated Electronic Systems (SEI)",
+      "c1": "Embedded systems", "c2": "Signal processing", "c3": "Electronics", "c4": "Sensor physics",
+      "e2.sub": "Preparatory classes for the Grandes Écoles (MPSI / PSI)",
+      "eng.title": "Community involvement", "eng.role": "Partnerships Manager, Phelma Sports Association",
+      "eng.desc": "Sponsorship negotiation and budget management.",
+      "x1.date": "May 2026 — Present", "x1.role": "Co-founder & Traveling Sales Representative",
+      "x1.desc": "Import and marketing of Kampot pepper: prospecting, direct sales at trade shows, inventory management and order preparation.",
+      "x2.date": "Jul — Aug 2026", "x2.role": "Production Operator (Temp)",
+      "x2.desc": "Managing fluid transfers between manufacturing tanks and packaging lines, sanitization and first-level maintenance of industrial equipment.",
+      "x3.date": "Jun — Aug 2024", "x3.role": "Seasonal Farm Worker (fixed-term)",
+      "x3.desc": "Feeding and health monitoring of cattle, cleaning of facilities and basic maintenance of farm equipment.",
+      "x4.date": "Apr 2022 — Feb 2023", "x4.role": "Handler (part-time, fixed-term)",
+      "x4.desc": "Loading, unloading and transporting equipment; assisting the craftsman during installations.",
+      "lang.title": "Languages & soft skills",
+      "lang.en": "English — C1", "lang.fr": "French — Native", "lang.de": "German — Basic",
+      "soft.team": "Team spirit", "soft.adapt": "Adaptability",
+      "int.title": "Interests", "int.chess": "Chess", "int.strategy": "Strategy games", "int.cooking": "Cooking",
+      "hob.eyebrow": "Beyond the classroom", "hob.title": "Hobbies & involvement",
+      "hob.sub": "A few activities that show other sides of me, with the proof to back them up.",
+      "hob.press": "Press article", "hob.instagram": "View on Instagram",
+      "hob1.kind": "Judo · Kata", "hob1.title": "French Kata Championship",
+      "hob1.desc": "Competed at the French Kata Championship in judo, the result of several years of regular training.",
+      "hob2.kind": "Modelling", "hob2.title": "Pérouges Wedding Fair",
+      "hob2.desc": "Walked as a model at the Pérouges wedding fair — quite a change from working in a lab.",
+      "hob3.kind": "Entrepreneurship", "hob3.title": "Trade shows — Sacha Heritage",
+      "hob3.desc": "Ran a stand at several trade shows for direct sales of Kampot pepper.",
+      "contact.eyebrow": "Contact",
+      "contact.title": "Ready to talk about your tech projects?",
+      "contact.sub": "Electronics engineering assistant internship — 16 weeks, from mid-May 2027.",
+      "contact.copy": "Copy", "toast.copied": "Email copied!",
+      "footer.built": "Built with HTML & Tailwind CSS",
+      "aria.menu": "Open menu", "aria.top": "Back to top",
+      "aria.linkedin": "LinkedIn profile", "aria.github": "GitHub profile",
+      "aria.email": "Send an email", "aria.phone": "Call", "aria.copy": "Copy email address"
+    };
+    FR['toast.copied'] = "Email copié !";
+    const DICT = { fr: FR, en: EN };
+    let lang = 'fr';
+
+    function setLang(next, persist) {
+      lang = next;
+      const d = DICT[lang];
+      document.documentElement.lang = lang;
+      $$('[data-i18n]').forEach(el => { const v = d[el.dataset.i18n]; if (v != null) el.textContent = v; });
+      $$('[data-i18n-aria]').forEach(el => {
+        const v = d[el.dataset.i18nAria];
+        if (v != null) { el.setAttribute('aria-label', v); el.setAttribute('title', v); }
+      });
+      document.title = d['meta.title'];
+      $('meta[name="description"]').setAttribute('content', d['meta.desc']);
+      $$('.lang-btn').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+      if (persist) { try { localStorage.setItem('lang', lang); } catch (e) {} }
+    }
+    $$('.lang-btn').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang, true)));
+    // Langue mémorisée (français par défaut)
+    let saved = null; try { saved = localStorage.getItem('lang'); } catch (e) {}
+    if (saved === 'en') setLang('en', false);
+
+    /* ───────── Menu mobile ───────── */
+    const menuBtn = $('#menu-btn'), menu = $('#mobile-menu');
+    function toggleMenu(open) {
+      const o = open ?? menu.classList.contains('hidden');
+      menu.classList.toggle('hidden', !o);
+      menuBtn.setAttribute('aria-expanded', String(o));
+      menuBtn.querySelector('use').setAttribute('href', o ? '#i-close' : '#i-menu');
+    }
+    menuBtn.addEventListener('click', () => toggleMenu());
+    $$('#mobile-menu a').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') toggleMenu(false); });
+
+    /* ───────── Barre de progression + bouton retour en haut ───────── */
+    const bar = $('#progress'), topBtn = $('#to-top');
+    let ticking = false;
+    function onScroll() {
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      const hidden = h.scrollTop < 600;
+      topBtn.classList.toggle('opacity-0', hidden);
+      topBtn.classList.toggle('pointer-events-none', hidden);
+      ticking = false;
+    }
+    addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+    onScroll();
+    topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    /* ───────── Lien actif dans la navigation (scrollspy) ───────── */
+    const navLinks = $$('.nav-link');
+    const spy = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        navLinks.forEach(l => l.setAttribute('aria-current', String(l.getAttribute('href') === '#' + e.target.id)));
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    $$('section[id], footer[id]').forEach(s => spy.observe(s));
+
+    /* ───────── Apparition au scroll ───────── */
+    const reveal = new IntersectionObserver((entries, obs) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    $$('.reveal').forEach(el => reveal.observe(el));
+
+    /* ───────── Filtres de projets ───────── */
+    $$('.filter-btn').forEach(btn => btn.addEventListener('click', () => {
+      const f = btn.dataset.filter;
+      $$('.filter-btn').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+      $$('.project').forEach(card => {
+        const show = f === 'all' || card.dataset.cat.split(' ').includes(f);
+        card.classList.toggle('hidden', !show);
+      });
+    }));
+
+    /* ───────── Copie de l'email + notification ───────── */
+    const toast = $('#toast');
+    let toastTimer;
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.remove('opacity-0');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.add('opacity-0'), 2200);
+    }
+    $('#copy-email').addEventListener('click', async () => {
+      const email = 'aurelien-capron@outlook.fr';
+      try {
+        await navigator.clipboard.writeText(email);
+      } catch (e) {
+        const t = document.createElement('textarea');
+        t.value = email; document.body.appendChild(t); t.select();
+        try { document.execCommand('copy'); } catch (_) {}
+        t.remove();
+      }
+      showToast(DICT[lang]['toast.copied']);
+    });
+  })();
+  </script>
+</body>
+</html>
