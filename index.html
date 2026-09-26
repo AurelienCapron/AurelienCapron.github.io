@@ -10,7 +10,7 @@
   ║   📸 IMAGE   → photo de profil + visuels des projets et hobbies       ║
   ║   🔗 LIEN    → ton pseudo GitHub + liens des dépôts                  ║
   ║   📄 CV      → assets/CV_Aurelien_Capron.pdf (FR) + version EN        ║
-  ║              → nom exact attendu : assets/CV_CAPRON_Aurélien_englishVersion.pdf ║
+  ║              → nom exact attendu : assets/CV_Aurelien_Capron_EN.pdf  ║
   ║   🌐 SEO     → ✅ FAIT : og:image, canonical, og:url, twitter:card,   ║
   ║              robots.txt, sitemap.xml et JSON-LD pointent déjà vers   ║
   ║              https://aureliencapron.github.io/                      ║
@@ -43,7 +43,7 @@
   ║   assets/fonts/*.woff2 (8 fichiers, cf. § POLICES ci-dessus)        ║
   ║   assets/photo.jpg                                                   ║
   ║   assets/CV_Aurelien_Capron.pdf                                      ║
-  ║   assets/CV_CAPRON_Aurélien_englishVersion.pdf                       ║
+  ║   assets/CV_Aurelien_Capron_EN.pdf                                   ║
   ║   assets/projets/domethic.jpg | telecommande.jpg | tipe.jpg          ║
   ║   assets/hobbies/judo.jpg | perouges.jpg | sacha-heritage.jpg        ║
   ║                                                                      ║
@@ -192,9 +192,17 @@
     .reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }
     .reveal.in { opacity: 1; transform: none; }
 
+    /* Animation douce lors du filtrage des projets */
+    @keyframes filterFade {
+      from { opacity: 0; transform: scale(0.97) translateY(6px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .filter-anim { animation: filterFade .25s ease-out forwards; }
+
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .reveal { opacity: 1; transform: none; transition: none; }
+      .filter-anim { animation: none; }
       .animate-ping { animation: none; }
     }
 
@@ -252,6 +260,7 @@
     <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
     <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></symbol>
     <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
     <symbol id="i-cpu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></symbol>
     <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></symbol>
     <symbol id="i-activity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></symbol>
@@ -376,7 +385,7 @@
             <!-- Visuel de remplacement (affiché si la photo est absente) -->
             <div class="absolute inset-0 grid place-items-center font-mono text-6xl font-bold text-ink-600">AC</div>
             <!-- 📸 IMAGE : ta photo de profil → assets/photo.jpg (format portrait 4:5 conseillé, ~800×1000 px) -->
-            <img src="assets/photo.jpg" alt="Portrait d'Aurélien Capron"
+            <img src="assets/photo.jpg" alt="Portrait d'Aurélien Capron" fetchpriority="high" decoding="async"
                  class="absolute inset-0 h-full w-full object-cover" onerror="this.remove()">
           </div>
           <!-- Petite carte « statut » façon code -->
@@ -952,23 +961,25 @@
       "contact.eyebrow": "Contact",
       "contact.title": "Ready to talk about your tech projects?",
       "contact.sub": "Electronics engineering assistant internship — 16 weeks, from mid-May 2027.",
-      "contact.copy": "Copy", "toast.copied": "Email copied!", "toast.copiedPhone": "Phone number copied!",
+      "contact.copy": "Copy", "contact.copiedBtn": "Copied",
+      "toast.copied": "Email copied!", "toast.copiedPhone": "Phone number copied!",
       "footer.built": "Built with HTML & CSS",
       "aria.menu": "Open menu", "aria.top": "Back to top",
       "aria.linkedin": "LinkedIn profile", "aria.github": "GitHub profile",
       "aria.email": "Send an email", "aria.phone": "Call", "aria.copy": "Copy email address",
       "aria.copyPhone": "Copy phone number", "aria.theme": "Toggle light/dark theme"
     };
+    FR['contact.copiedBtn'] = "Copié";
     FR['toast.copied'] = "Email copié !";
     FR['toast.copiedPhone'] = "Numéro copié !";
     const DICT = { fr: FR, en: EN };
     let lang = 'fr';
 
-    /* ───────── CV : bascule FR / EN ───────── */
+    /* ───────── CV : bascule FR / EN (sans accent dans l'URL) ───────── */
     const cvLink = $('#cv-download');
     const CV_FILES = {
       fr: 'assets/CV_Aurelien_Capron.pdf',
-      en: 'assets/CV_CAPRON_Aurélien_englishVersion.pdf'
+      en: 'assets/CV_Aurelien_Capron_EN.pdf'
     };
 
     function setLang(next, persist) {
@@ -1067,19 +1078,22 @@
       next.classList.remove('opacity-0');
     })();
 
-    /* ───────── Filtres de projets ───────── */
+    /* ───────── Filtres de projets (avec animation douce) ───────── */
     $$('.filter-btn').forEach(btn => btn.addEventListener('click', () => {
       const f = btn.dataset.filter;
       $$('.filter-btn').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
       $$('.project').forEach(card => {
         const show = f === 'all' || card.dataset.cat.split(' ').includes(f);
         card.classList.toggle('hidden', !show);
+        if (show) {
+          card.classList.remove('filter-anim');
+          void card.offsetWidth;
+          card.classList.add('filter-anim');
+        }
       });
     }));
 
-    /* ───────── Copie (email + téléphone) + notification ─────────
-       Logique commune : un bouton "copier" avec la valeur à copier et la clé
-       de traduction du message de confirmation. Réutilisée pour l'email et le téléphone. */
+    /* ───────── Copie (email + téléphone) + retour visuel sur le bouton & notification ───────── */
     const toast = $('#toast');
     let toastTimer;
     function showToast(msg) {
@@ -1091,6 +1105,7 @@
     function bindCopyButton(selector, value, toastKey) {
       const btn = $(selector);
       if (!btn) return;
+      let btnTimer;
       btn.addEventListener('click', async () => {
         try {
           await navigator.clipboard.writeText(value);
@@ -1100,6 +1115,17 @@
           try { document.execCommand('copy'); } catch (_) {}
           t.remove();
         }
+        const useEl = btn.querySelector('use');
+        const spanEl = btn.querySelector('span');
+        useEl?.setAttribute('href', '#i-check');
+        if (spanEl) spanEl.textContent = DICT[lang]['contact.copiedBtn'];
+        btn.classList.add('!bg-accent/15', '!text-accent-soft');
+        clearTimeout(btnTimer);
+        btnTimer = setTimeout(() => {
+          useEl?.setAttribute('href', '#i-copy');
+          if (spanEl) spanEl.textContent = DICT[lang]['contact.copy'];
+          btn.classList.remove('!bg-accent/15', '!text-accent-soft');
+        }, 2000);
         showToast(DICT[lang][toastKey]);
       });
     }
