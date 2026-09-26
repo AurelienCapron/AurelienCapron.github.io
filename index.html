@@ -72,6 +72,10 @@
   <!-- Favicon (monogramme « AC » intégré, aucun fichier requis) -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23121519'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='28' font-weight='700' text-anchor='middle' fill='%2310b981'%3EAC%3C/text%3E%3C/svg%3E">
 
+  <!-- 📱 Icône "ajouter à l'écran d'accueil" (iOS) + manifest (Android/PWA) -->
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
   <!-- Polices : Inter (texte) + JetBrains Mono (touches « tech ») — auto-hébergées, voir assets/fonts/ -->
   <style>
     /* 🔤 AUTO-HÉBERGEMENT DES POLICES : dépose les 8 fichiers .woff2 listés ci-dessous
@@ -186,6 +190,21 @@
       html { scroll-behavior: auto; }
       .reveal { opacity: 1; transform: none; transition: none; }
       .animate-ping { animation: none; }
+    }
+
+    /* ───────── Impression : version sobre, sans nav/décor/animations ───────── */
+    @media print {
+      header, #hero-canvas, #to-top, #toast, .icon-btn[aria-label="Copier"],
+      #copy-email, #copy-phone, .filter-btn, #hob-prev, #hob-next {
+        display: none !important;
+      }
+      body { background: #fff !important; color: #111 !important; }
+      main { margin-top: 0 !important; }
+      section[id], footer[id] { scroll-margin-top: 0; page-break-inside: avoid; }
+      .surface { border: 1px solid #ccc !important; background: #fff !important; box-shadow: none !important; }
+      a { color: #111 !important; text-decoration: underline; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+      [class*="blur-"] { display: none !important; }
     }
   </style>
   <noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
@@ -344,8 +363,9 @@
 
         <!-- Portrait -->
         <div class="relative mx-auto w-64 max-w-sm sm:w-72 lg:w-full">
-          <div class="absolute -inset-3 rounded-3xl bg-gradient-to-br from-accent/20 to-volt/20 blur-2xl"></div>
-          <div class="relative aspect-[4/5] overflow-hidden rounded-3xl border border-[var(--border)] bg-[var(--surface)]">
+          <div class="absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-accent/40 to-volt/40 blur-3xl opacity-80"></div>
+          <div class="absolute -inset-3 rounded-3xl bg-gradient-to-br from-accent/25 to-volt/25 blur-xl"></div>
+          <div class="relative aspect-[4/5] overflow-hidden rounded-3xl border border-accent/30 bg-[var(--surface)] shadow-[0_0_40px_-8px_rgba(16,185,129,0.35)]">
             <!-- Visuel de remplacement (affiché si la photo est absente) -->
             <div class="absolute inset-0 grid place-items-center font-mono text-6xl font-bold text-ink-600">AC</div>
             <!-- 📸 IMAGE : ta photo de profil → assets/photo.jpg (format portrait 4:5 conseillé, ~800×1000 px) -->
