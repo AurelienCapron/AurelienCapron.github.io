@@ -803,9 +803,9 @@
 
       <!-- Email + téléphone en clair, avec copie rapide -->
       <div class="reveal mt-6 flex flex-wrap items-center justify-center gap-3">
-        <div class="inline-flex items-center gap-3 rounded-full border border-[var(--border)] bg-[var(--surface)] py-1.5 pl-5 pr-1.5 font-mono text-sm text-[var(--text)]">
-          <span>aurelien-capron@outlook.fr</span>
-          <button id="copy-email" type="button" class="inline-flex items-center gap-1.5 rounded-full bg-[var(--chip-bg)] px-3 py-1.5 text-xs text-[var(--text-soft)] transition hover:bg-accent/15 hover:text-accent-soft"
+        <div class="inline-flex max-w-full items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] py-1.5 pl-4 pr-1.5 font-mono text-xs text-[var(--text)] sm:gap-3 sm:pl-5 sm:text-sm">
+          <span class="whitespace-nowrap">aurelien-capron@outlook.fr</span>
+          <button id="copy-email" type="button" class="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-[var(--chip-bg)] px-3 py-1.5 text-xs text-[var(--text-soft)] transition hover:bg-accent/15 hover:text-accent-soft"
                   aria-label="Copier l'adresse email" data-i18n-aria="aria.copy">
             <svg class="h-3.5 w-3.5"><use href="#i-copy"/></svg><span data-i18n="contact.copy">Copier</span>
           </button>
