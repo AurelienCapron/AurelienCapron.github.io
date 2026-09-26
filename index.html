@@ -11,10 +11,9 @@
   ║   🔗 LIEN    → ton pseudo GitHub + liens des dépôts                  ║
   ║   📄 CV      → assets/CV_Aurelien_Capron.pdf (FR) + version EN        ║
   ║              → nom exact attendu : assets/CV_CAPRON_Aurélien_englishVersion.pdf ║
-  ║   🌐 SEO     → une fois le site en ligne, remplace VOTRE-PSEUDO dans :║
-  ║              → og:image (ci-dessous, à décommenter)                  ║
-  ║              → robots.txt et sitemap.xml (à la racine du dépôt)      ║
-  ║              → JSON-LD "sameAs" GitHub (plus bas dans le head)       ║
+  ║   🌐 SEO     → ✅ FAIT : og:image, canonical, og:url, twitter:card,   ║
+  ║              robots.txt, sitemap.xml et JSON-LD pointent déjà vers   ║
+  ║              https://aureliencapron.github.io/                      ║
   ║   🔀 LANGUE  → un lien se terminant par ?lang=en ouvre le site       ║
   ║              directement en anglais (pratique à partager)           ║
   ║                                                                      ║
@@ -35,8 +34,6 @@
   ║  tique terminée, pour rester 100% autonome, sans service tiers) :    ║
   ║   1. Compiler Tailwind en local → assets/styles.css                 ║
   ║      (remplace le CDN Tailwind chargé plus bas dans le head)         ║
-  ║   2. Renseigner l'URL réelle : og:image, canonical, robots.txt,      ║
-  ║      sitemap.xml, JSON-LD "sameAs"                                   ║
   ║                                                                      ║
   ║  Arborescence conseillée du dépôt GitHub :                           ║
   ║   index.html                                                         ║
@@ -65,9 +62,17 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Aurélien CAPRON — Portfolio">
   <meta property="og:description" content="Élève-ingénieur à Grenoble INP - Phelma, spécialisé en systèmes embarqués et microélectronique.">
-  <!-- 🌐 Une fois le site en ligne, décommente et adapte (URL ABSOLUE, image ~1200×630) : -->
-  <!-- <meta property="og:image" content="https://VOTRE-PSEUDO.github.io/assets/og-image.jpg"> -->
-  <!-- <link rel="canonical" href="https://VOTRE-PSEUDO.github.io/"> -->
+  <meta property="og:url" content="https://aureliencapron.github.io/">
+  <meta property="og:image" content="https://aureliencapron.github.io/assets/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <link rel="canonical" href="https://aureliencapron.github.io/">
+
+  <!-- 🌐 Aperçu de partage sur X / autres réseaux -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Aurélien CAPRON — Portfolio">
+  <meta name="twitter:description" content="Élève-ingénieur à Grenoble INP - Phelma, spécialisé en systèmes embarqués et microélectronique.">
+  <meta name="twitter:image" content="https://aureliencapron.github.io/assets/og-image.jpg">
 
   <!-- Favicon (monogramme « AC » intégré, aucun fichier requis) -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23121519'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='28' font-weight='700' text-anchor='middle' fill='%2310b981'%3EAC%3C/text%3E%3C/svg%3E">
@@ -215,12 +220,13 @@
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Aurélien Capron",
+    "url": "https://aureliencapron.github.io/",
     "jobTitle": "Élève-ingénieur — Systèmes Électroniques Intégrés",
     "alumniOf": { "@type": "CollegeOrUniversity", "name": "Grenoble INP - Phelma" },
     "email": "mailto:aurelien-capron@outlook.fr",
     "sameAs": [
       "https://www.linkedin.com/in/aurelien-capron",
-      "https://github.com/VOTRE-PSEUDO"
+      "https://github.com/AurelienCapron"
     ]
   }
   </script>
@@ -465,7 +471,7 @@
                   <span data-i18n="proj.more">En savoir plus</span><svg class="h-3.5 w-3.5"><use href="#i-arrow"/></svg>
                 </a>
                 <!-- 🔗 LIEN : remplace par ton dépôt. Si le code est confidentiel (projet commercial), supprime ce bouton. -->
-                <a href="https://github.com/VOTRE-PSEUDO/domethic-system" target="_blank" rel="noopener noreferrer" class="btn-ghost !px-4 !py-2.5 !text-xs">
+                <a href="https://github.com/AurelienCapron/domethic-system" target="_blank" rel="noopener noreferrer" class="btn-ghost !px-4 !py-2.5 !text-xs">
                   <svg class="h-3.5 w-3.5"><use href="#i-github"/></svg><span data-i18n="proj.code">Code source</span>
                 </a>
               </div>
@@ -492,7 +498,7 @@
                   <span data-i18n="proj.more">En savoir plus</span><svg class="h-3.5 w-3.5"><use href="#i-arrow"/></svg>
                 </a>
                 <!-- 🔗 LIEN : dépôt du projet -->
-                <a href="https://github.com/VOTRE-PSEUDO/telecommande-autonome" target="_blank" rel="noopener noreferrer" class="btn-ghost !px-4 !py-2.5 !text-xs">
+                <a href="https://github.com/AurelienCapron/telecommande-autonome" target="_blank" rel="noopener noreferrer" class="btn-ghost !px-4 !py-2.5 !text-xs">
                   <svg class="h-3.5 w-3.5"><use href="#i-github"/></svg><span data-i18n="proj.code">Code source</span>
                 </a>
               </div>
@@ -783,8 +789,7 @@
         <a class="icon-btn" href="https://www.linkedin.com/in/aurelien-capron" target="_blank" rel="noopener noreferrer" aria-label="Profil LinkedIn" data-i18n-aria="aria.linkedin">
           <svg class="h-5 w-5"><use href="#i-linkedin"/></svg>
         </a>
-        <!-- 🔗 LIEN : remplace VOTRE-PSEUDO par ton nom d'utilisateur GitHub -->
-        <a class="icon-btn" href="https://github.com/VOTRE-PSEUDO" target="_blank" rel="noopener noreferrer" aria-label="Profil GitHub" data-i18n-aria="aria.github">
+        <a class="icon-btn" href="https://github.com/AurelienCapron" target="_blank" rel="noopener noreferrer" aria-label="Profil GitHub" data-i18n-aria="aria.github">
           <svg class="h-5 w-5"><use href="#i-github"/></svg>
         </a>
         <a class="icon-btn" href="mailto:aurelien-capron@outlook.fr" aria-label="Envoyer un email" data-i18n-aria="aria.email">
