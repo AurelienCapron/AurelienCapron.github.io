@@ -158,12 +158,12 @@
     :root {
       color-scheme: dark;
       --bg: #0c0e11;
-      --bg-alt: rgba(18,21,25,.4);
-      --surface: rgba(18,21,25,.75);
-      --header-bg: rgba(12,14,17,.75);
-      --border: rgba(255,255,255,.1);
-      --chip-bg: rgba(255,255,255,.05);
-      --chip-bg-active: rgba(255,255,255,.1);
+      --bg-alt: rgba(18,21,25,.45);
+      --surface: rgba(22,27,34,.85);
+      --header-bg: rgba(12,14,17,.78);
+      --border: rgba(255,255,255,.11);
+      --chip-bg: rgba(255,255,255,.055);
+      --chip-bg-active: rgba(255,255,255,.11);
       --text: #cbd5e1;
       --text-strong: #ffffff;
       --text-soft: #e2e8f0;
@@ -174,7 +174,7 @@
       --placeholder-from: #232830;
       --placeholder-to: #181c21;
       --placeholder-icon: #475569;
-      --card-shadow: 0 10px 30px -10px rgba(0,0,0,.35);
+      --card-shadow: 0 10px 30px -10px rgba(0,0,0,.45);
       --canvas-line: rgba(255,255,255,.16);
       --canvas-node: rgba(16,185,129,.65);
     }
@@ -211,22 +211,6 @@
     #hero-canvas {
       -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 25%, transparent 75%);
               mask-image: radial-gradient(ellipse at 50% 30%, #000 25%, transparent 75%);
-    }
-
-    /* Estompage doux sur les bords du carrousel Hobbies sur desktop */
-    @media (min-width: 768px) {
-      #hobbies-track.fade-right {
-        -webkit-mask-image: linear-gradient(to right, #000 90%, transparent 100%);
-                mask-image: linear-gradient(to right, #000 90%, transparent 100%);
-      }
-      #hobbies-track.fade-left {
-        -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 10%, #000 100%);
-                mask-image: linear-gradient(to right, transparent 0%, #000 10%, #000 100%);
-      }
-      #hobbies-track.fade-both {
-        -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
-                mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
-      }
     }
 
     /* Apparition douce au scroll */
@@ -725,12 +709,12 @@
         <div class="relative reveal">
           <!-- Piste : défilement horizontal fluide sur mobile (swipe) et desktop -->
           <div id="hobbies-track"
-               class="fade-right -mx-6 flex snap-x snap-mandatory flex-row gap-4 overflow-x-auto scroll-px-6 px-6 pb-4
+               class="-mx-6 flex snap-x snap-mandatory flex-row gap-4 overflow-x-auto scroll-px-6 px-6 pb-4
                       md:mx-0 md:gap-6 md:scroll-px-0 md:px-0
                       [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
 
           <!-- ───────── Hobby 1 : Judo ───────── -->
-          <article class="surface group flex w-[85vw] max-w-[340px] flex-none snap-start flex-col overflow-hidden sm:w-[340px]">
+          <article class="surface group flex w-[82vw] max-w-[320px] flex-none snap-start flex-col overflow-hidden sm:w-[320px]">
             <a href="judo.html" tabindex="-1" aria-hidden="true" class="media-placeholder relative block aspect-video overflow-hidden border-b border-[var(--border)]">
               <div class="media-icon absolute inset-0 grid place-items-center"><svg class="h-12 w-12"><use href="#i-activity"/></svg></div>
               <!-- 📸 IMAGE : photo du championnat / remise de médaille → assets/hobbies/judo.jpg (16:9) -->
@@ -744,7 +728,7 @@
               </h3>
               <p class="mt-3 flex-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="hob1.desc">Participation au championnat de France de kata en judo, aboutissement de plusieurs années d'entraînement régulier.</p>
               <div class="mt-6 flex items-center gap-2">
-                <a href="judo.html" class="btn-primary !px-3.5 !py-2.5 !text-xs whitespace-nowrap">
+                <a href="judo.html" class="btn-primary !px-3 !py-2.5 !text-xs whitespace-nowrap">
                   <span data-i18n="proj.more">En savoir plus</span><svg class="h-3.5 w-3.5"><use href="#i-arrow"/></svg>
                 </a>
               </div>
@@ -752,7 +736,7 @@
           </article>
 
           <!-- ───────── Hobby 2 : Modèle salon du mariage ───────── -->
-          <article class="surface group flex w-[85vw] max-w-[340px] flex-none snap-start flex-col overflow-hidden sm:w-[340px]">
+          <article class="surface group flex w-[82vw] max-w-[320px] flex-none snap-start flex-col overflow-hidden sm:w-[320px]">
             <a href="perouges.html" tabindex="-1" aria-hidden="true" class="media-placeholder relative block aspect-video overflow-hidden border-b border-[var(--border)]">
               <div class="media-icon absolute inset-0 grid place-items-center"><svg class="h-12 w-12"><use href="#i-activity"/></svg></div>
               <!-- 📸 IMAGE : photo du défilé → assets/hobbies/perouges.jpg (16:9) -->
@@ -766,10 +750,10 @@
               </h3>
               <p class="mt-3 flex-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="hob2.desc">Modèle lors d'un défilé au salon du mariage de Pérouges, une expérience à l'opposé du travail en laboratoire.</p>
               <div class="mt-6 flex items-center gap-2">
-                <a href="perouges.html" class="btn-primary !px-3.5 !py-2.5 !text-xs whitespace-nowrap">
+                <a href="perouges.html" class="btn-primary !px-3 !py-2.5 !text-xs whitespace-nowrap">
                   <span data-i18n="proj.more">En savoir plus</span><svg class="h-3.5 w-3.5"><use href="#i-arrow"/></svg>
                 </a>
-                <a href="https://www.instagram.com/p/Da7NMi7DZCE/" target="_blank" rel="noopener noreferrer" class="btn-ghost !px-3.5 !py-2.5 !text-xs whitespace-nowrap">
+                <a href="https://www.instagram.com/p/Da7NMi7DZCE/" target="_blank" rel="noopener noreferrer" class="btn-ghost !px-3 !py-2.5 !text-xs whitespace-nowrap">
                   <svg class="h-3.5 w-3.5"><use href="#i-instagram"/></svg><span data-i18n="hob.instagram">Voir sur Instagram</span>
                 </a>
               </div>
@@ -777,7 +761,7 @@
           </article>
 
           <!-- ───────── Hobby 3 : Salons de vente Sacha Heritage ───────── -->
-          <article class="surface group flex w-[85vw] max-w-[340px] flex-none snap-start flex-col overflow-hidden sm:w-[340px]">
+          <article class="surface group flex w-[82vw] max-w-[320px] flex-none snap-start flex-col overflow-hidden sm:w-[320px]">
             <a href="sacha-heritage.html" tabindex="-1" aria-hidden="true" class="media-placeholder relative block aspect-video overflow-hidden border-b border-[var(--border)]">
               <div class="media-icon absolute inset-0 grid place-items-center"><svg class="h-12 w-12"><use href="#i-activity"/></svg></div>
               <!-- 📸 IMAGE : photo de stand / salon → assets/hobbies/sacha-heritage.jpg (16:9) -->
@@ -791,10 +775,10 @@
               </h3>
               <p class="mt-3 flex-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="hob3.desc">Tenue de stand sur différents salons professionnels pour la vente directe de poivre de Kampot.</p>
               <div class="mt-6 flex items-center gap-2">
-                <a href="sacha-heritage.html" class="btn-primary !px-3.5 !py-2.5 !text-xs whitespace-nowrap">
+                <a href="sacha-heritage.html" class="btn-primary !px-3 !py-2.5 !text-xs whitespace-nowrap">
                   <span data-i18n="proj.more">En savoir plus</span><svg class="h-3.5 w-3.5"><use href="#i-arrow"/></svg>
                 </a>
-                <a href="https://www.instagram.com/p/DZKxIWPl6Nq/?img_index=1" target="_blank" rel="noopener noreferrer" class="btn-ghost !px-3.5 !py-2.5 !text-xs whitespace-nowrap">
+                <a href="https://www.instagram.com/p/DZKxIWPl6Nq/?img_index=1" target="_blank" rel="noopener noreferrer" class="btn-ghost !px-3 !py-2.5 !text-xs whitespace-nowrap">
                   <svg class="h-3.5 w-3.5"><use href="#i-instagram"/></svg><span data-i18n="hob.instagram">Voir sur Instagram</span>
                 </a>
               </div>
@@ -802,7 +786,7 @@
           </article>
 
           <!-- ───────── Hobby 4 : Saxhorn ───────── -->
-          <article class="surface group flex w-[85vw] max-w-[340px] flex-none snap-start flex-col overflow-hidden sm:w-[340px]">
+          <article class="surface group flex w-[82vw] max-w-[320px] flex-none snap-start flex-col overflow-hidden sm:w-[320px]">
             <a href="saxhorn.html" tabindex="-1" aria-hidden="true" class="media-placeholder relative block aspect-video overflow-hidden border-b border-[var(--border)]">
               <div class="media-icon absolute inset-0 grid place-items-center"><svg class="h-12 w-12"><use href="#i-activity"/></svg></div>
               <!-- 📸 IMAGE : photo de répétition/concert → assets/hobbies/saxhorn.jpg (16:9) -->
@@ -816,7 +800,7 @@
               </h3>
               <p class="mt-3 flex-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="hob4.desc">5 ans de pratique du saxhorn (niveau brevet de solfège), dans un groupe de rock, une harmonie, un groupe de jazz et un brass band.</p>
               <div class="mt-6 flex items-center gap-2">
-                <a href="saxhorn.html" class="btn-primary !px-3.5 !py-2.5 !text-xs whitespace-nowrap">
+                <a href="saxhorn.html" class="btn-primary !px-3 !py-2.5 !text-xs whitespace-nowrap">
                   <span data-i18n="proj.more">En savoir plus</span><svg class="h-3.5 w-3.5"><use href="#i-arrow"/></svg>
                 </a>
               </div>
@@ -824,7 +808,7 @@
           </article>
 
           <!-- ───────── Hobby 5 : BDS Phelma ───────── -->
-          <article class="surface group flex w-[85vw] max-w-[340px] flex-none snap-start flex-col overflow-hidden sm:w-[340px]">
+          <article class="surface group flex w-[82vw] max-w-[320px] flex-none snap-start flex-col overflow-hidden sm:w-[320px]">
             <a href="bds.html" tabindex="-1" aria-hidden="true" class="media-placeholder relative block aspect-video overflow-hidden border-b border-[var(--border)]">
               <div class="media-icon absolute inset-0 grid place-items-center"><svg class="h-12 w-12"><use href="#i-activity"/></svg></div>
               <!-- 📸 IMAGE : photo de l'équipe BDS → assets/hobbies/bds.jpg (16:9) -->
@@ -838,7 +822,7 @@
               </h3>
               <p class="mt-3 flex-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="hob5.desc">Engagement associatif au Bureau des Sports de Phelma, en charge des partenariats.</p>
               <div class="mt-6 flex items-center gap-2">
-                <a href="bds.html" class="btn-primary !px-3.5 !py-2.5 !text-xs whitespace-nowrap">
+                <a href="bds.html" class="btn-primary !px-3 !py-2.5 !text-xs whitespace-nowrap">
                   <span data-i18n="proj.more">En savoir plus</span><svg class="h-3.5 w-3.5"><use href="#i-arrow"/></svg>
                 </a>
               </div>
@@ -857,11 +841,11 @@
 
           <!-- Flèches de navigation (desktop uniquement) -->
           <button type="button" id="hob-prev" aria-label="Précédent"
-                  class="absolute -left-5 top-1/2 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text-soft)] opacity-0 shadow-lg backdrop-blur transition hover:border-accent/50 hover:text-accent-soft disabled:pointer-events-none disabled:opacity-0 md:flex">
+                  class="absolute -left-4 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text-soft)] opacity-0 shadow-lg backdrop-blur transition hover:border-accent/50 hover:text-accent-soft disabled:pointer-events-none disabled:opacity-0 md:flex">
             <svg class="h-4 w-4"><use href="#i-arrow" transform="rotate(180 12 12)"/></svg>
           </button>
           <button type="button" id="hob-next" aria-label="Suivant"
-                  class="absolute -right-5 top-1/2 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text-soft)] shadow-lg backdrop-blur transition hover:border-accent/50 hover:text-accent-soft disabled:pointer-events-none disabled:opacity-0 md:flex">
+                  class="absolute -right-4 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text-soft)] shadow-lg backdrop-blur transition hover:border-accent/50 hover:text-accent-soft disabled:pointer-events-none disabled:opacity-0 md:flex">
             <svg class="h-4 w-4"><use href="#i-arrow"/></svg>
           </button>
         </div>
@@ -1139,7 +1123,7 @@
     }, { threshold: 0.12 });
     $$('.reveal').forEach(el => reveal.observe(el));
 
-    /* ───────── Carrousel hobbies (glisser en mobile & desktop + pagination dots + fondu bords) ───────── */
+    /* ───────── Carrousel hobbies (glisser en mobile & desktop + pagination dots) ───────── */
     (() => {
       const track = document.getElementById('hobbies-track');
       const prev = document.getElementById('hob-prev'), next = document.getElementById('hob-next');
@@ -1147,17 +1131,12 @@
       if (!track || !prev || !next) return;
       const step = () => {
         const gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap) || 24;
-        return (track.querySelector('article')?.getBoundingClientRect().width || 340) + gap;
+        return (track.querySelector('article')?.getBoundingClientRect().width || 320) + gap;
       };
       function updateCarousel() {
         const scrollable = track.scrollWidth > track.clientWidth + 4;
-        const atStart = track.scrollLeft <= 4;
-        const atEnd = track.scrollLeft >= track.scrollWidth - track.clientWidth - 4;
-        prev.classList.toggle('opacity-0', !scrollable || atStart);
-        next.classList.toggle('opacity-0', !scrollable || atEnd);
-        track.classList.toggle('fade-right', scrollable && atStart && !atEnd);
-        track.classList.toggle('fade-left', scrollable && !atStart && atEnd);
-        track.classList.toggle('fade-both', scrollable && !atStart && !atEnd);
+        prev.classList.toggle('opacity-0', !scrollable || track.scrollLeft <= 4);
+        next.classList.toggle('opacity-0', !scrollable || track.scrollLeft >= track.scrollWidth - track.clientWidth - 4);
         if (dots.length) {
           const s = step();
           const idx = Math.min(dots.length - 1, Math.max(0, Math.round(track.scrollLeft / s)));
