@@ -59,6 +59,17 @@
   <meta name="color-scheme" content="dark">
   <meta name="google-site-verification" content="GkKQpH77B4ke_WOO8n5-JOHcLuqleYr7dT-JQbCXzfw" />
 
+  <!-- Initialisation instantanée du thème (évite tout flash visuel au chargement) -->
+  <script>
+    try {
+      if (localStorage.getItem('theme') === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#f6f7f9');
+        document.querySelector('meta[name="color-scheme"]')?.setAttribute('content', 'light');
+      }
+    } catch (e) {}
+  </script>
+
   <!-- 🌐 SEO / partage sur les réseaux (LinkedIn, Slack, etc.) -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Aurélien CAPRON — Portfolio">
@@ -209,7 +220,7 @@
     /* ───────── Impression : version sobre, sans nav/décor/animations ───────── */
     @media print {
       header, #hero-canvas, #to-top, #toast, .icon-btn[aria-label="Copier"],
-      #copy-email, #copy-phone, .filter-btn, #hob-prev, #hob-next {
+      #copy-email, #copy-phone, .filter-btn, #hob-prev, #hob-next, #hobbies-dots {
         display: none !important;
       }
       body { background: #fff !important; color: #111 !important; }
@@ -787,6 +798,15 @@
           </article>
           </div>
 
+          <!-- Indicateurs de pagination (mobile) -->
+          <div id="hobbies-dots" class="mt-4 flex justify-center gap-2 md:hidden" role="group" aria-label="Pagination des hobbies">
+            <button type="button" class="hob-dot h-2 w-6 rounded-full bg-accent transition-all duration-300" data-index="0" aria-label="Hobby 1" aria-current="true"></button>
+            <button type="button" class="hob-dot h-2 w-2 rounded-full bg-[var(--border)] transition-all duration-300" data-index="1" aria-label="Hobby 2" aria-current="false"></button>
+            <button type="button" class="hob-dot h-2 w-2 rounded-full bg-[var(--border)] transition-all duration-300" data-index="2" aria-label="Hobby 3" aria-current="false"></button>
+            <button type="button" class="hob-dot h-2 w-2 rounded-full bg-[var(--border)] transition-all duration-300" data-index="3" aria-label="Hobby 4" aria-current="false"></button>
+            <button type="button" class="hob-dot h-2 w-2 rounded-full bg-[var(--border)] transition-all duration-300" data-index="4" aria-label="Hobby 5" aria-current="false"></button>
+          </div>
+
           <!-- Flèches de navigation (desktop uniquement) -->
           <button type="button" id="hob-prev" aria-label="Précédent"
                   class="absolute -left-4 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text-soft)] opacity-0 shadow-lg backdrop-blur transition hover:border-accent/50 hover:text-accent-soft disabled:pointer-events-none disabled:opacity-0 md:flex">
@@ -818,7 +838,7 @@
         <a class="icon-btn" href="https://github.com/AurelienCapron" target="_blank" rel="noopener noreferrer" aria-label="Profil GitHub" data-i18n-aria="aria.github">
           <svg class="h-5 w-5"><use href="#i-github"/></svg>
         </a>
-        <a class="icon-btn" href="mailto:aurelien-capron@outlook.fr" aria-label="Envoyer un email" data-i18n-aria="aria.email">
+        <a id="mailto-link" class="icon-btn" href="mailto:aurelien-capron@outlook.fr?subject=Stage%20Assistant%20Ing%C3%A9nieur%20%E2%80%94%20Aur%C3%A9lien%20Capron" aria-label="Envoyer un email" data-i18n-aria="aria.email">
           <svg class="h-5 w-5"><use href="#i-mail"/></svg>
         </a>
         <a class="icon-btn" href="tel:+33783073311" aria-label="Appeler" data-i18n-aria="aria.phone">
@@ -851,9 +871,9 @@
     </div>
   </footer>
 
-  <!-- Retour en haut de page -->
+  <!-- Retour en haut de page (remonte automatiquement en bas de page pour libérer le footer) -->
   <button id="to-top" type="button" aria-label="Retour en haut" data-i18n-aria="aria.top"
-          class="pointer-events-none fixed bottom-6 right-6 z-40 grid h-11 w-11 place-items-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text-soft)] opacity-0 shadow-lg backdrop-blur transition-opacity hover:border-accent/50 hover:text-accent-soft">
+          class="pointer-events-none fixed bottom-6 right-6 z-40 grid h-11 w-11 place-items-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text-soft)] opacity-0 shadow-lg backdrop-blur transition-all duration-300 hover:border-accent/50 hover:text-accent-soft">
     <svg class="h-5 w-5"><use href="#i-up"/></svg>
   </button>
 
@@ -975,11 +995,16 @@
     const DICT = { fr: FR, en: EN };
     let lang = 'fr';
 
-    /* ───────── CV : bascule FR / EN (sans accent dans l'URL) ───────── */
+    /* ───────── CV & Mailto : bascule FR / EN ───────── */
     const cvLink = $('#cv-download');
     const CV_FILES = {
       fr: 'assets/CV_Aurelien_Capron.pdf',
       en: 'assets/CV_Aurelien_Capron_EN.pdf'
+    };
+    const mailtoLink = $('#mailto-link');
+    const MAILTO_HREFS = {
+      fr: 'mailto:aurelien-capron@outlook.fr?subject=Stage%20Assistant%20Ing%C3%A9nieur%20%E2%80%94%20Aur%C3%A9lien%20Capron',
+      en: 'mailto:aurelien-capron@outlook.fr?subject=Engineering%20Assistant%20Internship%20%E2%80%94%20Aur%C3%A9lien%20Capron'
     };
 
     function setLang(next, persist) {
@@ -995,6 +1020,7 @@
       $('meta[name="description"]').setAttribute('content', d['meta.desc']);
       $$('.lang-btn').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
       if (cvLink) cvLink.href = CV_FILES[lang] || CV_FILES.fr;
+      if (mailtoLink) mailtoLink.href = MAILTO_HREFS[lang] || MAILTO_HREFS.fr;
       if (persist) { try { localStorage.setItem('lang', lang); } catch (e) {} }
     }
     $$('.lang-btn').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang, true)));
@@ -1031,8 +1057,10 @@
       const max = h.scrollHeight - h.clientHeight;
       bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
       const hidden = h.scrollTop < 600;
+      const nearBottom = max - h.scrollTop < 60;
       topBtn.classList.toggle('opacity-0', hidden);
       topBtn.classList.toggle('pointer-events-none', hidden);
+      topBtn.classList.toggle('-translate-y-9', nearBottom);
       if (!menu.classList.contains('hidden')) toggleMenu(false);
       ticking = false;
     }
@@ -1056,25 +1084,42 @@
     }, { threshold: 0.12 });
     $$('.reveal').forEach(el => reveal.observe(el));
 
-    /* ───────── Carrousel hobbies (glisser en mobile & desktop) ───────── */
+    /* ───────── Carrousel hobbies (glisser en mobile & desktop + pagination dots) ───────── */
     (() => {
       const track = document.getElementById('hobbies-track');
       const prev = document.getElementById('hob-prev'), next = document.getElementById('hob-next');
+      const dots = $$('.hob-dot');
       if (!track || !prev || !next) return;
       const step = () => {
         const gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap) || 24;
         return (track.querySelector('article')?.getBoundingClientRect().width || 320) + gap;
       };
-      function updateArrows() {
+      function updateCarousel() {
         const scrollable = track.scrollWidth > track.clientWidth + 4;
         prev.classList.toggle('opacity-0', !scrollable || track.scrollLeft <= 4);
         next.classList.toggle('opacity-0', !scrollable || track.scrollLeft >= track.scrollWidth - track.clientWidth - 4);
+        if (dots.length) {
+          const s = step();
+          const idx = Math.min(dots.length - 1, Math.max(0, Math.round(track.scrollLeft / s)));
+          dots.forEach((d, i) => {
+            const active = i === idx;
+            d.classList.toggle('w-6', active);
+            d.classList.toggle('bg-accent', active);
+            d.classList.toggle('w-2', !active);
+            d.classList.toggle('bg-[var(--border)]', !active);
+            d.setAttribute('aria-current', String(active));
+          });
+        }
       }
       prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
       next.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
-      track.addEventListener('scroll', () => { requestAnimationFrame(updateArrows); }, { passive: true });
-      addEventListener('resize', updateArrows);
-      updateArrows();
+      dots.forEach(d => d.addEventListener('click', () => {
+        const idx = Number(d.dataset.index) || 0;
+        track.scrollTo({ left: idx * step(), behavior: 'smooth' });
+      }));
+      track.addEventListener('scroll', () => { requestAnimationFrame(updateCarousel); }, { passive: true });
+      addEventListener('resize', updateCarousel);
+      updateCarousel();
       next.classList.remove('opacity-0');
     })();
 
@@ -1118,12 +1163,18 @@
         const useEl = btn.querySelector('use');
         const spanEl = btn.querySelector('span');
         useEl?.setAttribute('href', '#i-check');
-        if (spanEl) spanEl.textContent = DICT[lang]['contact.copiedBtn'];
+        if (spanEl) {
+          spanEl.dataset.i18n = 'contact.copiedBtn';
+          spanEl.textContent = DICT[lang]['contact.copiedBtn'];
+        }
         btn.classList.add('!bg-accent/15', '!text-accent-soft');
         clearTimeout(btnTimer);
         btnTimer = setTimeout(() => {
           useEl?.setAttribute('href', '#i-copy');
-          if (spanEl) spanEl.textContent = DICT[lang]['contact.copy'];
+          if (spanEl) {
+            spanEl.dataset.i18n = 'contact.copy';
+            spanEl.textContent = DICT[lang]['contact.copy'];
+          }
           btn.classList.remove('!bg-accent/15', '!text-accent-soft');
         }, 2000);
         showToast(DICT[lang][toastKey]);
