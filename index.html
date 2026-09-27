@@ -231,7 +231,7 @@
     /* ───────── Impression : version sobre, sans nav/décor/animations ───────── */
     @media print {
       header, #hero-canvas, #to-top, #toast, .icon-btn[aria-label="Copier"],
-      #copy-email, #copy-phone, .filter-btn, #hob-prev, #hob-next, #hobbies-dots {
+      #copy-email, #copy-phone, .filter-btn, #hob-prev, #hob-next, #hobbies-dots, #projects-dots {
         display: none !important;
       }
       body { background: #fff !important; color: #111 !important; }
@@ -480,11 +480,15 @@
         <!--
           ➕ AJOUTER UN PROJET : copie une balise <article class="project ..."> complète, colle-la ci-dessous,
           puis change data-cat (hardware / embedded / simulation — plusieurs valeurs possibles séparées par un espace).
+          Les points de pagination sur mobile se mettent à jour automatiquement !
         -->
-        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div id="projects-track"
+             class="-mx-6 flex snap-x snap-mandatory flex-row gap-4 overflow-x-auto scroll-px-6 px-6 pb-4
+                    md:mx-0 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-3
+                    [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
 
           <!-- ───────── Projet 1 : Domethic System ───────── -->
-          <article class="project surface group reveal flex flex-col overflow-hidden" data-cat="hardware embedded">
+          <article class="project surface group reveal flex w-[85vw] max-w-[340px] flex-none snap-start flex-col overflow-hidden sm:w-[340px] md:w-auto md:max-w-none" data-cat="hardware embedded">
             <a href="domethic.html" tabindex="-1" aria-hidden="true" class="relative block aspect-video overflow-hidden bg-gradient-to-br from-ink-700 to-ink-800">
               <div class="absolute inset-0 grid place-items-center text-ink-600"><svg class="h-12 w-12"><use href="#i-cpu"/></svg></div>
               <!-- 📸 IMAGE PROJET 1 : photo de tes cartes / boîtiers → assets/projets/domethic.jpg (16:9, ~1200×675 px) -->
@@ -513,7 +517,7 @@
           </article>
 
           <!-- ───────── Projet 2 : Télécommande autonome ───────── -->
-          <article class="project surface group reveal flex flex-col overflow-hidden" data-cat="embedded hardware" style="transition-delay:.1s">
+          <article class="project surface group reveal flex w-[85vw] max-w-[340px] flex-none snap-start flex-col overflow-hidden sm:w-[340px] md:w-auto md:max-w-none" data-cat="embedded hardware" style="transition-delay:.1s">
             <a href="telecommande.html" tabindex="-1" aria-hidden="true" class="relative block aspect-video overflow-hidden bg-gradient-to-br from-ink-700 to-ink-800">
               <div class="absolute inset-0 grid place-items-center text-ink-600"><svg class="h-12 w-12"><use href="#i-code"/></svg></div>
               <!-- 📸 IMAGE PROJET 2 : photo du prototype → assets/projets/telecommande.jpg (16:9, ~1200×675 px) -->
@@ -542,7 +546,7 @@
           </article>
 
           <!-- ───────── Projet 3 : TIPE ───────── -->
-          <article class="project surface group reveal flex flex-col overflow-hidden" data-cat="simulation" style="transition-delay:.2s">
+          <article class="project surface group reveal flex w-[85vw] max-w-[340px] flex-none snap-start flex-col overflow-hidden sm:w-[340px] md:w-auto md:max-w-none" data-cat="simulation" style="transition-delay:.2s">
             <a href="tipe.html" tabindex="-1" aria-hidden="true" class="relative block aspect-video overflow-hidden bg-gradient-to-br from-ink-700 to-ink-800">
               <div class="absolute inset-0 grid place-items-center text-ink-600"><svg class="h-12 w-12"><use href="#i-activity"/></svg></div>
               <!-- 📸 IMAGE PROJET 3 : graphique de trajectoires / capture de simulation → assets/projets/tipe.jpg (16:9) -->
@@ -569,6 +573,9 @@
             </div>
           </article>
         </div>
+
+        <!-- Indicateurs de pagination des projets (mobile uniquement, générés dynamiquement selon le filtre) -->
+        <div id="projects-dots" class="mt-4 flex justify-center gap-2 md:hidden" role="group" aria-label="Pagination des projets"></div>
       </div>
     </section>
 
@@ -1134,14 +1141,42 @@
       next.classList.remove('opacity-0');
     })();
 
-    /* ───────── Filtres de projets (sortie floutée + cascade ressort) ───────── */
-    let filterTimer;
-    $$('.filter-btn').forEach(btn => btn.addEventListener('click', () => {
+    /* ───────── Carrousel mobile des projets + Filtres (sortie floutée & cascade) ───────── */
+    const projTrack = document.getElementById('projects-track');
+    const projDotsContainer = document.getElementById('projects-dots');
+
+    function getVisibleProjects() {
+      return $$('.project').filter(c => !c.classList.contains('hidden'));
+    }
+    function projStep() {
+      if (!projTrack) return 320;
+      const gap = parseFloat(getComputedStyle(projTrack).columnGap || getComputedStyle(projTrack).gap) || 16;
+      const firstVisible = getVisibleProjects()[0];
+      return (firstVisible?.getBoundingClientRect().width || 300) + gap;
+    }
+    function renderProjectDots() {
+      if (!projDotsContainer || !projTrack) return;
+      const visible = getVisibleProjects();
+      if (visible.length <= 1) {
+        projDotsContainer.innerHTML = '';
+        return;
+      }
+      projDotsContainer.innerHTML = visible.map((_, i) =>
+        `<button type="button" class="proj-dot h-2 ${i === 0 ? 'w-6 bg-accent' : 'w-2 bg-[var(--border)]'} rounded-full transition-all duration-300" data-index="${i}" aria-label="Projet ${i + 1}" aria-current="${i === 0}"></button>`
+      ).join('');
+      $$('.proj-dot', projDotsContainer).forEach(d => d.addEventListener('click', () => {
+        const idx = Number(d.dataset.index) || 0;
+        projTrack.scrollTo({ left: idx * projStep(), behavior: 'smooth' });
+      }));
+      updateProjectDots();
+    }
+    function updateProjectDots() {
+      if (!projDotsContainer || !projTrack) return;
+      const dots = $$('.proj-dot', projDotsContainer);       if (!dots.length) return;       const idx = Math.min(dots.length - 1, Math.max(0, Math.round(projTrack.scrollLeft / projStep())));       dots.forEach((d, i) => {         const active = i === idx;         d.classList.toggle('w-6', active);         d.classList.toggle('bg-accent', active);         d.classList.toggle('w-2', !active);         d.classList.toggle('bg-[var(--border)]', !active);         d.setAttribute('aria-current', String(active));       });     }     projTrack?.addEventListener('scroll', () => { requestAnimationFrame(updateProjectDots); }, { passive: true });     addEventListener('resize', updateProjectDots);     renderProjectDots();      let filterTimer;     $$('.filter-btn').forEach(btn => btn.addEventListener('click', () => {
       if (btn.getAttribute('aria-pressed') === 'true') return;
       const f = btn.dataset.filter;
-      $$('.filter-btn').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
-
-      const cards = $$('.project');
+      $$('.filter-btn').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));        const cards = $$
+('.project');
       clearTimeout(filterTimer);
 
       // Étape 1 : sortie douce des cartes actuellement visibles
@@ -1153,7 +1188,7 @@
         }
       });
 
-      // Étape 2 : bascule des cartes et entrée en cascade (stagger)
+      // Étape 2 : bascule des cartes, remise à zéro du scroll mobile et entrée en cascade
       filterTimer = setTimeout(() => {
         let visibleIndex = 0;
         cards.forEach(card => {
@@ -1169,6 +1204,8 @@
             card.style.animationDelay = '0ms';
           }
         });
+        if (projTrack) projTrack.scrollTo({ left: 0, behavior: 'instant' });
+        renderProjectDots();
       }, 150);
     }));
 
