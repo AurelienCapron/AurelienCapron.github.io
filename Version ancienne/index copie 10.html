@@ -489,8 +489,6 @@
             <button type="button" class="filter-btn" data-filter="embedded" aria-pressed="false" data-i18n="f.emb">Embarqué</button>
             <button type="button" class="filter-btn" data-filter="simulation" aria-pressed="false" data-i18n="f.sim">Simulation</button>
           </div>
-          <!-- Zone invisible : annonce aux lecteurs d'écran le nombre de projets après un filtre -->
-          <p id="projects-live" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
         </div>
 
         <!--
@@ -1229,12 +1227,6 @@
         });
         if (projTrack) projTrack.scrollTo({ left: 0, behavior: 'instant' });
         renderProjectDots();
-        const liveRegion = $('#projects-live');
-        if (liveRegion) {
-          liveRegion.textContent = lang === 'en'
-            ? `${visibleIndex} project${visibleIndex > 1 ? 's' : ''} shown`
-            : `${visibleIndex} projet${visibleIndex > 1 ? 's' : ''} affiché${visibleIndex > 1 ? 's' : ''}`;
-        }
       }, 150);
     }));
 
