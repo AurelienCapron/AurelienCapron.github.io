@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="light">
 <head>
   <!--
   ╔══════════════════════════════════════════════════════════════════════╗
@@ -14,8 +14,8 @@
   ║   🌐 SEO     → ✅ FAIT : og:image, canonical, og:url, twitter:card,   ║
   ║              robots.txt, sitemap.xml et JSON-LD pointent déjà vers   ║
   ║              https://aureliencapron.github.io/                      ║
-  ║   🔀 LANGUE  → un lien se terminant par ?lang=en ouvre le site       ║
-  ║              directement en anglais (pratique à partager)           ║
+  ║   🔀 LANGUE  → détection auto FR/EN selon le navigateur du visiteur  ║
+  ║              + lien direct : https://aureliencapron.github.io/?lang=en║
   ║                                                                      ║
   ║   🔤 POLICES → auto-hébergées (plus de dépendance à Google Fonts).   ║
   ║      Il te manque juste les 8 fichiers .woff2 à déposer dans        ║
@@ -55,17 +55,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Aurélien CAPRON — Portfolio | Élève-ingénieur Systèmes Embarqués</title>
   <meta name="description" content="Portfolio d'Aurélien Capron, élève-ingénieur à Grenoble INP - Phelma (Systèmes Électroniques Intégrés). Systèmes embarqués, microélectronique, conception hardware.">
-  <meta name="theme-color" content="#0c0e11">
-  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#f6f7f9">
+  <meta name="color-scheme" content="light">
   <meta name="google-site-verification" content="GkKQpH77B4ke_WOO8n5-JOHcLuqleYr7dT-JQbCXzfw" />
 
-  <!-- Initialisation instantanée du thème (évite tout flash visuel au chargement) -->
+  <!-- Initialisation instantanée du thème (clair par défaut, sombre si mémorisé) -->
   <script>
     try {
-      if (localStorage.getItem('theme') === 'light') {
-        document.documentElement.setAttribute('data-theme', 'light');
-        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#f6f7f9');
-        document.querySelector('meta[name="color-scheme"]')?.setAttribute('content', 'light');
+      if (localStorage.getItem('theme') === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#0c0e11');
+        document.querySelector('meta[name="color-scheme"]')?.setAttribute('content', 'dark');
       }
     } catch (e) {}
   </script>
@@ -319,8 +319,8 @@
         <!-- Bascule thème clair / sombre -->
         <button id="theme-toggle" type="button"
                 class="grid h-9 w-9 place-items-center rounded-lg border border-[var(--border)] text-[var(--text-muted)] transition-colors hover:text-[var(--text-strong)]"
-                aria-pressed="false" data-i18n-aria="aria.theme" aria-label="Basculer le thème clair/sombre">
-          <svg class="h-4 w-4"><use id="theme-icon-use" href="#i-sun"/></svg>
+                aria-pressed="true" data-i18n-aria="aria.theme" aria-label="Basculer le thème clair/sombre">
+          <svg class="h-4 w-4"><use id="theme-icon-use" href="#i-moon"/></svg>
         </button>
         <button id="menu-btn" type="button" class="grid h-9 w-9 place-items-center rounded-lg border border-[var(--border)] text-[var(--text)] md:hidden"
                 aria-expanded="false" aria-controls="mobile-menu" data-i18n-aria="aria.menu" aria-label="Ouvrir le menu">
@@ -907,7 +907,7 @@
 
     $('#year').textContent = new Date().getFullYear();
 
-    /* ───────── Thème clair / sombre ───────── */
+    /* ───────── Thème clair / sombre (clair par défaut) ───────── */
     const themeBtn = $('#theme-toggle');
     const themeIconUse = $('#theme-icon-use');
     const metaThemeColor = $('meta[name="theme-color"]');
@@ -922,7 +922,7 @@
     }
     let savedTheme = null;
     try { savedTheme = localStorage.getItem('theme'); } catch (e) {}
-    applyTheme(savedTheme === 'light' ? 'light' : 'dark', false);
+    applyTheme(savedTheme === 'dark' ? 'dark' : 'light', false);
     themeBtn?.addEventListener('click', () => {
       const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
       applyTheme(next, true);
@@ -1042,13 +1042,20 @@
       if (persist) { try { localStorage.setItem('lang', lang); } catch (e) {} }
     }
     $$('.lang-btn').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang, true)));
-    // Langue initiale : priorité au paramètre d'URL (?lang=en), puis au choix mémorisé, puis français par défaut.
-    // Permet d'envoyer un lien qui s'ouvre directement en anglais, ex. https://tonsite/?lang=en
+
+    // Langue initiale :
+    // 1. Priorité au paramètre d'URL (?lang=en ou ?lang=fr)
+    // 2. Sinon, choix mémorisé lors d'une visite précédente (localStorage)
+    // 3. Sinon (nouvel arrivant), détection automatique de la langue du navigateur (FR si français, EN sinon)
     let urlLang = null;
     try { urlLang = new URLSearchParams(location.search).get('lang'); } catch (e) {}
-    let saved = null; try { saved = localStorage.getItem('lang'); } catch (e) {}
-    const initialLang = (urlLang === 'en' || urlLang === 'fr') ? urlLang : (saved === 'en' ? 'en' : 'fr');
-    if (initialLang === 'en') setLang('en', true);
+    let saved = null;
+    try { saved = localStorage.getItem('lang'); } catch (e) {}
+    const browserLang = (navigator.language || '').toLowerCase().startsWith('fr') ? 'fr' : 'en';
+    const initialLang = (urlLang === 'en' || urlLang === 'fr')
+      ? urlLang
+      : (saved === 'en' || saved === 'fr' ? saved : browserLang);
+    if (initialLang === 'en') setLang('en', Boolean(urlLang));
 
     /* ───────── Menu mobile ───────── */
     const menuBtn = $('#menu-btn'), menu = $('#mobile-menu');
