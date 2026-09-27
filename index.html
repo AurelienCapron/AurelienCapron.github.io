@@ -871,9 +871,9 @@
     </div>
   </footer>
 
-  <!-- Retour en haut de page (remonte automatiquement en bas de page pour libérer le footer) -->
+  <!-- Retour en haut de page (remonte uniquement sur mobile en bas de page) -->
   <button id="to-top" type="button" aria-label="Retour en haut" data-i18n-aria="aria.top"
-          class="pointer-events-none fixed bottom-6 right-6 z-40 grid h-11 w-11 place-items-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text-soft)] opacity-0 shadow-lg backdrop-blur transition-all duration-300 hover:border-accent/50 hover:text-accent-soft">
+          class="pointer-events-none fixed bottom-6 right-6 z-40 grid h-11 w-11 place-items-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text-soft)] opacity-0 shadow-lg backdrop-blur transition-all duration-300 hover:border-accent/50 hover:text-accent-soft sm:translate-y-0">
     <svg class="h-5 w-5"><use href="#i-up"/></svg>
   </button>
 
@@ -1060,7 +1060,7 @@
       const nearBottom = max - h.scrollTop < 60;
       topBtn.classList.toggle('opacity-0', hidden);
       topBtn.classList.toggle('pointer-events-none', hidden);
-      topBtn.classList.toggle('-translate-y-9', nearBottom);
+      topBtn.classList.toggle('-translate-y-14', nearBottom);
       if (!menu.classList.contains('hidden')) toggleMenu(false);
       ticking = false;
     }
