@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!--
+  ╔══════════════════════════════════════════════════════════════════════╗
+  ║  PORTFOLIO — Aurélien CAPRON                                         ║
+  ║  Fichier unique : index.html (Tailwind CSS via CDN)                  ║
+  ║                                                                      ║
+  ║  CHECKLIST DE PERSONNALISATION (cherche ces repères dans le code) :  ║
+  ║   📸 IMAGE   → photo de profil + visuels des projets et hobbies       ║
+  ║   🔗 LIEN    → ton pseudo GitHub + liens des dépôts                  ║
+  ║   📄 CV      → assets/CV_Aurelien_Capron.pdf (FR) + version EN        ║
+  ║              → nom exact attendu : assets/CV_Aurelien_Capron_EN.pdf  ║
+  ║   🌐 SEO     → ✅ FAIT : og:image, canonical, og:url, twitter:card,   ║
+  ║              robots.txt, sitemap.xml et JSON-LD pointent déjà vers   ║
+  ║              https://aureliencapron.github.io/                      ║
+  ║   🔀 LANGUE  → un lien se terminant par ?lang=en ouvre le site       ║
+  ║              directement en anglais (pratique à partager)           ║
+  ║                                                                      ║
+  ║   🔤 POLICES → auto-hébergées (plus de dépendance à Google Fonts).   ║
+  ║      Il te manque juste les 8 fichiers .woff2 à déposer dans        ║
+  ║      assets/fonts/ (voir @font-face plus bas dans le head) :         ║
+  ║        inter-400.woff2, inter-500.woff2, inter-600.woff2,           ║
+  ║        inter-700.woff2, inter-800.woff2, jetbrains-mono-400.woff2,  ║
+  ║        jetbrains-mono-500.woff2, jetbrains-mono-600.woff2            ║
+  ║      Le plus simple pour les obtenir : va sur gwfh.mranftl.com,     ║
+  ║      cherche « Inter », coche les graisses 400/500/600/700/800,     ║
+  ║      format « Modern Browsers » (woff2 seul), télécharge, renomme   ║
+  ║      les fichiers comme ci-dessus. Refais pareil pour « JetBrains   ║
+  ║      Mono » (graisses 400/500/600). Sans ces fichiers, le site       ║
+  ║      utilise une police système de secours — jamais cassé.          ║
+  ║                                                                      ║
+  ║  ─────────── À FAIRE JUSTE AVANT LA PUBLICATION (une fois l'esthé-  ║
+  ║  tique terminée, pour rester 100% autonome, sans service tiers) :    ║
+  ║   1. Compiler Tailwind en local → assets/styles.css                 ║
+  ║      (remplace le CDN Tailwind chargé plus bas dans le head)         ║
+  ║                                                                      ║
+  ║  Arborescence conseillée du dépôt GitHub :                           ║
+  ║   index.html                                                         ║
+  ║   404.html            (page d'erreur, générée automatiquement)      ║
+  ║   robots.txt / sitemap.xml  (SEO, URL à adapter — voir ci-dessus)    ║
+  ║   assets/styles.css   (à générer à la fin, cf. étape 1 ci-dessus)   ║
+  ║   assets/fonts/*.woff2 (8 fichiers, cf. § POLICES ci-dessus)        ║
+  ║   assets/photo.jpg                                                   ║
+  ║   assets/CV_Aurelien_Capron.pdf                                      ║
+  ║   assets/CV_Aurelien_Capron_EN.pdf                                   ║
+  ║   assets/projets/domethic.jpg | telecommande.jpg | tipe.jpg          ║
+  ║   assets/hobbies/judo.jpg | perouges.jpg | sacha-heritage.jpg        ║
+  ║                                                                      ║
+  ║  Astuce : si une image est absente, un visuel de remplacement        ║
+  ║  élégant s'affiche automatiquement (le site ne « casse » jamais).    ║
+  ╚══════════════════════════════════════════════════════════════════════╝
+  -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aurélien CAPRON — Portfolio | Élève-ingénieur Systèmes Embarqués</title>
+  <meta name="description" content="Portfolio d'Aurélien Capron, élève-ingénieur à Grenoble INP - Phelma (Systèmes Électroniques Intégrés). Systèmes embarqués, microélectronique, conception hardware.">
+  <meta name="theme-color" content="#0c0e11">
+  <meta name="color-scheme" content="dark">
+  <meta name="google-site-verification" content="GkKQpH77B4ke_WOO8n5-JOHcLuqleYr7dT-JQbCXzfw" />
+
+  <!-- Initialisation instantanée du thème (évite tout flash visuel au chargement) -->
+  <script>
+    try {
+      if (localStorage.getItem('theme') === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#f6f7f9');
+        document.querySelector('meta[name="color-scheme"]')?.setAttribute('content', 'light');
+      }
+    } catch (e) {}
+  </script>
+
+  <!-- 🌐 SEO / partage sur les réseaux (LinkedIn, Slack, etc.) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Aurélien CAPRON — Portfolio">
+  <meta property="og:description" content="Élève-ingénieur à Grenoble INP - Phelma, spécialisé en systèmes embarqués et microélectronique.">
+  <meta property="og:url" content="https://aureliencapron.github.io/">
+  <meta property="og:image" content="https://aureliencapron.github.io/assets/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <link rel="canonical" href="https://aureliencapron.github.io/">
+
+  <!-- 🌐 Aperçu de partage sur X / autres réseaux -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Aurélien CAPRON — Portfolio">
+  <meta name="twitter:description" content="Élève-ingénieur à Grenoble INP - Phelma, spécialisé en systèmes embarqués et microélectronique.">
+  <meta name="twitter:image" content="https://aureliencapron.github.io/assets/og-image.jpg">
+
+  <!-- Favicon (monogramme « AC » intégré, aucun fichier requis) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23121519'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='28' font-weight='700' text-anchor='middle' fill='%2310b981'%3EAC%3C/text%3E%3C/svg%3E">
+
+  <!-- 📱 Icône "ajouter à l'écran d'accueil" (iOS) + manifest (Android/PWA) -->
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <!-- Polices : Inter (texte) + JetBrains Mono (touches « tech ») — auto-hébergées, voir assets/fonts/ -->
+  <style>
+    /* 🔤 AUTO-HÉBERGEMENT DES POLICES : dépose les 8 fichiers .woff2 listés ci-dessous
+       dans assets/fonts/ (voir le mode d'emploi dans le checklist tout en haut du fichier).
+       Tant qu'ils n'y sont pas, le navigateur bascule automatiquement sur une police
+       système proche (aucune casse visuelle, juste un rendu légèrement différent). */
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 400; font-display: swap; src: url('assets/fonts/inter-400.woff2') format('woff2'); }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 500; font-display: swap; src: url('assets/fonts/inter-500.woff2') format('woff2'); }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 600; font-display: swap; src: url('assets/fonts/inter-600.woff2') format('woff2'); }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 700; font-display: swap; src: url('assets/fonts/inter-700.woff2') format('woff2'); }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 800; font-display: swap; src: url('assets/fonts/inter-800.woff2') format('woff2'); }
+    @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url('assets/fonts/jetbrains-mono-400.woff2') format('woff2'); }
+    @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 500; font-display: swap; src: url('assets/fonts/jetbrains-mono-500.woff2') format('woff2'); }
+    @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 600; font-display: swap; src: url('assets/fonts/jetbrains-mono-600.woff2') format('woff2'); }
+  </style>
+
+  <!-- Tailwind CSS (CDN) + thème personnalisé -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'monospace']
+          },
+          colors: {
+            // Gris anthracite
+            ink: { 950: '#0c0e11', 900: '#121519', 800: '#181c21', 700: '#232830', 600: '#333a45' },
+            // Vert émeraude (boutons principaux, disponibilité)
+            accent: { DEFAULT: '#10b981', soft: '#34d399' },
+            // Bleu électrique (survols, dégradés, code)
+            volt: { DEFAULT: '#3b82f6', soft: '#60a5fa' }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Composants réutilisables (change les couleurs / arrondis ici, ça s'applique partout) -->
+  <style type="text/tailwindcss">
+    @layer components {
+      .surface   { @apply rounded-2xl border border-[var(--border)] bg-[var(--surface)]; }
+      .tag       { @apply inline-flex cursor-default items-center rounded-md border border-[var(--border)] bg-[var(--chip-bg)] px-2.5 py-1 font-mono text-xs text-[var(--text-soft)]; }
+      .btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-5 py-3 text-sm font-semibold text-ink-950 shadow-lg shadow-accent/10 transition hover:-translate-y-0.5 hover:bg-accent-soft; }
+      .btn-ghost { @apply inline-flex items-center justify-center gap-2 rounded-lg border border-[var(--border)] px-5 py-3 text-sm font-semibold text-[var(--text-soft)] transition hover:-translate-y-0.5 hover:border-volt/60 hover:bg-volt/10; }
+      .eyebrow   { @apply font-mono text-sm text-accent-soft; }
+      .h2        { @apply mt-2 text-3xl font-bold tracking-tight text-[var(--text-strong)] sm:text-4xl; }
+      .nav-link  { @apply text-sm text-[var(--text-muted)] transition-colors hover:text-[var(--text-strong)]; }
+      .nav-link[aria-current="true"] { @apply text-[var(--text-strong)]; }
+      .lang-btn  { @apply rounded-md px-2.5 py-1 text-[var(--text-muted)] transition-colors hover:text-[var(--text-strong)]; }
+      .lang-btn[aria-pressed="true"] { @apply bg-[var(--chip-bg-active)] text-[var(--text-strong)]; }
+      .filter-btn { @apply rounded-full border border-[var(--border)] px-4 py-1.5 text-sm text-[var(--text-muted)] transition-colors hover:text-[var(--text-strong)]; }
+      .filter-btn[aria-pressed="true"] { @apply border-accent/40 bg-accent/10 text-accent-soft; }
+      .icon-btn  { @apply grid h-12 w-12 place-items-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] transition hover:-translate-y-1 hover:border-accent/50 hover:text-accent-soft; }
+    }
+  </style>
+
+  <style>
+    /* ───────── Jetons de thème (basculés via [data-theme] sur <html>) ───────── */
+    :root {
+      color-scheme: dark;
+      --bg: #0c0e11;
+      --bg-alt: rgba(18,21,25,.4);
+      --surface: rgba(18,21,25,.7);
+      --header-bg: rgba(12,14,17,.75);
+      --border: rgba(255,255,255,.1);
+      --chip-bg: rgba(255,255,255,.05);
+      --chip-bg-active: rgba(255,255,255,.1);
+      --text: #cbd5e1;
+      --text-strong: #ffffff;
+      --text-soft: #e2e8f0;
+      --text-muted: #94a3b8;
+      --text-faint: #64748b;
+      --canvas-line: rgba(255,255,255,.16);
+      --canvas-node: rgba(16,185,129,.65);
+    }
+    :root[data-theme="light"] {
+      color-scheme: light;
+      --bg: #f6f7f9;
+      --bg-alt: rgba(226,232,240,.55);
+      --surface: rgba(255,255,255,.8);
+      --header-bg: rgba(246,247,249,.8);
+      --border: rgba(15,23,42,.1);
+      --chip-bg: rgba(15,23,42,.045);
+      --chip-bg-active: rgba(15,23,42,.09);
+      --text: #334155;
+      --text-strong: #0f172a;
+      --text-soft: #1e293b;
+      --text-muted: #64748b;
+      --text-faint: #94a3b8;
+      --canvas-line: rgba(15,23,42,.18);
+      --canvas-node: rgba(5,150,105,.7);
+    }
+
+    html { scroll-behavior: smooth; }
+    section[id], footer[id] { scroll-margin-top: 5rem; }
+    ::selection { background: rgba(16,185,129,.35); color: #fff; }
+    :focus-visible { outline: 2px solid #10b981; outline-offset: 3px; border-radius: 6px; }
+
+    /* Canvas d'animation « réseau de nœuds » du Hero, cadré comme l'ancien quadrillage */
+    #hero-canvas {
+      -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 25%, transparent 75%);
+              mask-image: radial-gradient(ellipse at 50% 30%, #000 25%, transparent 75%);
+    }
+
+    /* Apparition douce au scroll */
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* Animation « Spring & Blur » en 2 temps lors du filtrage des projets */
+    .project {
+      transition: opacity .15s ease, transform .15s ease, filter .15s ease;
+    }
+    .project.filter-out {
+      opacity: 0 !important;
+      transform: scale(0.96) translateY(6px) !important;
+      filter: blur(4px);
+      pointer-events: none;
+    }
+    @keyframes filterSpringIn {
+      0%   { opacity: 0; transform: scale(0.94) translateY(14px); filter: blur(6px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+    }
+    .project.filter-in {
+      animation: filterSpringIn .38s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .project.filter-in { animation: none; }
+      .animate-ping { animation: none; }
+    }
+
+    /* ───────── Impression : version sobre, sans nav/décor/animations ───────── */
+    @media print {
+      header, #hero-canvas, #to-top, #toast, .icon-btn[aria-label="Copier"],
+      #copy-email, #copy-phone, .filter-btn, #hob-prev, #hob-next, #hobbies-dots {
+        display: none !important;
+      }
+      body { background: #fff !important; color: #111 !important; }
+      main { margin-top: 0 !important; }
+      section[id], footer[id] { scroll-margin-top: 0; page-break-inside: avoid; }
+      .surface { border: 1px solid #ccc !important; background: #fff !important; box-shadow: none !important; }
+      a { color: #111 !important; text-decoration: underline; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+      [class*="blur-"] { display: none !important; }
+    }
+  </style>
+  <noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
+
+  <!-- Données structurées (référencement Google) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Aurélien Capron",
+    "url": "https://aureliencapron.github.io/",
+    "jobTitle": "Élève-ingénieur — Systèmes Électroniques Intégrés",
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "Grenoble INP - Phelma" },
+    "email": "mailto:aurelien-capron@outlook.fr",
+    "sameAs": [
+      "https://www.linkedin.com/in/aurelien-capron",
+      "https://github.com/AurelienCapron"
+    ]
+  }
+  </script>
+</head>
+
+<body class="bg-[var(--bg)] font-sans text-[var(--text)] antialiased">
+
+  <!-- Lien d'accessibilité (visible au clavier uniquement) -->
+  <a href="#main" data-i18n="skip"
+     class="sr-only z-[60] rounded-md bg-accent px-4 py-2 font-semibold text-ink-950 focus:not-sr-only focus:fixed focus:left-4 focus:top-4">Aller au contenu</a>
+
+  <!-- Bibliothèque d'icônes (SVG inline, aucune dépendance externe) -->
+  <svg xmlns="http://www.w3.org/2000/svg" class="absolute h-0 w-0 overflow-hidden" aria-hidden="true" focusable="false">
+    <symbol id="i-github" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol>
+    <symbol id="i-linkedin" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></symbol>
+    <symbol id="i-instagram" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-cpu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></symbol>
+    <symbol id="i-activity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></symbol>
+  </svg>
+
+  <!-- ═════════════════════════ NAVIGATION ═════════════════════════ -->
+  <header class="fixed inset-x-0 top-0 z-50 border-b border-[var(--border)] bg-[var(--header-bg)] backdrop-blur-md">
+    <!-- Barre de progression de lecture -->
+    <div id="progress" class="absolute left-0 top-0 h-[2px] w-0 bg-gradient-to-r from-accent to-volt"></div>
+
+    <nav class="mx-auto flex h-16 max-w-6xl items-center justify-between px-6" aria-label="Navigation principale">
+      <a href="#accueil" class="flex items-center gap-3">
+        <span class="grid h-8 w-8 place-items-center rounded-lg border border-[var(--border)] bg-[var(--surface)] font-mono text-xs font-bold text-accent">AC</span>
+        <span class="hidden text-sm font-semibold text-[var(--text-strong)] sm:inline">Aurélien Capron</span>
+      </a>
+
+      <ul class="hidden items-center gap-8 md:flex">
+        <li><a class="nav-link" href="#competences" data-i18n="nav.skills">Compétences</a></li>
+        <li><a class="nav-link" href="#projets" data-i18n="nav.projects">Projets</a></li>
+        <li><a class="nav-link" href="#parcours" data-i18n="nav.path">Parcours</a></li>
+        <li><a class="nav-link" href="#hobbies" data-i18n="nav.hobbies">Hobbies</a></li>
+        <li><a class="nav-link" href="#contact" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+
+      <div class="flex items-center gap-3">
+        <!-- Sélecteur de langue FR / EN -->
+        <div class="flex items-center rounded-lg border border-[var(--border)] p-0.5 font-mono text-xs" role="group" aria-label="Langue / Language">
+          <button type="button" class="lang-btn" data-lang="fr" aria-pressed="true">FR</button>
+          <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <!-- Bascule thème clair / sombre -->
+        <button id="theme-toggle" type="button"
+                class="grid h-9 w-9 place-items-center rounded-lg border border-[var(--border)] text-[var(--text-muted)] transition-colors hover:text-[var(--text-strong)]"
+                aria-pressed="false" data-i18n-aria="aria.theme" aria-label="Basculer le thème clair/sombre">
+          <svg class="h-4 w-4"><use id="theme-icon-use" href="#i-sun"/></svg>
+        </button>
+        <button id="menu-btn" type="button" class="grid h-9 w-9 place-items-center rounded-lg border border-[var(--border)] text-[var(--text)] md:hidden"
+                aria-expanded="false" aria-controls="mobile-menu" data-i18n-aria="aria.menu" aria-label="Ouvrir le menu">
+          <svg class="h-5 w-5"><use href="#i-menu"/></svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Menu mobile -->
+    <div id="mobile-menu" class="hidden border-t border-[var(--border)] bg-[var(--header-bg)] md:hidden">
+      <ul class="mx-auto flex max-w-6xl flex-col gap-1 px-6 py-4">
+        <li><a class="nav-link block rounded-md px-2 py-2.5" href="#competences" data-i18n="nav.skills">Compétences</a></li>
+        <li><a class="nav-link block rounded-md px-2 py-2.5" href="#projets" data-i18n="nav.projects">Projets</a></li>
+        <li><a class="nav-link block rounded-md px-2 py-2.5" href="#parcours" data-i18n="nav.path">Parcours</a></li>
+        <li><a class="nav-link block rounded-md px-2 py-2.5" href="#hobbies" data-i18n="nav.hobbies">Hobbies</a></li>
+        <li><a class="nav-link block rounded-md px-2 py-2.5" href="#contact" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1" class="outline-none">
+
+    <!-- ═════════════════════════ 1. HERO ═════════════════════════ -->
+    <section id="accueil" class="relative flex min-h-screen items-center overflow-hidden pb-16 pt-28">
+      <!-- Décor : réseau de nœuds animé (canvas) + halos lumineux -->
+      <canvas id="hero-canvas" class="pointer-events-none absolute inset-0 h-full w-full" aria-hidden="true"></canvas>
+      <div class="pointer-events-none absolute -top-40 right-0 h-[28rem] w-[28rem] rounded-full bg-volt/10 blur-3xl"></div>
+      <div class="pointer-events-none absolute -bottom-40 -left-20 h-[26rem] w-[26rem] rounded-full bg-accent/10 blur-3xl"></div>
+
+      <div class="relative mx-auto grid w-full max-w-6xl items-center gap-14 px-6 lg:grid-cols-[1.35fr_1fr]">
+
+        <!-- Texte -->
+        <div>
+          <!-- Badge de disponibilité -->
+          <a href="#contact" class="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-3.5 py-1.5 text-xs font-medium text-accent-soft transition hover:bg-accent/15">
+            <span class="relative flex h-2 w-2">
+              <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75"></span>
+              <span class="relative inline-flex h-2 w-2 rounded-full bg-accent"></span>
+            </span>
+            <span data-i18n="hero.badge">Disponible · Stage de 16 semaines dès mi-mai 2027</span>
+          </a>
+
+          <p class="mt-8 font-mono text-sm text-volt-soft">// embedded · microelectronics · hardware</p>
+
+          <!-- ✏️ Nom -->
+          <h1 class="mt-3 text-4xl font-extrabold tracking-tight text-[var(--text-strong)] sm:text-6xl">
+            Aurélien
+            <span class="bg-gradient-to-r from-accent-soft to-volt-soft bg-clip-text text-transparent">CAPRON</span>
+          </h1>
+
+          <!-- ✏️ Sous-titre -->
+          <p class="mt-4 text-lg font-medium text-[var(--text-soft)] sm:text-xl" data-i18n="hero.role">Élève-Ingénieur à Grenoble INP - Phelma (Systèmes Électroniques Intégrés)</p>
+
+          <!-- ✏️ Bio -->
+          <p class="mt-5 max-w-xl leading-relaxed text-[var(--text-muted)]" data-i18n="hero.bio">Passionné par la conception hardware et l'architecture des systèmes embarqués. Actuellement à la recherche d'un stage d'assistant ingénieur de 16 semaines.</p>
+
+          <!-- Boutons d'action -->
+          <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+            <a href="#projets" class="btn-primary">
+              <span data-i18n="hero.cta1">Voir mes projets</span>
+              <svg class="h-4 w-4"><use href="#i-arrow"/></svg>
+            </a>
+            <!-- 📄 CV : dépose tes 2 PDF dans assets/ (le lien change automatiquement selon la langue) -->
+            <a id="cv-download" href="assets/CV_Aurelien_Capron.pdf" target="_blank" rel="noopener noreferrer" class="btn-ghost">
+              <svg class="h-4 w-4"><use href="#i-download"/></svg>
+              <span data-i18n="hero.cta2">Voir mon CV (PDF)</span>
+            </a>
+          </div>
+
+          <!-- Infos rapides -->
+          <ul class="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-sm text-[var(--text-muted)]">
+            <li class="flex items-center gap-2"><svg class="h-4 w-4 text-accent-soft"><use href="#i-pin"/></svg>Grenoble</li>
+            <li class="flex items-center gap-2"><span class="h-1 w-1 rounded-full bg-slate-500"></span><span data-i18n="chip.degree">Diplôme d'ingénieur 2028</span></li>
+            <li class="flex items-center gap-2"><span class="h-1 w-1 rounded-full bg-slate-500"></span><span data-i18n="chip.english">Anglais C1</span></li>
+            <li class="flex items-center gap-2"><span class="h-1 w-1 rounded-full bg-slate-500"></span><span data-i18n="chip.licence">Permis B</span></li>
+          </ul>
+        </div>
+
+        <!-- Portrait -->
+        <div class="relative mx-auto w-64 max-w-sm sm:w-72 lg:w-full">
+          <div class="absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-accent/40 to-volt/40 blur-3xl opacity-80"></div>
+          <div class="absolute -inset-3 rounded-3xl bg-gradient-to-br from-accent/25 to-volt/25 blur-xl"></div>
+          <div class="relative aspect-[4/5] overflow-hidden rounded-3xl border border-accent/30 bg-[var(--surface)] shadow-[0_0_40px_-8px_rgba(16,185,129,0.35)]">
+            <!-- Visuel de remplacement (affiché si la photo est absente) -->
+            <div class="absolute inset-0 grid place-items-center font-mono text-6xl font-bold text-ink-600">AC</div>
+            <!-- 📸 IMAGE : ta photo de profil → assets/photo.jpg (format portrait 4:5 conseillé, ~800×1000 px) -->
+            <img src="assets/photo.jpg" alt="Portrait d'Aurélien Capron" fetchpriority="high" decoding="async"
+                 class="absolute inset-0 h-full w-full object-cover" onerror="this.remove()">
+          </div>
+          <!-- Petite carte « statut » façon code -->
+          <div class="absolute -bottom-4 -left-3 rounded-xl border border-[var(--border)] bg-[var(--surface)] px-4 py-3 font-mono text-xs shadow-xl backdrop-blur sm:-left-6">
+            <p><span class="text-volt-soft">status</span> <span class="text-[var(--text-faint)]">=</span> <span class="text-accent-soft">"open_to_work"</span></p>
+            <p><span class="text-volt-soft">school</span> <span class="text-[var(--text-faint)]">=</span> <span class="text-accent-soft">"Phelma · SEI"</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════ 2. COMPÉTENCES ═════════════════════════ -->
+    <section id="competences" class="py-24">
+      <div class="mx-auto max-w-6xl px-6">
+        <div class="reveal mb-12">
+          <p class="eyebrow">01 — <span data-i18n="skills.eyebrow">Compétences</span></p>
+          <h2 class="h2" data-i18n="skills.title">Boîte à outils technique</h2>
+          <p class="mt-3 max-w-xl text-[var(--text-muted)]" data-i18n="skills.sub">De la conception sur CAO jusqu'au banc de test.</p>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-3">
+          <!-- Électronique & CAO -->
+          <div class="surface reveal p-6">
+            <div class="grid h-10 w-10 place-items-center rounded-lg bg-accent/10 text-accent-soft"><svg class="h-5 w-5"><use href="#i-cpu"/></svg></div>
+            <h3 class="mt-5 text-lg font-semibold text-[var(--text-strong)]" data-i18n="skills.cat1">Électronique &amp; CAO</h3>
+            <ul class="mt-4 flex flex-wrap gap-2">
+              <li class="tag">KiCad</li><li class="tag">EasyEDA</li><li class="tag">Matlab</li><li class="tag">SolidWorks</li>
+            </ul>
+          </div>
+          <!-- Embarqué & Code -->
+          <div class="surface reveal p-6" style="transition-delay:.1s">
+            <div class="grid h-10 w-10 place-items-center rounded-lg bg-volt/10 text-volt-soft"><svg class="h-5 w-5"><use href="#i-code"/></svg></div>
+            <h3 class="mt-5 text-lg font-semibold text-[var(--text-strong)]" data-i18n="skills.cat2">Embarqué &amp; Code</h3>
+            <ul class="mt-4 flex flex-wrap gap-2">
+              <li class="tag">C/C++</li><li class="tag">Verilog</li><li class="tag">Python</li><li class="tag">Arduino</li><li class="tag">Linux</li>
+            </ul>
+          </div>
+          <!-- Instrumentation -->
+          <div class="surface reveal p-6" style="transition-delay:.2s">
+            <div class="grid h-10 w-10 place-items-center rounded-lg bg-accent/10 text-accent-soft"><svg class="h-5 w-5"><use href="#i-activity"/></svg></div>
+            <h3 class="mt-5 text-lg font-semibold text-[var(--text-strong)]" data-i18n="skills.cat3">Instrumentation</h3>
+            <ul class="mt-4 flex flex-wrap gap-2">
+              <li class="tag" data-i18n="tag.scope">Oscilloscope</li>
+              <li class="tag" data-i18n="tag.sigGen">Générateur de signaux</li>
+              <li class="tag" data-i18n="tag.emcTest">Test CEM</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════ 3. PROJETS ═════════════════════════ -->
+    <section id="projets" class="border-y border-[var(--border)] bg-[var(--bg-alt)] py-24">
+      <div class="mx-auto max-w-6xl px-6">
+        <div class="reveal mb-8 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p class="eyebrow">02 — <span data-i18n="proj.eyebrow">Projets</span></p>
+            <h2 class="h2" data-i18n="proj.title">Réalisations sélectionnées</h2>
+            <p class="mt-3 max-w-xl text-[var(--text-muted)]" data-i18n="proj.sub">Des cartes électroniques aux simulations numériques.</p>
+          </div>
+          <!-- Filtres -->
+          <div class="flex flex-wrap gap-2" role="group" aria-label="Filtres">
+            <button type="button" class="filter-btn" data-filter="all" aria-pressed="true" data-i18n="f.all">Tous</button>
+            <button type="button" class="filter-btn" data-filter="hardware" aria-pressed="false" data-i18n="f.hw">Hardware</button>
+            <button type="button" class="filter-btn" data-filter="embedded" aria-pressed="false" data-i18n="f.emb">Embarqué</button>
+            <button type="button" class="filter-btn" data-filter="simulation" aria-pressed="false" data-i18n="f.sim">Simulation</button>
+          </div>
+        </div>
+
+        <!--
+          ➕ AJOUTER UN PROJET : copie une balise <article class="project ..."> complète, colle-la ci-dessous,
+          puis change data-cat (hardware / embedded / simulation — plusieurs valeurs possibles séparées par un espace).
+        -->
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+
+          <!-- ───────── Projet 1 : Domethic System ───────── -->
+          <article class="project surface group reveal flex flex-col overflow-hidden" data-cat="hardware embedded">
+            <a href="domethic.html" tabindex="-1" aria-hidden="true" class="relative block aspect-video overflow-hidden bg-gradient-to-br from-ink-700 to-ink-800">
+              <div class="absolute inset-0 grid place-items-center text-ink-600"><svg class="h-12 w-12"><use href="#i-cpu"/></svg></div>
+              <!-- 📸 IMAGE PROJET 1 : photo de tes cartes / boîtiers → assets/projets/domethic.jpg (16:9, ~1200×675 px) -->
+              <img src="assets/projets/domethic.jpg" alt="Cartes électroniques Domethic System" loading="lazy"
+                   class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" onerror="this.remove()">
+            </a>
+            <div class="flex flex-1 flex-col p-6">
+              <p class="font-mono text-xs text-[var(--text-muted)]"><span data-i18n="p1.kind">Projet entrepreneurial</span> · <span data-i18n="p1.date">Fév. 2022 — Présent</span></p>
+              <h3 class="mt-2 text-xl font-semibold text-[var(--text-strong)]">
+                <a href="domethic.html" class="transition-colors hover:text-accent-soft">Domethic System</a>
+              </h3>
+              <p class="mt-3 flex-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="p1.desc">Assemblage de cartes électroniques (soudure, modules radio, mémoire EEPROM), paramétrage du firmware et tests de robustesse : charges de forte puissance et vérification de la CEM.</p>
+              <ul class="mt-5 flex flex-wrap gap-2">
+                <li class="tag">Firmware</li><li class="tag">Hardware</li><li class="tag">EEPROM</li><li class="tag" data-i18n="tag.radio">Modules radio</li>
+              </ul>
+              <div class="mt-6 flex flex-wrap gap-2">
+                <a href="domethic.html" class="btn-primary !px-4 !py-2.5 !text-xs">
+                  <span data-i18n="proj.more">En savoir plus</span><svg class="h-3.5 w-3.5"><use href="#i-arrow"/></svg>
+                </a>
+                <!-- 🔗 LIEN : remplace par ton dépôt. Si le code est confidentiel (projet commercial), supprime ce bouton. -->
+                <a href="https://github.com/AurelienCapron/domethic-system" target="_blank" rel="noopener noreferrer" class="btn-ghost !px-4 !py-2.5 !text-xs">
+                  <svg class="h-3.5 w-3.5"><use href="#i-github"/></svg><span data-i18n="proj.code">Code source</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ───────── Projet 2 : Télécommande autonome ───────── -->
+          <article class="project surface group reveal flex flex-col overflow-hidden" data-cat="embedded hardware" style="transition-delay:.1s">
+            <a href="telecommande.html" tabindex="-1" aria-hidden="true" class="relative block aspect-video overflow-hidden bg-gradient-to-br from-ink-700 to-ink-800">
+              <div class="absolute inset-0 grid place-items-center text-ink-600"><svg class="h-12 w-12"><use href="#i-code"/></svg></div>
+              <!-- 📸 IMAGE PROJET 2 : photo du prototype → assets/projets/telecommande.jpg (16:9, ~1200×675 px) -->
+              <img src="assets/projets/telecommande.jpg" alt="Prototype de télécommande autonome" loading="lazy"
+                   class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" onerror="this.remove()">
+            </a>
+            <div class="flex flex-1 flex-col p-6">
+              <p class="font-mono text-xs text-[var(--text-muted)]"><span data-i18n="p2.kind">Projet industriel · Phelma</span> · <span data-i18n="p2.date">Mars — Mai 2026</span></p>
+              <h3 class="mt-2 text-xl font-semibold text-[var(--text-strong)]">
+                <a href="telecommande.html" class="transition-colors hover:text-accent-soft" data-i18n="p2.title">Télécommande Autonome</a>
+              </h3>
+              <p class="mt-3 flex-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="p2.desc">Conception d'une télécommande autonome pour vidéoprojecteurs : intégration matérielle, prototypage et développement du code embarqué.</p>
+              <ul class="mt-5 flex flex-wrap gap-2">
+                <li class="tag">Arduino</li><li class="tag">C/C++</li><li class="tag">Python</li><li class="tag">Raspberry Pi</li><li class="tag" data-i18n="tag.ir">Infrarouge</li>
+              </ul>
+              <div class="mt-6 flex flex-wrap gap-2">
+                <a href="telecommande.html" class="btn-primary !px-4 !py-2.5 !text-xs">
+                  <span data-i18n="proj.more">En savoir plus</span><svg class="h-3.5 w-3.5"><use href="#i-arrow"/></svg>
+                </a>
+                <!-- 🔗 LIEN : dépôt du projet -->
+                <a href="https://github.com/AurelienCapron/telecommande-autonome" target="_blank" rel="noopener noreferrer" class="btn-ghost !px-4 !py-2.5 !text-xs">
+                  <svg class="h-3.5 w-3.5"><use href="#i-github"/></svg><span data-i18n="proj.code">Code source</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ───────── Projet 3 : TIPE ───────── -->
+          <article class="project surface group reveal flex flex-col overflow-hidden" data-cat="simulation" style="transition-delay:.2s">
+            <a href="tipe.html" tabindex="-1" aria-hidden="true" class="relative block aspect-video overflow-hidden bg-gradient-to-br from-ink-700 to-ink-800">
+              <div class="absolute inset-0 grid place-items-center text-ink-600"><svg class="h-12 w-12"><use href="#i-activity"/></svg></div>
+              <!-- 📸 IMAGE PROJET 3 : graphique de trajectoires / capture de simulation → assets/projets/tipe.jpg (16:9) -->
+              <img src="assets/projets/tipe.jpg" alt="Simulation de trajectoires du TIPE" loading="lazy"
+                   class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" onerror="this.remove()">
+            </a>
+            <div class="flex flex-1 flex-col p-6">
+              <p class="font-mono text-xs text-[var(--text-muted)]"><span data-i18n="p3.kind">TIPE · Classes préparatoires</span> · <span data-i18n="p3.date">Jan. 2023 — Avr. 2025</span></p>
+              <h3 class="mt-2 text-xl font-semibold text-[var(--text-strong)]">
+                <a href="tipe.html" class="transition-colors hover:text-accent-soft" data-i18n="p3.title">Simulation Cinématique (TIPE)</a>
+              </h3>
+              <p class="mt-3 flex-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="p3.desc">Modélisation cinématique d'une assistance mécanique au badminton (détection du joueur et lancer). Simulation de trajectoires en Python, vision par ordinateur et analyse d'incertitudes : erreur de mesure réduite de 80 %.</p>
+              <ul class="mt-5 flex flex-wrap gap-2">
+                <li class="tag">Python</li><li class="tag" data-i18n="tag.cv">Vision par ordinateur</li><li class="tag" data-i18n="tag.unc">Analyse d'incertitudes</li>
+              </ul>
+              <div class="mt-6 flex flex-wrap gap-2">
+                <a href="tipe.html" class="btn-primary !px-4 !py-2.5 !text-xs">
+                  <span data-i18n="proj.more">En savoir plus</span><svg class="h-3.5 w-3.5"><use href="#i-arrow"/></svg>
+                </a>
+                <a href="https://github.com/AurelienCapron/Lanceur-de-volant-de-badminton" target="_blank" rel="noopener noreferrer" class="btn-ghost !px-4 !py-2.5 !text-xs">
+                  <svg class="h-3.5 w-3.5"><use href="#i-github"/></svg><span data-i18n="proj.code">Code source</span>
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════ 4. PARCOURS ═════════════════════════ -->
+    <section id="parcours" class="py-24">
+      <div class="mx-auto max-w-6xl px-6">
+        <div class="reveal mb-12">
+          <p class="eyebrow">03 — <span data-i18n="path.eyebrow">Parcours</span></p>
+          <h2 class="h2" data-i18n="path.title">Formation &amp; expérience</h2>
+        </div>
+
+        <div class="grid gap-14 lg:grid-cols-2">
+
+          <!-- Colonne gauche : formation + engagement -->
+          <div>
+            <h3 class="reveal mb-6 font-mono text-sm uppercase tracking-widest text-[var(--text-muted)]" data-i18n="path.edu">Formation</h3>
+            <ol class="relative space-y-9 border-l border-[var(--border)] pl-6">
+              <li class="reveal relative">
+                <span class="absolute -left-[30px] top-1.5 h-2.5 w-2.5 rounded-full bg-accent ring-4 ring-[var(--bg)]"></span>
+                <p class="font-mono text-xs text-[var(--text-muted)]">2025 — 2028 · Grenoble</p>
+                <h4 class="mt-1 text-lg font-semibold text-[var(--text-strong)]">Grenoble INP - Phelma</h4>
+                <p class="mt-1 text-sm text-[var(--text-muted)]" data-i18n="e1.sub">Diplôme d'ingénieur (attendu en 2028) · Systèmes Électroniques Intégrés (SEI)</p>
+                <ul class="mt-3 flex flex-wrap gap-2">
+                  <li class="tag" data-i18n="c1">Systèmes embarqués</li>
+                  <li class="tag" data-i18n="c2">Traitement du signal</li>
+                  <li class="tag" data-i18n="c3">Électronique</li>
+                  <li class="tag" data-i18n="c4">Physique des capteurs</li>
+                </ul>
+              </li>
+              <li class="reveal relative">
+                <span class="absolute -left-[30px] top-1.5 h-2.5 w-2.5 rounded-full bg-slate-500 ring-4 ring-[var(--bg)]"></span>
+                <p class="font-mono text-xs text-[var(--text-muted)]">2023 — 2025 · Nantes</p>
+                <h4 class="mt-1 text-lg font-semibold text-[var(--text-strong)]">Lycée Saint Stanislas</h4>
+                <p class="mt-1 text-sm text-[var(--text-muted)]" data-i18n="e2.sub">Classes préparatoires aux Grandes Écoles (MPSI / PSI)</p>
+              </li>
+            </ol>
+
+            <!-- Engagement associatif -->
+            <div class="surface reveal mt-10 p-6">
+              <h3 class="font-mono text-sm uppercase tracking-widest text-[var(--text-muted)]" data-i18n="eng.title">Engagement associatif</h3>
+              <p class="mt-3 font-semibold text-[var(--text-strong)]" data-i18n="eng.role">Responsable partenariats du bureau des sports de Phelma</p>
+              <p class="mt-1 text-sm text-[var(--text-muted)]" data-i18n="eng.desc">Négociation de sponsoring et gestion de budget.</p>
+            </div>
+          </div>
+
+          <!-- Colonne droite : expérience professionnelle -->
+          <div>
+            <h3 class="reveal mb-6 font-mono text-sm uppercase tracking-widest text-[var(--text-muted)]" data-i18n="path.exp">Expérience professionnelle</h3>
+            <ol class="relative space-y-9 border-l border-[var(--border)] pl-6">
+              <li class="reveal relative">
+                <span class="absolute -left-[30px] top-1.5 h-2.5 w-2.5 rounded-full bg-accent ring-4 ring-[var(--bg)]"></span>
+                <p class="font-mono text-xs text-[var(--text-muted)]"><span data-i18n="x1.date">Mai 2026 — Présent</span> · Isère</p>
+                <h4 class="mt-1 text-lg font-semibold text-[var(--text-strong)]">Sacha Heritage</h4>
+                <p class="text-sm font-medium text-accent-soft" data-i18n="x1.role">Co-fondateur &amp; Commercial itinérant</p>
+                <p class="mt-2 text-sm text-[var(--text-muted)]" data-i18n="x1.desc">Importation et commercialisation de poivre de Kampot : prospection, vente directe en salons professionnels, gestion des stocks et préparation des commandes.</p>
+              </li>
+              <li class="reveal relative">
+                <span class="absolute -left-[30px] top-1.5 h-2.5 w-2.5 rounded-full bg-slate-500 ring-4 ring-[var(--bg)]"></span>
+                <p class="font-mono text-xs text-[var(--text-muted)]"><span data-i18n="x2.date">Juil. — Août 2026</span> · Bretagne</p>
+                <h4 class="mt-1 text-lg font-semibold text-[var(--text-strong)]">Yves Rocher</h4>
+                <p class="text-sm font-medium text-accent-soft" data-i18n="x2.role">Opérateur de production (Intérim)</p>
+                <p class="mt-2 text-sm text-[var(--text-muted)]" data-i18n="x2.desc">Pilotage des transferts de fluides entre les cuves de fabrication et les lignes de conditionnement, sanitisation et maintenance de premier niveau des équipements industriels.</p>
+              </li>
+              <li class="reveal relative">
+                <span class="absolute -left-[30px] top-1.5 h-2.5 w-2.5 rounded-full bg-slate-500 ring-4 ring-[var(--bg)]"></span>
+                <p class="font-mono text-xs text-[var(--text-muted)]"><span data-i18n="x3.date">Juin — Août 2024</span> · Bretagne</p>
+                <h4 class="mt-1 text-lg font-semibold text-[var(--text-strong)]">EARL du Maye</h4>
+                <p class="text-sm font-medium text-accent-soft" data-i18n="x3.role">Saisonnier agricole (CDD)</p>
+                <p class="mt-2 text-sm text-[var(--text-muted)]" data-i18n="x3.desc">Alimentation et surveillance de la santé des bovins, nettoyage des installations et maintenance de base du matériel agricole.</p>
+              </li>
+              <li class="reveal relative">
+                <span class="absolute -left-[30px] top-1.5 h-2.5 w-2.5 rounded-full bg-slate-500 ring-4 ring-[var(--bg)]"></span>
+                <p class="font-mono text-xs text-[var(--text-muted)]"><span data-i18n="x4.date">Avril 2022 — Fév. 2023</span> · Ain</p>
+                <h4 class="mt-1 text-lg font-semibold text-[var(--text-strong)]">Proxitec Services</h4>
+                <p class="text-sm font-medium text-accent-soft" data-i18n="x4.role">Manutentionnaire (CDD à temps partiel)</p>
+                <p class="mt-2 text-sm text-[var(--text-muted)]" data-i18n="x4.desc">Chargement, déchargement et acheminement des équipements ; aide à l'artisan lors des installations.</p>
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- Langues / soft skills / centres d'intérêt -->
+        <div class="mt-14 grid gap-6 md:grid-cols-2">
+          <div class="surface reveal p-6">
+            <h3 class="font-mono text-sm uppercase tracking-widest text-[var(--text-muted)]" data-i18n="lang.title">Langues &amp; soft skills</h3>
+            <ul class="mt-4 flex flex-wrap gap-2">
+              <li class="tag" data-i18n="lang.en">Anglais — C1</li>
+              <li class="tag" data-i18n="lang.fr">Français — Natif</li>
+              <li class="tag" data-i18n="lang.de">Allemand — Notions</li>
+              <li class="tag" data-i18n="soft.team">Esprit d'équipe</li>
+              <li class="tag" data-i18n="soft.adapt">Adaptabilité</li>
+            </ul>
+          </div>
+          <div class="surface reveal p-6" style="transition-delay:.1s">
+            <h3 class="font-mono text-sm uppercase tracking-widest text-[var(--text-muted)]" data-i18n="int.title">Centres d'intérêt</h3>
+            <ul class="mt-4 flex flex-wrap gap-2">
+              <li class="tag">Volleyball</li>
+              <li class="tag">Judo</li>
+              <li class="tag" data-i18n="int.chess">Échecs</li>
+              <li class="tag" data-i18n="int.strategy">Jeux de stratégie</li>
+              <li class="tag" data-i18n="int.cooking">Cuisine</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════ HOBBIES & À CÔTÉ ═════════════════════════ -->
+    <section id="hobbies" class="border-t border-[var(--border)] bg-[var(--bg-alt)] py-24">
+      <div class="mx-auto max-w-6xl px-6">
+        <div class="reveal mb-12">
+          <p class="eyebrow">04 — <span data-i18n="hob.eyebrow">À côté des études</span></p>
+          <h2 class="h2" data-i18n="hob.title">Hobbies &amp; engagements</h2>
+          <p class="mt-3 max-w-xl text-[var(--text-muted)]" data-i18n="hob.sub">Quelques activités qui montrent d'autres facettes, avec les preuves qui vont avec.</p>
+        </div>
+
+        <div class="relative reveal">
+          <!-- Piste : défilement horizontal fluide sur mobile (swipe) et desktop -->
+          <div id="hobbies-track"
+               class="-mx-6 flex snap-x snap-mandatory flex-row gap-4 overflow-x-auto scroll-px-6 px-6 pb-4
+                      md:mx-0 md:gap-6 md:scroll-px-0 md:px-0
+                      [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+
+          <!-- ───────── Hobby 1 : Judo ───────── -->
+          <article class="surface group flex w-[82vw] max-w-[320px] flex-none snap-start flex-col overflow-hidden sm:w-[320px]">
+            <a href="judo.html" tabindex="-1" aria-hidden="true" class="relative block aspect-video overflow-hidden bg-gradient-to-br from-ink-700 to-ink-800">
+              <div class="absolute inset-0 grid place-items-center text-ink-600"><svg class="h-12 w-12"><use href="#i-activity"/></svg></div>
+              <!-- 📸 IMAGE : photo du championnat / remise de médaille → assets/hobbies/judo.jpg (16:9) -->
+              <img src="assets/hobbies/judo.jpg" alt="Championnat de France de kata, judo" loading="lazy"
+                   class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" onerror="this.remove()">
+            </a>
+            <div class="flex flex-1 flex-col p-6">
+              <p class="font-mono text-xs text-[var(--text-muted)]" data-i18n="hob1.kind">Judo · Kata</p>
+              <h3 class="mt-2 text-lg font-semibold text-[var(--text-strong)]">
+                <a href="judo.html" class="transition-colors hover:text-accent-soft" data-i18n="hob1.title">Championnat de France de kata</a>
+              </h3>
+              <p class="mt-3 flex-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="hob1.desc">Participation au championnat de France de kata en judo, aboutissement de plusieurs années d'entraînement régulier.</p>
+              <div class="mt-6 flex flex-wrap gap-2">
+                <a href="judo.html" class="btn-primary !px-4 !py-2.5 !text-xs">
+                  <span data-i18n="proj.more">En savoir plus</span><svg class="h-3.5 w-3.5"><use href="#i-arrow"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ───────── Hobby 2 : Modèle salon du mariage ───────── -->
+          <article class="surface group flex w-[82vw] max-w-[320px] flex-none snap-start flex-col overflow-hidden sm:w-[320px]">
+            <a href="perouges.html" tabindex="-1" aria-hidden="true" class="relative block aspect-video overflow-hidden bg-gradient-to-br from-ink-700 to-ink-800">
+              <div class="absolute inset-0 grid place-items-center text-ink-600"><svg class="h-12 w-12"><use href="#i-activity"/></svg></div>
+              <!-- 📸 IMAGE : photo du défilé → assets/hobbies/perouges.jpg (16:9) -->
+              <img src="assets/hobbies/perouges.jpg" alt="Salon du mariage de Pérouges, défilé" loading="lazy"
+                   class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" onerror="this.remove()">
+            </a>
+            <div class="flex flex-1 flex-col p-6">
+              <p class="font-mono text-xs text-[var(--text-muted)]" data-i18n="hob2.kind">Mannequinat</p>
+              <h3 class="mt-2 text-lg font-semibold text-[var(--text-strong)]">
+                <a href="perouges.html" class="transition-colors hover:text-accent-soft" data-i18n="hob2.title">Salon du mariage de Pérouges</a>
+              </h3>
+              <p class="mt-3 flex-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="hob2.desc">Modèle lors d'un défilé au salon du mariage de Pérouges, une expérience à l'opposé du travail en laboratoire.</p>
+              <div class="mt-6 flex flex-wrap gap-2">
+                <a href="perouges.html" class="btn-primary !px-4 !py-2.5 !text-xs">
+                  <span data-i18n="proj.more">En savoir plus</span><svg class="h-3.5 w-3.5"><use href="#i-arrow"/></svg>
+                </a>
+                <a href="https://www.instagram.com/p/Da7NMi7DZCE/" target="_blank" rel="noopener noreferrer" class="btn-ghost !px-4 !py-2.5 !text-xs">
+                  <svg class="h-3.5 w-3.5"><use href="#i-instagram"/></svg><span data-i18n="hob.instagram">Voir sur Instagram</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ───────── Hobby 3 : Salons de vente Sacha Heritage ───────── -->
+          <article class="surface group flex w-[82vw] max-w-[320px] flex-none snap-start flex-col overflow-hidden sm:w-[320px]">
+            <a href="sacha-heritage.html" tabindex="-1" aria-hidden="true" class="relative block aspect-video overflow-hidden bg-gradient-to-br from-ink-700 to-ink-800">
+              <div class="absolute inset-0 grid place-items-center text-ink-600"><svg class="h-12 w-12"><use href="#i-activity"/></svg></div>
+              <!-- 📸 IMAGE : photo de stand / salon → assets/hobbies/sacha-heritage.jpg (16:9) -->
+              <img src="assets/hobbies/sacha-heritage.jpg" alt="Salon de vente Sacha Heritage" loading="lazy"
+                   class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" onerror="this.remove()">
+            </a>
+            <div class="flex flex-1 flex-col p-6">
+              <p class="font-mono text-xs text-[var(--text-muted)]" data-i18n="hob3.kind">Entrepreneuriat</p>
+              <h3 class="mt-2 text-lg font-semibold text-[var(--text-strong)]">
+                <a href="sacha-heritage.html" class="transition-colors hover:text-accent-soft" data-i18n="hob3.title">Salons de vente — Sacha Heritage</a>
+              </h3>
+              <p class="mt-3 flex-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="hob3.desc">Tenue de stand sur différents salons professionnels pour la vente directe de poivre de Kampot.</p>
+              <div class="mt-6 flex flex-wrap gap-2">
+                <a href="sacha-heritage.html" class="btn-primary !px-4 !py-2.5 !text-xs">
+                  <span data-i18n="proj.more">En savoir plus</span><svg class="h-3.5 w-3.5"><use href="#i-arrow"/></svg>
+                </a>
+                <a href="https://www.instagram.com/p/DZKxIWPl6Nq/?img_index=1" target="_blank" rel="noopener noreferrer" class="btn-ghost !px-4 !py-2.5 !text-xs">
+                  <svg class="h-3.5 w-3.5"><use href="#i-instagram"/></svg><span data-i18n="hob.instagram">Voir sur Instagram</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ───────── Hobby 4 : Saxhorn ───────── -->
+          <article class="surface group flex w-[82vw] max-w-[320px] flex-none snap-start flex-col overflow-hidden sm:w-[320px]">
+            <a href="saxhorn.html" tabindex="-1" aria-hidden="true" class="relative block aspect-video overflow-hidden bg-gradient-to-br from-ink-700 to-ink-800">
+              <div class="absolute inset-0 grid place-items-center text-ink-600"><svg class="h-12 w-12"><use href="#i-activity"/></svg></div>
+              <!-- 📸 IMAGE : photo de répétition/concert → assets/hobbies/saxhorn.jpg (16:9) -->
+              <img src="assets/hobbies/saxhorn.jpg" alt="Répétition de saxhorn" loading="lazy"
+                   class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" onerror="this.remove()">
+            </a>
+            <div class="flex flex-1 flex-col p-6">
+              <p class="font-mono text-xs text-[var(--text-muted)]" data-i18n="hob4.kind">Musique · Cuivres</p>
+              <h3 class="mt-2 text-lg font-semibold text-[var(--text-strong)]">
+                <a href="saxhorn.html" class="transition-colors hover:text-accent-soft" data-i18n="hob4.title">Saxhorn &amp; musique</a>
+              </h3>
+              <p class="mt-3 flex-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="hob4.desc">5 ans de pratique du saxhorn (niveau brevet de solfège), dans un groupe de rock, une harmonie, un groupe de jazz et un brass band.</p>
+              <div class="mt-6 flex flex-wrap gap-2">
+                <a href="saxhorn.html" class="btn-primary !px-4 !py-2.5 !text-xs">
+                  <span data-i18n="proj.more">En savoir plus</span><svg class="h-3.5 w-3.5"><use href="#i-arrow"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- ───────── Hobby 5 : BDS Phelma ───────── -->
+          <article class="surface group flex w-[82vw] max-w-[320px] flex-none snap-start flex-col overflow-hidden sm:w-[320px]">
+            <a href="bds.html" tabindex="-1" aria-hidden="true" class="relative block aspect-video overflow-hidden bg-gradient-to-br from-ink-700 to-ink-800">
+              <div class="absolute inset-0 grid place-items-center text-ink-600"><svg class="h-12 w-12"><use href="#i-activity"/></svg></div>
+              <!-- 📸 IMAGE : photo de l'équipe BDS → assets/hobbies/bds.jpg (16:9) -->
+              <img src="assets/hobbies/bds.jpg" alt="Équipe du Bureau des Sports de Phelma" loading="lazy"
+                   class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" onerror="this.remove()">
+            </a>
+            <div class="flex flex-1 flex-col p-6">
+              <p class="font-mono text-xs text-[var(--text-muted)]" data-i18n="hob5.kind">Vie associative · Phelma</p>
+              <h3 class="mt-2 text-lg font-semibold text-[var(--text-strong)]">
+                <a href="bds.html" class="transition-colors hover:text-accent-soft" data-i18n="hob5.title">Bureau des Sports — Phelma</a>
+              </h3>
+              <p class="mt-3 flex-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="hob5.desc">Engagement associatif au Bureau des Sports de Phelma, en charge des partenariats.</p>
+              <div class="mt-6 flex flex-wrap gap-2">
+                <a href="bds.html" class="btn-primary !px-4 !py-2.5 !text-xs">
+                  <span data-i18n="proj.more">En savoir plus</span><svg class="h-3.5 w-3.5"><use href="#i-arrow"/></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+          </div>
+
+          <!-- Indicateurs de pagination (mobile) -->
+          <div id="hobbies-dots" class="mt-4 flex justify-center gap-2 md:hidden" role="group" aria-label="Pagination des hobbies">
+            <button type="button" class="hob-dot h-2 w-6 rounded-full bg-accent transition-all duration-300" data-index="0" aria-label="Hobby 1" aria-current="true"></button>
+            <button type="button" class="hob-dot h-2 w-2 rounded-full bg-[var(--border)] transition-all duration-300" data-index="1" aria-label="Hobby 2" aria-current="false"></button>
+            <button type="button" class="hob-dot h-2 w-2 rounded-full bg-[var(--border)] transition-all duration-300" data-index="2" aria-label="Hobby 3" aria-current="false"></button>
+            <button type="button" class="hob-dot h-2 w-2 rounded-full bg-[var(--border)] transition-all duration-300" data-index="3" aria-label="Hobby 4" aria-current="false"></button>
+            <button type="button" class="hob-dot h-2 w-2 rounded-full bg-[var(--border)] transition-all duration-300" data-index="4" aria-label="Hobby 5" aria-current="false"></button>
+          </div>
+
+          <!-- Flèches de navigation (desktop uniquement) -->
+          <button type="button" id="hob-prev" aria-label="Précédent"
+                  class="absolute -left-4 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text-soft)] opacity-0 shadow-lg backdrop-blur transition hover:border-accent/50 hover:text-accent-soft disabled:pointer-events-none disabled:opacity-0 md:flex">
+            <svg class="h-4 w-4"><use href="#i-arrow" transform="rotate(180 12 12)"/></svg>
+          </button>
+          <button type="button" id="hob-next" aria-label="Suivant"
+                  class="absolute -right-4 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text-soft)] shadow-lg backdrop-blur transition hover:border-accent/50 hover:text-accent-soft disabled:pointer-events-none disabled:opacity-0 md:flex">
+            <svg class="h-4 w-4"><use href="#i-arrow"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ═════════════════════════ 5. CONTACT (FOOTER) ═════════════════════════ -->
+  <footer id="contact" class="relative overflow-hidden border-t border-[var(--border)] bg-[var(--bg-alt)]">
+    <div class="pointer-events-none absolute left-1/2 top-0 h-64 w-[36rem] -translate-x-1/2 rounded-full bg-accent/10 blur-3xl"></div>
+
+    <div class="relative mx-auto max-w-3xl px-6 py-24 text-center">
+      <p class="eyebrow reveal" data-i18n="contact.eyebrow">Contact</p>
+      <h2 class="h2 reveal" data-i18n="contact.title">Prêt à échanger sur vos projets technologiques ?</h2>
+      <p class="reveal mx-auto mt-4 max-w-lg text-[var(--text-muted)]" data-i18n="contact.sub">Stage d'assistant ingénieur en électronique — 16 semaines, dès mi-mai 2027.</p>
+
+      <!-- Icônes de contact -->
+      <div class="reveal mt-10 flex items-center justify-center gap-4">
+        <a class="icon-btn" href="https://www.linkedin.com/in/aurelien-capron" target="_blank" rel="noopener noreferrer" aria-label="Profil LinkedIn" data-i18n-aria="aria.linkedin">
+          <svg class="h-5 w-5"><use href="#i-linkedin"/></svg>
+        </a>
+        <a class="icon-btn" href="https://github.com/AurelienCapron" target="_blank" rel="noopener noreferrer" aria-label="Profil GitHub" data-i18n-aria="aria.github">
+          <svg class="h-5 w-5"><use href="#i-github"/></svg>
+        </a>
+        <a id="mailto-link" class="icon-btn" href="mailto:aurelien-capron@outlook.fr?subject=Stage%20Assistant%20Ing%C3%A9nieur%20%E2%80%94%20Aur%C3%A9lien%20Capron" aria-label="Envoyer un email" data-i18n-aria="aria.email">
+          <svg class="h-5 w-5"><use href="#i-mail"/></svg>
+        </a>
+        <a class="icon-btn" href="tel:+33783073311" aria-label="Appeler" data-i18n-aria="aria.phone">
+          <svg class="h-5 w-5"><use href="#i-phone"/></svg>
+        </a>
+      </div>
+
+      <!-- Email + téléphone en clair, avec copie rapide -->
+      <div class="reveal mt-6 flex flex-wrap items-center justify-center gap-3">
+        <div class="inline-flex max-w-full items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] py-1.5 pl-4 pr-1.5 font-mono text-xs text-[var(--text)] sm:gap-3 sm:pl-5 sm:text-sm">
+          <span class="whitespace-nowrap">aurelien-capron@outlook.fr</span>
+          <button id="copy-email" type="button" class="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-[var(--chip-bg)] px-3 py-1.5 text-xs text-[var(--text-soft)] transition hover:bg-accent/15 hover:text-accent-soft"
+                  aria-label="Copier l'adresse email" data-i18n-aria="aria.copy">
+            <svg class="h-3.5 w-3.5"><use href="#i-copy"/></svg><span data-i18n="contact.copy">Copier</span>
+          </button>
+        </div>
+        <!-- 📞 TÉLÉPHONE : même logique de copie que l'email ci-dessus -->
+        <div class="inline-flex items-center gap-3 rounded-full border border-[var(--border)] bg-[var(--surface)] py-1.5 pl-5 pr-1.5 font-mono text-sm text-[var(--text)]">
+          <span>+33 7 83 07 33 11</span>
+          <button id="copy-phone" type="button" class="inline-flex items-center gap-1.5 rounded-full bg-[var(--chip-bg)] px-3 py-1.5 text-xs text-[var(--text-soft)] transition hover:bg-accent/15 hover:text-accent-soft"
+                  aria-label="Copier le numéro de téléphone" data-i18n-aria="aria.copyPhone">
+            <svg class="h-3.5 w-3.5"><use href="#i-copy"/></svg><span data-i18n="contact.copy">Copier</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="relative border-t border-[var(--border)] px-6 py-6 text-center font-mono text-xs text-[var(--text-faint)]">
+      © <span id="year">2026</span> Aurélien Capron · <span data-i18n="footer.built">Conçu avec HTML &amp; CSS</span>
+    </div>
+  </footer>
+
+  <!-- Retour en haut de page (remonte uniquement sur mobile en bas de page) -->
+  <button id="to-top" type="button" aria-label="Retour en haut" data-i18n-aria="aria.top"
+          class="pointer-events-none fixed bottom-6 right-6 z-40 grid h-11 w-11 place-items-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text-soft)] opacity-0 shadow-lg backdrop-blur transition-all duration-300 hover:border-accent/50 hover:text-accent-soft sm:translate-y-0">
+    <svg class="h-5 w-5"><use href="#i-up"/></svg>
+  </button>
+
+  <!-- Notification (copie de l'email / du téléphone) -->
+  <div id="toast" role="status" aria-live="polite"
+       class="pointer-events-none fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-lg border border-accent/30 bg-[var(--surface)] px-4 py-2 text-sm text-accent-soft opacity-0 shadow-xl transition-opacity duration-300"></div>
+
+  <!-- ═════════════════════════ JAVASCRIPT ═════════════════════════ -->
+  <script>
+  (() => {
+    const $  = (s, r = document) => r.querySelector(s);
+    const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+    $('#year').textContent = new Date().getFullYear();
+
+    /* ───────── Thème clair / sombre ───────── */
+    const themeBtn = $('#theme-toggle');
+    const themeIconUse = $('#theme-icon-use');
+    const metaThemeColor = $('meta[name="theme-color"]');
+    function applyTheme(theme, persist) {
+      document.documentElement.setAttribute('data-theme', theme);
+      themeIconUse?.setAttribute('href', theme === 'light' ? '#i-moon' : '#i-sun');
+      themeBtn?.setAttribute('aria-pressed', String(theme === 'light'));
+      metaThemeColor?.setAttribute('content', theme === 'light' ? '#f6f7f9' : '#0c0e11');
+      $('meta[name="color-scheme"]')?.setAttribute('content', theme);
+      if (persist) { try { localStorage.setItem('theme', theme); } catch (e) {} }
+      dispatchEvent(new Event('themechange'));
+    }
+    let savedTheme = null;
+    try { savedTheme = localStorage.getItem('theme'); } catch (e) {}
+    applyTheme(savedTheme === 'light' ? 'light' : 'dark', false);
+    themeBtn?.addEventListener('click', () => {
+      const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      applyTheme(next, true);
+    });
+
+    /* ───────── Traduction FR / EN ─────────
+       Le français est la langue source (texte présent dans le HTML) : il est mémorisé automatiquement.
+       Seul l'anglais est listé ci-dessous. Pour modifier un texte EN, change la valeur de sa clé. */
+    const FR = {};
+    $$('[data-i18n]').forEach(el => { FR[el.dataset.i18n] = el.textContent.trim(); });
+    $$('[data-i18n-aria]').forEach(el => { FR[el.dataset.i18nAria] = el.getAttribute('aria-label'); });
+    FR['meta.title'] = document.title;
+    FR['meta.desc']  = $('meta[name="description"]').content;
+
+    const EN = {
+      "meta.title": "Aurélien CAPRON — Portfolio | Embedded Systems Engineering Student",
+      "meta.desc": "Portfolio of Aurélien Capron, engineering student at Grenoble INP - Phelma (Integrated Electronic Systems). Embedded systems, microelectronics, hardware design.",
+      "skip": "Skip to content",
+      "nav.skills": "Skills", "nav.projects": "Projects", "nav.path": "Background", "nav.hobbies": "Hobbies", "nav.contact": "Contact",
+      "hero.badge": "Available · 16-week internship from mid-May 2027",
+      "hero.role": "Engineering Student at Grenoble INP - Phelma (Integrated Electronic Systems)",
+      "hero.bio": "Passionate about hardware design and embedded systems architecture. Currently looking for a 16-week engineering assistant internship.",
+      "hero.cta1": "View my projects", "hero.cta2": "View my CV (PDF)",
+      "chip.degree": "Engineering degree 2028", "chip.english": "English C1", "chip.licence": "Driving licence (B)",
+      "skills.eyebrow": "Skills", "skills.title": "Technical toolbox",
+      "skills.sub": "From CAD design to the test bench.",
+      "skills.cat1": "Electronics & CAD", "skills.cat2": "Embedded & Code", "skills.cat3": "Instrumentation",
+      "tag.scope": "Oscilloscope", "tag.sigGen": "Signal generator", "tag.emcTest": "EMC testing",
+      "proj.eyebrow": "Projects", "proj.title": "Selected work",
+      "proj.sub": "From electronic boards to numerical simulations.",
+      "f.all": "All", "f.hw": "Hardware", "f.emb": "Embedded", "f.sim": "Simulation",
+      "proj.code": "Source code", "proj.more": "Learn more",
+      "p1.kind": "Entrepreneurial project", "p1.date": "Feb 2022 — Present",
+      "p1.desc": "Electronic board assembly (soldering, radio modules, EEPROM memory), firmware configuration and robustness testing: high-power loads and EMC verification.",
+      "tag.radio": "Radio modules",
+      "p2.kind": "Industrial project · Phelma", "p2.date": "Mar — May 2026", "p2.title": "Standalone Remote Control",
+      "p2.desc": "Design of a standalone remote control for video projectors: hardware integration, prototyping and embedded software development.",
+      "tag.ir": "Infrared",
+      "p3.kind": "TIPE · Preparatory classes", "p3.date": "Jan 2023 — Apr 2025", "p3.title": "Kinematic Simulation (TIPE)",
+      "p3.desc": "Kinematic modelling of a mechanical assistance device for badminton (player detection and shuttle launch). Trajectory simulation in Python, computer vision and uncertainty analysis: measurement error reduced by 80%.",
+      "tag.cv": "Computer vision", "tag.unc": "Uncertainty analysis",
+      "path.eyebrow": "Background", "path.title": "Education & experience",
+      "path.edu": "Education", "path.exp": "Work experience",
+      "e1.sub": "Engineering degree (expected 2028) · Integrated Electronic Systems (SEI)",
+      "c1": "Embedded systems", "c2": "Signal processing", "c3": "Electronics", "c4": "Sensor physics",
+      "e2.sub": "Preparatory classes for the Grandes Écoles (MPSI / PSI)",
+      "eng.title": "Community involvement", "eng.role": "Partnerships Manager, Phelma Sports Association",
+      "eng.desc": "Sponsorship negotiation and budget management.",
+      "x1.date": "May 2026 — Present", "x1.role": "Co-founder & Traveling Sales Representative",
+      "x1.desc": "Import and marketing of Kampot pepper: prospecting, direct sales at trade shows, inventory management and order preparation.",
+      "x2.date": "Jul — Aug 2026", "x2.role": "Production Operator (Temp)",
+      "x2.desc": "Managing fluid transfers between manufacturing tanks and packaging lines, sanitization and first-level maintenance of industrial equipment.",
+      "x3.date": "Jun — Aug 2024", "x3.role": "Seasonal Farm Worker (fixed-term)",
+      "x3.desc": "Feeding and health monitoring of cattle, cleaning of facilities and basic maintenance of farm equipment.",
+      "x4.date": "Apr 2022 — Feb 2023", "x4.role": "Handler (part-time, fixed-term)",
+      "x4.desc": "Loading, unloading and transporting equipment; assisting the craftsman during installations.",
+      "lang.title": "Languages & soft skills",
+      "lang.en": "English — C1", "lang.fr": "French — Native", "lang.de": "German — Basic",
+      "soft.team": "Team spirit", "soft.adapt": "Adaptability",
+      "int.title": "Interests", "int.chess": "Chess", "int.strategy": "Strategy games", "int.cooking": "Cooking",
+      "hob.eyebrow": "Beyond the classroom", "hob.title": "Hobbies & involvement",
+      "hob.sub": "A few activities that show other sides of me, with the proof to back them up.",
+      "hob.press": "Press article", "hob.instagram": "View on Instagram",
+      "hob1.kind": "Judo · Kata", "hob1.title": "French Kata Championship",
+      "hob1.desc": "Competed at the French Kata Championship in judo, the result of several years of regular training.",
+      "hob2.kind": "Modelling", "hob2.title": "Pérouges Wedding Fair",
+      "hob2.desc": "Walked as a model at the Pérouges wedding fair — quite a change from working in a lab.",
+      "hob3.kind": "Entrepreneurship", "hob3.title": "Trade shows — Sacha Heritage",
+      "hob3.desc": "Ran a stand at several trade shows for direct sales of Kampot pepper.",
+      "hob4.kind": "Music · Brass", "hob4.title": "Saxhorn & music",
+      "hob4.desc": "5 years playing the saxhorn (music theory certificate level), in a rock band, a wind orchestra, a jazz band and a brass band.",
+      "hob5.kind": "Student life · Phelma", "hob5.title": "Sports Office — Phelma",
+      "hob5.desc": "Involved in Phelma's Sports Office (student association), in charge of partnerships.",
+      "contact.eyebrow": "Contact",
+      "contact.title": "Ready to talk about your tech projects?",
+      "contact.sub": "Electronics engineering assistant internship — 16 weeks, from mid-May 2027.",
+      "contact.copy": "Copy", "contact.copiedBtn": "Copied",
+      "toast.copied": "Email copied!", "toast.copiedPhone": "Phone number copied!",
+      "footer.built": "Built with HTML & CSS",
+      "aria.menu": "Open menu", "aria.top": "Back to top",
+      "aria.linkedin": "LinkedIn profile", "aria.github": "GitHub profile",
+      "aria.email": "Send an email", "aria.phone": "Call", "aria.copy": "Copy email address",
+      "aria.copyPhone": "Copy phone number", "aria.theme": "Toggle light/dark theme"
+    };
+    FR['contact.copiedBtn'] = "Copié";
+    FR['toast.copied'] = "Email copié !";
+    FR['toast.copiedPhone'] = "Numéro copié !";
+    const DICT = { fr: FR, en: EN };
+    let lang = 'fr';
+
+    /* ───────── CV & Mailto : bascule FR / EN ───────── */
+    const cvLink = $('#cv-download');
+    const CV_FILES = {
+      fr: 'assets/CV_Aurelien_Capron.pdf',
+      en: 'assets/CV_Aurelien_Capron_EN.pdf'
+    };
+    const mailtoLink = $('#mailto-link');
+    const MAILTO_HREFS = {
+      fr: 'mailto:aurelien-capron@outlook.fr?subject=Stage%20Assistant%20Ing%C3%A9nieur%20%E2%80%94%20Aur%C3%A9lien%20Capron',
+      en: 'mailto:aurelien-capron@outlook.fr?subject=Engineering%20Assistant%20Internship%20%E2%80%94%20Aur%C3%A9lien%20Capron'
+    };
+
+    function setLang(next, persist) {
+      lang = next;
+      const d = DICT[lang];
+      document.documentElement.lang = lang;
+      $$('[data-i18n]').forEach(el => { const v = d[el.dataset.i18n]; if (v != null) el.textContent = v; });
+      $$('[data-i18n-aria]').forEach(el => {
+        const v = d[el.dataset.i18nAria];
+        if (v != null) { el.setAttribute('aria-label', v); el.setAttribute('title', v); }
+      });
+      document.title = d['meta.title'];
+      $('meta[name="description"]').setAttribute('content', d['meta.desc']);
+      $$('.lang-btn').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+      if (cvLink) cvLink.href = CV_FILES[lang] || CV_FILES.fr;
+      if (mailtoLink) mailtoLink.href = MAILTO_HREFS[lang] || MAILTO_HREFS.fr;
+      if (persist) { try { localStorage.setItem('lang', lang); } catch (e) {} }
+    }
+    $$('.lang-btn').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang, true)));
+    // Langue initiale : priorité au paramètre d'URL (?lang=en), puis au choix mémorisé, puis français par défaut.
+    // Permet d'envoyer un lien qui s'ouvre directement en anglais, ex. https://tonsite/?lang=en
+    let urlLang = null;
+    try { urlLang = new URLSearchParams(location.search).get('lang'); } catch (e) {}
+    let saved = null; try { saved = localStorage.getItem('lang'); } catch (e) {}
+    const initialLang = (urlLang === 'en' || urlLang === 'fr') ? urlLang : (saved === 'en' ? 'en' : 'fr');
+    if (initialLang === 'en') setLang('en', true);
+
+    /* ───────── Menu mobile ───────── */
+    const menuBtn = $('#menu-btn'), menu = $('#mobile-menu');
+    function toggleMenu(open) {
+      const o = open ?? menu.classList.contains('hidden');
+      menu.classList.toggle('hidden', !o);
+      menuBtn.setAttribute('aria-expanded', String(o));
+      menuBtn.querySelector('use').setAttribute('href', o ? '#i-close' : '#i-menu');
+    }
+    menuBtn.addEventListener('click', () => toggleMenu());
+    $$('#mobile-menu a').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') toggleMenu(false); });
+    document.addEventListener('click', e => {
+      if (!menu.classList.contains('hidden') && !menu.contains(e.target) && !menuBtn.contains(e.target)) {
+        toggleMenu(false);
+      }
+    });
+
+    /* ───────── Barre de progression + bouton retour en haut ───────── */
+    const bar = $('#progress'), topBtn = $('#to-top');
+    let ticking = false;
+    function onScroll() {
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      const hidden = h.scrollTop < 600;
+      const nearBottom = max - h.scrollTop < 60;
+      topBtn.classList.toggle('opacity-0', hidden);
+      topBtn.classList.toggle('pointer-events-none', hidden);
+      topBtn.classList.toggle('-translate-y-14', nearBottom);
+      if (!menu.classList.contains('hidden')) toggleMenu(false);
+      ticking = false;
+    }
+    addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+    onScroll();
+    topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    /* ───────── Lien actif dans la navigation (scrollspy) ───────── */
+    const navLinks = $$('.nav-link');
+    const spy = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        navLinks.forEach(l => l.setAttribute('aria-current', String(l.getAttribute('href') === '#' + e.target.id)));
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    $$('section[id], footer[id]').forEach(s => spy.observe(s));
+
+    /* ───────── Apparition au scroll ───────── */
+    const reveal = new IntersectionObserver((entries, obs) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    $$('.reveal').forEach(el => reveal.observe(el));
+
+    /* ───────── Carrousel hobbies (glisser en mobile & desktop + pagination dots) ───────── */
+    (() => {
+      const track = document.getElementById('hobbies-track');
+      const prev = document.getElementById('hob-prev'), next = document.getElementById('hob-next');
+      const dots = $$('.hob-dot');
+      if (!track || !prev || !next) return;
+      const step = () => {
+        const gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap) || 24;
+        return (track.querySelector('article')?.getBoundingClientRect().width || 320) + gap;
+      };
+      function updateCarousel() {
+        const scrollable = track.scrollWidth > track.clientWidth + 4;
+        prev.classList.toggle('opacity-0', !scrollable || track.scrollLeft <= 4);
+        next.classList.toggle('opacity-0', !scrollable || track.scrollLeft >= track.scrollWidth - track.clientWidth - 4);
+        if (dots.length) {
+          const s = step();
+          const idx = Math.min(dots.length - 1, Math.max(0, Math.round(track.scrollLeft / s)));
+          dots.forEach((d, i) => {
+            const active = i === idx;
+            d.classList.toggle('w-6', active);
+            d.classList.toggle('bg-accent', active);
+            d.classList.toggle('w-2', !active);
+            d.classList.toggle('bg-[var(--border)]', !active);
+            d.setAttribute('aria-current', String(active));
+          });
+        }
+      }
+      prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
+      next.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
+      dots.forEach(d => d.addEventListener('click', () => {
+        const idx = Number(d.dataset.index) || 0;
+        track.scrollTo({ left: idx * step(), behavior: 'smooth' });
+      }));
+      track.addEventListener('scroll', () => { requestAnimationFrame(updateCarousel); }, { passive: true });
+      addEventListener('resize', updateCarousel);
+      updateCarousel();
+      next.classList.remove('opacity-0');
+    })();
+
+    /* ───────── Filtres de projets (sortie floutée + cascade ressort) ───────── */
+    let filterTimer;
+    $$('.filter-btn').forEach(btn => btn.addEventListener('click', () => {
+      if (btn.getAttribute('aria-pressed') === 'true') return;
+      const f = btn.dataset.filter;
+      $$('.filter-btn').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+
+      const cards = $$('.project');
+      clearTimeout(filterTimer);
+
+      // Étape 1 : sortie douce des cartes actuellement visibles
+      cards.forEach(card => {
+        card.style.transitionDelay = '0s';
+        if (!card.classList.contains('hidden')) {
+          card.classList.remove('filter-in');
+          card.classList.add('filter-out');
+        }
+      });
+
+      // Étape 2 : bascule des cartes et entrée en cascade (stagger)
+      filterTimer = setTimeout(() => {
+        let visibleIndex = 0;
+        cards.forEach(card => {
+          const show = f === 'all' || card.dataset.cat.split(' ').includes(f);
+          card.classList.remove('filter-out', 'filter-in');
+          card.classList.toggle('hidden', !show);
+          if (show) {
+            card.style.animationDelay = `${visibleIndex * 65}ms`;
+            void card.offsetWidth;
+            card.classList.add('filter-in');
+            visibleIndex++;
+          } else {
+            card.style.animationDelay = '0ms';
+          }
+        });
+      }, 150);
+    }));
+
+    /* ───────── Copie (email + téléphone) + retour visuel sur le bouton & notification ───────── */
+    const toast = $('#toast');
+    let toastTimer;
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.remove('opacity-0');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.add('opacity-0'), 2200);
+    }
+    function bindCopyButton(selector, value, toastKey) {
+      const btn = $(selector);
+      if (!btn) return;
+      let btnTimer;
+      btn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(value);
+        } catch (e) {
+          const t = document.createElement('textarea');
+          t.value = value; document.body.appendChild(t); t.select();
+          try { document.execCommand('copy'); } catch (_) {}
+          t.remove();
+        }
+        const useEl = btn.querySelector('use');
+        const spanEl = btn.querySelector('span');
+        useEl?.setAttribute('href', '#i-check');
+        if (spanEl) {
+          spanEl.dataset.i18n = 'contact.copiedBtn';
+          spanEl.textContent = DICT[lang]['contact.copiedBtn'];
+        }
+        btn.classList.add('!bg-accent/15', '!text-accent-soft');
+        clearTimeout(btnTimer);
+        btnTimer = setTimeout(() => {
+          useEl?.setAttribute('href', '#i-copy');
+          if (spanEl) {
+            spanEl.dataset.i18n = 'contact.copy';
+            spanEl.textContent = DICT[lang]['contact.copy'];
+          }
+          btn.classList.remove('!bg-accent/15', '!text-accent-soft');
+        }, 2000);
+        showToast(DICT[lang][toastKey]);
+      });
+    }
+    bindCopyButton('#copy-email', 'aurelien-capron@outlook.fr', 'toast.copied');
+    bindCopyButton('#copy-phone', '+33783073311', 'toast.copiedPhone');
+  })();
+  </script>
+
+  <!-- ═════════════════════════ CANVAS HERO : réseau de nœuds animé ═════════════════════════ -->
+  <script>
+  (() => {
+    const canvas = document.getElementById('hero-canvas');
+    const hero = document.getElementById('accueil');
+    if (!canvas || !hero || !canvas.getContext) return;
+    const ctx = canvas.getContext('2d', { alpha: true });
+    const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let w = 0, h = 0;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let nodes = [];
+    const mouse = { x: -9999, y: -9999, active: false };
+    let running = false, rafId = null, heroVisible = true;
+
+    function cssVar(name, fallback) {
+      const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+      return v || fallback;
+    }
+
+    function resize() {
+      const rect = canvas.getBoundingClientRect();
+      w = rect.width; h = rect.height;
+      canvas.width = Math.round(w * dpr);
+      canvas.height = Math.round(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      // Densité de nœuds proportionnelle à la surface, plafonnée pour rester performant.
+      const count = reduceMotion ? 0 : Math.max(16, Math.min(65, Math.round((w * h) / 17000)));
+      nodes = Array.from({ length: count }, () => ({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.16,
+        vy: (Math.random() - 0.5) * 0.16
+      }));
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+      const lineColor = cssVar('--canvas-line', 'rgba(255,255,255,.16)');
+      const nodeColor = cssVar('--canvas-node', 'rgba(16,185,129,.65)');
+      const linkDist = 130, mouseDist = 160, maxSpeed = 0.32;
+
+      for (const n of nodes) {
+        n.x += n.vx; n.y += n.vy;
+        if (n.x < 0 || n.x > w) { n.vx *= -1; n.x = Math.max(0, Math.min(w, n.x)); }
+        if (n.y < 0 || n.y > h) { n.vy *= -1; n.y = Math.max(0, Math.min(h, n.y)); }
+        if (mouse.active) {
+          const dx = n.x - mouse.x, dy = n.y - mouse.y;
+          const d2 = dx * dx + dy * dy;
+          if (d2 < mouseDist * mouseDist) {
+            const d = Math.sqrt(d2) || 1;
+            const f = (1 - d / mouseDist) * 0.012;
+            n.vx += (dx / d) * f;
+            n.vy += (dy / d) * f;
+          }
+        }
+        const sp = Math.hypot(n.vx, n.vy);
+        if (sp > maxSpeed) { n.vx = (n.vx / sp) * maxSpeed; n.vy = (n.vy / sp) * maxSpeed; }
+      }
+
+      ctx.lineWidth = 1;
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const a = nodes[i], b = nodes[j];
+          const dist = Math.hypot(a.x - b.x, a.y - b.y);
+          if (dist < linkDist) {
+            ctx.globalAlpha = (1 - dist / linkDist) * 0.5;
+            ctx.strokeStyle = lineColor;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+        if (mouse.active) {
+          const dist = Math.hypot(nodes[i].x - mouse.x, nodes[i].y - mouse.y);
+          if (dist < mouseDist) {
+            ctx.globalAlpha = (1 - dist / mouseDist) * 0.6;
+            ctx.strokeStyle = nodeColor;
+            ctx.beginPath();
+            ctx.moveTo(nodes[i].x, nodes[i].y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      ctx.globalAlpha = 1;
+      ctx.fillStyle = nodeColor;
+      for (const n of nodes) {
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, 1.5, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function loop() {
+      if (!running) return;
+      draw();
+      rafId = requestAnimationFrame(loop);
+    }
+    function start() {
+      if (running || reduceMotion || !heroVisible || document.hidden) return;
+      running = true;
+      rafId = requestAnimationFrame(loop);
+    }
+    function stop() {
+      running = false;
+      if (rafId) cancelAnimationFrame(rafId);
+    }
+
+    resize();
+    if (reduceMotion) { draw(); } else { start(); }
+
+    let resizeTimer;
+    addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(resize, 150);
+    });
+
+    hero.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+      mouse.active = true;
+    });
+    hero.addEventListener('mouseleave', () => { mouse.active = false; });
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stop(); else start();
+    });
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        heroVisible = entries[0].isIntersecting;
+        if (heroVisible) start(); else stop();
+      }, { threshold: 0.05 }).observe(hero);
+    }
+
+    // Le thème peut changer les couleurs du canvas : on redessine une frame si l'animation est en pause.
+    addEventListener('themechange', () => { if (!running) draw(); });
+  })();
+  </script>
+</body>
+</html>
