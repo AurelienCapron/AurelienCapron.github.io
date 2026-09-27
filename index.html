@@ -203,17 +203,28 @@
     .reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }
     .reveal.in { opacity: 1; transform: none; }
 
-    /* Animation douce lors du filtrage des projets */
-    @keyframes filterFade {
-      from { opacity: 0; transform: scale(0.97) translateY(6px); }
-      to   { opacity: 1; transform: scale(1) translateY(0); }
+    /* Animation « Spring & Blur » en 2 temps lors du filtrage des projets */
+    .project {
+      transition: opacity .15s ease, transform .15s ease, filter .15s ease;
     }
-    .filter-anim { animation: filterFade .25s ease-out forwards; }
+    .project.filter-out {
+      opacity: 0 !important;
+      transform: scale(0.96) translateY(6px) !important;
+      filter: blur(4px);
+      pointer-events: none;
+    }
+    @keyframes filterSpringIn {
+      0%   { opacity: 0; transform: scale(0.94) translateY(14px); filter: blur(6px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+    }
+    .project.filter-in {
+      animation: filterSpringIn .38s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .reveal { opacity: 1; transform: none; transition: none; }
-      .filter-anim { animation: none; }
+      .project.filter-in { animation: none; }
       .animate-ping { animation: none; }
     }
 
@@ -1123,19 +1134,42 @@
       next.classList.remove('opacity-0');
     })();
 
-    /* ───────── Filtres de projets (avec animation douce) ───────── */
+    /* ───────── Filtres de projets (sortie floutée + cascade ressort) ───────── */
+    let filterTimer;
     $$('.filter-btn').forEach(btn => btn.addEventListener('click', () => {
+      if (btn.getAttribute('aria-pressed') === 'true') return;
       const f = btn.dataset.filter;
       $$('.filter-btn').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
-      $$('.project').forEach(card => {
-        const show = f === 'all' || card.dataset.cat.split(' ').includes(f);
-        card.classList.toggle('hidden', !show);
-        if (show) {
-          card.classList.remove('filter-anim');
-          void card.offsetWidth;
-          card.classList.add('filter-anim');
+
+      const cards = $$('.project');
+      clearTimeout(filterTimer);
+
+      // Étape 1 : sortie douce des cartes actuellement visibles
+      cards.forEach(card => {
+        card.style.transitionDelay = '0s';
+        if (!card.classList.contains('hidden')) {
+          card.classList.remove('filter-in');
+          card.classList.add('filter-out');
         }
       });
+
+      // Étape 2 : bascule des cartes et entrée en cascade (stagger)
+      filterTimer = setTimeout(() => {
+        let visibleIndex = 0;
+        cards.forEach(card => {
+          const show = f === 'all' || card.dataset.cat.split(' ').includes(f);
+          card.classList.remove('filter-out', 'filter-in');
+          card.classList.toggle('hidden', !show);
+          if (show) {
+            card.style.animationDelay = `${visibleIndex * 65}ms`;
+            void card.offsetWidth;
+            card.classList.add('filter-in');
+            visibleIndex++;
+          } else {
+            card.style.animationDelay = '0ms';
+          }
+        });
+      }, 150);
     }));
 
     /* ───────── Copie (email + téléphone) + retour visuel sur le bouton & notification ───────── */
