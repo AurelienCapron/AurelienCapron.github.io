@@ -3,8 +3,8 @@
   "short_name": "A. Capron",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0c0e11",
-  "theme_color": "#0c0e11",
+  "background_color": "#f6f7f9",
+  "theme_color": "#f6f7f9",
   "icons": [
     {
       "src": "assets/icon-192.png",
