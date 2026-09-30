@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Télécommande autonome pour vidéoprojecteurs — Aurélien Capron</title>
-  <meta name="description" content="Conception d'une télécommande infrarouge autonome pour vidéoprojecteurs : intégration matérielle, prototypage Arduino/Raspberry Pi et code embarqué, projet industriel Phelma.">
+  <title>Télécommande Infrarouge Autonome pour Vidéoprojecteurs (Projet 32) — Aurélien Capron</title>
+  <meta name="description" content="Système embarqué autonome d'extinction automatique de vidéoprojecteurs : rétro-ingénierie infrarouge (protocole NEC 38 kHz), fusion multi-capteurs (PIR, mmWave, son, VGA) et PCB sur mesure sous KiCad 9 (Raspberry Pi Pico 2WH / MicroPython & C++).">
   <meta name="theme-color" content="#f6f7f9">
   <meta name="color-scheme" content="light">
 
@@ -19,10 +19,10 @@
   </script>
 
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Télécommande autonome pour vidéoprojecteurs — Aurélien Capron">
-  <meta property="og:description" content="Conception d'une télécommande infrarouge autonome pour vidéoprojecteurs : intégration matérielle, prototypage et code embarqué.">
+  <meta property="og:title" content="Télécommande Infrarouge Autonome pour Vidéoprojecteurs (Projet 32) — Aurélien Capron">
+  <meta property="og:description" content="Rétro-ingénierie infrarouge (protocole NEC 38 kHz), fusion multi-capteurs et PCB sur mesure sous KiCad 9 (Raspberry Pi Pico 2WH / MicroPython & C++).">
   <meta property="og:url" content="https://aureliencapron.github.io/telecommande.html">
-  <meta property="og:image" content="https://aureliencapron.github.io/assets/projets/telecommande.jpg">
+  <meta property="og:image" content="https://github.com/AurelienCapron/autonomous-ir-projector-remote/raw/main/assets/pcb_3d_render.png">
   <link rel="canonical" href="https://aureliencapron.github.io/telecommande.html">
 
   <link rel="icon" href="/favicon.ico" sizes="48x48">
@@ -199,137 +199,248 @@
       <div class="relative mx-auto max-w-4xl px-6">
         <p class="reveal font-mono text-xs text-[var(--text-muted)]">
           <a href="index.html#projets" class="hover:text-accent-soft" data-i18n="breadcrumb.proj">Projets</a>
-          <span class="mx-1">/</span> <span data-i18n="breadcrumb.current">Télécommande autonome pour vidéoprojecteurs</span>
+          <span class="mx-1">/</span> <span data-i18n="breadcrumb.current">Télécommande Infrarouge Autonome (Projet 32)</span>
         </p>
-        <p class="reveal eyebrow mt-4" data-i18n="hero.eyebrow">Projet industriel · Phelma · Mars — Mai 2026</p>
-        <h1 class="reveal h2 mt-2 !text-3xl sm:!text-5xl" data-i18n="hero.title">Télécommande autonome pour vidéoprojecteurs</h1>
+        <p class="reveal eyebrow mt-4" data-i18n="hero.eyebrow">Projet industriel n°32 · Grenoble INP - Phelma · Année 2025 — 2026</p>
+        <h1 class="reveal h2 mt-2 !text-3xl sm:!text-5xl" data-i18n="hero.title">Télécommande infrarouge autonome pour vidéoprojecteurs</h1>
         <p class="reveal mt-4 max-w-3xl text-base leading-relaxed text-[var(--text-muted)] sm:text-lg" data-i18n="hero.sub">
-          Conception en équipe, dans le cadre de la formation à Phelma, d'une télécommande infrarouge autonome capable de piloter un vidéoprojecteur : intégration matérielle, prototypage et développement du code embarqué.
+          Système embarqué autonome d'extinction des vidéoprojecteurs de la salle des conseils de Grenoble INP - Phelma : rétro-ingénierie du protocole infrarouge NEC (38 kHz), fusion multi-capteurs (PIR, radar mmWave, son, VGA), carte électronique sur mesure sous KiCad 9 et firmware Raspberry Pi Pico 2WH (MicroPython &amp; C++).
         </p>
 
         <div class="reveal mt-6 flex flex-wrap gap-2">
-          <span class="tag">Arduino</span>
+          <span class="tag">KiCad 9</span>
+          <span class="tag">Raspberry Pi Pico 2WH</span>
+          <span class="tag">MicroPython</span>
           <span class="tag">C/C++</span>
-          <span class="tag">Python</span>
-          <span class="tag">Raspberry Pi</span>
-          <span class="tag" data-i18n="tag.ir">Infrarouge</span>
-          <span class="tag" data-i18n="tag.proto">Prototypage</span>
+          <span class="tag" data-i18n="tag.nec">Protocole NEC</span>
+          <span class="tag" data-i18n="tag.pcb">PCB double face</span>
+          <span class="tag" data-i18n="tag.sensors">Fusion multi-capteurs</span>
         </div>
 
-        <div class="reveal relative mt-10 aspect-video overflow-hidden rounded-2xl border border-[var(--border)] media-placeholder">
-          <div class="absolute inset-0 grid place-items-center text-[var(--text-faint)]"><svg class="h-16 w-16"><use href="#i-activity"/></svg></div>
-          <!-- 📸 IMAGE : photo/capture grand format du prototype → assets/projets/telecommande.jpg (16:9) -->
-          <img src="assets/projets/telecommande.jpg" alt="Prototype de télécommande autonome pour vidéoprojecteurs" loading="lazy"
-               class="absolute inset-0 h-full w-full object-cover" onerror="this.remove()">
+        <!-- Ressources réelles du dépôt GitHub -->
+        <div class="surface reveal mt-8 p-6">
+          <p class="font-mono text-xs font-bold uppercase tracking-wider text-[var(--text-muted)]" data-i18n="res.label">Ressources du projet</p>
+          <div class="mt-4 flex flex-wrap gap-3">
+            <a href="https://github.com/AurelienCapron/autonomous-ir-projector-remote/blob/main/docs/project_report.pdf" target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center gap-2 rounded-full border border-[var(--border)] px-4 py-2 text-xs font-semibold text-[var(--text-soft)] transition hover:-translate-y-0.5 hover:border-accent/50 hover:text-accent-soft">
+              <svg class="h-3.5 w-3.5"><use href="#i-external"/></svg><span data-i18n="res.report">Rapport technique (PDF)</span>
+            </a>
+            <a href="https://github.com/AurelienCapron/autonomous-ir-projector-remote/blob/main/docs/presentation_slides.pdf" target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center gap-2 rounded-full border border-[var(--border)] px-4 py-2 text-xs font-semibold text-[var(--text-soft)] transition hover:-translate-y-0.5 hover:border-accent/50 hover:text-accent-soft">
+              <svg class="h-3.5 w-3.5"><use href="#i-external"/></svg><span data-i18n="res.slides">Support de soutenance (PDF)</span>
+            </a>
+            <a href="https://github.com/AurelienCapron/autonomous-ir-projector-remote/blob/main/docs/arduino_prototype_schematic.pdf" target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center gap-2 rounded-full border border-[var(--border)] px-4 py-2 text-xs font-semibold text-[var(--text-soft)] transition hover:-translate-y-0.5 hover:border-accent/50 hover:text-accent-soft">
+              <svg class="h-3.5 w-3.5"><use href="#i-external"/></svg><span data-i18n="res.schematic">Schéma électrique initial (PDF)</span>
+            </a>
+            <a href="https://github.com/AurelienCapron/autonomous-ir-projector-remote/blob/main/assets/autonomous_remote_demo.mp4?raw=true" target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center gap-2 rounded-full border-2 border-accent/50 bg-accent/10 px-4 py-2 text-xs font-semibold text-accent-soft transition hover:-translate-y-0.5 hover:bg-accent/15">
+              <svg class="h-3.5 w-3.5"><use href="#i-play"/></svg><span data-i18n="res.video">Vidéo de démonstration</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Du prototype breadboard au PCB KiCad -->
+        <div class="reveal mt-8 grid gap-6 sm:grid-cols-2">
+          <div class="surface flex flex-col overflow-hidden">
+            <div class="relative aspect-video overflow-hidden border-b border-[var(--border)]">
+              <img src="https://github.com/AurelienCapron/autonomous-ir-projector-remote/raw/main/assets/arduino_breadboard_prototype.png"
+                   alt="Prototype sur plaque d'essai (breadboard) avec Arduino Uno, capteurs PIR et LDR" loading="lazy"
+                   class="h-full w-full object-cover transition duration-500 hover:scale-105">
+            </div>
+            <div class="p-5">
+              <p class="font-mono text-xs text-volt-soft" data-i18n="compare.phase1">Phase 1 · Prototypage breadboard (Arduino Uno)</p>
+              <p class="mt-1.5 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="compare.phase1desc">Câblage initial sur plaque d'essai : Arduino Uno, 2 capteurs PIR, 4 LDR (A0–A3), récepteur et LED IR.</p>
+            </div>
+          </div>
+          <div class="surface flex flex-col overflow-hidden">
+            <div class="relative aspect-video overflow-hidden border-b border-[var(--border)] bg-white">
+              <img src="https://github.com/AurelienCapron/autonomous-ir-projector-remote/raw/main/assets/pcb_3d_render.png"
+                   alt="Rendu 3D de la carte électronique PCB sous KiCad 9, version 1.2" loading="lazy"
+                   class="h-full w-full object-contain p-3 transition duration-500 hover:scale-105">
+            </div>
+            <div class="p-5">
+              <p class="font-mono text-xs text-accent-soft" data-i18n="compare.phase2">Phase 2 · PCB sur mesure (KiCad 9 — v1.2)</p>
+              <p class="mt-1.5 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="compare.phase2desc">Carte finale double face accueillant le Raspberry Pi Pico 2WH, l'étage LDO 5V et les connecteurs dédiés.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="pb-24">
       <div class="mx-auto max-w-4xl px-6">
+
+        <!-- 1. Contexte -->
         <div class="reveal">
-          <h2 class="text-2xl font-bold text-[var(--text-strong)]" data-i18n="sec1.title">1. Le projet : une télécommande IR autonome, du cahier des charges au prototype</h2>
+          <h2 class="text-2xl font-bold text-[var(--text-strong)]" data-i18n="sec1.title">1. Contexte et cahier des charges (SysML)</h2>
           <p class="mt-3 leading-relaxed text-[var(--text-muted)]" data-i18n="sec1.p1">
-            Réalisé en équipe dans le cadre de la formation à Phelma, ce projet industriel consistait à concevoir un boîtier autonome capable de piloter un vidéoprojecteur par infrarouge, sans télécommande d'origine ni intervention manuelle : détection de la commande, émission du signal IR, et retour de statut, de l'électronique jusqu'au logiciel embarqué.
+            À l'issue des réunions en salle des conseils, les vidéoprojecteurs restent fréquemment allumés toute la nuit — environ deux fois par semaine, soit près de 1 250 heures par an sur une durée de vie totale de lampe de 3 000 à 4 000 heures, soit près d'un tiers de leur durée de vie. Le système conçu répond à trois niveaux d'exigences fonctionnelles :
           </p>
-        </div>
-
-        <div class="reveal mt-12">
-          <h2 class="text-2xl font-bold text-[var(--text-strong)]" data-i18n="sec2.title">2. Chaîne de conception, prototypage et validation</h2>
-          <p class="mt-3 leading-relaxed text-[var(--text-muted)]" data-i18n="sec2.p1">
-            Du cahier des charges jusqu'au prototype fonctionnel démontré en fin de projet, mon intervention couvre quatre étapes clés d'intégration matérielle et logicielle :
-          </p>
-
-          <div class="surface mt-6 overflow-hidden p-4 sm:p-6">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 210" class="w-full h-auto" role="img" aria-label="Flux de conception, prototypage et validation de la télécommande autonome">
-              <defs>
-                <marker id="arr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                  <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981"/>
-                </marker>
-              </defs>
-              <rect x="10" y="20" width="200" height="170" rx="12" fill="rgba(16,185,129,0.08)" stroke="#10b981" stroke-width="1.5"/>
-              <text x="110" y="50" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#10b981">01 · CAHIER DES CHARGES</text>
-              <text x="110" y="76" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="currentColor">Analyse du besoin</text>
-              <text x="110" y="104" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#64748b">• Étude du protocole IR</text>
-              <text x="110" y="124" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#64748b">• Choix de l'architecture</text>
-              <text x="110" y="144" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#64748b">• Répartition en équipe</text>
-
-              <line x1="214" y1="105" x2="236" y2="105" stroke="#10b981" stroke-width="2" marker-end="url(#arr2)"/>
-
-              <rect x="242" y="20" width="200" height="170" rx="12" fill="rgba(59,130,246,0.08)" stroke="#3b82f6" stroke-width="1.5"/>
-              <text x="342" y="50" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#3b82f6">02 · MATÉRIEL</text>
-              <text x="342" y="76" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="currentColor">Intégration du prototype</text>
-              <text x="342" y="104" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#64748b">• Câblage &amp; alimentation</text>
-              <text x="342" y="124" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#64748b">• Émetteur infrarouge</text>
-              <text x="342" y="144" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#64748b">• Boîtier &amp; connectique</text>
-
-              <line x1="446" y1="105" x2="468" y2="105" stroke="#10b981" stroke-width="2" marker-end="url(#arr2)"/>
-
-              <rect x="474" y="20" width="200" height="170" rx="12" fill="rgba(16,185,129,0.08)" stroke="#10b981" stroke-width="1.5"/>
-              <text x="574" y="50" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#10b981">03 · EMBARQUÉ</text>
-              <text x="574" y="76" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="currentColor">Code C/C++ sur Arduino</text>
-              <text x="574" y="104" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#64748b">• Génération du signal IR</text>
-              <text x="574" y="124" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#64748b">• Gestion des commandes</text>
-              <text x="574" y="144" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#64748b">• Scripts Python / Raspberry Pi</text>
-
-              <line x1="678" y1="105" x2="700" y2="105" stroke="#10b981" stroke-width="2" marker-end="url(#arr2)"/>
-
-              <rect x="706" y="20" width="204" height="170" rx="12" fill="rgba(59,130,246,0.08)" stroke="#3b82f6" stroke-width="1.5"/>
-              <text x="808" y="50" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#3b82f6">04 · VALIDATION</text>
-              <text x="808" y="76" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="currentColor">Tests &amp; débogage</text>
-              <text x="808" y="104" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#64748b">• Fiabilité de l'émission IR</text>
-              <text x="808" y="124" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#64748b">• Tests d'automatisation</text>
-              <text x="808" y="144" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#64748b">• Démonstration finale</text>
-            </svg>
-          </div>
-        </div>
-
-        <div class="reveal mt-12">
-          <h2 class="text-2xl font-bold text-[var(--text-strong)]" data-i18n="sec3.title">3. Ma contribution technique</h2>
           <ul class="mt-5 space-y-4">
             <li class="surface flex items-start gap-3.5 p-4">
-              <svg class="mt-0.5 h-5 w-5 flex-none text-accent-soft"><use href="#i-cpu"/></svg>
+              <svg class="mt-0.5 h-5 w-5 flex-none text-accent-soft"><use href="#i-activity"/></svg>
               <div>
-                <h3 class="text-sm font-semibold text-[var(--text-strong)]" data-i18n="c1.title">Intégration matérielle du prototype</h3>
-                <p class="mt-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="c1.desc">
-                  Câblage, alimentation et intégration de l'émetteur infrarouge au sein du boîtier autonome, de la maquette de validation jusqu'au prototype final.
-                </p>
+                <h3 class="text-sm font-semibold text-[var(--text-strong)]" data-i18n="req1.title">Détection de l'état réel des vidéoprojecteurs</h3>
+                <p class="mt-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="req1.desc">Mesure directe de la tension sur les sorties VGA (VGA1, VGA2) couplée à des photorésistances (PGM1201) afin de ne commander l'extinction que si l'appareil ciblé est effectivement sous tension.</p>
               </div>
             </li>
             <li class="surface flex items-start gap-3.5 p-4">
               <svg class="mt-0.5 h-5 w-5 flex-none text-volt-soft"><use href="#i-activity"/></svg>
               <div>
-                <h3 class="text-sm font-semibold text-[var(--text-strong)]" data-i18n="c2.title">Développement du code embarqué en C/C++</h3>
-                <p class="mt-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="c2.desc">
-                  Programmation sur Arduino de la génération et de l'envoi des trames infrarouges pilotant le vidéoprojecteur, ainsi que de la logique de gestion des commandes.
-                </p>
+                <h3 class="text-sm font-semibold text-[var(--text-strong)]" data-i18n="req2.title">Surveillance multi-capteurs de l'occupation</h3>
+                <p class="mt-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="req2.desc">Fusion des informations issues d'un capteur de mouvement infrarouge passif (SBC-PIR), d'un radar de présence à ondes millimétriques (mmWave Gravity SEN0609) et d'un détecteur acoustique (SEN-14262).</p>
               </div>
             </li>
             <li class="surface flex items-start gap-3.5 p-4">
               <svg class="mt-0.5 h-5 w-5 flex-none text-accent-soft"><use href="#i-activity"/></svg>
               <div>
-                <h3 class="text-sm font-semibold text-[var(--text-strong)]" data-i18n="c3.title">Scripts de test et expérimentations sur Raspberry Pi</h3>
-                <p class="mt-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="c3.desc">
-                  Écriture de scripts Python de test et d'automatisation, et expérimentations sur Raspberry Pi pour valider différentes approches de pilotage du système.
-                </p>
+                <h3 class="text-sm font-semibold text-[var(--text-strong)]" data-i18n="req3.title">Extinction automatique et mode Sniffer d'apprentissage</h3>
+                <p class="mt-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="req3.desc">Émission d'une salve infrarouge d'extinction après 1h30 (5 400 s) d'inactivité, et clonage à la volée d'une nouvelle télécommande par simple appui long (3 s) sur le bouton d'apprentissage (GPIO19).</p>
+              </div>
+            </li>
+          </ul>
+          <div class="surface reveal mt-6 overflow-hidden p-2">
+            <img src="https://github.com/AurelienCapron/autonomous-ir-projector-remote/raw/main/assets/sysml_requirements_diagram.png"
+                 alt="Diagramme des exigences SysML du projet" loading="lazy" class="w-full rounded-xl">
+          </div>
+        </div>
+
+        <!-- 2. Architecture matérielle / PCB KiCad -->
+        <div class="reveal mt-14">
+          <h2 class="text-2xl font-bold text-[var(--text-strong)]" data-i18n="sec2.title">2. Architecture matérielle et carte PCB (KiCad 9)</h2>
+          <p class="mt-3 leading-relaxed text-[var(--text-muted)]" data-i18n="sec2.p1">
+            La carte électronique double face (135 × 130 mm) intègre un étage de régulation linéaire 5V (TLV1117-50, alimenté en 12V DC via J1) et centralise l'ensemble des capteurs et actionneurs autour du microcontrôleur Raspberry Pi Pico 2WH.
+          </p>
+          <div class="surface reveal mt-6 overflow-hidden p-2">
+            <img src="https://github.com/AurelienCapron/autonomous-ir-projector-remote/raw/main/assets/system_architecture.svg"
+                 alt="Schéma synoptique de l'architecture système" loading="lazy" class="w-full rounded-xl bg-white">
+          </div>
+          <div class="surface reveal mt-6 overflow-hidden p-2 bg-white">
+            <img src="https://github.com/AurelienCapron/autonomous-ir-projector-remote/raw/main/assets/pcb_3d_render.png"
+                 alt="Rendu 3D de la carte PCB sous KiCad 9" loading="lazy" class="mx-auto w-full max-w-lg rounded-xl object-contain">
+          </div>
+
+          <h3 class="mt-8 text-sm font-semibold uppercase tracking-widest text-[var(--text-muted)]" data-i18n="pinout.title">Brochage de la carte électronique (v1.2)</h3>
+          <div class="surface reveal mt-4 overflow-x-auto">
+            <table class="w-full min-w-[560px] text-left text-sm">
+              <thead>
+                <tr class="border-b border-[var(--border)] text-xs uppercase tracking-wide text-[var(--text-faint)]">
+                  <th class="px-4 py-3 font-semibold" data-i18n="pinout.col1">Connecteur</th>
+                  <th class="px-4 py-3 font-semibold" data-i18n="pinout.col2">Broche MCU</th>
+                  <th class="px-4 py-3 font-semibold" data-i18n="pinout.col3">Rôle fonctionnel</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-[var(--border)] text-[var(--text-muted)]">
+                <tr><td class="px-4 py-2.5 font-mono text-xs text-[var(--text-soft)]">J_VGA1 / J_VGA2</td><td class="px-4 py-2.5 font-mono text-xs">GPIO3 / GPIO2</td><td class="px-4 py-2.5" data-i18n="pinout.r1">Lecture de l'état sous tension des vidéoprojecteurs 1 et 2.</td></tr>
+                <tr><td class="px-4 py-2.5 font-mono text-xs text-[var(--text-soft)]">J_Photoresistance1/2</td><td class="px-4 py-2.5 font-mono text-xs">ADC0 / ADC1</td><td class="px-4 py-2.5" data-i18n="pinout.r2">Mesure analogique de luminosité (PGM1201).</td></tr>
+                <tr><td class="px-4 py-2.5 font-mono text-xs text-[var(--text-soft)]">J_DETECTEUR_MOUVEMENT1</td><td class="px-4 py-2.5 font-mono text-xs">GPIO16</td><td class="px-4 py-2.5" data-i18n="pinout.r3">Capteur de mouvement infrarouge passif (SBC-PIR).</td></tr>
+                <tr><td class="px-4 py-2.5 font-mono text-xs text-[var(--text-soft)]">J_DETECTEUR_PRESENCE1</td><td class="px-4 py-2.5 font-mono text-xs">GPIO17</td><td class="px-4 py-2.5" data-i18n="pinout.r4">Radar de présence mmWave (SEN0609).</td></tr>
+                <tr><td class="px-4 py-2.5 font-mono text-xs text-[var(--text-soft)]">J_CAPTEUR_SONORE1/2</td><td class="px-4 py-2.5 font-mono text-xs">GPIO20 / GPIO21</td><td class="px-4 py-2.5" data-i18n="pinout.r5">Enveloppe acoustique et seuil binaire (SEN-14262).</td></tr>
+                <tr><td class="px-4 py-2.5 font-mono text-xs text-[var(--text-soft)]">J_EMETTEUR1 / 2</td><td class="px-4 py-2.5 font-mono text-xs">GPIO7 / GPIO14</td><td class="px-4 py-2.5" data-i18n="pinout.r6">Commande PWM 38 kHz des 2 émetteurs IR (GT1087).</td></tr>
+                <tr><td class="px-4 py-2.5 font-mono text-xs text-[var(--text-soft)]">J_RECEPTEUR1</td><td class="px-4 py-2.5 font-mono text-xs">GPIO18</td><td class="px-4 py-2.5" data-i18n="pinout.r7">Réception et apprentissage (Sniffer) de trames IR (GT1089).</td></tr>
+                <tr><td class="px-4 py-2.5 font-mono text-xs text-[var(--text-soft)]">J_Bouton1</td><td class="px-4 py-2.5 font-mono text-xs">GPIO19</td><td class="px-4 py-2.5" data-i18n="pinout.r8">Bouton d'activation du mode apprentissage (3 s).</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="mt-4 text-xs leading-relaxed text-[var(--text-faint)]" data-i18n="bom.note">
+            Nomenclature complète (BOM) : Raspberry Pi Pico 2WH (SC1634), régulateur LDO TLV1117-50, capteur sonore SEN-14262, radar mmWave Gravity SEN0609, capteur PIR SBC-PIR, 4 photorésistances PGM1201, 2 émetteurs IR GT1087, récepteur IR GT1089, bouton poussoir R1381R.
+          </p>
+        </div>
+
+        <!-- 3. Protocole NEC & firmware -->
+        <div class="reveal mt-14">
+          <h2 class="text-2xl font-bold text-[var(--text-strong)]" data-i18n="sec3.title">3. Rétro-ingénierie du protocole NEC et firmware embarqué</h2>
+          <p class="mt-3 leading-relaxed text-[var(--text-muted)]" data-i18n="sec3.p1">
+            Le signal émis par la télécommande d'origine face au récepteur GT1089 a été capturé à l'oscilloscope numérique Tektronix et décodé via un banc Arduino Uno, révélant une modulation NEC sur porteuse à 38 kHz de valeur hexadécimale brute <code class="rounded bg-[var(--chip-bg)] px-1.5 py-0.5 font-mono text-[0.85em]">0x6F905583</code> : en-tête de synchronisation (9 ms + 4,5 ms), bit logique 0 (562 µs + 562 µs) et bit logique 1 (562 µs + 1 675 µs).
+          </p>
+          <div class="mt-6 grid gap-6 sm:grid-cols-2">
+            <div class="surface overflow-hidden p-2 bg-white">
+              <img src="https://github.com/AurelienCapron/autonomous-ir-projector-remote/raw/main/assets/nec_protocol_timing.png"
+                   alt="Chronogramme du protocole NEC" loading="lazy" class="w-full rounded-xl">
+              <p class="px-2 py-2 text-center text-xs text-[var(--text-faint)]" data-i18n="sec3.img1">Principe temporel du protocole NEC</p>
+            </div>
+            <div class="surface overflow-hidden p-2 bg-white">
+              <img src="https://github.com/AurelienCapron/autonomous-ir-projector-remote/raw/main/assets/ir_frame_oscilloscope.png"
+                   alt="Capture de la trame infrarouge à l'oscilloscope Tektronix" loading="lazy" class="w-full rounded-xl">
+              <p class="px-2 py-2 text-center text-xs text-[var(--text-faint)]" data-i18n="sec3.img2">Capture de la trame IR à l'oscilloscope</p>
+            </div>
+          </div>
+          <p class="mt-6 leading-relaxed text-[var(--text-muted)]" data-i18n="sec3.p2">
+            Le firmware principal, embarqué en MicroPython sur le Raspberry Pi Pico 2WH, pilote simultanément les deux émetteurs IR via des générateurs PWM matériels cadencés à 38 kHz (rapport cyclique 50 %). Un triple tir d'extinction envoie 3 trames NEC consécutives espacées de 500 ms pour garantir la prise en compte de la commande. Le mode d'apprentissage universel, déclenché par un appui de plus de 3 secondes sur le bouton GPIO19, place le boîtier en écoute sur le récepteur GT1089, mesure à la microseconde les 67 fronts successifs du signal capté et met à jour dynamiquement en mémoire le code de la télécommande clonée.
+          </p>
+        </div>
+
+        <!-- 4. Boîtier mécanique -->
+        <div class="reveal mt-14">
+          <h2 class="text-2xl font-bold text-[var(--text-strong)]" data-i18n="sec4.title">4. Conception mécanique et intégration du boîtier</h2>
+          <p class="mt-3 leading-relaxed text-[var(--text-muted)]" data-i18n="sec4.p1">
+            Pour protéger la carte électronique de la poussière dans le faux plafond tout en intégrant les passages de câbles et l'interface utilisateur, une première modélisation 3D (boîtier perforé et couvercle à poignée) a laissé place à la solution retenue : un boîtier en bois assemblé à créneaux (14 × 15,5 × 10 cm), généré via boxes.py, adapté en CAO 2D pour les perçages des connecteurs et fabriqué au FabLab de Phelma.
+          </p>
+          <div class="mt-6 grid gap-4 sm:grid-cols-3">
+            <div class="surface overflow-hidden">
+              <img src="https://github.com/AurelienCapron/autonomous-ir-projector-remote/raw/main/assets/enclosure_3d_base.jpg" alt="Modélisation 3D de la base du boîtier" loading="lazy" class="aspect-square w-full object-cover">
+            </div>
+            <div class="surface overflow-hidden">
+              <img src="https://github.com/AurelienCapron/autonomous-ir-projector-remote/raw/main/assets/enclosure_3d_lid.jpg" alt="Modélisation 3D du couvercle du boîtier" loading="lazy" class="aspect-square w-full object-cover">
+            </div>
+            <div class="surface overflow-hidden bg-white">
+              <img src="https://github.com/AurelienCapron/autonomous-ir-projector-remote/raw/main/assets/laser_cut_layout.jpg" alt="Plan 2D de découpe laser du boîtier (boxes.py)" loading="lazy" class="aspect-square w-full object-contain p-2">
+            </div>
+          </div>
+          <div class="mt-4 grid gap-4 sm:grid-cols-2">
+            <div class="surface overflow-hidden">
+              <img src="https://github.com/AurelienCapron/autonomous-ir-projector-remote/raw/main/assets/prototype_assembled_box.png" alt="Boîtier final assemblé et câblé" loading="lazy" class="aspect-video w-full object-cover">
+            </div>
+            <div class="surface overflow-hidden">
+              <img src="https://github.com/AurelienCapron/autonomous-ir-projector-remote/raw/main/assets/project_defense_setup.jpg" alt="Banc de démonstration lors de la soutenance finale" loading="lazy" class="aspect-video w-full object-cover">
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Mon rôle & l'équipe -->
+        <div class="reveal mt-14">
+          <h2 class="text-2xl font-bold text-[var(--text-strong)]" data-i18n="sec5.title">5. Mon rôle et l'équipe projet</h2>
+          <p class="mt-3 leading-relaxed text-[var(--text-muted)]" data-i18n="sec5.p1">
+            Chef de projet de l'équipe « Télécommande autonome » (4 coéquipiers : Amaury Simonnot, Corentin Pilleux, Corentin Eletti, Reda Lounis), au sein d'un projet n°32 mené en 2025-2026 à Grenoble INP - Phelma, encadré par Julien Traveaux, Sophie Cornu et l'équipe du FabLab. Au-delà de la coordination d'équipe, ma contribution technique a couvert :
+          </p>
+          <ul class="mt-5 space-y-4">
+            <li class="surface flex items-start gap-3.5 p-4">
+              <svg class="mt-0.5 h-5 w-5 flex-none text-accent-soft"><use href="#i-cpu"/></svg>
+              <div>
+                <h3 class="text-sm font-semibold text-[var(--text-strong)]" data-i18n="c1.title">Conception de la carte PCB sous KiCad 9</h3>
+                <p class="mt-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="c1.desc">Schéma électrique, routage double face et régulation d'alimentation de la carte finale (135 × 130 mm) autour du Raspberry Pi Pico 2WH.</p>
               </div>
             </li>
             <li class="surface flex items-start gap-3.5 p-4">
               <svg class="mt-0.5 h-5 w-5 flex-none text-volt-soft"><use href="#i-activity"/></svg>
               <div>
-                <h3 class="text-sm font-semibold text-[var(--text-strong)]" data-i18n="c4.title">Mise au point et débogage du prototype</h3>
-                <p class="mt-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="c4.desc">
-                  Identification et correction des dysfonctionnements matériels et logiciels jusqu'à l'obtention d'un fonctionnement fiable, validé lors de la démonstration finale du projet.
-                </p>
+                <h3 class="text-sm font-semibold text-[var(--text-strong)]" data-i18n="c2.title">Rétro-ingénierie du protocole infrarouge NEC</h3>
+                <p class="mt-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="c2.desc">Capture et décodage à l'oscilloscope de la trame de la télécommande d'origine, puis reproduction du signal sur banc Arduino.</p>
+              </div>
+            </li>
+            <li class="surface flex items-start gap-3.5 p-4">
+              <svg class="mt-0.5 h-5 w-5 flex-none text-accent-soft"><use href="#i-activity"/></svg>
+              <div>
+                <h3 class="text-sm font-semibold text-[var(--text-strong)]" data-i18n="c3.title">Firmware MicroPython du Raspberry Pi Pico</h3>
+                <p class="mt-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="c3.desc">Génération PWM 38 kHz, logique de triple tir d'extinction et implémentation du mode Sniffer d'apprentissage universel.</p>
+              </div>
+            </li>
+            <li class="surface flex items-start gap-3.5 p-4">
+              <svg class="mt-0.5 h-5 w-5 flex-none text-volt-soft"><use href="#i-activity"/></svg>
+              <div>
+                <h3 class="text-sm font-semibold text-[var(--text-strong)]" data-i18n="c4.title">Conception et fabrication du boîtier</h3>
+                <p class="mt-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="c4.desc">Modélisation 3D, génération du plan de découpe laser (boxes.py) et assemblage au FabLab de Phelma.</p>
               </div>
             </li>
           </ul>
         </div>
 
-        <div class="reveal mt-12">
-          <h2 class="text-2xl font-bold text-[var(--text-strong)]" data-i18n="sec4.title">4. Résultats</h2>
-          <p class="mt-3 leading-relaxed text-[var(--text-muted)]" data-i18n="sec4.p1">
-            Un prototype fonctionnel de télécommande autonome, validé lors des démonstrations du projet industriel : la détection de commande et l'émission infrarouge pilotent le vidéoprojecteur de façon fiable et reproductible.
+        <!-- 6. Résultats -->
+        <div class="reveal mt-14">
+          <h2 class="text-2xl font-bold text-[var(--text-strong)]" data-i18n="sec6.title">6. Résultats</h2>
+          <p class="mt-3 leading-relaxed text-[var(--text-muted)]" data-i18n="sec6.p1">
+            Un prototype fonctionnel validé en conditions réelles dans la salle des conseils : détection fiable de l'état des vidéoprojecteurs et de l'occupation de la salle, extinction automatique après 1h30 d'inactivité et mode d'apprentissage universel opérationnel — permettant d'éviter jusqu'à 1 250 heures par an d'allumage inutile, soit près d'un tiers de la durée de vie des lampes.
           </p>
         </div>
 
@@ -439,32 +550,69 @@
     FR['toast.copied'] = "Email copié !";
 
     const EN = {
-      "meta.title": "Autonomous IR Remote for Video Projectors — Aurélien Capron",
-      "meta.desc": "Design of a standalone infrared remote control for video projectors: hardware integration, Arduino/Raspberry Pi prototyping and embedded software, Phelma industrial project.",
+      "meta.title": "Autonomous Infrared Remote for Video Projectors (Project 32) — Aurélien Capron",
+      "meta.desc": "Autonomous embedded system that automatically shuts down video projectors: infrared protocol reverse-engineering (NEC 38 kHz), multi-sensor fusion (PIR, mmWave, sound, VGA) and a custom PCB designed in KiCad 9 (Raspberry Pi Pico 2WH / MicroPython & C++).",
       "skip": "Skip to content",
       "nav.back": "Back to projects",
       "breadcrumb.proj": "Projects",
-      "breadcrumb.current": "Autonomous remote control for video projectors",
-      "hero.eyebrow": "Industrial project · Phelma · March — May 2026",
-      "hero.title": "Autonomous Remote Control for Video Projectors",
-      "hero.sub": "Team project built as part of the Phelma curriculum: design of a standalone infrared remote control for a video projector — hardware integration, prototyping and embedded software development.",
-      "tag.ir": "Infrared",
-      "tag.proto": "Prototyping",
-      "sec1.title": "1. The project: a standalone IR remote, from specification to prototype",
-      "sec1.p1": "Built as a team as part of the Phelma curriculum, this industrial project involved designing a standalone unit able to control a video projector over infrared, without the original remote or any manual intervention: command detection, IR signal emission and status feedback, from the electronics up to the embedded software.",
-      "sec2.title": "2. Design, prototyping and validation workflow",
-      "sec2.p1": "From the initial specification to the working prototype demonstrated at the end of the project, my work covers four key stages of hardware and software integration:",
-      "sec3.title": "3. My technical contribution",
-      "c1.title": "Hardware integration of the prototype",
-      "c1.desc": "Wiring, power supply and integration of the infrared emitter inside the standalone unit, from the validation mock-up to the final prototype.",
-      "c2.title": "Embedded C/C++ development",
-      "c2.desc": "Arduino programming of infrared frame generation and transmission to control the video projector, along with the command-handling logic.",
-      "c3.title": "Test scripts and experiments on Raspberry Pi",
-      "c3.desc": "Writing Python test and automation scripts, and running experiments on a Raspberry Pi to validate different approaches for driving the system.",
-      "c4.title": "Prototype debugging and refinement",
-      "c4.desc": "Identifying and fixing hardware and software issues until reaching reliable operation, validated during the project's final demonstration.",
-      "sec4.title": "4. Results",
-      "sec4.p1": "A working prototype of the autonomous remote control, validated during the industrial project's demonstrations: command detection and infrared emission reliably and consistently control the video projector.",
+      "breadcrumb.current": "Autonomous Infrared Remote (Project 32)",
+      "hero.eyebrow": "Industrial project No. 32 · Grenoble INP - Phelma · 2025 — 2026",
+      "hero.title": "Autonomous Infrared Remote Control for Video Projectors",
+      "hero.sub": "Autonomous embedded system that shuts down the video projectors in the Grenoble INP - Phelma boardroom: infrared NEC protocol (38 kHz) reverse-engineering, multi-sensor fusion (PIR, mmWave radar, sound, VGA), a custom PCB designed in KiCad 9, and Raspberry Pi Pico 2WH firmware (MicroPython & C++).",
+      "tag.nec": "NEC Protocol",
+      "tag.pcb": "Double-sided PCB",
+      "tag.sensors": "Multi-sensor fusion",
+      "res.label": "Project resources",
+      "res.report": "Technical report (PDF)",
+      "res.slides": "Defense slides (PDF)",
+      "res.schematic": "Initial schematic (PDF)",
+      "res.video": "Demo video",
+      "compare.phase1": "Phase 1 · Breadboard prototyping (Arduino Uno)",
+      "compare.phase1desc": "Initial wiring on a breadboard: Arduino Uno, 2 PIR sensors, 4 LDRs (A0–A3), IR receiver and LED.",
+      "compare.phase2": "Phase 2 · Custom PCB (KiCad 9 — v1.2)",
+      "compare.phase2desc": "Final double-sided board hosting the Raspberry Pi Pico 2WH, the 5V LDO stage and the dedicated connectors.",
+      "sec1.title": "1. Context and requirements (SysML)",
+      "sec1.p1": "After council-room meetings, video projectors are frequently left on overnight — about twice a week, or close to 1,250 hours a year out of a total lamp lifespan of 3,000 to 4,000 hours, nearly a third of their lifetime. The system addresses three levels of functional requirements:",
+      "req1.title": "Detecting the actual state of the video projectors",
+      "req1.desc": "Direct voltage measurement on the VGA outputs (VGA1, VGA2) combined with photoresistors (PGM1201), so the shutdown command only fires when the target device is actually powered on.",
+      "req2.title": "Multi-sensor occupancy monitoring",
+      "req2.desc": "Fusion of a passive infrared motion sensor (SBC-PIR), a millimeter-wave presence radar (mmWave Gravity SEN0609) and an acoustic detector (SEN-14262).",
+      "req3.title": "Automatic shutdown and Sniffer learning mode",
+      "req3.desc": "Emitting an infrared shutdown burst after 1h30 (5,400 s) of inactivity, and cloning a new remote on the fly with a long press (3 s) on the learning button (GPIO19).",
+      "sec2.title": "2. Hardware architecture and PCB (KiCad 9)",
+      "sec2.p1": "The double-sided board (135 × 130 mm) integrates a 5V linear regulation stage (TLV1117-50, powered from 12V DC via J1) and centralizes all sensors and actuators around the Raspberry Pi Pico 2WH microcontroller.",
+      "pinout.title": "Board pinout (v1.2)",
+      "pinout.col1": "Connector",
+      "pinout.col2": "MCU pin",
+      "pinout.col3": "Function",
+      "pinout.r1": "Reads the powered-on state of video projectors 1 and 2.",
+      "pinout.r2": "Analog brightness measurement (PGM1201).",
+      "pinout.r3": "Passive infrared motion sensor (SBC-PIR).",
+      "pinout.r4": "mmWave presence radar (SEN0609).",
+      "pinout.r5": "Acoustic envelope and binary threshold (SEN-14262).",
+      "pinout.r6": "38 kHz PWM drive for the 2 IR emitters (GT1087).",
+      "pinout.r7": "Reception and learning (Sniffer) of IR frames (GT1089).",
+      "pinout.r8": "Button that triggers the learning mode (3 s).",
+      "bom.note": "Full bill of materials: Raspberry Pi Pico 2WH (SC1634), TLV1117-50 LDO regulator, SEN-14262 sound sensor, mmWave Gravity SEN0609 radar, SBC-PIR motion sensor, 4× PGM1201 photoresistors, 2× GT1087 IR emitters, GT1089 IR receiver, R1381R push button.",
+      "sec3.title": "3. NEC protocol reverse-engineering and embedded firmware",
+      "sec3.p1": "The signal emitted by the original remote toward the GT1089 receiver was captured with a Tektronix digital oscilloscope and decoded on an Arduino Uno test bench, revealing an NEC modulation on a 38 kHz carrier with raw hex value 0x6F905583: a sync header (9 ms + 4.5 ms), a logical 0 bit (562 µs + 562 µs) and a logical 1 bit (562 µs + 1,675 µs).",
+      "sec3.img1": "Timing principle of the NEC protocol",
+      "sec3.img2": "Capture of the IR frame on the oscilloscope",
+      "sec3.p2": "The main firmware, written in MicroPython for the Raspberry Pi Pico 2WH, drives both IR emitters simultaneously through hardware PWM generators clocked at 38 kHz (50% duty cycle). A triple shutdown shot sends 3 consecutive NEC frames spaced 500 ms apart to guarantee the command is registered. The universal learning mode, triggered by a press longer than 3 seconds on the GPIO19 button, puts the unit in listening mode on the GT1089 receiver, times the 67 successive edges of the captured signal to the microsecond, and dynamically updates the cloned remote's code in memory.",
+      "sec4.title": "4. Mechanical design and enclosure integration",
+      "sec4.p1": "To protect the board from dust in the false ceiling while routing the cables and the user interface, an initial 3D model (a perforated case with a handle lid) gave way to the chosen solution: a finger-jointed wooden enclosure (14 × 15.5 × 10 cm), generated with boxes.py, adapted in 2D CAD for the connector cutouts and manufactured at the Phelma FabLab.",
+      "sec5.title": "5. My role and the project team",
+      "sec5.p1": "Project lead of the \"Autonomous remote\" team (4 teammates: Amaury Simonnot, Corentin Pilleux, Corentin Eletti, Reda Lounis), part of Project No. 32 run in 2025-2026 at Grenoble INP - Phelma, supervised by Julien Traveaux, Sophie Cornu and the FabLab team. Beyond team coordination, my technical contribution covered:",
+      "c1.title": "PCB design in KiCad 9",
+      "c1.desc": "Schematic, double-sided routing and power regulation of the final board (135 × 130 mm) built around the Raspberry Pi Pico 2WH.",
+      "c2.title": "NEC infrared protocol reverse-engineering",
+      "c2.desc": "Oscilloscope capture and decoding of the original remote's frame, then signal reproduction on an Arduino test bench.",
+      "c3.title": "MicroPython firmware for the Raspberry Pi Pico",
+      "c3.desc": "38 kHz PWM generation, triple shutdown shot logic, and implementation of the universal Sniffer learning mode.",
+      "c4.title": "Enclosure design and manufacturing",
+      "c4.desc": "3D modelling, laser-cut layout generation (boxes.py) and assembly at the Phelma FabLab.",
+      "sec6.title": "6. Results",
+      "sec6.p1": "A working prototype validated under real conditions in the boardroom: reliable detection of projector state and room occupancy, automatic shutdown after 1h30 of inactivity, and a fully operational universal learning mode — avoiding up to 1,250 hours per year of needless run-time, close to a third of the lamps' lifespan.",
       "proj.code": "View source code",
       "nav.prev": "← Previous",
       "nav.prevTitle": "Domethic System",
