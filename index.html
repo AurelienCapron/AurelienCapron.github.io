@@ -18,11 +18,13 @@
   ║              + lien direct : https://aureliencapron.github.io/?lang=en║
   ║                                                                      ║
   ║   🔤 POLICES → auto-hébergées (plus de dépendance à Google Fonts).   ║
-  ║      Il te manque juste les 8 fichiers .woff2 à déposer dans        ║
+  ║      Il te manque juste les 10 fichiers .woff2 à déposer dans       ║
   ║      assets/fonts/ (voir @font-face plus bas dans le head) :         ║
   ║        inter-400.woff2, inter-500.woff2, inter-600.woff2,           ║
   ║        inter-700.woff2, inter-800.woff2, jetbrains-mono-400.woff2,  ║
   ║        jetbrains-mono-500.woff2, jetbrains-mono-600.woff2            ║
+║        barlow-semi-condensed-600.woff2, barlow-semi-condensed-700.woff2║
+║        (titres : « Barlow Semi Condensed », graisses 600 et 700)     ║
   ║      Le plus simple pour les obtenir : va sur gwfh.mranftl.com,     ║
   ║      cherche « Inter », coche les graisses 400/500/600/700/800,     ║
   ║      format « Modern Browsers » (woff2 seul), télécharge, renomme   ║
@@ -40,7 +42,7 @@
   ║   404.html            (page d'erreur, générée automatiquement)      ║
   ║   robots.txt / sitemap.xml  (SEO, URL à adapter — voir ci-dessus)    ║
   ║   assets/styles.css   (à générer à la fin, cf. étape 1 ci-dessus)   ║
-  ║   assets/fonts/*.woff2 (8 fichiers, cf. § POLICES ci-dessus)        ║
+  ║   assets/fonts/*.woff2 (10 fichiers, cf. § POLICES ci-dessus)       ║
   ║   assets/photo.jpg                                                   ║
   ║   assets/CV_Aurelien_Capron.pdf                                      ║
   ║   assets/CV_Aurelien_Capron_EN.pdf                                   ║
@@ -108,7 +110,14 @@
     @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url('assets/fonts/jetbrains-mono-400.woff2') format('woff2'); }
     @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 500; font-display: swap; src: url('assets/fonts/jetbrains-mono-500.woff2') format('woff2'); }
     @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 600; font-display: swap; src: url('assets/fonts/jetbrains-mono-600.woff2') format('woff2'); }
+    /* Titres (h1 / h2) : Barlow Semi Condensed. Sans ces 2 fichiers, les titres retombent sur Inter. */
+    @font-face { font-family: 'Barlow Semi Condensed'; font-style: normal; font-weight: 600; font-display: swap; src: url('assets/fonts/barlow-semi-condensed-600.woff2') format('woff2'); }
+    @font-face { font-family: 'Barlow Semi Condensed'; font-style: normal; font-weight: 700; font-display: swap; src: url('assets/fonts/barlow-semi-condensed-700.woff2') format('woff2'); }
   </style>
+  <!-- Pour tester les titres tout de suite, sans télécharger les fichiers : décommente la ligne suivante
+       (à re-commenter avant la publication, pour rester sans service tiers) :
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&display=swap">
+  -->
 
   <!-- Tailwind CSS (CDN) + thème personnalisé -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -118,6 +127,7 @@
         extend: {
           fontFamily: {
             sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            display: ['Barlow Semi Condensed', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
             mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'monospace']
           },
           colors: {
@@ -136,17 +146,17 @@
   <!-- Composants réutilisables (change les couleurs / arrondis ici, ça s'applique partout) -->
   <style type="text/tailwindcss">
     @layer components {
-      .surface   { @apply rounded-2xl border border-[var(--border)] bg-[var(--surface)] transition-colors duration-300 hover:border-[var(--text-faint)]; box-shadow: var(--card-shadow); }
-      .tag       { @apply inline-flex cursor-default items-center rounded-md border border-[var(--border)] bg-[var(--chip-bg)] px-2.5 py-1 font-mono text-xs text-[var(--text-soft)]; }
-      .btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-5 py-3 text-sm font-semibold text-[var(--on-accent)] shadow-lg shadow-accent/15 transition hover:-translate-y-0.5 hover:brightness-110; }
-      .btn-ghost { @apply inline-flex items-center justify-center gap-2 rounded-lg border border-[var(--border)] px-5 py-3 text-sm font-semibold text-[var(--text-soft)] transition hover:-translate-y-0.5 hover:border-volt/60 hover:bg-volt/10; }
+      .surface   { @apply rounded-[var(--r-card)] border border-[var(--border)] bg-[var(--surface)] transition-colors duration-300 hover:border-[var(--text-faint)]; box-shadow: var(--card-shadow); }
+      .tag       { @apply inline-flex cursor-default items-center rounded-sm border border-[var(--border)] bg-[var(--chip-bg)] px-2.5 py-1 font-mono text-xs text-[var(--text-soft)]; }
+      .btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-md bg-accent px-5 py-3 text-sm font-semibold text-[var(--on-accent)] shadow-lg shadow-accent/15 transition hover:-translate-y-0.5 hover:brightness-110; }
+      .btn-ghost { @apply inline-flex items-center justify-center gap-2 rounded-md border border-[var(--border)] px-5 py-3 text-sm font-semibold text-[var(--text-soft)] transition hover:-translate-y-0.5 hover:border-volt/60 hover:bg-volt/10; }
       .eyebrow   { @apply text-xs font-semibold uppercase tracking-widest text-[var(--text-muted)]; }
-      .h2        { @apply mt-2 text-balance text-3xl font-bold tracking-tight text-[var(--text-strong)] sm:text-4xl; }
+      .h2        { @apply mt-2 text-balance font-display text-4xl font-bold tracking-tight text-[var(--text-strong)] sm:text-5xl; }
       .nav-link  { @apply text-sm text-[var(--text-muted)] transition-colors hover:text-[var(--text-strong)]; }
       .nav-link[aria-current="true"] { @apply font-medium text-[var(--text-strong)]; }
       .lang-btn  { @apply rounded-md px-2.5 py-1 text-[var(--text-muted)] transition-colors hover:text-[var(--text-strong)]; }
       .lang-btn[aria-pressed="true"] { @apply bg-[var(--chip-bg-active)] text-[var(--text-strong)]; }
-      .filter-btn { @apply rounded-full border border-[var(--border)] px-4 py-1.5 text-sm text-[var(--text-muted)] transition-colors hover:text-[var(--text-strong)]; }
+      .filter-btn { @apply rounded-md border border-[var(--border)] px-4 py-1.5 text-sm text-[var(--text-muted)] transition-colors hover:text-[var(--text-strong)]; }
       .filter-btn[aria-pressed="true"] { @apply border-accent/40 bg-accent/10 font-medium text-accent-soft; }
       .icon-btn  { @apply grid h-12 w-12 place-items-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] transition hover:-translate-y-1 hover:border-accent/50 hover:text-accent-soft; box-shadow: var(--card-shadow); }
       .media-placeholder { background: linear-gradient(135deg, var(--placeholder-from), var(--placeholder-to)); }
@@ -158,6 +168,7 @@
     /* ───────── Jetons de thème (basculés via [data-theme] sur <html>) ───────── */
     :root {
       color-scheme: dark;
+      --r-card: 6px; /* arrondi des cartes : 0 = angles vifs, 16px = ancien rendu */
       --bg: #0c0e11;
       --bg-alt: rgba(18,21,25,.45);
       --surface: rgba(22,27,34,.85);
@@ -176,8 +187,8 @@
       --placeholder-to: #181c21;
       --placeholder-icon: #475569;
       --card-shadow: 0 10px 30px -10px rgba(0,0,0,.45);
-      --canvas-line: rgba(255,255,255,.16);
-      --canvas-node: rgba(148,163,184,.55);
+      --pcb-trace: rgba(255,255,255,.10);
+      --pcb-pad: rgba(255,255,255,.20);
     }
     :root[data-theme="light"] {
       color-scheme: light;
@@ -199,8 +210,8 @@
       --placeholder-to: #e2e8f0;
       --placeholder-icon: #94a3b8;
       --card-shadow: 0 8px 24px -4px rgba(15,23,42,.05), 0 2px 6px -1px rgba(15,23,42,.03);
-      --canvas-line: rgba(15,23,42,.16);
-      --canvas-node: rgba(71,85,105,.6);
+      --pcb-trace: rgba(15,23,42,.11);
+      --pcb-pad: rgba(15,23,42,.22);
     }
 
     html { scroll-behavior: smooth; }
@@ -208,11 +219,19 @@
     ::selection { background: rgba(180,83,26,.3); color: #fff; }
     :focus-visible { outline: 2px solid var(--accent-soft); outline-offset: 3px; border-radius: 6px; }
 
-    /* Canvas d'animation « réseau de nœuds » du Hero, cadré comme l'ancien quadrillage */
-    #hero-canvas {
+    /* Fond « circuit imprimé » du Hero (SVG généré en JS, voir plus bas) */
+    #hero-pcb {
       -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 25%, transparent 75%);
               mask-image: radial-gradient(ellipse at 50% 30%, #000 25%, transparent 75%);
     }
+    /* Impulsion cuivre qui parcourt quelques pistes (pathLength = 100, période 200 : un seul passage) */
+    .pcb-pulse {
+      stroke: var(--accent-soft); stroke-width: 2; opacity: .8;
+      stroke-dasharray: 6 194; stroke-dashoffset: 6;
+      animation: pcbPulse var(--dur, 9s) linear var(--delay, 0s) infinite;
+    }
+    #hero-pcb.is-paused .pcb-pulse { animation-play-state: paused; }
+    @keyframes pcbPulse { to { stroke-dashoffset: -100; } }
 
     /* Apparition douce au scroll */
     .reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }
@@ -241,11 +260,12 @@
       .reveal { opacity: 1; transform: none; transition: none; }
       .project.filter-in { animation: none; }
       .animate-ping { animation: none; }
+      .pcb-pulse { display: none; }
     }
 
     /* ───────── Impression : version sobre, sans nav/décor/animations ───────── */
     @media print {
-      header, #hero-canvas, #to-top, #toast, .icon-btn[aria-label="Copier"],
+      header, #hero-pcb, #to-top, #toast, .icon-btn[aria-label="Copier"],
       #copy-email, #copy-phone, .filter-btn, #hob-prev, #hob-next, #hobbies-dots, #projects-dots {
         display: none !important;
       }
@@ -361,8 +381,8 @@
 
     <!-- ═════════════════════════ 1. HERO ═════════════════════════ -->
     <section id="accueil" class="relative flex min-h-screen items-center overflow-hidden pb-16 pt-28">
-      <!-- Décor : réseau de nœuds animé (canvas) + halos lumineux -->
-      <canvas id="hero-canvas" class="pointer-events-none absolute inset-0 h-full w-full" aria-hidden="true"></canvas>
+      <!-- Décor : pistes de circuit imprimé (SVG généré par le script en bas de page) -->
+      <svg id="hero-pcb" class="pointer-events-none absolute inset-0 h-full w-full" aria-hidden="true" focusable="false"></svg>
 
       <div class="relative mx-auto grid w-full max-w-6xl items-center gap-14 px-6 lg:grid-cols-[1.35fr_1fr]">
 
@@ -380,7 +400,7 @@
           <p class="mt-8 text-sm font-medium text-[var(--text-muted)]" data-i18n="hero.tags">Systèmes embarqués · Microélectronique · Conception hardware</p>
 
           <!-- ✏️ Nom -->
-          <h1 class="mt-3 text-4xl font-extrabold tracking-tight text-[var(--text-strong)] sm:text-6xl">
+          <h1 class="mt-3 font-display text-5xl font-bold tracking-tight text-[var(--text-strong)] sm:text-7xl">
             Aurélien
             CAPRON
           </h1>
@@ -415,7 +435,7 @@
 
         <!-- Portrait -->
         <div class="relative mx-auto w-64 max-w-sm sm:w-72 lg:w-full">
-          <div class="media-placeholder relative aspect-[4/5] overflow-hidden rounded-3xl border border-[var(--border)] shadow-xl">
+          <div class="media-placeholder relative aspect-[4/5] overflow-hidden rounded-lg border border-[var(--border)] shadow-xl">
             <!-- Visuel de remplacement clair/sombre (affiché si la photo est absente ou en cours de chargement) -->
             <div class="media-icon absolute inset-0 grid place-items-center font-mono text-6xl font-bold">AC</div>
             <!-- 📸 IMAGE : ta photo de profil → assets/photo.jpg (format portrait 4:5 conseillé, ~800×1000 px) -->
@@ -423,7 +443,7 @@
                  class="absolute inset-0 h-full w-full object-cover" onerror="this.remove()">
           </div>
           <!-- Petite carte « statut » -->
-          <div class="surface absolute -bottom-4 -left-3 !rounded-xl px-4 py-3 text-xs font-medium backdrop-blur-md sm:-left-6">
+          <div class="surface absolute -bottom-4 -left-3 px-4 py-3 text-xs font-medium backdrop-blur-md sm:-left-6">
             <p><span class="text-[var(--text-muted)]" data-i18n="hero.statusK">Statut</span> <span class="text-[var(--text-faint)]">:</span> <span class="text-accent-soft" data-i18n="hero.statusV">Disponible</span></p>
             <p><span class="text-[var(--text-muted)]" data-i18n="hero.schoolK">Formation</span> <span class="text-[var(--text-faint)]">:</span> <span class="text-[var(--text-strong)]">Phelma · SEI</span></p>
           </div>
@@ -510,7 +530,7 @@
                    class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" onerror="this.remove()">
             </a>
             <div class="flex flex-1 flex-col p-6">
-              <p class="font-mono text-xs text-[var(--text-muted)]"><span data-i18n="p1.kind">Projet entrepreneurial</span> · <span data-i18n="p1.date">Fév. 2022 — Présent</span></p>
+              <p class="font-mono text-xs text-[var(--text-muted)]"><span class="block" data-i18n="p1.kind">Projet entrepreneurial</span><span class="mt-1 block text-[var(--text-faint)]" data-i18n="p1.date">Fév. 2022 — Présent</span></p>
               <h3 class="mt-2 text-xl font-semibold text-[var(--text-strong)]">
                 <a href="domethic.html" class="transition-colors hover:text-accent-soft">Domethic System</a>
               </h3>
@@ -539,7 +559,7 @@
                    class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" onerror="this.remove()">
             </a>
             <div class="flex flex-1 flex-col p-6">
-              <p class="font-mono text-xs text-[var(--text-muted)]"><span data-i18n="p2.kind">Projet industriel · Phelma</span> · <span data-i18n="p2.date">Mars — Mai 2026</span></p>
+              <p class="font-mono text-xs text-[var(--text-muted)]"><span class="block" data-i18n="p2.kind">Projet industriel · Phelma</span><span class="mt-1 block text-[var(--text-faint)]" data-i18n="p2.date">Mars — Mai 2026</span></p>
               <h3 class="mt-2 text-xl font-semibold text-[var(--text-strong)]">
                 <a href="telecommande.html" class="transition-colors hover:text-accent-soft" data-i18n="p2.title">Télécommande Autonome</a>
               </h3>
@@ -568,7 +588,7 @@
                    class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" onerror="this.remove()">
             </a>
             <div class="flex flex-1 flex-col p-6">
-              <p class="font-mono text-xs text-[var(--text-muted)]"><span data-i18n="p3.kind">TIPE · Classes préparatoires</span> · <span data-i18n="p3.date">Jan. 2023 — Avr. 2025</span></p>
+              <p class="font-mono text-xs text-[var(--text-muted)]"><span class="block" data-i18n="p3.kind">TIPE · Classes préparatoires</span><span class="mt-1 block text-[var(--text-faint)]" data-i18n="p3.date">Jan. 2023 — Avr. 2025</span></p>
               <h3 class="mt-2 text-xl font-semibold text-[var(--text-strong)]">
                 <a href="tipe.html" class="transition-colors hover:text-accent-soft" data-i18n="p3.title">Simulation Cinématique (TIPE)</a>
               </h3>
@@ -1283,147 +1303,94 @@
   })();
   </script>
 
-  <!-- ═════════════════════════ CANVAS HERO : réseau de nœuds animé ═════════════════════════ -->
+  <!-- ═════════════════════════ FOND PCB DU HERO : pistes à 45°, pastilles, impulsions cuivre ═════════════════════════ -->
   <script>
   (() => {
-    const canvas = document.getElementById('hero-canvas');
+    const svg = document.getElementById('hero-pcb');
     const hero = document.getElementById('accueil');
-    if (!canvas || !hero || !canvas.getContext) return;
-    const ctx = canvas.getContext('2d', { alpha: true });
-    const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!svg || !hero) return;
+    const NS = 'http://www.w3.org/2000/svg';
+    const PITCH = 28;                       // pas de la grille (px)
+    const SEED = 2028;                      // change ce nombre pour obtenir un autre tracé
+    const DIRS = [[1,0],[1,1],[0,1],[-1,1],[-1,0],[-1,-1],[0,-1],[1,-1]]; // 8 directions : 0° et 45° uniquement, comme sur un vrai PCB
 
-    let w = 0, h = 0;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    let nodes = [];
-    const mouse = { x: -9999, y: -9999, active: false };
-    let running = false, rafId = null, heroVisible = true;
-
-    function cssVar(name, fallback) {
-      const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
-      return v || fallback;
+    // Générateur pseudo-aléatoire à graine : le tracé est identique à chaque chargement.
+    function rng(a) {
+      return () => {
+        a |= 0; a = (a + 0x6D2B79F5) | 0;
+        let t = Math.imul(a ^ (a >>> 15), 1 | a);
+        t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+      };
+    }
+    function el(name, attrs, parent) {
+      const n = document.createElementNS(NS, name);
+      for (const k in attrs) n.setAttribute(k, attrs[k]);
+      if (parent) parent.appendChild(n);
+      return n;
     }
 
-    function resize() {
-      const rect = canvas.getBoundingClientRect();
-      w = rect.width; h = rect.height;
-      canvas.width = Math.round(w * dpr);
-      canvas.height = Math.round(h * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      // Densité de nœuds proportionnelle à la surface, plafonnée pour rester performant.
-      const count = reduceMotion ? 0 : Math.max(16, Math.min(65, Math.round((w * h) / 17000)));
-      nodes = Array.from({ length: count }, () => ({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        vx: (Math.random() - 0.5) * 0.16,
-        vy: (Math.random() - 0.5) * 0.16
-      }));
-    }
+    function build() {
+      const { width: w, height: h } = svg.getBoundingClientRect();
+      if (!w || !h) return;
+      svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+      svg.replaceChildren();
 
-    function draw() {
-      ctx.clearRect(0, 0, w, h);
-      const lineColor = cssVar('--canvas-line', 'rgba(255,255,255,.16)');
-      const nodeColor = cssVar('--canvas-node', 'rgba(148,163,184,.55)');
-      const linkDist = 130, mouseDist = 160, maxSpeed = 0.32;
+      const rand = rng(SEED);
+      const cols = Math.floor(w / PITCH), rows = Math.floor(h / PITCH);
+      const count = Math.max(10, Math.min(48, Math.round((cols * rows) / 20)));
 
-      for (const n of nodes) {
-        n.x += n.vx; n.y += n.vy;
-        if (n.x < 0 || n.x > w) { n.vx *= -1; n.x = Math.max(0, Math.min(w, n.x)); }
-        if (n.y < 0 || n.y > h) { n.vy *= -1; n.y = Math.max(0, Math.min(h, n.y)); }
-        if (mouse.active) {
-          const dx = n.x - mouse.x, dy = n.y - mouse.y;
-          const d2 = dx * dx + dy * dy;
-          if (d2 < mouseDist * mouseDist) {
-            const d = Math.sqrt(d2) || 1;
-            const f = (1 - d / mouseDist) * 0.012;
-            n.vx += (dx / d) * f;
-            n.vy += (dy / d) * f;
-          }
+      const traces = el('g', { fill: 'none', stroke: 'var(--pcb-trace)', 'stroke-width': 1.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, svg);
+      const pads   = el('g', { fill: 'none', stroke: 'var(--pcb-pad)', 'stroke-width': 1.5 }, svg);
+      const pulses = el('g', { fill: 'none' }, svg);
+      const px = (c) => c * PITCH + PITCH / 2;
+
+      let pulseCount = 0;
+      for (let i = 0; i < count; i++) {
+        let x = Math.floor(rand() * (cols + 1)), y = Math.floor(rand() * (rows + 1));
+        let d = Math.floor(rand() * 8);
+        const pts = [[x, y]];
+        const segs = 3 + Math.floor(rand() * 4);
+        for (let s = 0; s < segs; s++) {
+          const len = 2 + Math.floor(rand() * 5);
+          const nx = x + DIRS[d][0] * len, ny = y + DIRS[d][1] * len;
+          if (nx < 0 || ny < 0 || nx >= cols || ny >= rows) break;
+          x = nx; y = ny; pts.push([x, y]);
+          d = (d + (rand() < 0.5 ? 1 : 7)) % 8;   // virage de 45° à gauche ou à droite, jamais d'angle droit
         }
-        const sp = Math.hypot(n.vx, n.vy);
-        if (sp > maxSpeed) { n.vx = (n.vx / sp) * maxSpeed; n.vy = (n.vy / sp) * maxSpeed; }
-      }
+        if (pts.length < 3) continue;
 
-      ctx.lineWidth = 1;
-      for (let i = 0; i < nodes.length; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
-          const a = nodes[i], b = nodes[j];
-          const dist = Math.hypot(a.x - b.x, a.y - b.y);
-          if (dist < linkDist) {
-            ctx.globalAlpha = (1 - dist / linkDist) * 0.5;
-            ctx.strokeStyle = lineColor;
-            ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
-            ctx.stroke();
-          }
+        const dAttr = pts.map((p, k) => (k ? 'L' : 'M') + px(p[0]) + ' ' + px(p[1])).join('');
+        el('path', { d: dAttr }, traces);
+
+        // Pastille à chaque extrémité (anneau + trou), via au milieu de certaines pistes
+        for (const p of [pts[0], pts[pts.length - 1]]) {
+          el('circle', { cx: px(p[0]), cy: px(p[1]), r: 4.5 }, pads);
+          el('circle', { cx: px(p[0]), cy: px(p[1]), r: 1.2, fill: 'var(--pcb-pad)', stroke: 'none' }, pads);
         }
-        if (mouse.active) {
-          const dist = Math.hypot(nodes[i].x - mouse.x, nodes[i].y - mouse.y);
-          if (dist < mouseDist) {
-            ctx.globalAlpha = (1 - dist / mouseDist) * 0.6;
-            ctx.strokeStyle = nodeColor;
-            ctx.beginPath();
-            ctx.moveTo(nodes[i].x, nodes[i].y);
-            ctx.lineTo(mouse.x, mouse.y);
-            ctx.stroke();
-          }
+        if (rand() < 0.35) {
+          const m = pts[Math.floor(pts.length / 2)];
+          el('circle', { cx: px(m[0]), cy: px(m[1]), r: 2.5 }, pads);
+        }
+
+        // Une piste sur six porte une impulsion cuivre (toutes décalées dans le temps)
+        if (i % 6 === 0 && pulseCount < 7) {
+          const pulse = el('path', { d: dAttr, pathLength: 100, class: 'pcb-pulse', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, pulses);
+          pulse.style.setProperty('--dur', (7 + rand() * 5).toFixed(1) + 's');
+          pulse.style.setProperty('--delay', (pulseCount * 1.7).toFixed(1) + 's');
+          pulseCount++;
         }
       }
-
-      ctx.globalAlpha = 1;
-      ctx.fillStyle = nodeColor;
-      for (const n of nodes) {
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, 1.5, 0, Math.PI * 2);
-        ctx.fill();
-      }
     }
 
-    function loop() {
-      if (!running) return;
-      draw();
-      rafId = requestAnimationFrame(loop);
-    }
-    function start() {
-      if (running || reduceMotion || !heroVisible || document.hidden) return;
-      running = true;
-      rafId = requestAnimationFrame(loop);
-    }
-    function stop() {
-      running = false;
-      if (rafId) cancelAnimationFrame(rafId);
-    }
+    build();
+    let t;
+    addEventListener('resize', () => { clearTimeout(t); t = setTimeout(build, 200); });
 
-    resize();
-    if (reduceMotion) { draw(); } else { start(); }
-
-    let resizeTimer;
-    addEventListener('resize', () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(resize, 150);
-    });
-
-    hero.addEventListener('mousemove', (e) => {
-      const rect = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
-      mouse.active = true;
-    });
-    hero.addEventListener('mouseleave', () => { mouse.active = false; });
-
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) stop(); else start();
-    });
-
+    // Les impulsions se mettent en pause quand le hero n'est plus visible.
     if ('IntersectionObserver' in window) {
-      new IntersectionObserver((entries) => {
-        heroVisible = entries[0].isIntersecting;
-        if (heroVisible) start(); else stop();
-      }, { threshold: 0.05 }).observe(hero);
+      new IntersectionObserver((e) => svg.classList.toggle('is-paused', !e[0].isIntersecting), { threshold: 0.05 }).observe(hero);
     }
-
-    // Le thème peut changer les couleurs du canvas : on redessine une frame si l'animation est en pause.
-    addEventListener('themechange', () => { if (!running) draw(); });
   })();
   </script>
 </body>
