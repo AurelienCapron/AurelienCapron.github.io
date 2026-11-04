@@ -123,10 +123,10 @@
           colors: {
             // Gris anthracite
             ink: { 950: '#0c0e11', 900: '#121519', 800: '#181c21', 700: '#232830', 600: '#333a45' },
-            // Vert émeraude (boutons principaux, disponibilité — soft s'adapte au thème clair/sombre)
-            accent: { DEFAULT: '#10b981', soft: 'var(--accent-soft)' },
-            // Bleu électrique (survols, dégradés, code — soft s'adapte au thème clair/sombre)
-            volt: { DEFAULT: '#3b82f6', soft: 'var(--volt-soft)' }
+            // Cuivre (bouton principal, disponibilité, filtre actif — varie selon le thème clair/sombre)
+            accent: { DEFAULT: 'rgb(var(--accent-rgb) / <alpha-value>)', soft: 'var(--accent-soft)' },
+            // Ardoise neutre (survols et éléments secondaires)
+            volt: { DEFAULT: 'rgb(var(--volt-rgb) / <alpha-value>)', soft: 'var(--volt-soft)' }
           }
         }
       }
@@ -136,11 +136,11 @@
   <!-- Composants réutilisables (change les couleurs / arrondis ici, ça s'applique partout) -->
   <style type="text/tailwindcss">
     @layer components {
-      .surface   { @apply rounded-2xl border border-[var(--border)] bg-[var(--surface)] transition-colors duration-300 hover:border-accent/35; box-shadow: var(--card-shadow); }
+      .surface   { @apply rounded-2xl border border-[var(--border)] bg-[var(--surface)] transition-colors duration-300 hover:border-[var(--text-faint)]; box-shadow: var(--card-shadow); }
       .tag       { @apply inline-flex cursor-default items-center rounded-md border border-[var(--border)] bg-[var(--chip-bg)] px-2.5 py-1 font-mono text-xs text-[var(--text-soft)]; }
-      .btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-5 py-3 text-sm font-semibold text-ink-950 shadow-lg shadow-accent/15 transition hover:-translate-y-0.5 hover:bg-[#34d399]; }
+      .btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-5 py-3 text-sm font-semibold text-[var(--on-accent)] shadow-lg shadow-accent/15 transition hover:-translate-y-0.5 hover:brightness-110; }
       .btn-ghost { @apply inline-flex items-center justify-center gap-2 rounded-lg border border-[var(--border)] px-5 py-3 text-sm font-semibold text-[var(--text-soft)] transition hover:-translate-y-0.5 hover:border-volt/60 hover:bg-volt/10; }
-      .eyebrow   { @apply font-mono text-sm font-medium text-accent-soft; }
+      .eyebrow   { @apply text-xs font-semibold uppercase tracking-widest text-[var(--text-muted)]; }
       .h2        { @apply mt-2 text-balance text-3xl font-bold tracking-tight text-[var(--text-strong)] sm:text-4xl; }
       .nav-link  { @apply text-sm text-[var(--text-muted)] transition-colors hover:text-[var(--text-strong)]; }
       .nav-link[aria-current="true"] { @apply font-medium text-[var(--text-strong)]; }
@@ -170,14 +170,14 @@
       --text-soft: #e2e8f0;
       --text-muted: #94a3b8;
       --text-faint: #64748b;
-      --accent-soft: #34d399;
-      --volt-soft: #60a5fa;
+      --accent-soft: #e0915c; --accent-rgb: 224 145 92; --on-accent: #0c0e11; --volt-rgb: 148 163 184;
+      --volt-soft: #94a3b8;
       --placeholder-from: #232830;
       --placeholder-to: #181c21;
       --placeholder-icon: #475569;
       --card-shadow: 0 10px 30px -10px rgba(0,0,0,.45);
       --canvas-line: rgba(255,255,255,.16);
-      --canvas-node: rgba(16,185,129,.65);
+      --canvas-node: rgba(148,163,184,.55);
     }
     :root[data-theme="light"] {
       color-scheme: light;
@@ -193,20 +193,20 @@
       --text-soft: #1e293b;
       --text-muted: #475569;
       --text-faint: #64748b;
-      --accent-soft: #059669;
-      --volt-soft: #2563eb;
+      --accent-soft: #b4531a; --accent-rgb: 180 83 26; --on-accent: #ffffff; --volt-rgb: 71 85 105;
+      --volt-soft: #475569;
       --placeholder-from: #eef2f6;
       --placeholder-to: #e2e8f0;
       --placeholder-icon: #94a3b8;
       --card-shadow: 0 8px 24px -4px rgba(15,23,42,.05), 0 2px 6px -1px rgba(15,23,42,.03);
       --canvas-line: rgba(15,23,42,.16);
-      --canvas-node: rgba(5,150,105,.7);
+      --canvas-node: rgba(71,85,105,.6);
     }
 
     html { scroll-behavior: smooth; }
     section[id], footer[id] { scroll-margin-top: 5rem; }
-    ::selection { background: rgba(16,185,129,.35); color: #fff; }
-    :focus-visible { outline: 2px solid #10b981; outline-offset: 3px; border-radius: 6px; }
+    ::selection { background: rgba(180,83,26,.3); color: #fff; }
+    :focus-visible { outline: 2px solid var(--accent-soft); outline-offset: 3px; border-radius: 6px; }
 
     /* Canvas d'animation « réseau de nœuds » du Hero, cadré comme l'ancien quadrillage */
     #hero-canvas {
@@ -282,7 +282,7 @@
 
   <!-- Lien d'accessibilité (visible au clavier uniquement) -->
   <a href="#main" data-i18n="skip"
-     class="sr-only z-[60] rounded-md bg-accent px-4 py-2 font-semibold text-ink-950 focus:not-sr-only focus:fixed focus:left-4 focus:top-4">Aller au contenu</a>
+     class="sr-only z-[60] rounded-md bg-accent px-4 py-2 font-semibold text-[var(--on-accent)] focus:not-sr-only focus:fixed focus:left-4 focus:top-4">Aller au contenu</a>
 
   <!-- Bibliothèque d'icônes (SVG inline, aucune dépendance externe) -->
   <svg xmlns="http://www.w3.org/2000/svg" class="absolute h-0 w-0 overflow-hidden" aria-hidden="true" focusable="false">
@@ -292,7 +292,8 @@
     <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol>
     <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
     <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></symbol>
-    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
     <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
     <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
     <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></symbol>
@@ -309,11 +310,11 @@
   <!-- ═════════════════════════ NAVIGATION ═════════════════════════ -->
   <header class="fixed inset-x-0 top-0 z-50 border-b border-[var(--border)] bg-[var(--header-bg)] backdrop-blur-md">
     <!-- Barre de progression de lecture -->
-    <div id="progress" class="absolute left-0 top-0 h-[2px] w-0 bg-gradient-to-r from-accent to-volt"></div>
+    <div id="progress" class="absolute left-0 top-0 h-[2px] w-0 bg-accent"></div>
 
     <nav class="mx-auto flex h-16 max-w-6xl items-center justify-between px-6" aria-label="Navigation principale">
       <a href="#accueil" class="flex items-center gap-3">
-        <span class="grid h-8 w-8 place-items-center rounded-lg border border-[var(--border)] bg-[var(--surface)] font-mono text-xs font-bold text-accent-soft">AC</span>
+        <span class="grid h-8 w-8 place-items-center rounded-lg border border-[var(--border)] bg-[var(--surface)] font-mono text-xs font-bold text-[var(--text-strong)]">AC</span>
         <span class="hidden text-sm font-semibold text-[var(--text-strong)] sm:inline">Aurélien Capron</span>
       </a>
 
@@ -362,8 +363,6 @@
     <section id="accueil" class="relative flex min-h-screen items-center overflow-hidden pb-16 pt-28">
       <!-- Décor : réseau de nœuds animé (canvas) + halos lumineux -->
       <canvas id="hero-canvas" class="pointer-events-none absolute inset-0 h-full w-full" aria-hidden="true"></canvas>
-      <div class="pointer-events-none absolute -top-40 right-0 h-[28rem] w-[28rem] rounded-full bg-volt/10 blur-3xl"></div>
-      <div class="pointer-events-none absolute -bottom-40 -left-20 h-[26rem] w-[26rem] rounded-full bg-accent/10 blur-3xl"></div>
 
       <div class="relative mx-auto grid w-full max-w-6xl items-center gap-14 px-6 lg:grid-cols-[1.35fr_1fr]">
 
@@ -378,12 +377,12 @@
             <span data-i18n="hero.badge">Disponible · Stage de 16 semaines dès mi-mai 2027</span>
           </a>
 
-          <p class="mt-8 font-mono text-sm font-medium text-volt-soft">// embedded · microelectronics · hardware</p>
+          <p class="mt-8 text-sm font-medium text-[var(--text-muted)]" data-i18n="hero.tags">Systèmes embarqués · Microélectronique · Conception hardware</p>
 
           <!-- ✏️ Nom -->
           <h1 class="mt-3 text-4xl font-extrabold tracking-tight text-[var(--text-strong)] sm:text-6xl">
             Aurélien
-            <span class="bg-gradient-to-r from-accent to-volt bg-clip-text text-transparent">CAPRON</span>
+            CAPRON
           </h1>
 
           <!-- ✏️ Sous-titre -->
@@ -407,7 +406,7 @@
 
           <!-- Infos rapides -->
           <ul class="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-sm text-[var(--text-muted)]">
-            <li class="flex items-center gap-2"><svg class="h-4 w-4 text-accent-soft"><use href="#i-pin"/></svg>Grenoble</li>
+            <li class="flex items-center gap-2"><svg class="h-4 w-4 text-[var(--text-muted)]"><use href="#i-pin"/></svg>Grenoble</li>
             <li class="flex items-center gap-2"><span class="h-1 w-1 rounded-full bg-slate-500"></span><span data-i18n="chip.degree">Diplôme d'ingénieur 2028</span></li>
             <li class="flex items-center gap-2"><span class="h-1 w-1 rounded-full bg-slate-500"></span><span data-i18n="chip.english">Anglais C1</span></li>
             <li class="flex items-center gap-2"><span class="h-1 w-1 rounded-full bg-slate-500"></span><span data-i18n="chip.licence">Permis B</span></li>
@@ -416,19 +415,17 @@
 
         <!-- Portrait -->
         <div class="relative mx-auto w-64 max-w-sm sm:w-72 lg:w-full">
-          <div class="absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-accent/35 to-volt/35 blur-3xl opacity-75"></div>
-          <div class="absolute -inset-3 rounded-3xl bg-gradient-to-br from-accent/20 to-volt/20 blur-xl"></div>
-          <div class="media-placeholder relative aspect-[4/5] overflow-hidden rounded-3xl border border-accent/30 shadow-[0_0_40px_-8px_rgba(16,185,129,0.3)]">
+          <div class="media-placeholder relative aspect-[4/5] overflow-hidden rounded-3xl border border-[var(--border)] shadow-xl">
             <!-- Visuel de remplacement clair/sombre (affiché si la photo est absente ou en cours de chargement) -->
             <div class="media-icon absolute inset-0 grid place-items-center font-mono text-6xl font-bold">AC</div>
             <!-- 📸 IMAGE : ta photo de profil → assets/photo.jpg (format portrait 4:5 conseillé, ~800×1000 px) -->
             <img src="assets/photo.jpg" alt="Portrait d'Aurélien Capron" fetchpriority="high" decoding="async"
                  class="absolute inset-0 h-full w-full object-cover" onerror="this.remove()">
           </div>
-          <!-- Petite carte « statut » façon code -->
-          <div class="surface absolute -bottom-4 -left-3 !rounded-xl px-4 py-3 font-mono text-xs font-medium backdrop-blur-md sm:-left-6">
-            <p><span class="text-volt-soft">status</span> <span class="text-[var(--text-faint)]">=</span> <span class="text-accent-soft">"open_to_work"</span></p>
-            <p><span class="text-volt-soft">school</span> <span class="text-[var(--text-faint)]">=</span> <span class="text-accent-soft">"Phelma · SEI"</span></p>
+          <!-- Petite carte « statut » -->
+          <div class="surface absolute -bottom-4 -left-3 !rounded-xl px-4 py-3 text-xs font-medium backdrop-blur-md sm:-left-6">
+            <p><span class="text-[var(--text-muted)]" data-i18n="hero.statusK">Statut</span> <span class="text-[var(--text-faint)]">:</span> <span class="text-accent-soft" data-i18n="hero.statusV">Disponible</span></p>
+            <p><span class="text-[var(--text-muted)]" data-i18n="hero.schoolK">Formation</span> <span class="text-[var(--text-faint)]">:</span> <span class="text-[var(--text-strong)]">Phelma · SEI</span></p>
           </div>
         </div>
       </div>
@@ -437,32 +434,32 @@
     <!-- ═════════════════════════ 2. COMPÉTENCES ═════════════════════════ -->
     <section id="competences" class="py-24">
       <div class="mx-auto max-w-6xl px-6">
-        <div class="reveal mb-12">
-          <p class="eyebrow">01 — <span data-i18n="skills.eyebrow">Compétences</span></p>
+        <div class="mb-12">
+          <p class="eyebrow"><span data-i18n="skills.eyebrow">Compétences</span></p>
           <h2 class="h2" data-i18n="skills.title">Boîte à outils technique</h2>
           <p class="mt-3 max-w-xl text-[var(--text-muted)]" data-i18n="skills.sub">De la conception sur CAO jusqu'au banc de test.</p>
         </div>
 
         <div class="grid gap-6 md:grid-cols-3">
           <!-- Électronique & CAO -->
-          <div class="surface reveal p-6">
-            <div class="grid h-10 w-10 place-items-center rounded-lg bg-accent/10 text-accent-soft"><svg class="h-5 w-5"><use href="#i-cpu"/></svg></div>
+          <div class="surface p-6">
+            <div class="grid h-10 w-10 place-items-center rounded-lg bg-[var(--chip-bg)] text-[var(--text-soft)]"><svg class="h-5 w-5"><use href="#i-cpu"/></svg></div>
             <h3 class="mt-5 text-lg font-semibold text-[var(--text-strong)]" data-i18n="skills.cat1">Électronique &amp; CAO</h3>
             <ul class="mt-4 flex flex-wrap gap-2">
               <li class="tag">KiCad</li><li class="tag">EasyEDA</li><li class="tag">Matlab</li><li class="tag">SolidWorks</li>
             </ul>
           </div>
           <!-- Embarqué & Code -->
-          <div class="surface reveal p-6" style="transition-delay:.1s">
-            <div class="grid h-10 w-10 place-items-center rounded-lg bg-volt/10 text-volt-soft"><svg class="h-5 w-5"><use href="#i-code"/></svg></div>
+          <div class="surface p-6" style="transition-delay:.1s">
+            <div class="grid h-10 w-10 place-items-center rounded-lg bg-[var(--chip-bg)] text-[var(--text-soft)]"><svg class="h-5 w-5"><use href="#i-code"/></svg></div>
             <h3 class="mt-5 text-lg font-semibold text-[var(--text-strong)]" data-i18n="skills.cat2">Embarqué &amp; Code</h3>
             <ul class="mt-4 flex flex-wrap gap-2">
               <li class="tag">C/C++</li><li class="tag">Verilog</li><li class="tag">Python</li><li class="tag">Arduino</li><li class="tag">Linux</li>
             </ul>
           </div>
           <!-- Instrumentation -->
-          <div class="surface reveal p-6" style="transition-delay:.2s">
-            <div class="grid h-10 w-10 place-items-center rounded-lg bg-accent/10 text-accent-soft"><svg class="h-5 w-5"><use href="#i-activity"/></svg></div>
+          <div class="surface p-6" style="transition-delay:.2s">
+            <div class="grid h-10 w-10 place-items-center rounded-lg bg-[var(--chip-bg)] text-[var(--text-soft)]"><svg class="h-5 w-5"><use href="#i-activity"/></svg></div>
             <h3 class="mt-5 text-lg font-semibold text-[var(--text-strong)]" data-i18n="skills.cat3">Instrumentation</h3>
             <ul class="mt-4 flex flex-wrap gap-2">
               <li class="tag" data-i18n="tag.scope">Oscilloscope</li>
@@ -479,7 +476,7 @@
       <div class="mx-auto max-w-6xl px-6">
         <div class="reveal mb-8 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
-            <p class="eyebrow">02 — <span data-i18n="proj.eyebrow">Projets</span></p>
+            <p class="eyebrow"><span data-i18n="proj.eyebrow">Projets</span></p>
             <h2 class="h2" data-i18n="proj.title">Réalisations sélectionnées</h2>
             <p class="mt-3 max-w-xl text-[var(--text-muted)]" data-i18n="proj.sub">Des cartes électroniques aux simulations numériques.</p>
           </div>
@@ -525,9 +522,9 @@
                 <a href="domethic.html" class="btn-primary !px-3.5 !py-2.5 !text-xs whitespace-nowrap">
                   <span data-i18n="proj.more">En savoir plus</span><svg class="h-3.5 w-3.5"><use href="#i-arrow"/></svg>
                 </a>
-                <!-- 🔗 LIEN : remplace par ton dépôt. Si le code est confidentiel (projet commercial), supprime ce bouton. -->
+                <!-- 🔗 Site commercial du produit (le code est confidentiel). -->
                 <a href="https://www.domethic-system.com/" target="_blank" rel="noopener noreferrer" class="btn-ghost !px-3.5 !py-2.5 !text-xs whitespace-nowrap">
-                  <svg class="h-3.5 w-3.5"><use href="#i-github"/></svg><span data-i18n="proj.code">Code source</span>
+                  <svg class="h-3.5 w-3.5"><use href="#i-external"/></svg><span data-i18n="proj.site">Site du produit</span>
                 </a>
               </div>
             </div>
@@ -599,8 +596,8 @@
     <!-- ═════════════════════════ 4. PARCOURS ═════════════════════════ -->
     <section id="parcours" class="py-24">
       <div class="mx-auto max-w-6xl px-6">
-        <div class="reveal mb-12">
-          <p class="eyebrow">03 — <span data-i18n="path.eyebrow">Parcours</span></p>
+        <div class="mb-12">
+          <p class="eyebrow"><span data-i18n="path.eyebrow">Parcours</span></p>
           <h2 class="h2" data-i18n="path.title">Formation &amp; expérience</h2>
         </div>
 
@@ -608,10 +605,10 @@
 
           <!-- Colonne gauche : formation + engagement -->
           <div>
-            <h3 class="reveal mb-6 font-mono text-sm uppercase tracking-widest text-[var(--text-muted)]" data-i18n="path.edu">Formation</h3>
+            <h3 class="mb-6 font-mono text-sm uppercase tracking-widest text-[var(--text-muted)]" data-i18n="path.edu">Formation</h3>
             <ol class="relative space-y-9 border-l border-[var(--border)] pl-6">
-              <li class="reveal relative">
-                <span class="absolute -left-[30px] top-1.5 h-2.5 w-2.5 rounded-full bg-accent ring-4 ring-[var(--bg)]"></span>
+              <li class="relative">
+                <span class="absolute -left-[30px] top-1.5 h-2.5 w-2.5 rounded-full bg-[var(--text-faint)] ring-4 ring-[var(--bg)]"></span>
                 <p class="font-mono text-xs text-[var(--text-muted)]">2025 — 2028 · Grenoble</p>
                 <h4 class="mt-1 text-lg font-semibold text-[var(--text-strong)]">Grenoble INP - Phelma</h4>
                 <p class="mt-1 text-sm text-[var(--text-muted)]" data-i18n="e1.sub">Diplôme d'ingénieur (attendu en 2028) · Systèmes Électroniques Intégrés (SEI)</p>
@@ -622,7 +619,7 @@
                   <li class="tag" data-i18n="c4">Physique des capteurs</li>
                 </ul>
               </li>
-              <li class="reveal relative">
+              <li class="relative">
                 <span class="absolute -left-[30px] top-1.5 h-2.5 w-2.5 rounded-full bg-slate-500 ring-4 ring-[var(--bg)]"></span>
                 <p class="font-mono text-xs text-[var(--text-muted)]">2023 — 2025 · Nantes</p>
                 <h4 class="mt-1 text-lg font-semibold text-[var(--text-strong)]">Lycée Saint Stanislas</h4>
@@ -631,7 +628,7 @@
             </ol>
 
             <!-- Engagement associatif -->
-            <div class="surface reveal mt-10 p-6">
+            <div class="surface mt-10 p-6">
               <h3 class="font-mono text-sm uppercase tracking-widest text-[var(--text-muted)]" data-i18n="eng.title">Engagement associatif</h3>
               <p class="mt-3 font-semibold text-[var(--text-strong)]" data-i18n="eng.role">Responsable partenariats du bureau des sports de Phelma</p>
               <p class="mt-1 text-sm text-[var(--text-muted)]" data-i18n="eng.desc">Négociation de sponsoring et gestion de budget.</p>
@@ -640,30 +637,30 @@
 
           <!-- Colonne droite : expérience professionnelle -->
           <div>
-            <h3 class="reveal mb-6 font-mono text-sm uppercase tracking-widest text-[var(--text-muted)]" data-i18n="path.exp">Expérience professionnelle</h3>
+            <h3 class="mb-6 font-mono text-sm uppercase tracking-widest text-[var(--text-muted)]" data-i18n="path.exp">Expérience professionnelle</h3>
             <ol class="relative space-y-9 border-l border-[var(--border)] pl-6">
-              <li class="reveal relative">
-                <span class="absolute -left-[30px] top-1.5 h-2.5 w-2.5 rounded-full bg-accent ring-4 ring-[var(--bg)]"></span>
+              <li class="relative">
+                <span class="absolute -left-[30px] top-1.5 h-2.5 w-2.5 rounded-full bg-[var(--text-faint)] ring-4 ring-[var(--bg)]"></span>
                 <p class="font-mono text-xs text-[var(--text-muted)]"><span data-i18n="x1.date">Mai 2026 — Présent</span> · Isère</p>
                 <h4 class="mt-1 text-lg font-semibold text-[var(--text-strong)]">Sacha Heritage</h4>
                 <p class="text-sm font-medium text-accent-soft" data-i18n="x1.role">Co-fondateur &amp; Commercial itinérant</p>
                 <p class="mt-2 text-sm text-[var(--text-muted)]" data-i18n="x1.desc">Importation et commercialisation de poivre de Kampot : prospection, vente directe en salons professionnels, gestion des stocks et préparation des commandes.</p>
               </li>
-              <li class="reveal relative">
+              <li class="relative">
                 <span class="absolute -left-[30px] top-1.5 h-2.5 w-2.5 rounded-full bg-slate-500 ring-4 ring-[var(--bg)]"></span>
                 <p class="font-mono text-xs text-[var(--text-muted)]"><span data-i18n="x2.date">Juil. — Août 2026</span> · Bretagne</p>
                 <h4 class="mt-1 text-lg font-semibold text-[var(--text-strong)]">Yves Rocher</h4>
                 <p class="text-sm font-medium text-accent-soft" data-i18n="x2.role">Opérateur de production (Intérim)</p>
                 <p class="mt-2 text-sm text-[var(--text-muted)]" data-i18n="x2.desc">Pilotage des transferts de fluides entre les cuves de fabrication et les lignes de conditionnement, sanitisation et maintenance de premier niveau des équipements industriels.</p>
               </li>
-              <li class="reveal relative">
+              <li class="relative">
                 <span class="absolute -left-[30px] top-1.5 h-2.5 w-2.5 rounded-full bg-slate-500 ring-4 ring-[var(--bg)]"></span>
                 <p class="font-mono text-xs text-[var(--text-muted)]"><span data-i18n="x3.date">Juin — Août 2024</span> · Bretagne</p>
                 <h4 class="mt-1 text-lg font-semibold text-[var(--text-strong)]">EARL du Maye</h4>
                 <p class="text-sm font-medium text-accent-soft" data-i18n="x3.role">Saisonnier agricole (CDD)</p>
                 <p class="mt-2 text-sm text-[var(--text-muted)]" data-i18n="x3.desc">Alimentation et surveillance de la santé des bovins, nettoyage des installations et maintenance de base du matériel agricole.</p>
               </li>
-              <li class="reveal relative">
+              <li class="relative">
                 <span class="absolute -left-[30px] top-1.5 h-2.5 w-2.5 rounded-full bg-slate-500 ring-4 ring-[var(--bg)]"></span>
                 <p class="font-mono text-xs text-[var(--text-muted)]"><span data-i18n="x4.date">Avril 2022 — Fév. 2023</span> · Ain</p>
                 <h4 class="mt-1 text-lg font-semibold text-[var(--text-strong)]">Proxitec Services</h4>
@@ -676,7 +673,7 @@
 
         <!-- Langues / soft skills / centres d'intérêt -->
         <div class="mt-14 grid gap-6 md:grid-cols-2">
-          <div class="surface reveal p-6">
+          <div class="surface p-6">
             <h3 class="font-mono text-sm uppercase tracking-widest text-[var(--text-muted)]" data-i18n="lang.title">Langues &amp; soft skills</h3>
             <ul class="mt-4 flex flex-wrap gap-2">
               <li class="tag" data-i18n="lang.en">Anglais — C1</li>
@@ -686,7 +683,7 @@
               <li class="tag" data-i18n="soft.adapt">Adaptabilité</li>
             </ul>
           </div>
-          <div class="surface reveal p-6" style="transition-delay:.1s">
+          <div class="surface p-6" style="transition-delay:.1s">
             <h3 class="font-mono text-sm uppercase tracking-widest text-[var(--text-muted)]" data-i18n="int.title">Centres d'intérêt</h3>
             <ul class="mt-4 flex flex-wrap gap-2">
               <li class="tag">Volleyball</li>
@@ -703,13 +700,13 @@
     <!-- ═════════════════════════ HOBBIES & À CÔTÉ ═════════════════════════ -->
     <section id="hobbies" class="border-t border-[var(--border)] bg-[var(--bg-alt)] py-24">
       <div class="mx-auto max-w-6xl px-6">
-        <div class="reveal mb-12">
-          <p class="eyebrow">04 — <span data-i18n="hob.eyebrow">À côté des études</span></p>
+        <div class="mb-12">
+          <p class="eyebrow"><span data-i18n="hob.eyebrow">À côté des études</span></p>
           <h2 class="h2" data-i18n="hob.title">Hobbies &amp; engagements</h2>
           <p class="mt-3 max-w-xl text-[var(--text-muted)]" data-i18n="hob.sub">Quelques activités qui montrent d'autres facettes, avec les preuves qui vont avec.</p>
         </div>
 
-        <div class="relative reveal">
+        <div class="relative">
           <!-- Piste : défilement horizontal fluide sur mobile (swipe) et desktop -->
           <div id="hobbies-track"
                class="-mx-6 flex snap-x snap-mandatory flex-row gap-4 overflow-x-auto scroll-px-6 px-6 pb-4
@@ -858,15 +855,14 @@
 
   <!-- ═════════════════════════ 5. CONTACT (FOOTER) ═════════════════════════ -->
   <footer id="contact" class="relative overflow-hidden border-t border-[var(--border)] bg-[var(--bg-alt)]">
-    <div class="pointer-events-none absolute left-1/2 top-0 h-64 w-[36rem] -translate-x-1/2 rounded-full bg-accent/10 blur-3xl"></div>
 
     <div class="relative mx-auto max-w-3xl px-6 py-24 text-center">
-      <p class="eyebrow reveal" data-i18n="contact.eyebrow">Contact</p>
-      <h2 class="h2 reveal" data-i18n="contact.title">Prêt à échanger sur vos projets technologiques&nbsp;?</h2>
-      <p class="reveal mx-auto mt-4 max-w-lg text-[var(--text-muted)]" data-i18n="contact.sub">Stage d'assistant ingénieur en électronique — 16 semaines, dès mi-mai 2027.</p>
+      <p class="eyebrow" data-i18n="contact.eyebrow">Contact</p>
+      <h2 class="h2" data-i18n="contact.title">Prêt à échanger sur vos projets technologiques&nbsp;?</h2>
+      <p class="mx-auto mt-4 max-w-lg text-[var(--text-muted)]" data-i18n="contact.sub">Stage d'assistant ingénieur en électronique — 16 semaines, dès mi-mai 2027.</p>
 
       <!-- Icônes de contact -->
-      <div class="reveal mt-10 flex items-center justify-center gap-4">
+      <div class="mt-10 flex items-center justify-center gap-4">
         <a class="icon-btn" href="https://www.linkedin.com/in/aurelien-capron" target="_blank" rel="noopener noreferrer" aria-label="Profil LinkedIn" data-i18n-aria="aria.linkedin">
           <svg class="h-5 w-5"><use href="#i-linkedin"/></svg>
         </a>
@@ -882,7 +878,7 @@
       </div>
 
       <!-- Email + téléphone en clair, avec copie rapide -->
-      <div class="reveal mt-6 flex flex-wrap items-center justify-center gap-3">
+      <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
         <div class="surface inline-flex max-w-full items-center gap-2 !rounded-full py-1.5 pl-4 pr-1.5 font-mono text-xs text-[var(--text)] sm:gap-3 sm:pl-5 sm:text-sm">
           <span class="whitespace-nowrap">aurelien-capron@outlook.fr</span>
           <button id="copy-email" type="button" class="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-[var(--chip-bg)] px-3 py-1.5 text-xs text-[var(--text-soft)] transition hover:bg-accent/15 hover:text-accent-soft"
@@ -962,6 +958,7 @@
       "hero.badge": "Available · 16-week internship from mid-May 2027",
       "hero.role": "Engineering Student at Grenoble INP - Phelma (Integrated Electronic Systems)",
       "hero.bio": "Passionate about hardware design and embedded systems architecture. Currently looking for a 16-week engineering assistant internship.",
+      "hero.tags": "Embedded systems · Microelectronics · Hardware design", "hero.statusK": "Status", "hero.statusV": "Open to work", "hero.schoolK": "Program",
       "hero.cta1": "View my projects", "hero.cta2": "View my CV (PDF)",
       "chip.degree": "Engineering degree 2028", "chip.english": "English C1", "chip.licence": "Driving licence (B)",
       "skills.eyebrow": "Skills", "skills.title": "Technical toolbox",
@@ -971,7 +968,7 @@
       "proj.eyebrow": "Projects", "proj.title": "Selected work",
       "proj.sub": "From electronic boards to numerical simulations.",
       "f.all": "All", "f.hw": "Hardware", "f.emb": "Embedded", "f.sim": "Simulation",
-      "proj.code": "Source code", "proj.more": "Learn more",
+      "proj.code": "Source code", "proj.site": "Product website", "proj.more": "Learn more",
       "p1.kind": "Entrepreneurial project", "p1.date": "Feb 2022 — Present",
       "p1.desc": "Electronic board assembly (soldering, radio modules, EEPROM memory), firmware configuration and robustness testing: high-power loads and EMC verification.",
       "tag.radio": "Radio modules",
@@ -1325,7 +1322,7 @@
     function draw() {
       ctx.clearRect(0, 0, w, h);
       const lineColor = cssVar('--canvas-line', 'rgba(255,255,255,.16)');
-      const nodeColor = cssVar('--canvas-node', 'rgba(16,185,129,.65)');
+      const nodeColor = cssVar('--canvas-node', 'rgba(148,163,184,.55)');
       const linkDist = 130, mouseDist = 160, maxSpeed = 0.32;
 
       for (const n of nodes) {
