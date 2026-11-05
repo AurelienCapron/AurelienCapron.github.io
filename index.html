@@ -1317,16 +1317,16 @@
           eggTriggered = true;
           
           const egg = document.createElement('div');
-          egg.className = "fixed bottom-0 inset-x-0 p-3 bg-ink-950 text-accent-soft font-mono text-xs sm:text-sm text-center border-t border-accent/30 z-[100] translate-y-full transition-transform duration-500 shadow-[0_-20px_40px_rgba(0,0,0,0.5)]";
+          egg.className = "fixed bottom-6 left-1/2 -translate-x-1/2 px-5 py-2.5 rounded-full bg-[var(--surface)] text-[var(--text-strong)] font-mono text-xs sm:text-sm border border-[var(--border)] z-[100] translate-y-24 opacity-0 transition-all duration-500 shadow-xl backdrop-blur-md";
           egg.innerHTML = '>_ sudo systemctl start stage-aurelien.service <span class="animate-pulse">█</span>';
           document.body.appendChild(egg);
           
           // Animation d'apparition
           requestAnimationFrame(() => {
-            egg.classList.remove('translate-y-full');
+            egg.classList.remove('translate-y-24', 'opacity-0');
             // Disparition après 4 secondes
             setTimeout(() => {
-              egg.classList.add('translate-y-full');
+              egg.classList.add('translate-y-24', 'opacity-0');
               setTimeout(() => {
                 egg.remove();
                 overscrollCount = 0;
