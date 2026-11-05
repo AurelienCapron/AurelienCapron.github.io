@@ -1737,6 +1737,30 @@ html {
       }, 150);
     }));
 
+    /* ───────── Carrousels : navigation au clavier (← → Début Fin) ─────────
+       Fonctionne dès qu'un lien ou un bouton d'une carte a le focus (Tab).
+       Sans effet quand la piste ne défile pas (ex. grille des projets sur desktop). */
+    function bindCarouselKeys(track) {
+      if (!track) return;
+      const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+      track.addEventListener('keydown', (e) => {
+        if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+        if (track.scrollWidth <= track.clientWidth + 4) return;
+        const card = [...track.children].find(c => c.offsetParent !== null);
+        const gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap) || 16;
+        const step = (card ? card.getBoundingClientRect().width : 320) + gap;
+        const behavior = reduced.matches ? 'auto' : 'smooth';
+        if (e.key === 'ArrowRight')     track.scrollBy({ left: step, behavior });
+        else if (e.key === 'ArrowLeft') track.scrollBy({ left: -step, behavior });
+        else if (e.key === 'Home')      track.scrollTo({ left: 0, behavior });
+        else if (e.key === 'End')       track.scrollTo({ left: track.scrollWidth, behavior });
+        else return;
+        e.preventDefault();
+      });
+    }
+    bindCarouselKeys(document.getElementById('hobbies-track'));
+    bindCarouselKeys(projTrack);
+
     /* ───────── Copie (email + téléphone) + retour visuel sur le bouton & notification ───────── */
     const toast = $('#toast');
     let toastTimer;
