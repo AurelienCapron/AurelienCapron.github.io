@@ -266,6 +266,111 @@
       .pcb-pulse { display: none; }
     }
 
+
+    /* ═════════════════════════════════════════════════════════════════
+       EFFETS CSS (spotlight, traces PCB, thème circulaire, frise, scroll, typewriter)
+       ═════════════════════════════════════════════════════════════════ */
+
+    /* ───────── 1 + 2. Cartes : halo « spotlight » + traces PCB qui s'allument ─────────
+       --mx / --my (position de la souris dans la carte) sont écrites par ~6 lignes de JS.
+       Les deux effets vivent dans ::before (halo) et ::after (traces), sous le contenu (z-index -1). */
+    :root { --pcb-tile: url("data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20width=%27160%27%20height=%27160%27%20viewBox=%270%200%20160%20160%27%3E%3Cg%20fill=%27none%27%20stroke=%27black%27%20stroke-width=%271.5%27%20stroke-linecap=%27round%27%20stroke-linejoin=%27round%27%3E%3Cpath%20d=%27M0%2040H40L70%2070H110L130%2090%27/%3E%3Cpath%20d=%27M128%2040H160%27/%3E%3Cpath%20d=%27M80%200V30L100%2050%27/%3E%3Cpath%20d=%27M80%20160V130L60%20110%27/%3E%3Cpath%20d=%27M0%20128H24L44%20148H70%27/%3E%3Cpath%20d=%27M160%20128H138L118%20108%27/%3E%3Ccircle%20cx=%27130%27%20cy=%2790%27%20r=%273.5%27/%3E%3Ccircle%20cx=%27128%27%20cy=%2740%27%20r=%273.5%27/%3E%3Ccircle%20cx=%27100%27%20cy=%2750%27%20r=%273.5%27/%3E%3Ccircle%20cx=%2760%27%20cy=%27110%27%20r=%273.5%27/%3E%3Ccircle%20cx=%2770%27%20cy=%27148%27%20r=%273.5%27/%3E%3Ccircle%20cx=%27118%27%20cy=%27108%27%20r=%273.5%27/%3E%3C/g%3E%3C/svg%3E"); }
+    .surface { isolation: isolate; }
+    .surface:not(.absolute) { position: relative; }
+    .surface::before,
+    .surface::after {
+      content: ""; position: absolute; inset: 0; z-index: -1;
+      border-radius: inherit; pointer-events: none;
+      opacity: 0; transition: opacity .35s ease;
+    }
+    /* Halo : discret, couleur d'accent du thème */
+    .surface::before {
+      background: radial-gradient(circle 340px at var(--mx, 50%) var(--my, 50%), rgb(var(--accent-rgb) / .11), transparent 70%);
+    }
+    /* Traces : une tuile de pistes à 45° (masque SVG) peinte en cuivre, visible seulement autour du curseur */
+    .surface::after {
+      background: rgb(var(--accent-rgb));
+      -webkit-mask-image: radial-gradient(circle 150px at var(--mx, 50%) var(--my, 50%), #000 0%, transparent 100%), var(--pcb-tile);
+              mask-image: radial-gradient(circle 150px at var(--mx, 50%) var(--my, 50%), #000 0%, transparent 100%), var(--pcb-tile);
+      -webkit-mask-size: 100% 100%, 160px 160px;
+              mask-size: 100% 100%, 160px 160px;
+      -webkit-mask-repeat: no-repeat, repeat;
+              mask-repeat: no-repeat, repeat;
+      -webkit-mask-composite: source-in;
+              mask-composite: intersect;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .surface:hover::before { opacity: 1; }
+      .surface:hover::after  { opacity: .6; }
+    }
+
+    /* ───────── 3. Changement de thème : transition circulaire (View Transitions API) ─────────
+       Le centre (--vt-x / --vt-y) et le rayon (--vt-r) sont posés par le JS au clic sur le bouton. */
+    ::view-transition-old(root),
+    ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+    ::view-transition-old(root) { z-index: 1; }
+    ::view-transition-new(root) { z-index: 2; animation: vtCircle .7s cubic-bezier(.22, 1, .36, 1) both; }
+    @keyframes vtCircle {
+      from { clip-path: circle(0 at var(--vt-x, 50%) var(--vt-y, 0)); }
+      to   { clip-path: circle(var(--vt-r, 150vmax) at var(--vt-x, 50%) var(--vt-y, 0)); }
+    }
+    /* Pendant la bascule, on coupe les transitions de couleur pour que le « nouveau thème » soit net dès le 1er pixel */
+    .theme-switching *, .theme-switching *::before, .theme-switching *::after { transition: none !important; }
+
+    /* ───────── 4. Frise du parcours : le trait se dessine au scroll, les points s'allument ─────────
+       Chaque <li> a sa propre timeline (view-timeline). Le segment entre deux points se trace quand l'élément
+       monte jusqu'à ~60 % de la hauteur de l'écran ; le point s'allume au tout début du segment. */
+    @media (prefers-reduced-motion: no-preference) {
+      @supports (animation-timeline: view()) {
+        .timeline > li { view-timeline: --tl-item block 0px 40%; }
+        .timeline > li:not(:last-child)::before {
+          content: ""; position: absolute; left: -25.5px; top: 11px; width: 2px;
+          height: calc(100% + 2.25rem);              /* du centre de ce point au centre du suivant (space-y-9) */
+          background: linear-gradient(to bottom, rgb(var(--accent-rgb)), rgb(var(--accent-rgb) / .35));
+          border-radius: 1px; transform-origin: top; transform: scaleY(0);
+          animation: tlDraw linear both; animation-timeline: --tl-item; animation-range: entry 0% entry 100%;
+        }
+        .timeline > li > span:first-child {
+          animation: tlDot linear both; animation-timeline: --tl-item; animation-range: entry 0% entry 12%;
+        }
+      }
+    }
+    @keyframes tlDraw { to { transform: scaleY(1); } }
+    @keyframes tlDot  { to {
+      background-color: rgb(var(--accent-rgb)); transform: scale(1.2);
+      box-shadow: 0 0 0 4px var(--bg), 0 0 14px 2px rgb(var(--accent-rgb) / .5);
+    } }
+
+    /* ───────── 5. Barre de progression pilotée par le scroll, en CSS pur ─────────
+       (si le navigateur ne sait pas faire, le JS d'origine reprend la main) */
+    @supports (animation-timeline: scroll()) {
+      #progress {
+        width: 100%; transform: scaleX(0); transform-origin: left center;
+        animation: progressGrow linear both; animation-timeline: scroll(root block);
+      }
+    }
+    @keyframes progressGrow { to { transform: scaleX(1); } }
+
+    /* ───────── 6. Machine à écrire sur le statut du hero ─────────
+       Astuce : la largeur d'un inline-block = min(contenu, max-width). On anime donc max-width par paliers :
+       le texte se « tape » sans connaître sa longueur, et le curseur (frère suivant) avance avec lui.
+       Réservé aux écrans ≥ 480 px (en dessous, le badge passe sur 2 lignes : on l'affiche directement). */
+    .tw-caret { display: none; }
+    @media (min-width: 480px) {
+      .typewriter {
+        display: inline-block; max-width: 0; overflow: hidden; white-space: nowrap; vertical-align: bottom;
+        animation: twType 2.4s steps(46, end) .5s forwards;
+      }
+      .tw-caret { display: inline-block; width: .5em; height: 1em; margin-left: -.3rem; background: currentColor; }
+    }
+    @keyframes twType { to { max-width: 60ch; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .typewriter { animation: none !important; max-width: none !important; }
+      .tw-caret { animation: none !important; }
+      .surface::before, .surface::after { transition: none; }
+    }
+
     /* ───────── Impression : version sobre, sans nav/décor/animations ───────── */
     @media print {
       header, #hero-pcb, #to-top, #toast, #pull-reveal, .icon-btn[aria-label="Copier"],
@@ -279,6 +384,8 @@
       a { color: #111 !important; text-decoration: underline; }
       .reveal { opacity: 1 !important; transform: none !important; }
       [class*="blur-"] { display: none !important; }
+      .surface::before, .surface::after, .tw-caret, .timeline > li::before { display: none !important; }
+      .typewriter { max-width: none !important; animation: none !important; }
     }
   </style>
   <noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
@@ -399,7 +506,8 @@
               <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75"></span>
               <span class="relative inline-flex h-2 w-2 rounded-full bg-accent"></span>
             </span>
-            <span data-i18n="hero.badge">Disponible · Stage de 16 semaines dès mi-mai 2027</span>
+            <span class="typewriter" data-i18n="hero.badge">Disponible · Stage de 16 semaines dès mi-mai 2027</span>
+            <span class="tw-caret animate-pulse" aria-hidden="true"></span>
           </a>
 
           <p class="mt-8 text-sm font-medium text-[var(--text-muted)]" data-i18n="hero.tags">Systèmes embarqués · Microélectronique · Conception hardware</p>
@@ -631,7 +739,7 @@
           <!-- Colonne gauche : formation + engagement -->
           <div>
             <h3 class="mb-6 font-mono text-sm uppercase tracking-widest text-[var(--text-muted)]" data-i18n="path.edu">Formation</h3>
-            <ol class="relative space-y-9 border-l border-[var(--border)] pl-6">
+            <ol class="timeline relative space-y-9 border-l border-[var(--border)] pl-6">
               <li class="relative">
                 <span class="absolute -left-[30px] top-1.5 h-2.5 w-2.5 rounded-full bg-[var(--text-faint)] ring-4 ring-[var(--bg)]"></span>
                 <p class="font-mono text-xs text-[var(--text-muted)]">2025 — 2028 · Grenoble</p>
@@ -663,7 +771,7 @@
           <!-- Colonne droite : expérience professionnelle -->
           <div>
             <h3 class="mb-6 font-mono text-sm uppercase tracking-widest text-[var(--text-muted)]" data-i18n="path.exp">Expérience professionnelle</h3>
-            <ol class="relative space-y-9 border-l border-[var(--border)] pl-6">
+            <ol class="timeline relative space-y-9 border-l border-[var(--border)] pl-6">
               <li class="relative">
                 <span class="absolute -left-[30px] top-1.5 h-2.5 w-2.5 rounded-full bg-[var(--text-faint)] ring-4 ring-[var(--bg)]"></span>
                 <p class="font-mono text-xs text-[var(--text-muted)]"><span data-i18n="x1.date">Mai 2026 — Présent</span> · Isère</p>
@@ -974,9 +1082,29 @@
     try { savedTheme = localStorage.getItem('theme'); } catch (e) {}
     applyTheme(savedTheme === 'dark' ? 'dark' : 'light', false);
     themeBtn?.addEventListener('click', () => {
-      const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-      applyTheme(next, true);
+      const root = document.documentElement;
+      const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      const swap = () => applyTheme(next, true);
+      // Sans View Transitions (ou en « réduire les animations ») : bascule immédiate
+      if (!document.startViewTransition || matchMedia('(prefers-reduced-motion: reduce)').matches) { swap(); return; }
+      // Le nouveau thème « se répand » depuis le centre du bouton jusqu'au coin le plus éloigné
+      const r = themeBtn.getBoundingClientRect();
+      const x = r.left + r.width / 2, y = r.top + r.height / 2;
+      root.style.setProperty('--vt-x', x + 'px');
+      root.style.setProperty('--vt-y', y + 'px');
+      root.style.setProperty('--vt-r', Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y)) + 'px');
+      root.classList.add('theme-switching');
+      document.startViewTransition(swap).finished.finally(() => root.classList.remove('theme-switching'));
     });
+
+    /* ───────── Spotlight des cartes : on transmet juste la position de la souris au CSS ───────── */
+    document.addEventListener('pointermove', (e) => {
+      const card = e.target.closest && e.target.closest('.surface');
+      if (!card) return;
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    }, { passive: true });
 
     /* ───────── Traduction FR / EN ─────────
        Le français est la langue source (texte présent dans le HTML) : il est mémorisé automatiquement.
@@ -1128,11 +1256,13 @@
 
     /* ───────── Barre de progression + bouton retour en haut ───────── */
     const bar = $('#progress'), topBtn = $('#to-top');
+    // La barre est pilotée en CSS (animation-timeline) ; ce JS ne sert que de plan B pour les anciens navigateurs
+    const NATIVE_PROGRESS = !!(window.CSS && CSS.supports && CSS.supports('animation-timeline: scroll()'));
     let ticking = false;
     function onScroll() {
       const h = document.documentElement;
       const max = h.scrollHeight - h.clientHeight;
-      bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      if (!NATIVE_PROGRESS) bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
       const hidden = h.scrollTop < 600;
       const nearBottom = max - h.scrollTop < 60;
       topBtn.classList.toggle('opacity-0', hidden);
