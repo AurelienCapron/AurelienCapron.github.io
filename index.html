@@ -1300,6 +1300,58 @@
     }
     bindCopyButton('#copy-email', 'aurelien-capron@outlook.fr', 'toast.copied');
     bindCopyButton('#copy-phone', '+33783073311', 'toast.copiedPhone');
+
+    /* ───────── Easter Egg : Force Scroll Bottom ───────── */
+    let overscrollCount = 0;
+    let eggTriggered = false;
+
+    const handleOverscroll = (deltaY) => {
+      if (eggTriggered) return;
+      // Vérifie si on est tout en bas (à 5px près pour la compatibilité)
+      const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 5;
+      
+      if (isAtBottom && deltaY > 0) {
+        overscrollCount += deltaY;
+        // Si on force le scroll d'un certain seuil
+        if (overscrollCount > 150) {
+          eggTriggered = true;
+          
+          const egg = document.createElement('div');
+          egg.className = "fixed bottom-0 inset-x-0 p-3 bg-ink-950 text-accent-soft font-mono text-xs sm:text-sm text-center border-t border-accent/30 z-[100] translate-y-full transition-transform duration-500 shadow-[0_-20px_40px_rgba(0,0,0,0.5)]";
+          egg.innerHTML = '>_ sudo systemctl start stage-aurelien.service <span class="animate-pulse">█</span>';
+          document.body.appendChild(egg);
+          
+          // Animation d'apparition
+          requestAnimationFrame(() => {
+            egg.classList.remove('translate-y-full');
+            // Disparition après 4 secondes
+            setTimeout(() => {
+              egg.classList.add('translate-y-full');
+              setTimeout(() => {
+                egg.remove();
+                overscrollCount = 0;
+                eggTriggered = false;
+              }, 500);
+            }, 4000);
+          });
+        }
+      } else if (!isAtBottom) {
+        overscrollCount = 0; // Réinitialise si on remonte
+      }
+    };
+
+    // Détection sur PC (molette/trackpad)
+    window.addEventListener('wheel', (e) => handleOverscroll(e.deltaY), { passive: true });
+
+    // Détection sur Mobile (tactile)
+    let touchStartY = 0;
+    window.addEventListener('touchstart', (e) => { touchStartY = e.touches[0].clientY; }, { passive: true });
+    window.addEventListener('touchmove', (e) => {
+      const touchY = e.touches[0].clientY;
+      handleOverscroll(touchStartY - touchY);
+      touchStartY = touchY;
+    }, { passive: true });
+
   })();
   </script>
 
