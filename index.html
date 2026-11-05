@@ -126,7 +126,7 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            sans: ['Inter', 'Inter Fallback', 'ui-sans-serif', 'system-ui', 'sans-serif'],
             display: ['Barlow Semi Condensed', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
             mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'monospace']
           },
@@ -220,7 +220,7 @@
     #pull-reveal.pull-release > div { transition: opacity .35s ease, transform .5s ease; }
     section[id], footer[id] { scroll-margin-top: 5rem; }
     ::selection { background: rgba(180,83,26,.3); color: #fff; }
-    :focus-visible { outline: 2px solid var(--accent-soft); outline-offset: 3px; border-radius: 6px; }
+    :focus-visible { outline: 2px solid var(--accent-soft); outline-offset: 3px; }
 
     /* Fond « circuit imprimé » du Hero (SVG généré en JS, voir plus bas) */
     #hero-pcb {
@@ -407,6 +407,305 @@
       .typewriter { max-width: none !important; animation: none !important; }
     }
   </style>
+  <!-- Améliorations CSS (voir commentaires dans le bloc) -->
+  <style>
+/* ═══════════════════════════════════════════════════════════════════════
+   AMÉLIORATIONS CSS — Portfolio Aurélien Capron
+
+   MODE D'EMPLOI
+   Colle ce fichier dans un <style> placé APRÈS tous tes <style> actuels
+   (ou charge-le avec <link rel="stylesheet" href="assets/ameliorations.css">
+   après le reste). Chaque bloc est indépendant : supprime ceux qui ne te
+   plaisent pas.
+
+   Les sélecteurs sont volontairement plus « précis » que ceux de tes
+   composants Tailwind (#id, a.classe, :not()…) pour gagner la cascade même
+   si le CDN Tailwind injecte son CSS après le tien.
+
+   2 corrections à faire À LA MAIN dans ton code existant : voir bloc 0.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+
+/* ───────────────────────────────────────────────────────────────────────
+   0. CORRECTIONS À FAIRE DANS TON CODE EXISTANT (pas ici)
+
+   a) Règle :focus-visible : SUPPRIME la ligne « border-radius: 6px; ».
+      Elle transforme tes boutons ronds (.icon-btn, #to-top, badge « Disponible »)
+      en rectangles arrondis dès qu'ils reçoivent le focus clavier.
+      Le contour (outline) suit déjà le border-radius de l'élément tout seul.
+
+      Avant :  :focus-visible { outline: 2px solid var(--accent-soft); outline-offset: 3px; border-radius: 6px; }
+      Après :  :focus-visible { outline: 2px solid var(--accent-soft); outline-offset: 3px; }
+
+   b) tailwind.config → fontFamily.sans : ajoute 'Inter Fallback' (voir bloc 9)
+      sans: ['Inter', 'Inter Fallback', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+   ─────────────────────────────────────────────────────────────────────── */
+
+
+:root { --ease-out: cubic-bezier(.22, 1, .36, 1); }
+
+
+/* ───────────────────────────────────────────────────────────────────────
+   1. SÉLECTION DE TEXTE LISIBLE DANS LES DEUX THÈMES
+   Ton ::selection actuel impose du blanc sur un fond cuivre à 30 % : en thème
+   clair, c'est du blanc sur du beige (illisible). On utilise les jetons.
+   ─────────────────────────────────────────────────────────────────────── */
+::selection {
+  background: rgb(var(--accent-rgb) / .28);
+  color: var(--text-strong);
+}
+
+
+/* ───────────────────────────────────────────────────────────────────────
+   2. CONTRASTE DU TEXTE « FAIBLE » (WCAG AA = 4,5:1)
+   Mesuré : --text-faint = 4,44:1 en clair et 4,06:1 en sombre. Il sert aux
+   dates des projets (text-xs), donc sous le seuil. Valeurs corrigées :
+   5,14:1 en clair, 5,58:1 en sombre. Rendu quasi identique.
+   ─────────────────────────────────────────────────────────────────────── */
+:root                      { --text-faint: #7c8ba1; }
+:root[data-theme="light"]  { --text-faint: #5b6a7f; }
+
+
+/* ───────────────────────────────────────────────────────────────────────
+   3. HERO : HAUTEUR CORRECTE SUR MOBILE
+   100vh = hauteur « barre d'adresse rétractée » sur iOS/Android : le hero
+   dépasse l'écran au chargement. svh = hauteur réellement visible.
+   ─────────────────────────────────────────────────────────────────────── */
+#accueil {
+  min-height: 100vh;   /* repli pour les vieux navigateurs */
+  min-height: 100svh;
+}
+
+/* Cadrage du portrait 4:5 : garde le visage en haut du cadre
+   (ajuste le 2e pourcentage : 0% = haut de la photo, 100% = bas) */
+#accueil img { object-position: 50% 20%; }
+
+
+/* ───────────────────────────────────────────────────────────────────────
+   4. TYPOGRAPHIE
+   - titres équilibrés (plus de mot orphelin sur la 2e ligne)
+   - paragraphes sans dernière ligne d'un seul mot
+   - h1 fluide : monte en douceur au lieu de sauter de 48 à 72 px à 640 px
+   - espacement vertical des sections fluide : 64 px sur mobile, 96 px sur
+     grand écran (actuellement 96 px partout, beaucoup de vide sur téléphone)
+   ─────────────────────────────────────────────────────────────────────── */
+h1, h2, h3, h4 { text-wrap: balance; }
+p              { text-wrap: pretty; }
+
+#accueil h1 {
+  font-size: clamp(3rem, 1.5rem + 5.5vw, 4.5rem);
+  letter-spacing: -.02em;
+}
+
+section[id]:not(#accueil) {
+  padding-block: clamp(4rem, 2.5rem + 5vw, 6rem);
+}
+
+
+/* ───────────────────────────────────────────────────────────────────────
+   5. CARTES : SURVOL SANS « RETARD » + OMBRES NON COUPÉES
+   a) Tes cartes Compétences / Langues / Intérêts portent un
+      style="transition-delay:.1s" prévu pour une animation d'apparition,
+      mais elles n'ont pas la classe .reveal : le délai ne fait que retarder
+      le changement de bordure au survol. On l'annule pour elles.
+   b) Pour les cartes projet (qui, elles, utilisent le délai en cascade),
+      on l'annule seulement pendant le survol.
+   ─────────────────────────────────────────────────────────────────────── */
+.surface:not(.reveal)       { transition-delay: 0s !important; }
+.project.surface:hover      { transition-delay: 0s !important; }
+
+/* c) Les pistes de défilement (overflow-x: auto) coupent aussi verticalement :
+      l'ombre des cartes était rognée en haut et sur les côtés (desktop).
+      On ajoute de la marge interne compensée par une marge négative :
+      aucun changement de position visible. */
+#projects-track,
+#hobbies-track {
+  padding-top: 1rem;
+  margin-top: -1rem;
+  overscroll-behavior-x: contain;   /* un swipe horizontal ne déclenche plus « page précédente » */
+}
+@media (min-width: 768px) {
+  #hobbies-track {
+    margin-inline: -1.25rem;
+    padding-inline: 1.25rem;
+    scroll-padding-inline: 1.25rem;
+  }
+}
+
+
+/* ───────────────────────────────────────────────────────────────────────
+   6. CARROUSELS MOBILE : INDICE DE DÉFILEMENT + ZONES DE CLIC
+   a) Fondu sur les bords : montre qu'il y a une carte suivante.
+      (Les pistes ont 1,5 rem de marge interne : le fondu de 1,25 rem
+      n'altère jamais la première/dernière carte au repos.)
+   b) Les points de pagination font 8 px : impossible à viser au doigt.
+      On agrandit la zone cliquable sans changer l'apparence.
+   ─────────────────────────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  #projects-track,
+  #hobbies-track {
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 1.25rem, #000 calc(100% - 1.25rem), transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0, #000 1.25rem, #000 calc(100% - 1.25rem), transparent 100%);
+  }
+}
+
+.hob-dot,
+.proj-dot { position: relative; }
+.hob-dot::after,
+.proj-dot::after {
+  content: "";
+  position: absolute;
+  inset: -.75rem -.25rem;   /* zone ≈ 32 px de haut, sans chevaucher le point voisin */
+}
+
+
+/* Hobbies : cartes gardées à 320 px (on voit dépasser la carte suivante = indice de défilement).
+   Pour que « En savoir plus » et « Voir sur Instagram » tiennent quand même sur la même ligne,
+   on resserre légèrement la marge interne de la carte et celle des boutons.
+   (flex-wrap reste en secours si l'écran est vraiment étroit) */
+#hobbies-track article > div.p-6 { padding-inline: 1rem; }
+#hobbies-track .mt-6 { gap: .375rem; }
+#hobbies-track .btn-primary,
+#hobbies-track .btn-ghost { padding-inline: .5rem !important; gap: .375rem; letter-spacing: -.01em; }
+
+/* ───────────────────────────────────────────────────────────────────────
+   7. INTERACTIONS TACTILES
+   ─────────────────────────────────────────────────────────────────────── */
+.btn-primary, .btn-ghost, .icon-btn, .filter-btn, .lang-btn {
+  touch-action: manipulation;                    /* supprime le délai / zoom au double-tap */
+  -webkit-tap-highlight-color: transparent;      /* le focus-visible reste là pour le clavier */
+}
+
+/* Retour d'appui (propriété `scale` : n'interfère pas avec ton translate de survol) */
+.btn-primary:active,
+.btn-ghost:active,
+.icon-btn:active { scale: .97; }
+
+/* Filtres : cible tactile plus confortable (34 px → 40 px) */
+.filter-btn { min-height: 2.5rem; }
+
+
+/* ───────────────────────────────────────────────────────────────────────
+   8. NAVIGATION
+   a) Soulignement qui se trace sous le lien de la section en cours
+      (info utile : où suis-je ?) — desktop uniquement
+   b) Ombre de l'en-tête qui apparaît quand on quitte le haut de page
+   c) Barre de progression : dégradé + halo, un peu plus épaisse
+   d) Menu mobile : ouverture / fermeture animées (réponse à un clic)
+   ─────────────────────────────────────────────────────────────────────── */
+@media (min-width: 768px) {
+  a.nav-link {
+    padding-block: .35rem;
+    background: linear-gradient(rgb(var(--accent-rgb)), rgb(var(--accent-rgb))) 0 100% / 0 1.5px no-repeat;
+    transition: color .2s ease, background-size .35s var(--ease-out);
+  }
+  a.nav-link:hover,
+  a.nav-link[aria-current="true"] { background-size: 100% 1.5px; }
+}
+
+@keyframes headerElevate {
+  from { box-shadow: 0 0 0 0 transparent; }
+  to   { box-shadow: 0 12px 28px -18px rgb(15 23 42 / .35); }
+}
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    header.fixed {
+      animation: headerElevate linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 0px 140px;
+    }
+  }
+}
+
+#progress {
+  height: 3px;
+  background-image: linear-gradient(90deg, rgb(var(--accent-rgb) / .55), rgb(var(--accent-rgb)));
+  box-shadow: 0 0 10px rgb(var(--accent-rgb) / .55);
+}
+
+#mobile-menu {
+  transition: opacity .25s ease, translate .3s var(--ease-out), display .3s allow-discrete;
+}
+#mobile-menu.hidden { opacity: 0; translate: 0 -.5rem; }
+@starting-style {
+  #mobile-menu:not(.hidden) { opacity: 0; translate: 0 -.5rem; }
+}
+
+
+/* ───────────────────────────────────────────────────────────────────────
+   9. POLICES : ÉVITER LE « SAUT » AU CHARGEMENT
+   Tant que Inter n'est pas chargée, le texte s'affiche en police système
+   puis « saute » quand Inter arrive (font-display: swap). Cette police de
+   secours est une Arial redimensionnée aux métriques d'Inter (valeurs
+   standard, celles utilisées par Next.js) : quasi aucun décalage.
+   ⚠ Nécessite la modif du bloc 0-b dans tailwind.config.
+   ─────────────────────────────────────────────────────────────────────── */
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial');
+  size-adjust: 107.4%;
+  ascent-override: 90.2%;
+  descent-override: 22.5%;
+  line-gap-override: 0%;
+}
+
+
+/* ───────────────────────────────────────────────────────────────────────
+   10. BARRE DE DÉFILEMENT DE LA PAGE, ASSORTIE AU THÈME
+   scrollbar-gutter évite que la mise en page ne se décale de 15 px quand
+   la barre apparaît (ex. changement de filtre qui raccourcit la page).
+   ─────────────────────────────────────────────────────────────────────── */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--text-faint) transparent;
+  scrollbar-gutter: stable;
+}
+
+
+/* ───────────────────────────────────────────────────────────────────────
+   11. IMPRESSION (Ctrl+P / « Enregistrer en PDF »)
+   Trois problèmes dans ta version actuelle :
+   - si le visiteur est en thème SOMBRE, le texte reste blanc (jetons sombres)
+     sur le fond blanc forcé : page quasi vide à l'impression
+   - les carrousels (largeur 85vw, overflow-x) sont coupés sur la droite
+   - « page-break-inside: avoid » sur des sections entières les pousse
+     sur une nouvelle page en laissant de grands blancs
+   ─────────────────────────────────────────────────────────────────────── */
+@page { margin: 14mm; }
+
+@media print {
+  :root[data-theme] {
+    color-scheme: light;
+    --bg: #fff; --bg-alt: transparent; --surface: #fff;
+    --border: #d1d5db; --chip-bg: #f3f4f6; --chip-bg-active: #e5e7eb;
+    --text: #1f2937; --text-strong: #000; --text-soft: #111827;
+    --text-muted: #374151; --text-faint: #4b5563;
+    --accent-soft: #9a3f10; --accent-rgb: 154 63 16; --on-accent: #fff;
+    --placeholder-from: #eef2f6; --placeholder-to: #e2e8f0; --placeholder-icon: #94a3b8;
+    --card-shadow: none;
+  }
+
+  #projects-track,
+  #hobbies-track {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px !important;
+    overflow: visible !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-mask-image: none !important;
+            mask-image: none !important;
+  }
+  #projects-track > *,
+  #hobbies-track > * { width: auto !important; max-width: none !important; }
+
+  section[id], footer[id] { break-inside: auto !important; page-break-inside: auto !important; }
+  .surface, .timeline > li { break-inside: avoid; }
+  h2, h3, h4 { break-after: avoid; }
+}
+
+  </style>
+
   <noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
 
   <!-- Données structurées (référencement Google) -->
@@ -879,7 +1178,7 @@
                 <a href="judo.html" class="transition-colors hover:text-accent-soft" data-i18n="hob1.title">Championnat de France de kata</a>
               </h3>
               <p class="mt-3 flex-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="hob1.desc">Participation au championnat de France de kata en judo, aboutissement de plusieurs années d'entraînement régulier.</p>
-              <div class="mt-6 flex items-center gap-2">
+              <div class="mt-6 flex flex-wrap items-center gap-2">
                 <a href="judo.html" class="btn-primary !px-3 !py-2.5 !text-xs whitespace-nowrap">
                   <span data-i18n="proj.more">En savoir plus</span><svg class="h-3.5 w-3.5"><use href="#i-arrow"/></svg>
                 </a>
@@ -901,7 +1200,7 @@
                 <a href="perouges.html" class="transition-colors hover:text-accent-soft" data-i18n="hob2.title">Salon du mariage de Pérouges</a>
               </h3>
               <p class="mt-3 flex-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="hob2.desc">Modèle lors d'un défilé au salon du mariage de Pérouges, une expérience à l'opposé du travail en laboratoire.</p>
-              <div class="mt-6 flex items-center gap-2">
+              <div class="mt-6 flex flex-wrap items-center gap-2">
                 <a href="perouges.html" class="btn-primary !px-3 !py-2.5 !text-xs whitespace-nowrap">
                   <span data-i18n="proj.more">En savoir plus</span><svg class="h-3.5 w-3.5"><use href="#i-arrow"/></svg>
                 </a>
@@ -926,7 +1225,7 @@
                 <a href="sacha-heritage.html" class="transition-colors hover:text-accent-soft" data-i18n="hob3.title">Salons de vente — Sacha Heritage</a>
               </h3>
               <p class="mt-3 flex-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="hob3.desc">Tenue de stand sur différents salons professionnels pour la vente directe de poivre de Kampot.</p>
-              <div class="mt-6 flex items-center gap-2">
+              <div class="mt-6 flex flex-wrap items-center gap-2">
                 <a href="sacha-heritage.html" class="btn-primary !px-3 !py-2.5 !text-xs whitespace-nowrap">
                   <span data-i18n="proj.more">En savoir plus</span><svg class="h-3.5 w-3.5"><use href="#i-arrow"/></svg>
                 </a>
@@ -951,7 +1250,7 @@
                 <a href="saxhorn.html" class="transition-colors hover:text-accent-soft" data-i18n="hob4.title">Saxhorn &amp; musique</a>
               </h3>
               <p class="mt-3 flex-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="hob4.desc">5 ans de pratique du saxhorn (niveau brevet de solfège), dans un groupe de rock, une harmonie, un groupe de jazz et un brass band.</p>
-              <div class="mt-6 flex items-center gap-2">
+              <div class="mt-6 flex flex-wrap items-center gap-2">
                 <a href="saxhorn.html" class="btn-primary !px-3 !py-2.5 !text-xs whitespace-nowrap">
                   <span data-i18n="proj.more">En savoir plus</span><svg class="h-3.5 w-3.5"><use href="#i-arrow"/></svg>
                 </a>
@@ -973,7 +1272,7 @@
                 <a href="bds.html" class="transition-colors hover:text-accent-soft" data-i18n="hob5.title">Bureau des Sports — Phelma</a>
               </h3>
               <p class="mt-3 flex-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="hob5.desc">Engagement associatif au Bureau des Sports de Phelma, en charge des partenariats.</p>
-              <div class="mt-6 flex items-center gap-2">
+              <div class="mt-6 flex flex-wrap items-center gap-2">
                 <a href="bds.html" class="btn-primary !px-3 !py-2.5 !text-xs whitespace-nowrap">
                   <span data-i18n="proj.more">En savoir plus</span><svg class="h-3.5 w-3.5"><use href="#i-arrow"/></svg>
                 </a>
