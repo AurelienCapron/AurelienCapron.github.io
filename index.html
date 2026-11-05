@@ -214,7 +214,10 @@
       --pcb-pad: rgba(15,23,42,.22);
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overscroll-behavior-y: none; } /* on remplace l'élastique natif par le nôtre (pull-to-reveal) */
+    /* Zone cachée derrière la page : le contenu apparaît au fil de l'étirement (--p va de 0 à 1) */
+    #pull-reveal > div { opacity: calc(var(--p, 0) * 1.5); transform: translateY(calc((1 - var(--p, 0)) * 8px)) scale(calc(.85 + var(--p, 0) * .15)); }
+    #pull-reveal.pull-release > div { transition: opacity .35s ease, transform .5s ease; }
     section[id], footer[id] { scroll-margin-top: 5rem; }
     ::selection { background: rgba(180,83,26,.3); color: #fff; }
     :focus-visible { outline: 2px solid var(--accent-soft); outline-offset: 3px; border-radius: 6px; }
@@ -265,7 +268,7 @@
 
     /* ───────── Impression : version sobre, sans nav/décor/animations ───────── */
     @media print {
-      header, #hero-pcb, #to-top, #toast, .icon-btn[aria-label="Copier"],
+      header, #hero-pcb, #to-top, #toast, #pull-reveal, .icon-btn[aria-label="Copier"],
       #copy-email, #copy-phone, .filter-btn, #hob-prev, #hob-next, #hobbies-dots, #projects-dots {
         display: none !important;
       }
@@ -377,6 +380,8 @@
     </div>
   </header>
 
+  <!-- Page entière (sans l'en-tête) : c'est elle qui se décolle vers le haut quand on tire en bas -->
+  <div id="page" class="relative z-10 bg-[var(--bg)]">
   <main id="main" tabindex="-1" class="outline-none">
 
     <!-- ═════════════════════════ 1. HERO ═════════════════════════ -->
@@ -919,13 +924,20 @@
 
     <div class="relative border-t border-[var(--border)] px-6 py-6 text-center font-mono text-xs text-[var(--text-faint)]">
       © <span id="year">2026</span> Aurélien Capron · <span data-i18n="footer.built">Conçu avec HTML &amp; CSS</span>
-      
-      <!-- Easter Egg statique (visible uniquement en scrollant très bas) -->
-      <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 px-5 py-2.5 rounded-full bg-[var(--surface)] text-[var(--text-strong)] font-mono text-xs sm:text-sm border border-[var(--border)] shadow-xl backdrop-blur-md whitespace-nowrap opacity-50 hover:opacity-100 transition-opacity">
-        >_ sudo systemctl start stage-aurelien.service <span class="animate-pulse">█</span>
-      </div>
     </div>
   </footer>
+  </div><!-- /#page -->
+
+  <!-- Easter egg : zone cachée DERRIÈRE la page, révélée quand on tire la page vers le haut en bas de scroll.
+       Pour changer le texte, modifie simplement ce bloc. -->
+  <div id="pull-reveal" aria-hidden="true"
+       class="pointer-events-none fixed inset-x-0 bottom-0 z-0 flex h-0 items-center justify-center overflow-hidden">
+    <div class="flex items-center justify-center px-4 text-center">
+      <p class="whitespace-nowrap font-mono text-xs text-[var(--text-muted)] sm:text-sm">
+        &gt;_ <span data-i18n="egg.cmd">sudo systemctl start stage-aurelien.service</span> <span class="animate-pulse">█</span>
+      </p>
+    </div>
+  </div>
 
   <!-- Retour en haut de page (remonte uniquement sur mobile en bas de page) -->
   <button id="to-top" type="button" aria-label="Retour en haut" data-i18n-aria="aria.top"
@@ -1041,6 +1053,7 @@
       "contact.copy": "Copy", "contact.copiedBtn": "Copied",
       "toast.copied": "Email copied!", "toast.copiedPhone": "Phone number copied!",
       "footer.built": "Built with HTML & CSS",
+      "egg.cmd": "sudo systemctl start internship-aurelien.service",
       "aria.menu": "Open menu", "aria.top": "Back to top",
       "aria.linkedin": "LinkedIn profile", "aria.github": "GitHub profile",
       "aria.email": "Send an email", "aria.phone": "Call", "aria.copy": "Copy email address",
@@ -1397,6 +1410,76 @@
     if ('IntersectionObserver' in window) {
       new IntersectionObserver((e) => svg.classList.toggle('is-paused', !e[0].isIntersecting), { threshold: 0.05 }).observe(hero);
     }
+  })();
+  </script>
+
+  <!-- ═════════════════════════ EASTER EGG : pull-to-reveal en bas de page ═════════════════════════ -->
+  <script>
+  (() => {
+    const page = document.getElementById('page');
+    const layer = document.getElementById('pull-reveal');
+    if (!page || !layer) return;
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const line = layer.querySelector('p');
+    let MAX = 20;               // hauteur maximale (px) de la zone révélée = hauteur de la ligne sudo (mesurée automatiquement)
+    const measure = () => { MAX = (line && line.offsetHeight) || 20; };
+    measure();
+    addEventListener('resize', measure);
+    const SPRING = 'cubic-bezier(.22,1,.36,1)';
+    let raw = 0, idleTimer, lastY = null, resetTimer;
+
+    const atBottom = () => Math.ceil(scrollY + innerHeight) >= document.documentElement.scrollHeight - 3;
+    // Résistance « élastique » : plus on tire, plus c'est dur (tend vers MAX sans jamais l'atteindre)
+    const ease = (r) => MAX * (1 - Math.exp(-r / (MAX * 1.1)));
+
+    function render(animated) {
+      const d = ease(raw);
+      page.style.transition  = animated ? 'transform .5s ' + SPRING : 'none';
+      layer.style.transition = animated ? 'height .5s ' + SPRING : 'none';
+      page.style.transform = 'translate3d(0,' + (-d) + 'px,0)';
+      layer.style.height = d + 'px';
+      layer.style.setProperty('--p', (d / MAX).toFixed(3));
+    }
+    function pull(dy) {
+      clearTimeout(resetTimer);
+      layer.classList.remove('pull-release');
+      raw = Math.max(0, Math.min(raw + dy, MAX * 4));
+      render(false);
+    }
+    function release() {
+      clearTimeout(idleTimer);
+      if (!raw) return;
+      raw = 0;
+      layer.classList.add('pull-release');
+      render(true);
+      resetTimer = setTimeout(() => {      // on rend la main à la page (le transform « none » évite tout effet de bord)
+        if (raw === 0) { page.style.transform = ''; page.style.transition = ''; layer.style.transition = ''; }
+      }, 600);
+    }
+
+    // Molette / trackpad : le geste est « terminé » quand les événements s'arrêtent
+    addEventListener('wheel', (e) => {
+      if (e.deltaY > 0 && (raw > 0 || atBottom())) {
+        pull(e.deltaY);
+        clearTimeout(idleTimer);
+        idleTimer = setTimeout(release, 160);
+      } else if (e.deltaY < 0 && raw > 0) {
+        release();
+      }
+    }, { passive: true });
+
+    // Doigt : on tire vers le haut en bas de page, on relâche pour que ça revienne
+    addEventListener('touchstart', (e) => { lastY = e.touches[0].clientY; }, { passive: true });
+    addEventListener('touchmove', (e) => {
+      const y = e.touches[0].clientY;
+      const dy = lastY === null ? 0 : lastY - y;
+      lastY = y;
+      if (dy > 0 && (raw > 0 || atBottom())) pull(dy);
+      else if (dy < 0 && raw > 0) pull(dy);
+    }, { passive: true });
+    addEventListener('touchend', release, { passive: true });
+    addEventListener('touchcancel', release, { passive: true });
   })();
   </script>
 </body>
