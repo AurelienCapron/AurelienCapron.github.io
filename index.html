@@ -1772,6 +1772,24 @@ html {
     bindCarouselKeys(document.getElementById('hobbies-track'));
     bindCarouselKeys(projTrack);
 
+    /* ───────── Filtres des projets : ← → déplacent le focus d'un bouton à l'autre ─────────
+       (Entrée ou Espace pour valider, comme d'habitude ; Début / Fin = premier / dernier) */
+    const filterGroup = $('.filter-btn')?.parentElement;
+    filterGroup?.addEventListener('keydown', (e) => {
+      if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+      const btns = $$('.filter-btn', filterGroup);
+      const i = btns.indexOf(document.activeElement);
+      if (i < 0) return;
+      let n;
+      if (e.key === 'ArrowRight')     n = (i + 1) % btns.length;
+      else if (e.key === 'ArrowLeft') n = (i - 1 + btns.length) % btns.length;
+      else if (e.key === 'Home')      n = 0;
+      else if (e.key === 'End')       n = btns.length - 1;
+      else return;
+      e.preventDefault();
+      btns[n].focus();
+    });
+
     /* ───────── Copie (email + téléphone) + retour visuel sur le bouton & notification ───────── */
     const toast = $('#toast');
     let toastTimer;
