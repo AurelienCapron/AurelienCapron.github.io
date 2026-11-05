@@ -919,6 +919,11 @@
 
     <div class="relative border-t border-[var(--border)] px-6 py-6 text-center font-mono text-xs text-[var(--text-faint)]">
       © <span id="year">2026</span> Aurélien Capron · <span data-i18n="footer.built">Conçu avec HTML &amp; CSS</span>
+      
+      <!-- Easter Egg statique (visible uniquement en scrollant très bas) -->
+      <div class="absolute -bottom-16 left-1/2 -translate-x-1/2 px-5 py-2.5 rounded-full bg-[var(--surface)] text-[var(--text-strong)] font-mono text-xs sm:text-sm border border-[var(--border)] shadow-xl backdrop-blur-md whitespace-nowrap opacity-50 hover:opacity-100 transition-opacity">
+        >_ sudo systemctl start stage-aurelien.service <span class="animate-pulse">█</span>
+      </div>
     </div>
   </footer>
 
@@ -1301,58 +1306,7 @@
     bindCopyButton('#copy-email', 'aurelien-capron@outlook.fr', 'toast.copied');
     bindCopyButton('#copy-phone', '+33783073311', 'toast.copiedPhone');
 
-    /* ───────── Easter Egg : Force Scroll Bottom ───────── */
-    let overscrollCount = 0;
-    let eggTriggered = false;
-
-    const handleOverscroll = (deltaY) => {
-      if (eggTriggered) return;
-      // Vérifie si on est tout en bas (à 5px près pour la compatibilité)
-      const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 5;
-      
-      if (isAtBottom && deltaY > 0) {
-        overscrollCount += deltaY;
-        // Si on force le scroll d'un certain seuil
-        if (overscrollCount > 150) {
-          eggTriggered = true;
-          
-          const egg = document.createElement('div');
-          egg.className = "fixed bottom-6 left-1/2 -translate-x-1/2 px-5 py-2.5 rounded-full bg-[var(--surface)] text-[var(--text-strong)] font-mono text-xs sm:text-sm border border-[var(--border)] z-[100] translate-y-24 opacity-0 transition-all duration-500 shadow-xl backdrop-blur-md";
-          egg.innerHTML = '>_ sudo systemctl start stage-aurelien.service <span class="animate-pulse">█</span>';
-          document.body.appendChild(egg);
-          
-          // Animation d'apparition
-          requestAnimationFrame(() => {
-            egg.classList.remove('translate-y-24', 'opacity-0');
-            // Disparition après 4 secondes
-            setTimeout(() => {
-              egg.classList.add('translate-y-24', 'opacity-0');
-              setTimeout(() => {
-                egg.remove();
-                overscrollCount = 0;
-                eggTriggered = false;
-              }, 500);
-            }, 4000);
-          });
-        }
-      } else if (!isAtBottom) {
-        overscrollCount = 0; // Réinitialise si on remonte
-      }
-    };
-
-    // Détection sur PC (molette/trackpad)
-    window.addEventListener('wheel', (e) => handleOverscroll(e.deltaY), { passive: true });
-
-    // Détection sur Mobile (tactile)
-    let touchStartY = 0;
-    window.addEventListener('touchstart', (e) => { touchStartY = e.touches[0].clientY; }, { passive: true });
-    window.addEventListener('touchmove', (e) => {
-      const touchY = e.touches[0].clientY;
-      handleOverscroll(touchStartY - touchY);
-      touchStartY = touchY;
-    }, { passive: true });
-
-  })();
+    })();
   </script>
 
   <!-- ═════════════════════════ FOND PCB DU HERO : pistes à 45°, pastilles, impulsions cuivre ═════════════════════════ -->
