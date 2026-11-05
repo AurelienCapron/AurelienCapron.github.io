@@ -317,21 +317,40 @@
     /* Pendant la bascule, on coupe les transitions de couleur pour que le « nouveau thème » soit net dès le 1er pixel */
     .theme-switching *, .theme-switching *::before, .theme-switching *::after { transition: none !important; }
 
-    /* ───────── 4. Frise du parcours : le trait se dessine au scroll, les points s'allument ─────────
-       Chaque <li> a sa propre timeline (view-timeline). Le segment entre deux points se trace quand l'élément
-       monte jusqu'à ~60 % de la hauteur de l'écran ; le point s'allume au tout début du segment. */
+    /* ───────── 4. Frise du parcours : le trait se dessine au scroll, les points s'allument ───────── */
+    /* 1. Style de base (assure que le trait est visible sur tous les navigateurs) */
+    .timeline > li:not(:last-child)::before {
+      content: ""; position: absolute; left: -25.5px; top: 11px; width: 2px;
+      height: calc(100% + 2.25rem);
+      background: linear-gradient(to bottom, rgb(var(--accent-rgb)), rgb(var(--accent-rgb) / .35));
+      border-radius: 1px; transform-origin: top;
+    }
+
     @media (prefers-reduced-motion: no-preference) {
+      /* 2. Chrome / Edge : Animation native liée au scroll (scrubbing) */
       @supports (animation-timeline: view()) {
         .timeline > li { view-timeline: --tl-item block 0px 40%; }
         .timeline > li:not(:last-child)::before {
-          content: ""; position: absolute; left: -25.5px; top: 11px; width: 2px;
-          height: calc(100% + 2.25rem);              /* du centre de ce point au centre du suivant (space-y-9) */
-          background: linear-gradient(to bottom, rgb(var(--accent-rgb)), rgb(var(--accent-rgb) / .35));
-          border-radius: 1px; transform-origin: top; transform: scaleY(0);
+          transform: scaleY(0);
           animation: tlDraw linear both; animation-timeline: --tl-item; animation-range: entry 0% entry 100%;
         }
         .timeline > li > span:first-child {
           animation: tlDot linear both; animation-timeline: --tl-item; animation-range: entry 0% entry 12%;
+        }
+      }
+      /* 3. Safari / Firefox : Fallback JS fluide */
+      @supports not (animation-timeline: view()) {
+        .timeline > li:not(:last-child)::before {
+          transform: scaleY(0);
+          transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .timeline > li > span:first-child { transition: all 0.5s ease; }
+        
+        /* Classes ajoutées par le JavaScript au défilement */
+        .timeline > li.tl-in:not(:last-child)::before { transform: scaleY(1); }
+        .timeline > li.tl-in > span:first-child {
+          background-color: rgb(var(--accent-rgb)); transform: scale(1.2);
+          box-shadow: 0 0 0 4px var(--bg), 0 0 14px 2px rgb(var(--accent-rgb) / .5);
         }
       }
     }
@@ -1290,6 +1309,21 @@
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
     }, { threshold: 0.12 });
     $$('.reveal').forEach(el => reveal.observe(el));
+    
+    /* ───────── Fallback Safari : Frise du parcours ───────── */
+    if (!CSS.supports('animation-timeline: view()') && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const tlObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('tl-in');
+          } else {
+            // Retire la classe quand on remonte, pour que l'animation se rejoue dans les deux sens
+            e.target.classList.remove('tl-in');
+          }
+        });
+      }, { rootMargin: '0px 0px -40% 0px' });
+      $$('.timeline > li').forEach(el => tlObserver.observe(el));
+    }
 
     /* ───────── Carrousel hobbies (glisser en mobile & desktop + pagination dots) ───────── */
     (() => {
