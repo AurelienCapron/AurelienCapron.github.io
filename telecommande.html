@@ -10,7 +10,8 @@
 
   <script>
     try {
-      if (localStorage.getItem('theme') === 'dark') {
+      const saved = localStorage.getItem('theme');
+      if (saved === 'dark' || (saved !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.documentElement.setAttribute('data-theme', 'dark');
         document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#0c0e11');
         document.querySelector('meta[name="color-scheme"]')?.setAttribute('content', 'dark');
@@ -30,6 +31,10 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
 
   <style>
+    /* 🔤 AUTO-HÉBERGEMENT DES POLICES : dépose les 8 fichiers .woff2 listés ci-dessous
+       dans assets/fonts/ (voir le mode d'emploi dans le checklist tout en haut du fichier).
+       Tant qu'ils n'y sont pas, le navigateur bascule automatiquement sur une police
+       système proche (aucune casse visuelle, juste un rendu légèrement différent). */
     @font-face { font-family: 'Inter'; font-style: normal; font-weight: 400; font-display: swap; src: url('assets/fonts/inter-400.woff2') format('woff2'); }
     @font-face { font-family: 'Inter'; font-style: normal; font-weight: 500; font-display: swap; src: url('assets/fonts/inter-500.woff2') format('woff2'); }
     @font-face { font-family: 'Inter'; font-style: normal; font-weight: 600; font-display: swap; src: url('assets/fonts/inter-600.woff2') format('woff2'); }
@@ -38,6 +43,9 @@
     @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url('assets/fonts/jetbrains-mono-400.woff2') format('woff2'); }
     @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 500; font-display: swap; src: url('assets/fonts/jetbrains-mono-500.woff2') format('woff2'); }
     @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 600; font-display: swap; src: url('assets/fonts/jetbrains-mono-600.woff2') format('woff2'); }
+    /* Titres (h1 / h2) : Barlow Semi Condensed. Sans ces 2 fichiers, les titres retombent sur Inter. */
+    @font-face { font-family: 'Barlow Semi Condensed'; font-style: normal; font-weight: 600; font-display: swap; src: url('assets/fonts/barlow-semi-condensed-600.woff2') format('woff2'); }
+    @font-face { font-family: 'Barlow Semi Condensed'; font-style: normal; font-weight: 700; font-display: swap; src: url('assets/fonts/barlow-semi-condensed-700.woff2') format('woff2'); }
   </style>
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -46,13 +54,14 @@
       theme: {
         extend: {
           fontFamily: {
+            display: ['Barlow Semi Condensed', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
             sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
             mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'monospace']
           },
           colors: {
             ink: { 950: '#0c0e11', 900: '#121519', 800: '#181c21', 700: '#232830', 600: '#333a45' },
-            accent: { DEFAULT: '#10b981', soft: 'var(--accent-soft)' },
-            volt: { DEFAULT: '#3b82f6', soft: 'var(--volt-soft)' }
+            accent: { DEFAULT: 'rgb(var(--accent-rgb) / <alpha-value>)', soft: 'var(--accent-soft)' },
+            volt: { DEFAULT: 'rgb(var(--volt-rgb) / <alpha-value>)', soft: 'var(--volt-soft)' }
           }
         }
       }
@@ -61,23 +70,28 @@
 
   <style type="text/tailwindcss">
     @layer components {
-      .surface   { @apply rounded-2xl border border-[var(--border)] bg-[var(--surface)] transition-colors duration-300; box-shadow: var(--card-shadow); }
-      .tag       { @apply inline-flex cursor-default items-center rounded-md border border-[var(--border)] bg-[var(--chip-bg)] px-2.5 py-1 font-mono text-xs text-[var(--text-soft)]; }
-      .btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-5 py-3 text-sm font-semibold text-ink-950 shadow-lg shadow-accent/15 transition hover:-translate-y-0.5 hover:bg-[#34d399]; }
-      .btn-ghost { @apply inline-flex items-center justify-center gap-2 rounded-lg border border-[var(--border)] px-5 py-3 text-sm font-semibold text-[var(--text-soft)] transition hover:-translate-y-0.5 hover:border-volt/60 hover:bg-volt/10; }
-      .eyebrow   { @apply font-mono text-sm font-medium text-accent-soft; }
-      .h2        { @apply mt-2 text-balance text-3xl font-bold tracking-tight text-[var(--text-strong)] sm:text-4xl; }
+      .surface   { @apply rounded-[var(--r-card)] border border-[var(--border)] bg-[var(--surface)] transition-colors duration-300 hover:border-[var(--text-faint)]; box-shadow: var(--card-shadow); }
+      .tag       { @apply inline-flex cursor-default items-center rounded-sm border border-[var(--border)] bg-[var(--chip-bg)] px-2.5 py-1 font-mono text-xs text-[var(--text-soft)]; }
+      .btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-md bg-accent px-5 py-3 text-sm font-semibold text-[var(--on-accent)] shadow-lg shadow-accent/15 transition hover:-translate-y-0.5 hover:brightness-110; }
+      .btn-ghost { @apply inline-flex items-center justify-center gap-2 rounded-md border border-[var(--border)] px-5 py-3 text-sm font-semibold text-[var(--text-soft)] transition hover:-translate-y-0.5 hover:border-volt/60 hover:bg-volt/10; }
+      .eyebrow   { @apply text-xs font-semibold uppercase tracking-widest text-[var(--text-muted)]; }
+      .h2        { @apply mt-2 text-balance font-display text-4xl font-bold tracking-tight text-[var(--text-strong)] sm:text-5xl; }
       .nav-link  { @apply text-sm text-[var(--text-muted)] transition-colors hover:text-[var(--text-strong)]; }
+      .nav-link[aria-current="true"] { @apply font-medium text-[var(--text-strong)]; }
       .lang-btn  { @apply rounded-md px-2.5 py-1 text-[var(--text-muted)] transition-colors hover:text-[var(--text-strong)]; }
       .lang-btn[aria-pressed="true"] { @apply bg-[var(--chip-bg-active)] text-[var(--text-strong)]; }
+      .filter-btn { @apply rounded-md border border-[var(--border)] px-4 py-1.5 text-sm text-[var(--text-muted)] transition-colors hover:text-[var(--text-strong)]; }
+      .filter-btn[aria-pressed="true"] { @apply border-accent/40 bg-accent/10 font-medium text-accent-soft; }
       .icon-btn  { @apply grid h-12 w-12 place-items-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] transition hover:-translate-y-1 hover:border-accent/50 hover:text-accent-soft; box-shadow: var(--card-shadow); }
       .media-placeholder { background: linear-gradient(135deg, var(--placeholder-from), var(--placeholder-to)); }
+      .media-icon { color: var(--placeholder-icon); }
     }
   </style>
 
   <style>
     :root {
       color-scheme: dark;
+      --r-card: 6px; /* arrondi des cartes : 0 = angles vifs, 16px = ancien rendu */
       --bg: #0c0e11;
       --bg-alt: rgba(18,21,25,.45);
       --surface: rgba(22,27,34,.85);
@@ -90,12 +104,14 @@
       --text-soft: #e2e8f0;
       --text-muted: #94a3b8;
       --text-faint: #64748b;
-      --accent-soft: #34d399;
-      --volt-soft: #60a5fa;
+      --accent-soft: #e0915c; --accent-rgb: 224 145 92; --on-accent: #0c0e11; --volt-rgb: 148 163 184;
+      --volt-soft: #94a3b8;
       --placeholder-from: #232830;
       --placeholder-to: #181c21;
+      --placeholder-icon: #475569;
       --card-shadow: 0 10px 30px -10px rgba(0,0,0,.45);
-      --grid-line: rgba(255,255,255,.04);
+      --pcb-trace: rgba(255,255,255,.10);
+      --pcb-pad: rgba(255,255,255,.20);
     }
     :root[data-theme="light"] {
       color-scheme: light;
@@ -111,17 +127,19 @@
       --text-soft: #1e293b;
       --text-muted: #475569;
       --text-faint: #64748b;
-      --accent-soft: #059669;
-      --volt-soft: #2563eb;
+      --accent-soft: #b4531a; --accent-rgb: 180 83 26; --on-accent: #ffffff; --volt-rgb: 71 85 105;
+      --volt-soft: #475569;
       --placeholder-from: #eef2f6;
       --placeholder-to: #e2e8f0;
+      --placeholder-icon: #94a3b8;
       --card-shadow: 0 8px 24px -4px rgba(15,23,42,.05), 0 2px 6px -1px rgba(15,23,42,.03);
-      --grid-line: rgba(15,23,42,.045);
+      --pcb-trace: rgba(15,23,42,.11);
+      --pcb-pad: rgba(15,23,42,.22);
     }
 
     html { scroll-behavior: smooth; }
-    ::selection { background: rgba(16,185,129,.35); color: #fff; }
-    :focus-visible { outline: 2px solid #10b981; outline-offset: 3px; border-radius: 6px; }
+    ::selection { background: rgba(180,83,26,.3); color: #fff; }
+    :focus-visible { outline: 2px solid var(--accent-soft); outline-offset: 3px; border-radius: 6px; }
 
     .grid-bg {
       background-image:
@@ -140,6 +158,42 @@
     }
   </style>
   <noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
+
+  <style>
+    /* Shared visual language with index.html: copper, slate, compact cards. */
+    .project-title { max-width: 950px; margin-top: 18px; font-size: clamp(2.5rem,5.3vw,4.5rem); line-height: 1.06; }
+    .project-hero { padding-top: 16px; }
+    .project-hero [data-i18n="hero.sub"] { max-width: 850px; }
+    .grid-bg { --grid-line: var(--border); background-size: 80px 80px; opacity: .5; }
+    .project-resources { border-left: 3px solid var(--accent-soft); }
+    .project-resources a { border-radius: 6px; }
+    .project-toc { display: flex; flex-wrap: wrap; gap: 8px; padding: 22px 0; margin-bottom: 44px; border-block: 1px solid var(--border); }
+    .project-toc a { color: var(--text-muted); font-size: 13px; padding: 8px 14px; border: 1px solid var(--border); border-radius: 6px; transition: color .2s, background .2s; }
+    .project-toc a:hover { color: var(--accent-soft); background: rgb(var(--accent-rgb) / .08); }
+    .project-section { scroll-margin-top: 90px; }
+    .project-section + .project-section { border-top: 1px solid var(--border); padding-top: 48px; margin-top: 56px; }
+    .project-section > h2 { font-family: 'Barlow Semi Condensed', 'Inter', sans-serif; font-size: clamp(1.8rem,3vw,2.6rem); line-height: 1.15; letter-spacing: -.025em; }
+    .project-section > p { max-width: 920px; line-height: 1.85; }
+    .project-section li.surface { padding: 22px; }
+    .project-section ul { display: grid; gap: 16px; }
+    .project-section ul > li { margin-top: 0 !important; }
+    .project-section img { background: white; }
+    #section-6 { padding: 32px; border: 1px solid var(--border); border-left: 3px solid var(--accent-soft); border-radius: 6px; background: var(--surface); }
+    table thead { background: var(--chip-bg); }
+    table tbody tr:hover { background: var(--chip-bg); }
+    .surface.bg-white > p { color: #475569; }
+    @media (min-width: 900px) { #section-5 ul { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) {
+      header nav { padding-inline: 16px; }
+      header nav > div { gap: 8px; }
+      header .nav-link { font-family: 'Inter', sans-serif; font-size: 11px; margin-right: 0; gap: 4px; }
+      .project-toc { gap: 6px; } .project-toc a { padding: 8px 10px; }
+      .project-section li.surface { padding: 16px; }
+      #section-6 { padding: 22px; }
+      #contact .surface { flex-wrap: wrap; justify-content: center; padding: 10px 14px; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+  </style>
 </head>
 
 <body class="bg-[var(--bg)] font-sans text-[var(--text)] antialiased">
@@ -192,17 +246,17 @@
 
   <main id="main" tabindex="-1" class="outline-none pt-28">
 
-    <section class="relative overflow-hidden pb-12">
+    <section class="project-hero relative overflow-hidden pb-12">
       <div class="grid-bg pointer-events-none absolute inset-0"></div>
       <div class="pointer-events-none absolute -top-40 right-0 h-[28rem] w-[28rem] rounded-full bg-volt/10 blur-3xl"></div>
 
-      <div class="relative mx-auto max-w-4xl px-6">
+      <div class="relative mx-auto max-w-6xl px-6">
         <p class="reveal font-mono text-xs text-[var(--text-muted)]">
           <a href="index.html#projets" class="hover:text-accent-soft" data-i18n="breadcrumb.proj">Projets</a>
           <span class="mx-1">/</span> <span data-i18n="breadcrumb.current">Télécommande Infrarouge Autonome (Projet 32)</span>
         </p>
         <p class="reveal eyebrow mt-4" data-i18n="hero.eyebrow">Projet industriel n°32 · Grenoble INP - Phelma · Année 2025 — 2026</p>
-        <h1 class="reveal h2 mt-2 !text-3xl sm:!text-5xl" data-i18n="hero.title">Télécommande infrarouge autonome pour vidéoprojecteurs</h1>
+        <h1 class="reveal h2 project-title" data-i18n="hero.title">Télécommande infrarouge autonome pour vidéoprojecteurs</h1>
         <p class="reveal mt-4 max-w-3xl text-base leading-relaxed text-[var(--text-muted)] sm:text-lg" data-i18n="hero.sub">
           Système embarqué autonome d'extinction des vidéoprojecteurs de la salle des conseils de Grenoble INP - Phelma : rétro-ingénierie du protocole infrarouge NEC (38 kHz), fusion multi-capteurs (PIR, radar mmWave, son, VGA), carte électronique sur mesure sous KiCad 9 et firmware Raspberry Pi Pico 2WH (MicroPython &amp; C++).
         </p>
@@ -218,7 +272,7 @@
         </div>
 
         <!-- Ressources réelles du dépôt GitHub -->
-        <div class="surface reveal mt-8 p-6">
+        <div class="surface project-resources reveal mt-8 p-6">
           <p class="font-mono text-xs font-bold uppercase tracking-wider text-[var(--text-muted)]" data-i18n="res.label">Ressources du projet</p>
           <div class="mt-4 flex flex-wrap gap-3">
             <a href="https://github.com/AurelienCapron/autonomous-ir-projector-remote/blob/main/docs/project_report.pdf" target="_blank" rel="noopener noreferrer"
@@ -268,11 +322,12 @@
       </div>
     </section>
 
-    <section class="pb-24">
-      <div class="mx-auto max-w-4xl px-6">
+    <section class="project-body pb-24">
+      <div class="mx-auto max-w-6xl px-6">
 
+<nav class="project-toc" aria-label="Sommaire du projet"><a href="#section-1" data-i18n="toc.1">Contexte</a><a href="#section-2" data-i18n="toc.2">Architecture</a><a href="#section-3" data-i18n="toc.3">Firmware</a><a href="#section-4" data-i18n="toc.4">Boîtier</a><a href="#section-5" data-i18n="toc.5">Mon rôle</a><a href="#section-6" data-i18n="toc.6">Résultats</a></nav>
         <!-- 1. Contexte -->
-        <div class="reveal">
+        <div id="section-1" class="project-section reveal">
           <h2 class="text-2xl font-bold text-[var(--text-strong)]" data-i18n="sec1.title">1. Contexte et cahier des charges (SysML)</h2>
           <p class="mt-3 leading-relaxed text-[var(--text-muted)]" data-i18n="sec1.p1">
             À l'issue des réunions en salle des conseils, les vidéoprojecteurs restent fréquemment allumés toute la nuit — environ deux fois par semaine, soit près de 1 250 heures par an sur une durée de vie totale de lampe de 3 000 à 4 000 heures, soit près d'un tiers de leur durée de vie. Le système conçu répond à trois niveaux d'exigences fonctionnelles :
@@ -302,23 +357,23 @@
           </ul>
           <div class="surface reveal mt-6 overflow-hidden p-2">
             <img src="https://github.com/AurelienCapron/autonomous-ir-projector-remote/raw/main/assets/sysml_requirements_diagram.png"
-                 alt="Diagramme des exigences SysML du projet" loading="lazy" class="w-full rounded-xl">
+                 alt="Diagramme des exigences SysML du projet" loading="lazy" class="w-full rounded-md">
           </div>
         </div>
 
         <!-- 2. Architecture matérielle / PCB KiCad -->
-        <div class="reveal mt-14">
+        <div id="section-2" class="project-section reveal mt-14">
           <h2 class="text-2xl font-bold text-[var(--text-strong)]" data-i18n="sec2.title">2. Architecture matérielle et carte PCB (KiCad 9)</h2>
           <p class="mt-3 leading-relaxed text-[var(--text-muted)]" data-i18n="sec2.p1">
             La carte électronique double face (135 × 130 mm) intègre un étage de régulation linéaire 5V (TLV1117-50, alimenté en 12V DC via J1) et centralise l'ensemble des capteurs et actionneurs autour du microcontrôleur Raspberry Pi Pico 2WH.
           </p>
           <div class="surface reveal mt-6 overflow-hidden p-2">
             <img src="https://github.com/AurelienCapron/autonomous-ir-projector-remote/raw/main/assets/system_architecture.svg"
-                 alt="Schéma synoptique de l'architecture système" loading="lazy" class="w-full rounded-xl bg-white">
+                 alt="Schéma synoptique de l'architecture système" loading="lazy" class="w-full rounded-md bg-white">
           </div>
           <div class="surface reveal mt-6 overflow-hidden p-2 bg-white">
             <img src="https://github.com/AurelienCapron/autonomous-ir-projector-remote/raw/main/assets/pcb_3d_render.png"
-                 alt="Rendu 3D de la carte PCB sous KiCad 9" loading="lazy" class="mx-auto w-full max-w-lg rounded-xl object-contain">
+                 alt="Rendu 3D de la carte PCB sous KiCad 9" loading="lazy" class="mx-auto w-full max-w-lg rounded-md object-contain">
           </div>
 
           <h3 class="mt-8 text-sm font-semibold uppercase tracking-widest text-[var(--text-muted)]" data-i18n="pinout.title">Brochage de la carte électronique (v1.2)</h3>
@@ -349,7 +404,7 @@
         </div>
 
         <!-- 3. Protocole NEC & firmware -->
-        <div class="reveal mt-14">
+        <div id="section-3" class="project-section reveal mt-14">
           <h2 class="text-2xl font-bold text-[var(--text-strong)]" data-i18n="sec3.title">3. Rétro-ingénierie du protocole NEC et firmware embarqué</h2>
           <p class="mt-3 leading-relaxed text-[var(--text-muted)]" data-i18n="sec3.p1">
             Le signal émis par la télécommande d'origine face au récepteur GT1089 a été capturé à l'oscilloscope numérique Tektronix et décodé via un banc Arduino Uno, révélant une modulation NEC sur porteuse à 38 kHz de valeur hexadécimale brute <code class="rounded bg-[var(--chip-bg)] px-1.5 py-0.5 font-mono text-[0.85em]">0x6F905583</code> : en-tête de synchronisation (9 ms + 4,5 ms), bit logique 0 (562 µs + 562 µs) et bit logique 1 (562 µs + 1 675 µs).
@@ -357,12 +412,12 @@
           <div class="mt-6 grid gap-6 sm:grid-cols-2">
             <div class="surface overflow-hidden p-2 bg-white">
               <img src="https://github.com/AurelienCapron/autonomous-ir-projector-remote/raw/main/assets/nec_protocol_timing.png"
-                   alt="Chronogramme du protocole NEC" loading="lazy" class="w-full rounded-xl">
+                   alt="Chronogramme du protocole NEC" loading="lazy" class="w-full rounded-md">
               <p class="px-2 py-2 text-center text-xs text-[var(--text-faint)]" data-i18n="sec3.img1">Principe temporel du protocole NEC</p>
             </div>
             <div class="surface overflow-hidden p-2 bg-white">
               <img src="https://github.com/AurelienCapron/autonomous-ir-projector-remote/raw/main/assets/ir_frame_oscilloscope.png"
-                   alt="Capture de la trame infrarouge à l'oscilloscope Tektronix" loading="lazy" class="w-full rounded-xl">
+                   alt="Capture de la trame infrarouge à l'oscilloscope Tektronix" loading="lazy" class="w-full rounded-md">
               <p class="px-2 py-2 text-center text-xs text-[var(--text-faint)]" data-i18n="sec3.img2">Capture de la trame IR à l'oscilloscope</p>
             </div>
           </div>
@@ -372,7 +427,7 @@
         </div>
 
         <!-- 4. Boîtier mécanique -->
-        <div class="reveal mt-14">
+        <div id="section-4" class="project-section reveal mt-14">
           <h2 class="text-2xl font-bold text-[var(--text-strong)]" data-i18n="sec4.title">4. Conception mécanique et intégration du boîtier</h2>
           <p class="mt-3 leading-relaxed text-[var(--text-muted)]" data-i18n="sec4.p1">
             Pour protéger la carte électronique de la poussière dans le faux plafond tout en intégrant les passages de câbles et l'interface utilisateur, une première modélisation 3D (boîtier perforé et couvercle à poignée) a laissé place à la solution retenue : un boîtier en bois assemblé à créneaux (14 × 15,5 × 10 cm), généré via boxes.py, adapté en CAO 2D pour les perçages des connecteurs et fabriqué au FabLab de Phelma.
@@ -399,7 +454,7 @@
         </div>
 
         <!-- 5. Mon rôle & l'équipe -->
-        <div class="reveal mt-14">
+        <div id="section-5" class="project-section reveal mt-14">
           <h2 class="text-2xl font-bold text-[var(--text-strong)]" data-i18n="sec5.title">5. Mon rôle et l'équipe projet</h2>
           <p class="mt-3 leading-relaxed text-[var(--text-muted)]" data-i18n="sec5.p1">
             Chef de projet de l'équipe « Télécommande autonome » (4 coéquipiers : Amaury Simonnot, Corentin Pilleux, Corentin Eletti, Reda Lounis), au sein d'un projet n°32 mené en 2025-2026 à Grenoble INP - Phelma, encadré par Julien Traveaux, Sophie Cornu et l'équipe du FabLab. Au-delà de la coordination d'équipe, ma contribution technique a couvert :
@@ -437,7 +492,7 @@
         </div>
 
         <!-- 6. Résultats -->
-        <div class="reveal mt-14">
+        <div id="section-6" class="project-section reveal mt-14">
           <h2 class="text-2xl font-bold text-[var(--text-strong)]" data-i18n="sec6.title">6. Résultats</h2>
           <p class="mt-3 leading-relaxed text-[var(--text-muted)]" data-i18n="sec6.p1">
             Un prototype fonctionnel validé en conditions réelles dans la salle des conseils : détection fiable de l'état des vidéoprojecteurs et de l'occupation de la salle, extinction automatique après 1h30 d'inactivité et mode d'apprentissage universel opérationnel — permettant d'éviter jusqu'à 1 250 heures par an d'allumage inutile, soit près d'un tiers de la durée de vie des lampes.
@@ -458,7 +513,7 @@
     </section>
 
     <section class="border-t border-[var(--border)] bg-[var(--bg-alt)] py-14">
-      <div class="mx-auto flex max-w-4xl items-center justify-between px-6">
+      <div class="mx-auto flex max-w-6xl items-center justify-between px-6">
         <a href="domethic.html" class="group max-w-[45%]">
           <p class="font-mono text-xs text-[var(--text-faint)]" data-i18n="nav.prev">← Précédent</p>
           <p class="mt-1 truncate font-semibold text-[var(--text-soft)] transition-colors group-hover:text-accent-soft" data-i18n="nav.prevTitle">Domethic System</p>
@@ -537,7 +592,7 @@
     }
     let savedTheme = null;
     try { savedTheme = localStorage.getItem('theme'); } catch (e) {}
-    applyTheme(savedTheme === 'dark' ? 'dark' : 'light', false);
+    applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light', false);
     themeBtn?.addEventListener('click', () => {
       const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
       applyTheme(next, true);
@@ -550,6 +605,13 @@
     FR['toast.copied'] = "Email copié !";
 
     const EN = {
+      "toc.1": "Context",
+      "toc.2": "Architecture",
+      "toc.3": "Firmware",
+      "toc.4": "Enclosure",
+      "toc.5": "My role",
+      "toc.6": "Results",
+
       "meta.title": "Autonomous Infrared Remote for Video Projectors (Project 32) — Aurélien Capron",
       "meta.desc": "Autonomous embedded system that automatically shuts down video projectors: infrared protocol reverse-engineering (NEC 38 kHz), multi-sensor fusion (PIR, mmWave, sound, VGA) and a custom PCB designed in KiCad 9 (Raspberry Pi Pico 2WH / MicroPython & C++).",
       "skip": "Skip to content",
