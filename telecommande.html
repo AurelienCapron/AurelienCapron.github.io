@@ -194,7 +194,21 @@
     }
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
   </style>
-</head>
+<style>
+.pcb-open {display:block;position:relative;width:100%;height:100%;cursor:grab;min-height:160px;background:white;border:0;padding:0;}
+.pcb-open img{display:block;margin:auto;}
+.pcb-badge{position:absolute;right:12px;bottom:12px;padding:9px 13px;border-radius:6px;background:var(--surface);color:var(--accent-soft);border:1px solid var(--border);font:600 12px Inter,sans-serif;box-shadow:var(--card-shadow)}
+#pcb-dialog{width:min(1100px,94vw);max-height:94dvh;padding:0;border:1px solid var(--border);border-radius:10px;background:var(--bg);color:var(--text);margin:auto;}
+#pcb-dialog::backdrop{background:rgba(0,0,0,.7);backdrop-filter:blur(6px)}
+.pcb-toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 22px;border-bottom:1px solid var(--border)}
+.pcb-toolbar h2{font-family:'Barlow Semi Condensed',Inter,sans-serif;font-size:24px;color:var(--text-strong)}
+.pcb-close{padding:6px 12px;font-size:24px;border:1px solid var(--border);border-radius:6px}
+#pcb-viewer{display:block;width:100%;height:min(62dvh,640px);min-height:260px;background:var(--surface)}
+.pcb-bottom{padding:16px 22px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.pcb-views{display:flex;gap:8px;flex-wrap:wrap}.pcb-views button{padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:13px}
+.pcb-views button:hover{color:var(--accent-soft)}
+#pcb-status{padding:0 22px 12px;font-size:13px;color:var(--text-muted)}
+</style></head>
 
 <body class="bg-[var(--bg)] font-sans text-[var(--text)] antialiased">
 
@@ -309,9 +323,9 @@
           </div>
           <div class="surface flex flex-col overflow-hidden">
             <div class="relative aspect-video overflow-hidden border-b border-[var(--border)] bg-white">
-              <img src="https://github.com/AurelienCapron/autonomous-ir-projector-remote/raw/main/assets/pcb_3d_render.png"
+              <button type="button" class="pcb-open" aria-haspopup="dialog" aria-controls="pcb-dialog"><img src="https://github.com/AurelienCapron/autonomous-ir-projector-remote/raw/main/assets/pcb_3d_render.png"
                    alt="Rendu 3D de la carte électronique PCB sous KiCad 9, version 1.2" loading="lazy"
-                   class="h-full w-full object-contain p-3 transition duration-500 hover:scale-105">
+                   class="h-full w-full object-contain p-3 transition duration-500 hover:scale-105"><span class="pcb-badge" data-i18n="pcb.open">Explorer en 3D ↗</span></button>
             </div>
             <div class="p-5">
               <p class="font-mono text-xs text-accent-soft" data-i18n="compare.phase2">Phase 2 · PCB sur mesure (KiCad 9 — v1.2)</p>
@@ -372,8 +386,8 @@
                  alt="Schéma synoptique de l'architecture système" loading="lazy" class="w-full rounded-md bg-white">
           </div>
           <div class="surface reveal mt-6 overflow-hidden p-2 bg-white">
-            <img src="https://github.com/AurelienCapron/autonomous-ir-projector-remote/raw/main/assets/pcb_3d_render.png"
-                 alt="Rendu 3D de la carte PCB sous KiCad 9" loading="lazy" class="mx-auto w-full max-w-lg rounded-md object-contain">
+            <button type="button" class="pcb-open" aria-haspopup="dialog" aria-controls="pcb-dialog"><img src="https://github.com/AurelienCapron/autonomous-ir-projector-remote/raw/main/assets/pcb_3d_render.png"
+                 alt="Rendu 3D de la carte PCB sous KiCad 9" loading="lazy" class="mx-auto w-full max-w-lg rounded-md object-contain"><span class="pcb-badge" data-i18n="pcb.open">Explorer en 3D ↗</span></button>
           </div>
 
           <h3 class="mt-8 text-sm font-semibold uppercase tracking-widest text-[var(--text-muted)]" data-i18n="pinout.title">Brochage de la carte électronique (v1.2)</h3>
@@ -572,6 +586,14 @@
   <div id="toast" role="status" aria-live="polite"
        class="pointer-events-none fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-lg border border-accent/30 bg-[var(--surface)] px-4 py-2 text-sm font-medium text-accent-soft opacity-0 shadow-xl transition-opacity duration-300"></div>
 
+
+<dialog id="pcb-dialog" aria-labelledby="pcb-title">
+ <div class="pcb-toolbar"><h2 id="pcb-title" data-i18n="pcb.title">Carte électronique · Vue 3D</h2><button type="button" class="pcb-close" aria-label="Fermer / Close" autofocus>×</button></div>
+ <model-viewer id="pcb-viewer" alt="Carte électronique de la télécommande / Remote control PCB" camera-controls touch-action="none" camera-orbit="0deg 35deg auto" min-camera-orbit="auto 0deg auto" max-camera-orbit="auto 180deg auto" shadow-intensity="0.3" exposure="1" interaction-prompt="auto"></model-viewer>
+ <div class="pcb-bottom"><p data-i18n="pcb.help">Glissez pour tourner · Molette ou pincement pour zoomer</p><div class="pcb-views"><button type="button" data-orbit="0deg 0deg auto" data-i18n="pcb.top">Dessus</button><button type="button" data-orbit="0deg 180deg auto" data-i18n="pcb.bottom">Dessous</button><button type="button" data-orbit="0deg 35deg auto" data-i18n="pcb.reset">Perspective</button></div></div>
+ <p id="pcb-status" role="status" aria-live="polite"></p>
+</dialog>
+
   <script>
   (() => {
     const $  = (s, r = document) => r.querySelector(s);
@@ -605,6 +627,9 @@
     FR['toast.copied'] = "Email copié !";
 
     const EN = {
+      "pcb.open": "Explore in 3D ↗", "pcb.title": "Circuit board · 3D view",
+      "pcb.help": "Drag to rotate · Scroll or pinch to zoom", "pcb.top": "Top", "pcb.bottom": "Bottom", "pcb.reset": "Perspective",
+
       "toc.1": "Context",
       "toc.2": "Architecture",
       "toc.3": "Firmware",
@@ -745,5 +770,36 @@
     $$('.reveal').forEach(el => reveal.observe(el));
   })();
   </script>
+
+<script>
+(() => {
+ const dialog=document.getElementById('pcb-dialog'), viewer=document.getElementById('pcb-viewer'), status=document.getElementById('pcb-status');
+ let loader, ready=false, previousFocus, previousOverflow;
+ const message=(fr,en)=>document.documentElement.lang==='en'?en:fr;
+ function loadViewer(){
+   if(window.customElements.get('model-viewer')) return Promise.resolve();
+   if(loader) return loader;
+   loader=new Promise((resolve,reject)=>{
+     const script=document.createElement('script');script.type='module';
+     script.src='https://cdn.jsdelivr.net/npm/@google/model-viewer@4.0.0/dist/model-viewer.min.js';
+     script.onload=()=>customElements.whenDefined('model-viewer').then(resolve);
+     script.onerror=()=>{script.remove();loader=null;reject(new Error('Viewer loading failed'));};
+     document.head.append(script);
+   });return loader;
+ }
+ document.querySelectorAll('.pcb-open').forEach(button=>button.addEventListener('click',async()=>{
+   previousFocus=button;previousOverflow=document.body.style.overflow;dialog.showModal();document.body.style.overflow='hidden';
+   status.textContent=ready?'':message('Chargement de la carte 3D…','Loading the 3D board…');
+   try {await loadViewer();if(!viewer.hasAttribute('src')) viewer.setAttribute('src','assets/projets/telecommande/telecommande.glb');}
+   catch(e){status.textContent=message('Le lecteur 3D ne peut pas se charger. Vérifiez votre connexion puis rouvrez cette fenêtre.','The 3D viewer could not load. Check your connection and reopen this window.');}
+ }));
+ viewer.addEventListener('load',()=>{ready=true;status.textContent='';});
+ viewer.addEventListener('error',()=>{ready=false;viewer.removeAttribute('src');status.textContent=message('Impossible de charger le modèle. Vérifiez la présence du fichier telecommande.glb sur le site.','Unable to load the model. Check that telecommande.glb is present on the site.');});
+ dialog.querySelector('.pcb-close').addEventListener('click',()=>dialog.close());
+ dialog.addEventListener('click',event=>{if(event.target===dialog){const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)dialog.close();}});
+ dialog.addEventListener('close',()=>{document.body.style.overflow=previousOverflow||'';previousFocus?.focus();});
+ dialog.querySelectorAll('[data-orbit]').forEach(button=>button.addEventListener('click',()=>{viewer.setAttribute('camera-orbit',button.dataset.orbit);viewer.setAttribute('camera-target','auto auto auto');viewer.setAttribute('field-of-view','30deg');}));
+})();
+</script>
 </body>
 </html>
