@@ -23,7 +23,7 @@
   <meta property="og:title" content="Télécommande Infrarouge Autonome pour Vidéoprojecteurs (Projet 32) — Aurélien Capron">
   <meta property="og:description" content="Rétro-ingénierie infrarouge (protocole NEC 38 kHz), fusion multi-capteurs et PCB sur mesure sous KiCad 9 (Raspberry Pi Pico 2WH / MicroPython & C++).">
   <meta property="og:url" content="https://aureliencapron.github.io/telecommande.html">
-  <meta property="og:image" content="https://github.com/AurelienCapron/autonomous-ir-projector-remote/raw/main/assets/pcb_3d_render.png">
+  <meta property="og:image" content="assets/projets/telecommande/pcb_3d_render.png">
   <link rel="canonical" href="https://aureliencapron.github.io/telecommande.html">
 
   <link rel="icon" href="/favicon.ico" sizes="48x48">
@@ -208,6 +208,11 @@
 .pcb-views{display:flex;gap:8px;flex-wrap:wrap}.pcb-views button{padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:13px}
 .pcb-views button:hover{color:var(--accent-soft)}
 #pcb-status{padding:0 22px 12px;font-size:13px;color:var(--text-muted)}
+</style><style>
+#video-dialog{width:min(820px,94vw);max-height:92dvh;overflow:auto;padding:0;border:1px solid var(--border);border-radius:10px;background:var(--bg);color:var(--text);margin:auto}
+#video-dialog::backdrop{background:rgba(0,0,0,.7);backdrop-filter:blur(6px)}
+#project-video{display:block;width:100%;max-height:65dvh;background:#111}
+#video-dialog .pcb-bottom{font-size:13px}details[open]>summary{margin-bottom:20px}
 </style></head>
 
 <body class="bg-[var(--bg)] font-sans text-[var(--text)] antialiased">
@@ -270,7 +275,7 @@
           <span class="mx-1">/</span> <span data-i18n="breadcrumb.current">Télécommande Infrarouge Autonome (Projet 32)</span>
         </p>
         <p class="reveal eyebrow mt-4" data-i18n="hero.eyebrow">Projet industriel n°32 · Grenoble INP - Phelma · Année 2025 — 2026</p>
-        <h1 class="reveal h2 project-title" data-i18n="hero.title">Télécommande infrarouge autonome pour vidéoprojecteurs</h1>
+        <h1 class="reveal h2 project-title" data-i18n="hero.title">Télécommande infrarouge autonome</h1>
         <p class="reveal mt-4 max-w-3xl text-base leading-relaxed text-[var(--text-muted)] sm:text-lg" data-i18n="hero.sub">
           Système embarqué autonome d'extinction des vidéoprojecteurs de la salle des conseils de Grenoble INP - Phelma : rétro-ingénierie du protocole infrarouge NEC (38 kHz), fusion multi-capteurs (PIR, radar mmWave, son, VGA), carte électronique sur mesure sous KiCad 9 et firmware Raspberry Pi Pico 2WH (MicroPython &amp; C++).
         </p>
@@ -285,23 +290,28 @@
           <span class="tag" data-i18n="tag.sensors">Fusion multi-capteurs</span>
         </div>
 
-        <!-- Ressources réelles du dépôt GitHub -->
+<div class="reveal mt-8 grid gap-4 sm:grid-cols-3">
+ <div class="surface p-5"><p class="font-display text-3xl text-accent-soft">1 h 30</p><p data-i18n="overview.delay">Délai d’inactivité avant extinction</p></div>
+ <div class="surface p-5"><p class="font-display text-3xl text-accent-soft">38 kHz</p><p data-i18n="overview.ir">Commande infrarouge · protocole NEC</p></div>
+ <div class="surface p-5"><p class="font-display text-3xl text-accent-soft">1 250 h/an</p><p data-i18n="overview.gain">Allumage inutile estimé dans le contexte du projet</p></div>
+</div>
+        <!-- Ressources locales du projet -->
         <div class="surface project-resources reveal mt-8 p-6">
           <p class="font-mono text-xs font-bold uppercase tracking-wider text-[var(--text-muted)]" data-i18n="res.label">Ressources du projet</p>
           <div class="mt-4 flex flex-wrap gap-3">
-            <a href="https://github.com/AurelienCapron/autonomous-ir-projector-remote/blob/main/docs/project_report.pdf" target="_blank" rel="noopener noreferrer"
+            <a href="assets/projets/telecommande/project_report.pdf" target="_blank" rel="noopener noreferrer"
                class="inline-flex items-center gap-2 rounded-full border border-[var(--border)] px-4 py-2 text-xs font-semibold text-[var(--text-soft)] transition hover:-translate-y-0.5 hover:border-accent/50 hover:text-accent-soft">
               <svg class="h-3.5 w-3.5"><use href="#i-external"/></svg><span data-i18n="res.report">Rapport technique (PDF)</span>
             </a>
-            <a href="https://github.com/AurelienCapron/autonomous-ir-projector-remote/blob/main/docs/presentation_slides.pdf" target="_blank" rel="noopener noreferrer"
+            <a href="assets/projets/telecommande/presentation_slides.pdf" target="_blank" rel="noopener noreferrer"
                class="inline-flex items-center gap-2 rounded-full border border-[var(--border)] px-4 py-2 text-xs font-semibold text-[var(--text-soft)] transition hover:-translate-y-0.5 hover:border-accent/50 hover:text-accent-soft">
               <svg class="h-3.5 w-3.5"><use href="#i-external"/></svg><span data-i18n="res.slides">Support de soutenance (PDF)</span>
             </a>
-            <a href="https://github.com/AurelienCapron/autonomous-ir-projector-remote/blob/main/docs/arduino_prototype_schematic.pdf" target="_blank" rel="noopener noreferrer"
+            <a href="assets/projets/telecommande/arduino_prototype_schematic.pdf" target="_blank" rel="noopener noreferrer"
                class="inline-flex items-center gap-2 rounded-full border border-[var(--border)] px-4 py-2 text-xs font-semibold text-[var(--text-soft)] transition hover:-translate-y-0.5 hover:border-accent/50 hover:text-accent-soft">
               <svg class="h-3.5 w-3.5"><use href="#i-external"/></svg><span data-i18n="res.schematic">Schéma électrique initial (PDF)</span>
             </a>
-            <a href="https://github.com/AurelienCapron/autonomous-ir-projector-remote/blob/main/assets/autonomous_remote_demo.mp4?raw=true" target="_blank" rel="noopener noreferrer"
+            <a id="open-demo" href="assets/projets/telecommande/autonomous_remote_demo.mp4" target="_blank" rel="noopener noreferrer"
                class="inline-flex items-center gap-2 rounded-full border-2 border-accent/50 bg-accent/10 px-4 py-2 text-xs font-semibold text-accent-soft transition hover:-translate-y-0.5 hover:bg-accent/15">
               <svg class="h-3.5 w-3.5"><use href="#i-play"/></svg><span data-i18n="res.video">Vidéo de démonstration</span>
             </a>
@@ -312,7 +322,7 @@
         <div class="reveal mt-8 grid gap-6 sm:grid-cols-2">
           <div class="surface flex flex-col overflow-hidden">
             <div class="relative aspect-video overflow-hidden border-b border-[var(--border)]">
-              <img src="https://github.com/AurelienCapron/autonomous-ir-projector-remote/raw/main/assets/arduino_breadboard_prototype.png"
+              <img src="assets/projets/telecommande/arduino_breadboard_prototype.png"
                    alt="Prototype sur plaque d'essai (breadboard) avec Arduino Uno, capteurs PIR et LDR" loading="lazy"
                    class="h-full w-full object-cover transition duration-500 hover:scale-105">
             </div>
@@ -323,7 +333,7 @@
           </div>
           <div class="surface flex flex-col overflow-hidden">
             <div class="relative aspect-video overflow-hidden border-b border-[var(--border)] bg-white">
-              <button type="button" class="pcb-open" aria-haspopup="dialog" aria-controls="pcb-dialog"><img src="https://github.com/AurelienCapron/autonomous-ir-projector-remote/raw/main/assets/pcb_3d_render.png"
+              <button type="button" class="pcb-open" aria-haspopup="dialog" aria-controls="pcb-dialog"><img src="assets/projets/telecommande/pcb_3d_render.png"
                    alt="Rendu 3D de la carte électronique PCB sous KiCad 9, version 1.2" loading="lazy"
                    class="h-full w-full object-contain p-3 transition duration-500 hover:scale-105"><span class="pcb-badge" data-i18n="pcb.open">Explorer en 3D ↗</span></button>
             </div>
@@ -370,7 +380,7 @@
             </li>
           </ul>
           <div class="surface reveal mt-6 overflow-hidden p-2">
-            <img src="https://github.com/AurelienCapron/autonomous-ir-projector-remote/raw/main/assets/sysml_requirements_diagram.png"
+            <img src="assets/projets/telecommande/sysml_requirements_diagram.png"
                  alt="Diagramme des exigences SysML du projet" loading="lazy" class="w-full rounded-md">
           </div>
         </div>
@@ -382,14 +392,19 @@
             La carte électronique double face (135 × 130 mm) intègre un étage de régulation linéaire 5V (TLV1117-50, alimenté en 12V DC via J1) et centralise l'ensemble des capteurs et actionneurs autour du microcontrôleur Raspberry Pi Pico 2WH.
           </p>
           <div class="surface reveal mt-6 overflow-hidden p-2">
-            <img src="https://github.com/AurelienCapron/autonomous-ir-projector-remote/raw/main/assets/system_architecture.svg"
+            <img src="assets/projets/telecommande/system_architecture.svg"
                  alt="Schéma synoptique de l'architecture système" loading="lazy" class="w-full rounded-md bg-white">
           </div>
           <div class="surface reveal mt-6 overflow-hidden p-2 bg-white">
-            <button type="button" class="pcb-open" aria-haspopup="dialog" aria-controls="pcb-dialog"><img src="https://github.com/AurelienCapron/autonomous-ir-projector-remote/raw/main/assets/pcb_3d_render.png"
+            <button type="button" class="pcb-open" aria-haspopup="dialog" aria-controls="pcb-dialog"><img src="assets/projets/telecommande/pcb_3d_render.png"
                  alt="Rendu 3D de la carte PCB sous KiCad 9" loading="lazy" class="mx-auto w-full max-w-lg rounded-md object-contain"><span class="pcb-badge" data-i18n="pcb.open">Explorer en 3D ↗</span></button>
           </div>
 
+<div class="mt-8 grid gap-6 sm:grid-cols-2">
+<figure class="surface overflow-hidden"><img src="assets/projets/telecommande/pcb_soldering_bench.jpg" alt="Assemblage et soudure de la carte au laboratoire" loading="lazy" class="aspect-video w-full object-cover"><figcaption class="p-4 text-sm" data-i18n="build.solder">Assemblage et soudure de la carte au laboratoire.</figcaption></figure>
+<figure class="surface overflow-hidden"><img src="assets/projets/telecommande/prototype_inside_wiring.png" alt="Câblage intérieur du prototype" loading="lazy" class="aspect-video w-full object-cover"><figcaption class="p-4 text-sm" data-i18n="build.wiring">Intégration du Pico et câblage à l’intérieur du boîtier.</figcaption></figure>
+</div>
+          <details class="surface mt-8 p-5"><summary class="cursor-pointer font-semibold" data-i18n="details.pinout">Explorer le brochage et les composants</summary>
           <h3 class="mt-8 text-sm font-semibold uppercase tracking-widest text-[var(--text-muted)]" data-i18n="pinout.title">Brochage de la carte électronique (v1.2)</h3>
           <div class="surface reveal mt-4 overflow-x-auto">
             <table class="w-full min-w-[560px] text-left text-sm">
@@ -402,19 +417,22 @@
               </thead>
               <tbody class="divide-y divide-[var(--border)] text-[var(--text-muted)]">
                 <tr><td class="px-4 py-2.5 font-mono text-xs text-[var(--text-soft)]">J_VGA1 / J_VGA2</td><td class="px-4 py-2.5 font-mono text-xs">GPIO3 / GPIO2</td><td class="px-4 py-2.5" data-i18n="pinout.r1">Lecture de l'état sous tension des vidéoprojecteurs 1 et 2.</td></tr>
-                <tr><td class="px-4 py-2.5 font-mono text-xs text-[var(--text-soft)]">J_Photoresistance1/2</td><td class="px-4 py-2.5 font-mono text-xs">ADC0 / ADC1</td><td class="px-4 py-2.5" data-i18n="pinout.r2">Mesure analogique de luminosité (PGM1201).</td></tr>
+                <tr><td class="px-4 py-2.5 font-mono text-xs text-[var(--text-soft)]">J_Photoresistance1/2</td><td class="px-4 py-2.5 font-mono text-xs">GPIO26 / GPIO27 · ADC0 / ADC1</td><td class="px-4 py-2.5" data-i18n="pinout.r2">Mesure analogique de luminosité (PGM1201).</td></tr>
                 <tr><td class="px-4 py-2.5 font-mono text-xs text-[var(--text-soft)]">J_DETECTEUR_MOUVEMENT1</td><td class="px-4 py-2.5 font-mono text-xs">GPIO16</td><td class="px-4 py-2.5" data-i18n="pinout.r3">Capteur de mouvement infrarouge passif (SBC-PIR).</td></tr>
                 <tr><td class="px-4 py-2.5 font-mono text-xs text-[var(--text-soft)]">J_DETECTEUR_PRESENCE1</td><td class="px-4 py-2.5 font-mono text-xs">GPIO17</td><td class="px-4 py-2.5" data-i18n="pinout.r4">Radar de présence mmWave (SEN0609).</td></tr>
                 <tr><td class="px-4 py-2.5 font-mono text-xs text-[var(--text-soft)]">J_CAPTEUR_SONORE1/2</td><td class="px-4 py-2.5 font-mono text-xs">GPIO20 / GPIO21</td><td class="px-4 py-2.5" data-i18n="pinout.r5">Enveloppe acoustique et seuil binaire (SEN-14262).</td></tr>
                 <tr><td class="px-4 py-2.5 font-mono text-xs text-[var(--text-soft)]">J_EMETTEUR1 / 2</td><td class="px-4 py-2.5 font-mono text-xs">GPIO7 / GPIO14</td><td class="px-4 py-2.5" data-i18n="pinout.r6">Commande PWM 38 kHz des 2 émetteurs IR (GT1087).</td></tr>
                 <tr><td class="px-4 py-2.5 font-mono text-xs text-[var(--text-soft)]">J_RECEPTEUR1</td><td class="px-4 py-2.5 font-mono text-xs">GPIO18</td><td class="px-4 py-2.5" data-i18n="pinout.r7">Réception et apprentissage (Sniffer) de trames IR (GT1089).</td></tr>
                 <tr><td class="px-4 py-2.5 font-mono text-xs text-[var(--text-soft)]">J_Bouton1</td><td class="px-4 py-2.5 font-mono text-xs">GPIO19</td><td class="px-4 py-2.5" data-i18n="pinout.r8">Bouton d'activation du mode apprentissage (3 s).</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-xs">RV1</td><td class="px-4 py-2.5 font-mono text-xs">GPIO28 · ADC2</td><td class="px-4 py-2.5" data-i18n="pinout.rv">Potentiomètre 100 kΩ : ajustement du seuil.</td></tr>
+<tr><td class="px-4 py-2.5 font-mono text-xs">J_LED1 / J_LED2</td><td class="px-4 py-2.5 font-mono text-xs">GPIO0 / GPIO1</td><td class="px-4 py-2.5" data-i18n="pinout.led">LED témoins : présence détectée et projecteur allumé.</td></tr>
               </tbody>
             </table>
           </div>
           <p class="mt-4 text-xs leading-relaxed text-[var(--text-faint)]" data-i18n="bom.note">
             Nomenclature complète (BOM) : Raspberry Pi Pico 2WH (SC1634), régulateur LDO TLV1117-50, capteur sonore SEN-14262, radar mmWave Gravity SEN0609, capteur PIR SBC-PIR, 4 photorésistances PGM1201, 2 émetteurs IR GT1087, récepteur IR GT1089, bouton poussoir R1381R.
           </p>
+          </details>
         </div>
 
         <!-- 3. Protocole NEC & firmware -->
@@ -425,12 +443,12 @@
           </p>
           <div class="mt-6 grid gap-6 sm:grid-cols-2">
             <div class="surface overflow-hidden p-2 bg-white">
-              <img src="https://github.com/AurelienCapron/autonomous-ir-projector-remote/raw/main/assets/nec_protocol_timing.png"
+              <img src="assets/projets/telecommande/nec_protocol_timing.png"
                    alt="Chronogramme du protocole NEC" loading="lazy" class="w-full rounded-md">
               <p class="px-2 py-2 text-center text-xs text-[var(--text-faint)]" data-i18n="sec3.img1">Principe temporel du protocole NEC</p>
             </div>
             <div class="surface overflow-hidden p-2 bg-white">
-              <img src="https://github.com/AurelienCapron/autonomous-ir-projector-remote/raw/main/assets/ir_frame_oscilloscope.png"
+              <img src="assets/projets/telecommande/ir_frame_oscilloscope.png"
                    alt="Capture de la trame infrarouge à l'oscilloscope Tektronix" loading="lazy" class="w-full rounded-md">
               <p class="px-2 py-2 text-center text-xs text-[var(--text-faint)]" data-i18n="sec3.img2">Capture de la trame IR à l'oscilloscope</p>
             </div>
@@ -448,21 +466,21 @@
           </p>
           <div class="mt-6 grid gap-4 sm:grid-cols-3">
             <div class="surface overflow-hidden">
-              <img src="https://github.com/AurelienCapron/autonomous-ir-projector-remote/raw/main/assets/enclosure_3d_base.jpg" alt="Modélisation 3D de la base du boîtier" loading="lazy" class="aspect-square w-full object-cover">
+              <img src="assets/projets/telecommande/enclosure_3d_base.jpg" alt="Modélisation 3D de la base du boîtier" loading="lazy" class="aspect-square w-full object-cover">
             </div>
             <div class="surface overflow-hidden">
-              <img src="https://github.com/AurelienCapron/autonomous-ir-projector-remote/raw/main/assets/enclosure_3d_lid.jpg" alt="Modélisation 3D du couvercle du boîtier" loading="lazy" class="aspect-square w-full object-cover">
+              <img src="assets/projets/telecommande/enclosure_3d_lid.jpg" alt="Modélisation 3D du couvercle du boîtier" loading="lazy" class="aspect-square w-full object-cover">
             </div>
             <div class="surface overflow-hidden bg-white">
-              <img src="https://github.com/AurelienCapron/autonomous-ir-projector-remote/raw/main/assets/laser_cut_layout.jpg" alt="Plan 2D de découpe laser du boîtier (boxes.py)" loading="lazy" class="aspect-square w-full object-contain p-2">
+              <img src="assets/projets/telecommande/laser_cut_layout.jpg" alt="Plan 2D de découpe laser du boîtier (boxes.py)" loading="lazy" class="aspect-square w-full object-contain p-2">
             </div>
           </div>
           <div class="mt-4 grid gap-4 sm:grid-cols-2">
             <div class="surface overflow-hidden">
-              <img src="https://github.com/AurelienCapron/autonomous-ir-projector-remote/raw/main/assets/prototype_assembled_box.png" alt="Boîtier final assemblé et câblé" loading="lazy" class="aspect-video w-full object-cover">
+              <img src="assets/projets/telecommande/prototype_assembled_box.png" alt="Boîtier final assemblé et câblé" loading="lazy" class="aspect-video w-full object-cover">
             </div>
             <div class="surface overflow-hidden">
-              <img src="https://github.com/AurelienCapron/autonomous-ir-projector-remote/raw/main/assets/project_defense_setup.jpg" alt="Banc de démonstration lors de la soutenance finale" loading="lazy" class="aspect-video w-full object-cover">
+              <img src="assets/projets/telecommande/project_defense_setup.jpg" alt="Banc de démonstration lors de la soutenance finale" loading="lazy" class="aspect-video w-full object-cover">
             </div>
           </div>
         </div>
@@ -509,7 +527,7 @@
         <div id="section-6" class="project-section reveal mt-14">
           <h2 class="text-2xl font-bold text-[var(--text-strong)]" data-i18n="sec6.title">6. Résultats</h2>
           <p class="mt-3 leading-relaxed text-[var(--text-muted)]" data-i18n="sec6.p1">
-            Un prototype fonctionnel validé en conditions réelles dans la salle des conseils : détection fiable de l'état des vidéoprojecteurs et de l'occupation de la salle, extinction automatique après 1h30 d'inactivité et mode d'apprentissage universel opérationnel — permettant d'éviter jusqu'à 1 250 heures par an d'allumage inutile, soit près d'un tiers de la durée de vie des lampes.
+            Un prototype fonctionnel validé en conditions réelles dans la salle des conseils : détection fiable de l'état des vidéoprojecteurs et de l'occupation de la salle, extinction automatique après 1h30 d'inactivité et mode d'apprentissage universel opérationnel — visant à réduire un allumage inutile estimé à 1 250 heures par an dans le contexte étudié, soit près d'un tiers de la durée de vie des lampes.
           </p>
         </div>
 
@@ -587,6 +605,11 @@
        class="pointer-events-none fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-lg border border-accent/30 bg-[var(--surface)] px-4 py-2 text-sm font-medium text-accent-soft opacity-0 shadow-xl transition-opacity duration-300"></div>
 
 
+<dialog id="video-dialog" aria-labelledby="video-title">
+<div class="pcb-toolbar"><h2 id="video-title" data-i18n="video.title">Démonstration du prototype</h2><button type="button" class="pcb-close" aria-label="Fermer / Close" autofocus>×</button></div>
+<video id="project-video" controls playsinline preload="none" poster="assets/projets/telecommande/project_defense_setup.jpg"><source src="assets/projets/telecommande/autonomous_remote_demo.mp4" type="video/mp4"></video>
+<div class="pcb-bottom"><p data-i18n="video.hint">Si la lecture ne démarre pas automatiquement, appuyez sur Lecture.</p><a href="assets/projets/telecommande/autonomous_remote_demo.mp4" target="_blank" rel="noopener" class="text-accent-soft" data-i18n="video.fallback">Ouvrir la vidéo dans un nouvel onglet</a></div>
+</dialog>
 <dialog id="pcb-dialog" aria-labelledby="pcb-title">
  <div class="pcb-toolbar"><h2 id="pcb-title" data-i18n="pcb.title">Carte électronique · Vue 3D</h2><button type="button" class="pcb-close" aria-label="Fermer / Close" autofocus>×</button></div>
  <model-viewer id="pcb-viewer" alt="Carte électronique de la télécommande / Remote control PCB" camera-controls touch-action="none" camera-orbit="20deg 40deg 100%" field-of-view="30deg" min-camera-orbit="auto 0deg auto" max-camera-orbit="auto 180deg auto" shadow-intensity="0.3" exposure="1" interaction-prompt="auto"></model-viewer>
@@ -627,6 +650,11 @@
     FR['toast.copied'] = "Email copié !";
 
     const EN = {
+ "overview.delay":"Inactivity delay before shutdown", "overview.ir":"Infrared control · NEC protocol", "overview.gain":"Estimated unnecessary run-time in the project setting",
+ "build.solder":"Board assembly and soldering in the laboratory.", "build.wiring":"Pico integration and wiring inside the enclosure.",
+ "details.pinout":"Explore pinout and components", "pinout.rv":"100 kΩ potentiometer: threshold adjustment.", "pinout.led":"Status LEDs: presence detected and projector powered on.",
+ "video.title":"Prototype demonstration", "video.fallback":"Open the video in a new tab", "video.hint":"If playback does not start automatically, press Play.",
+
       "pcb.open": "Explore in 3D ↗", "pcb.title": "Circuit board · 3D view",
       "pcb.help": "Drag to rotate · Scroll or pinch to zoom", "pcb.top": "Top", "pcb.bottom": "Bottom", "pcb.reset": "Perspective",
 
@@ -644,7 +672,7 @@
       "breadcrumb.proj": "Projects",
       "breadcrumb.current": "Autonomous Infrared Remote (Project 32)",
       "hero.eyebrow": "Industrial project No. 32 · Grenoble INP - Phelma · 2025 — 2026",
-      "hero.title": "Autonomous Infrared Remote Control for Video Projectors",
+      "hero.title": "Autonomous Infrared Remote Control",
       "hero.sub": "Autonomous embedded system that shuts down the video projectors in the Grenoble INP - Phelma boardroom: infrared NEC protocol (38 kHz) reverse-engineering, multi-sensor fusion (PIR, mmWave radar, sound, VGA), a custom PCB designed in KiCad 9, and Raspberry Pi Pico 2WH firmware (MicroPython & C++).",
       "tag.nec": "NEC Protocol",
       "tag.pcb": "Double-sided PCB",
@@ -699,7 +727,7 @@
       "c4.title": "Enclosure design and manufacturing",
       "c4.desc": "3D modelling, laser-cut layout generation (boxes.py) and assembly at the Phelma FabLab.",
       "sec6.title": "6. Results",
-      "sec6.p1": "A working prototype validated under real conditions in the boardroom: reliable detection of projector state and room occupancy, automatic shutdown after 1h30 of inactivity, and a fully operational universal learning mode — avoiding up to 1,250 hours per year of needless run-time, close to a third of the lamps' lifespan.",
+      "sec6.p1": "A working prototype validated under real conditions in the boardroom: reliable detection of projector state and room occupancy, automatic shutdown after 1h30 of inactivity, and a fully operational universal learning mode — aiming to reduce unnecessary run-time estimated at 1,250 hours per year in the studied setting, close to a third of the lamps' lifespan.",
       "proj.code": "View source code",
       "nav.prev": "← Previous",
       "nav.prevTitle": "Domethic System",
@@ -802,5 +830,13 @@
  dialog.querySelectorAll('[data-orbit]').forEach(button=>button.addEventListener('click',()=>{viewer.setAttribute('camera-orbit',button.dataset.orbit);viewer.setAttribute('camera-target','auto auto auto');viewer.setAttribute('field-of-view','30deg');}));
 })();
 </script>
-</body>
+<script>
+(()=>{
+const link=document.getElementById('open-demo'), dialog=document.getElementById('video-dialog'), video=document.getElementById('project-video');let overflow='';
+link.addEventListener('click',event=>{event.preventDefault();overflow=document.body.style.overflow;dialog.showModal();document.body.style.overflow='hidden';video.play().catch(()=>{});});
+dialog.querySelector('.pcb-close').addEventListener('click',()=>dialog.close());
+dialog.addEventListener('close',()=>{video.pause();document.body.style.overflow=overflow;link.focus();});
+dialog.addEventListener('click',event=>{if(event.target===dialog){const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)dialog.close();}});
+})();
+</script></body>
 </html>
