@@ -853,7 +853,7 @@ html {
               <svg class="h-4 w-4"><use href="#i-arrow"/></svg>
             </a>
             <!-- 📄 CV : dépose tes 2 PDF dans assets/ (le lien change automatiquement selon la langue) -->
-            <a id="cv-download" href="assets/CV_Aurelien_Capron.pdf" target="_blank" rel="noopener noreferrer" class="btn-ghost">
+            <a id="cv-download" href="assets/CV_Aurelien_Capron.pdf" target="_blank" rel="noopener noreferrer" class="btn-ghost" data-goatcounter-click="clic-cv" data-goatcounter-title="Clic sur le CV">
               <svg class="h-4 w-4"><use href="#i-download"/></svg>
               <span data-i18n="hero.cta2">Voir mon CV (PDF)</span>
             </a>
@@ -1353,7 +1353,7 @@ html {
     </div>
 
     <div class="relative border-t border-[var(--border)] px-6 py-6 text-center font-mono text-xs text-[var(--text-faint)]">
-      © <span id="year">2026</span> Aurélien Capron · <span data-i18n="footer.built">Conçu avec HTML &amp; CSS</span>
+      © <span id="year">2026</span> Aurélien Capron · <span data-i18n="footer.built">Conçu avec HTML &amp; CSS</span> · <a href="mentions-legales.html" data-i18n="footer.legal" class="underline-offset-4 transition-colors hover:text-[var(--text-strong)] hover:underline">Mentions légales</a>
     </div>
   </footer>
   </div><!-- /#page -->
@@ -1510,6 +1510,7 @@ html {
       "contact.copy": "Copy", "contact.copiedBtn": "Copied",
       "toast.copied": "Email copied!", "toast.copiedPhone": "Phone number copied!",
       "footer.built": "Built with HTML & CSS",
+      "footer.legal": "Legal notice",
       "egg.cmd": "sudo systemctl start internship-aurelien.service",
       "aria.menu": "Open menu", "aria.top": "Back to top",
       "aria.linkedin": "LinkedIn profile", "aria.github": "GitHub profile",
@@ -1998,5 +1999,14 @@ html {
     addEventListener('touchcancel', release, { passive: true });
   })();
   </script>
+
+  <!--
+    MESURE D'AUDIENCE (GoatCounter) — désactivée tant que tu n'as pas créé ton compte
+    1. Crée un compte gratuit sur https://www.goatcounter.com (choisis un « code », ex. aurelien)
+    2. Remplace MONCODE ci-dessous par ce code, puis supprime les marqueurs de commentaire
+    3. Décommente AUSSI la section « Mesure d'audience » dans mentions-legales.html
+    Astuce candidatures : partage ton site avec ?ref=linkedin, ?ref=entreprise-x… pour savoir d'où viennent les visites.
+  <script data-goatcounter="https://MONCODE.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  -->
 </body>
 </html>

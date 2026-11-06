@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <!--
+  ╔══════════════════════════════════════════════════════════════════════╗
+  ║  MENTIONS LÉGALES — à placer à la racine du dépôt, à côté d'index.html ║
+  ║                                                                      ║
+  ║  À VÉRIFIER / COMPLÉTER AVANT PUBLICATION :                          ║
+  ║   1. Adresse de GitHub (hébergeur) : vérifie qu'elle est toujours    ║
+  ║      à jour sur https://github.com                                   ║
+  ║   2. Si tu considères ton site comme PROFESSIONNEL (et non personnel)║
+  ║      ajoute ton adresse postale dans la section « Éditeur ».         ║
+  ║   3. Mesure d'audience : la section « Mesure d'audience » est        ║
+  ║      commentée plus bas. Décommente-la EN MÊME TEMPS que le script   ║
+  ║      GoatCounter dans index.html (sinon le texte serait faux).       ║
+  ║   4. Quand tu compileras Tailwind en local, supprime la phrase sur   ║
+  ║      « ressources techniques chargées depuis un service tiers ».     ║
+  ║   5. Ajoute cette page à sitemap.xml.                                ║
+  ╚══════════════════════════════════════════════════════════════════════╝
+  -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mentions légales — Aurélien CAPRON</title>
+  <meta name="description" content="Mentions légales du portfolio d'Aurélien Capron.">
+  <meta name="theme-color" content="#f6f7f9">
+  <meta name="color-scheme" content="light">
+  <link rel="canonical" href="https://aureliencapron.github.io/mentions-legales.html">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png">
+
+  <!-- Thème : choix mémorisé > préférence du système > clair (même logique que la page d'accueil) -->
+  <script>
+    try {
+      let t = null;
+      try { t = localStorage.getItem('theme'); } catch (e) {}
+      const dark = t === 'dark' || (t !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches);
+      if (dark) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#0c0e11');
+        document.querySelector('meta[name="color-scheme"]')?.setAttribute('content', 'dark');
+      }
+    } catch (e) {}
+  </script>
+
+  <style>
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 400; font-display: swap; src: url('assets/fonts/inter-400.woff2') format('woff2'); }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 500; font-display: swap; src: url('assets/fonts/inter-500.woff2') format('woff2'); }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 600; font-display: swap; src: url('assets/fonts/inter-600.woff2') format('woff2'); }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 700; font-display: swap; src: url('assets/fonts/inter-700.woff2') format('woff2'); }
+    @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url('assets/fonts/jetbrains-mono-400.woff2') format('woff2'); }
+    @font-face { font-family: 'Barlow Semi Condensed'; font-style: normal; font-weight: 600; font-display: swap; src: url('assets/fonts/barlow-semi-condensed-600.woff2') format('woff2'); }
+    @font-face { font-family: 'Barlow Semi Condensed'; font-style: normal; font-weight: 700; font-display: swap; src: url('assets/fonts/barlow-semi-condensed-700.woff2') format('woff2'); }
+    @font-face {
+      font-family: 'Inter Fallback'; src: local('Arial');
+      size-adjust: 107.4%; ascent-override: 90.2%; descent-override: 22.5%; line-gap-override: 0%;
+    }
+  </style>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        fontFamily: {
+          sans: ['Inter', 'Inter Fallback', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          display: ['Barlow Semi Condensed', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'monospace']
+        },
+        colors: { accent: { DEFAULT: 'rgb(var(--accent-rgb) / <alpha-value>)', soft: 'var(--accent-soft)' } }
+      } }
+    }
+  </script>
+
+  <style>
+    /* Mêmes jetons de thème que la page d'accueil */
+    :root {
+      color-scheme: dark;
+      --bg: #0c0e11; --surface: rgba(22,27,34,.85); --header-bg: rgba(12,14,17,.78);
+      --border: rgba(255,255,255,.11); --chip-bg-active: rgba(255,255,255,.11);
+      --text: #cbd5e1; --text-strong: #ffffff; --text-soft: #e2e8f0; --text-muted: #94a3b8; --text-faint: #7c8ba1;
+      --accent-soft: #e0915c; --accent-rgb: 224 145 92;
+      --card-shadow: 0 10px 30px -10px rgba(0,0,0,.45);
+    }
+    :root[data-theme="light"] {
+      color-scheme: light;
+      --bg: #f6f7f9; --surface: rgba(255,255,255,.94); --header-bg: rgba(246,247,249,.85);
+      --border: rgba(15,23,42,.09); --chip-bg-active: rgba(15,23,42,.09);
+      --text: #334155; --text-strong: #0f172a; --text-soft: #1e293b; --text-muted: #475569; --text-faint: #5b6a7f;
+      --accent-soft: #b4531a; --accent-rgb: 180 83 26;
+      --card-shadow: 0 8px 24px -4px rgba(15,23,42,.05), 0 2px 6px -1px rgba(15,23,42,.03);
+    }
+    html { scroll-behavior: smooth; }
+    ::selection { background: rgb(var(--accent-rgb) / .28); color: var(--text-strong); }
+    :focus-visible { outline: 2px solid var(--accent-soft); outline-offset: 3px; }
+    h1, h2 { text-wrap: balance; }
+    p { text-wrap: pretty; }
+    .lang-btn { border-radius: .375rem; padding: .25rem .625rem; color: var(--text-muted); transition: color .2s; }
+    .lang-btn:hover { color: var(--text-strong); }
+    .lang-btn[aria-pressed="true"] { background: var(--chip-bg-active); color: var(--text-strong); }
+    .legal a:not(.plain) { color: var(--accent-soft); text-decoration: underline; text-underline-offset: 3px; }
+    .legal a:not(.plain):hover { text-decoration-thickness: 2px; }
+    @media print {
+      header, .no-print { display: none !important; }
+      :root[data-theme] { --bg:#fff; --surface:#fff; --text:#1f2937; --text-strong:#000; --text-soft:#111827; --text-muted:#374151; --text-faint:#4b5563; --border:#d1d5db; --accent-soft:#9a3f10; }
+    }
+  </style>
+</head>
+
+<body class="bg-[var(--bg)] font-sans text-[var(--text)] antialiased">
+
+  <a href="#main" data-i18n="skip"
+     class="sr-only z-[60] rounded-md bg-accent px-4 py-2 font-semibold text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4">Aller au contenu</a>
+
+  <header class="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--header-bg)] backdrop-blur-md">
+    <nav class="mx-auto flex h-16 max-w-3xl items-center justify-between px-6" aria-label="Navigation">
+      <a href="index.html" class="flex items-center gap-2 text-sm font-medium text-[var(--text-muted)] transition-colors hover:text-[var(--text-strong)]">
+        <span aria-hidden="true">←</span><span data-i18n="back">Retour au portfolio</span>
+      </a>
+      <div class="flex items-center gap-3">
+        <div class="flex items-center rounded-lg border border-[var(--border)] p-0.5 font-mono text-xs" role="group" aria-label="Langue / Language">
+          <button type="button" class="lang-btn" data-lang="fr" aria-pressed="true">FR</button>
+          <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <button id="theme-toggle" type="button"
+                class="grid h-9 w-9 place-items-center rounded-lg border border-[var(--border)] text-[var(--text-muted)] transition-colors hover:text-[var(--text-strong)]"
+                data-i18n-aria="aria.theme" aria-label="Basculer le thème clair/sombre">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path id="theme-icon" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/>
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" tabindex="-1" class="legal mx-auto max-w-3xl px-6 py-16 outline-none sm:py-20">
+    <p class="text-xs font-semibold uppercase tracking-widest text-[var(--text-muted)]" data-i18n="eyebrow">Informations légales</p>
+    <h1 class="mt-2 font-display text-4xl font-bold tracking-tight text-[var(--text-strong)] sm:text-5xl" data-i18n="title">Mentions légales</h1>
+    <p class="mt-3 font-mono text-xs text-[var(--text-faint)]" data-i18n="updated">Dernière mise à jour : 5 novembre 2026</p>
+
+    <div class="mt-12 space-y-10">
+
+      <section>
+        <h2 class="text-xl font-semibold text-[var(--text-strong)]" data-i18n="s1.t">Éditeur du site</h2>
+        <!-- Si tu considères le site comme professionnel, ajoute ici ton adresse postale. -->
+        <p class="mt-3 leading-relaxed" data-i18n="s1.p">Ce site est édité à titre personnel par <strong class="text-[var(--text-soft)]">Aurélien Capron</strong>, qui en est également le directeur de la publication.<br>Contact : <a href="mailto:aurelien-capron@outlook.fr">aurelien-capron@outlook.fr</a></p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-[var(--text-strong)]" data-i18n="s2.t">Hébergeur</h2>
+        <!-- ⚠ Vérifie que cette adresse est toujours celle indiquée par GitHub. -->
+        <p class="mt-3 leading-relaxed" data-i18n="s2.p">Le site est hébergé par <strong class="text-[var(--text-soft)]">GitHub, Inc.</strong> (service GitHub Pages), 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis. Site web : <a href="https://github.com" target="_blank" rel="noopener noreferrer">github.com</a></p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-[var(--text-strong)]" data-i18n="s3.t">Propriété intellectuelle</h2>
+        <p class="mt-3 leading-relaxed" data-i18n="s3.p">Sauf mention contraire, les textes, images, photographies, visuels et le code de ce site sont la propriété d'Aurélien Capron. Toute reproduction ou réutilisation sans autorisation préalable est interdite, à l'exception des courtes citations accompagnées de la source. Pour toute demande concernant une photographie (droit à l'image, retrait), écrivez à l'adresse de contact ci-dessus : elle sera traitée rapidement.</p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold text-[var(--text-strong)]" data-i18n="s4.t">Données personnelles</h2>
+        <p class="mt-3 leading-relaxed" data-i18n="s4.p">Ce site ne comporte ni formulaire, ni compte utilisateur, ni cookie publicitaire ou de suivi. Votre choix de thème (clair ou sombre) et de langue est mémorisé uniquement dans votre navigateur et n'est jamais transmis. Comme tout hébergeur, GitHub peut enregistrer des données techniques de connexion (adresse IP, journaux) selon sa propre politique de confidentialité. Des ressources techniques (feuilles de style) peuvent être chargées depuis un service tiers. Pour toute question ou pour exercer vos droits sur vos données, contactez : <a href="mailto:aurelien-capron@outlook.fr">aurelien-capron@outlook.fr</a></p>
+      </section>
+
+      <!--
+      ════ MESURE D'AUDIENCE — à décommenter en même temps que le script GoatCounter d'index.html ════
+      <section>
+        <h2 class="text-xl font-semibold text-[var(--text-strong)]" data-i18n="s5.t">Mesure d'audience</h2>
+        <p class="mt-3 leading-relaxed" data-i18n="s5.p">Ce site utilise GoatCounter, un outil de statistiques de fréquentation qui n'utilise aucun cookie et ne produit que des données agrégées et anonymes (pages vues, pays, type d'appareil, origine de la visite). Ces statistiques servent uniquement à l'éditeur du site pour comprendre comment il est consulté ; elles ne sont ni recoupées avec d'autres données ni cédées à des tiers. Vous pouvez vous y opposer en activant le signal « Do Not Track » de votre navigateur ou en écrivant à l'adresse de contact.</p>
+      </section>
+      ═══════════════════════════════════════════════════════════════════════════════════════════════ -->
+
+      <section>
+        <h2 class="text-xl font-semibold text-[var(--text-strong)]" data-i18n="s6.t">Liens externes</h2>
+        <p class="mt-3 leading-relaxed" data-i18n="s6.p">Ce site contient des liens vers des services tiers (LinkedIn, GitHub, Instagram). Leur contenu et leurs pratiques ne relèvent pas de la responsabilité de l'éditeur.</p>
+      </section>
+    </div>
+
+    <p class="no-print mt-14">
+      <a href="index.html" class="plain inline-flex items-center gap-2 rounded-md border border-[var(--border)] px-5 py-3 text-sm font-semibold text-[var(--text-soft)] transition-colors hover:border-accent/50 hover:text-accent-soft">
+        <span aria-hidden="true">←</span><span data-i18n="back">Retour au portfolio</span>
+      </a>
+    </p>
+  </main>
+
+  <footer class="border-t border-[var(--border)] px-6 py-6 text-center font-mono text-xs text-[var(--text-faint)]">
+    © <span id="year">2026</span> Aurélien Capron
+  </footer>
+
+  <script>
+  (() => {
+    const $  = (s, r = document) => r.querySelector(s);
+    const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+    $('#year').textContent = new Date().getFullYear();
+
+    /* ───────── Thème ───────── */
+    const MOON = 'M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z';
+    const SUN  = 'M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8ZM12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41';
+    function applyTheme(theme, persist) {
+      document.documentElement.setAttribute('data-theme', theme);
+      $('#theme-icon').setAttribute('d', theme === 'light' ? MOON : SUN);
+      $('meta[name="theme-color"]')?.setAttribute('content', theme === 'light' ? '#f6f7f9' : '#0c0e11');
+      $('meta[name="color-scheme"]')?.setAttribute('content', theme);
+      if (persist) { try { localStorage.setItem('theme', theme); } catch (e) {} }
+    }
+    applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light', false);
+    $('#theme-toggle').addEventListener('click', () => {
+      applyTheme(document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light', true);
+    });
+
+    /* ───────── Langue FR / EN (même clé « lang » que la page d'accueil) ───────── */
+    const FR = {};
+    $$('[data-i18n]').forEach(el => { FR[el.dataset.i18n] = el.innerHTML.trim(); });
+    $$('[data-i18n-aria]').forEach(el => { FR[el.dataset.i18nAria] = el.getAttribute('aria-label'); });
+    FR['meta.title'] = document.title;
+    FR['meta.desc']  = $('meta[name="description"]').content;
+
+    const EN = {
+      'meta.title': 'Legal notice — Aurélien CAPRON',
+      'meta.desc': 'Legal notice of Aurélien Capron\'s portfolio.',
+      'skip': 'Skip to content',
+      'back': 'Back to portfolio',
+      'aria.theme': 'Toggle light/dark theme',
+      'eyebrow': 'Legal information',
+      'title': 'Legal notice',
+      'updated': 'Last updated: November 5, 2026',
+      's1.t': 'Site publisher',
+      's1.p': 'This website is published on a personal basis by <strong class="text-[var(--text-soft)]">Aurélien Capron</strong>, who is also the publication director.<br>Contact: <a href="mailto:aurelien-capron@outlook.fr">aurelien-capron@outlook.fr</a>',
+      's2.t': 'Hosting provider',
+      's2.p': 'The site is hosted by <strong class="text-[var(--text-soft)]">GitHub, Inc.</strong> (GitHub Pages service), 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, United States. Website: <a href="https://github.com" target="_blank" rel="noopener noreferrer">github.com</a>',
+      's3.t': 'Intellectual property',
+      's3.p': 'Unless otherwise stated, the texts, images, photographs, visuals and code of this site are the property of Aurélien Capron. Any reproduction or reuse without prior permission is prohibited, except for short quotations with the source credited. For any request concerning a photograph (image rights, removal), please write to the contact address above: it will be handled promptly.',
+      's4.t': 'Personal data',
+      's4.p': 'This site has no form, no user account, and no advertising or tracking cookies. Your theme (light or dark) and language choices are stored only in your browser and are never transmitted. Like any hosting provider, GitHub may record technical connection data (IP address, logs) under its own privacy policy. Technical resources (style sheets) may be loaded from a third-party service. For any question or to exercise your rights over your data, contact: <a href="mailto:aurelien-capron@outlook.fr">aurelien-capron@outlook.fr</a>',
+      's5.t': 'Audience measurement',
+      's5.p': 'This site uses GoatCounter, a traffic statistics tool that uses no cookies and only produces aggregated, anonymous data (page views, country, device type, referrer). These statistics are used solely by the site publisher to understand how the site is visited; they are neither cross-referenced with other data nor shared with third parties. You can object by enabling the "Do Not Track" signal in your browser or by writing to the contact address.',
+      's6.t': 'External links',
+      's6.p': 'This site contains links to third-party services (LinkedIn, GitHub, Instagram). Their content and practices are not the responsibility of the publisher.'
+    };
+    const DICT = { fr: FR, en: EN };
+
+    function setLang(lang, persist) {
+      const d = DICT[lang];
+      document.documentElement.lang = lang;
+      $$('[data-i18n]').forEach(el => { const v = d[el.dataset.i18n]; if (v != null) el.innerHTML = v; });
+      $$('[data-i18n-aria]').forEach(el => {
+        const v = d[el.dataset.i18nAria];
+        if (v != null) { el.setAttribute('aria-label', v); el.setAttribute('title', v); }
+      });
+      document.title = d['meta.title'];
+      $('meta[name="description"]').setAttribute('content', d['meta.desc']);
+      $$('.lang-btn').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+      if (persist) { try { localStorage.setItem('lang', lang); } catch (e) {} }
+    }
+    $$('.lang-btn').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang, true)));
+
+    let urlLang = null, saved = null;
+    try { urlLang = new URLSearchParams(location.search).get('lang'); } catch (e) {}
+    try { saved = localStorage.getItem('lang'); } catch (e) {}
+    const browserLang = (navigator.language || '').toLowerCase().startsWith('fr') ? 'fr' : 'en';
+    const initial = (urlLang === 'en' || urlLang === 'fr') ? urlLang
+                  : (saved === 'en' || saved === 'fr' ? saved : browserLang);
+    if (initial === 'en') setLang('en', false);
+  })();
+  </script>
+</body>
+</html>
