@@ -589,8 +589,8 @@
 
 <dialog id="pcb-dialog" aria-labelledby="pcb-title">
  <div class="pcb-toolbar"><h2 id="pcb-title" data-i18n="pcb.title">Carte électronique · Vue 3D</h2><button type="button" class="pcb-close" aria-label="Fermer / Close" autofocus>×</button></div>
- <model-viewer id="pcb-viewer" alt="Carte électronique de la télécommande / Remote control PCB" camera-controls touch-action="none" camera-orbit="0deg 35deg auto" min-camera-orbit="auto 0deg auto" max-camera-orbit="auto 180deg auto" shadow-intensity="0.3" exposure="1" interaction-prompt="auto"></model-viewer>
- <div class="pcb-bottom"><p data-i18n="pcb.help">Glissez pour tourner · Molette ou pincement pour zoomer</p><div class="pcb-views"><button type="button" data-orbit="0deg 0deg auto" data-i18n="pcb.top">Dessus</button><button type="button" data-orbit="0deg 180deg auto" data-i18n="pcb.bottom">Dessous</button><button type="button" data-orbit="0deg 35deg auto" data-i18n="pcb.reset">Perspective</button></div></div>
+ <model-viewer id="pcb-viewer" alt="Carte électronique de la télécommande / Remote control PCB" camera-controls touch-action="none" camera-orbit="20deg 40deg 100%" field-of-view="30deg" min-camera-orbit="auto 0deg auto" max-camera-orbit="auto 180deg auto" shadow-intensity="0.3" exposure="1" interaction-prompt="auto"></model-viewer>
+ <div class="pcb-bottom"><p data-i18n="pcb.help">Glissez pour tourner · Molette ou pincement pour zoomer</p><div class="pcb-views"><button type="button" data-orbit="0deg 0deg 100%" data-i18n="pcb.top">Dessus</button><button type="button" data-orbit="0deg 180deg 100%" data-i18n="pcb.bottom">Dessous</button><button type="button" data-orbit="20deg 40deg 100%" data-i18n="pcb.reset">Perspective</button></div></div>
  <p id="pcb-status" role="status" aria-live="polite"></p>
 </dialog>
 
@@ -788,13 +788,14 @@
    });return loader;
  }
  document.querySelectorAll('.pcb-open').forEach(button=>button.addEventListener('click',async()=>{
+   viewer.setAttribute('camera-orbit','20deg 40deg 100%');viewer.setAttribute('field-of-view','30deg');viewer.setAttribute('camera-target','auto auto auto');
    previousFocus=button;previousOverflow=document.body.style.overflow;dialog.showModal();document.body.style.overflow='hidden';
    status.textContent=ready?'':message('Chargement de la carte 3D…','Loading the 3D board…');
    try {await loadViewer();if(!viewer.hasAttribute('src')) viewer.setAttribute('src','assets/projets/telecommande/telecommande.glb');}
    catch(e){status.textContent=message('Le lecteur 3D ne peut pas se charger. Vérifiez votre connexion puis rouvrez cette fenêtre.','The 3D viewer could not load. Check your connection and reopen this window.');}
  }));
  viewer.addEventListener('load',()=>{ready=true;status.textContent='';});
- viewer.addEventListener('error',()=>{ready=false;viewer.removeAttribute('src');status.textContent=message('Impossible de charger le modèle. Vérifiez la présence du fichier telecommande.glb sur le site.','Unable to load the model. Check that telecommande.glb is present on the site.');});
+ viewer.addEventListener('error',()=>{ready=false;viewer.removeAttribute('src');status.textContent=message((location.protocol==='file:' ? 'Ouvrez cette page via http://localhost:8000/telecommande.html ou sur le site publié : le chargement 3D est bloqué en ouverture directe file://.' : 'Impossible de charger le modèle. Vérifiez la présence du fichier telecommande.glb sur le site.'),'Unable to load the model. Check that telecommande.glb is present on the site.');});
  dialog.querySelector('.pcb-close').addEventListener('click',()=>dialog.close());
  dialog.addEventListener('click',event=>{if(event.target===dialog){const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)dialog.close();}});
  dialog.addEventListener('close',()=>{document.body.style.overflow=previousOverflow||'';previousFocus?.focus();});
