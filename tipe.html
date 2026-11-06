@@ -163,7 +163,7 @@
 @media(max-width:760px){.story-main{padding:104px 20px 40px}.story-hero{grid-template-columns:1fr;gap:30px;padding-bottom:34px}.hero-photo img{height:310px}.story-lead{font-size:16px}.story-nav{gap:14px 20px}.story-step{padding:40px 0}.step-body{margin-left:0}.step-heading{gap:12px}.story-facts{gap:14px}.story-facts strong{font-size:23px}.board-feature{grid-template-columns:1fr;padding:20px;gap:20px}.board-feature .pcb-open{height:260px}.test-layout{grid-template-columns:1fr}.story-media.trio{grid-template-columns:1fr}.trio img{height:250px}.story-media.pair,.story-media.portraits{grid-template-columns:1fr}.story-figure img{height:auto;max-height:360px}.story-closing{padding:26px}.resource-links{grid-template-columns:1fr}.story-actions .btn-primary,.story-actions .btn-ghost{padding:12px 14px}}
 </style><style>
 .story-main table{width:100%;border-collapse:collapse;font-size:14px;text-align:left}.story-main th,.story-main td{padding:15px;border-bottom:1px solid var(--border);white-space:nowrap}.story-main th{font-weight:500}.story-main caption{text-align:left;font-size:12px;color:var(--text-muted);padding:15px}.formula{font-family:monospace;font-size:18px}#video-dialog{width:min(850px,94vw);padding:16px;background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:12px;margin:auto}#video-dialog::backdrop{background:#000b}#project-video{width:100%;max-height:70dvh;background:#000}.pcb-toolbar{display:flex;justify-content:space-between;align-items:center;padding:8px}.pcb-close{padding:8px 16px;font-size:25px;cursor:pointer;border:1px solid var(--border);border-radius:6px}button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--accent-soft);outline-offset:4px}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
-</style></head>
+</style><style id="caption-alignment">.story-figure figcaption,#image-caption{text-align:center;text-wrap:pretty;margin-inline:auto;max-width:68ch}#image-caption{padding:16px 24px 22px}</style></head>
 
 <body class="bg-[var(--bg)] font-sans text-[var(--text)] antialiased">
 
@@ -191,7 +191,7 @@
     <div id="progress" class="absolute left-0 top-0 h-[2px] w-0 bg-gradient-to-r from-accent to-volt"></div>
     <nav class="mx-auto flex h-16 max-w-6xl items-center justify-between px-6" aria-label="Navigation principale">
       <a href="index.html#accueil" class="flex items-center gap-3">
-        <span class="grid h-8 w-8 place-items-center rounded-lg border border-[var(--border)] bg-[var(--surface)] font-mono text-xs font-bold text-accent-soft">AC</span>
+        <span class="grid h-8 w-8 place-items-center rounded-lg border border-[var(--border)] bg-[var(--surface)] font-sans text-sm font-bold text-accent-soft">AC</span>
         <span class="hidden text-sm font-semibold text-[var(--text-strong)] sm:inline">Aurélien Capron</span>
       </a>
 
@@ -249,7 +249,7 @@
     </div>
 
     <div class="relative border-t border-[var(--border)] px-6 py-6 text-center font-mono text-xs text-[var(--text-faint)]">
-      © <span id="year">2026</span> Aurélien Capron · <span data-i18n="footer.built">Conçu avec HTML &amp; CSS</span>
+      © <span id="year">2026</span> Aurélien Capron · <span data-i18n="footer.built">Conçu avec HTML &amp; CSS</span> · <a href="mentions-legales.html" data-i18n="footer.legal" class="underline-offset-4 transition-colors hover:text-[var(--text-strong)] hover:underline">Mentions légales</a>
     </div>
   </footer>
 
@@ -294,6 +294,7 @@
     FR['toast.copied'] = "Email copié !";
 
     const EN = {
+      "footer.legal": "Legal notice",
       "c1.t": "Player detection with HSV filtering",
       "c1.d": "After an initial YOLO prototype, real-time detection relies on colour filtering in HSV space, binary thresholding and main-contour extraction. Thresholds are tuned with an interactive calibration tool.",
       "c2.t": "Stereo-vision localization",
