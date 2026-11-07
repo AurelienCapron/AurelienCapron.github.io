@@ -743,7 +743,7 @@ html {
 #projects-track .crop-cameras img{object-position:50% 36%;transform:scale(1.44)}
 .myha-actions{gap:.5rem;flex-wrap:nowrap;container-type:inline-size}
 @container (max-width:235px){.myha-actions a{padding-inline:.55rem!important}.myha-actions svg{display:none}}
-</style></head>
+</style><style>#projects-track .race-cover img{object-fit:cover;object-position:center 57%;padding:0}</style></head>
 
 <body class="bg-[var(--bg)] font-sans text-[var(--text)] antialiased">
 
@@ -956,6 +956,7 @@ html {
             <button type="button" class="filter-btn" data-filter="hardware" aria-pressed="false" data-i18n="f.hw">Hardware</button>
             <button type="button" class="filter-btn" data-filter="embedded" aria-pressed="false" data-i18n="f.emb">Embarqué</button>
             <button type="button" class="filter-btn" data-filter="simulation" aria-pressed="false" data-i18n="f.sim">Simulation</button>
+<button type="button" class="filter-btn" data-filter="software" aria-pressed="false" data-i18n="f.soft">Logiciel</button>
           </div>
           <!-- Zone invisible : annonce aux lecteurs d'écran le nombre de projets après un filtre -->
           <p id="projects-live" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
@@ -1095,6 +1096,30 @@ html {
                   <span data-i18n="proj.more">En savoir plus</span><svg class="h-3.5 w-3.5"><use href="#i-arrow"/></svg>
                 </a>
                 <a href="https://github.com/AurelienCapron/automated-chicken-coop-door" target="_blank" rel="noopener noreferrer" class="btn-ghost !px-3.5 !py-2.5 !text-xs whitespace-nowrap">
+                  <svg class="h-3.5 w-3.5"><use href="#i-github"/></svg><span data-i18n="proj.code">Code source</span>
+                </a>
+              </div>
+            </div>
+          </article>
+<article class="project surface group reveal flex w-[85vw] max-w-[340px] flex-none snap-start flex-col overflow-hidden sm:w-[340px] md:w-auto md:max-w-none" data-cat="software" style="transition-delay:.2s">
+            <a href="backyard.html" tabindex="-1" aria-hidden="true" class="race-cover media-placeholder relative block aspect-video overflow-hidden border-b border-[var(--border)]">
+              <div class="media-icon absolute inset-0 grid place-items-center"><svg class="h-12 w-12"><use href="#i-activity"/></svg></div>
+              
+              <img src="assets/projets/backyard/poste-course.jpg" alt="Poste de chronométrage et affichage de la course" loading="lazy"
+                   class="absolute inset-0 h-full w-full object-contain transition duration-500 " onerror="this.remove()">
+            </a>
+            <div class="flex flex-1 flex-col p-6">
+              <p class="font-mono text-xs text-[var(--text-muted)]"><span class="block" data-i18n="p6.kind">Développement logiciel</span><span class="mt-1 block text-[var(--text-faint)]" data-i18n="p6.date">Chronométrage sportif</span></p>
+              <h3 class="mt-2 text-xl font-semibold text-[var(--text-strong)]">
+                <a href="backyard.html" class="transition-colors hover:text-accent-soft" data-i18n="p6.title">Chronométrage Backyard Ultra</a>
+              </h3>
+              <p class="mt-3 flex-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="p6.desc">Pointage simultané des dossards, écran public et suivi speaker sur un même serveur de course.</p>
+              <ul class="mt-5 flex flex-wrap gap-2"><li class="tag">Python</li><li class="tag">Flask</li><li class="tag">API REST</li></ul>
+              <div class="mt-6 flex flex-wrap items-center gap-2">
+                <a href="backyard.html" class="btn-primary !px-3.5 !py-2.5 !text-xs whitespace-nowrap">
+                  <span data-i18n="proj.more">En savoir plus</span><svg class="h-3.5 w-3.5"><use href="#i-arrow"/></svg>
+                </a>
+                <a href="https://github.com/AurelienCapron/backyard-ultra-race-tracker" target="_blank" rel="noopener noreferrer" class="btn-ghost !px-3.5 !py-2.5 !text-xs whitespace-nowrap">
                   <svg class="h-3.5 w-3.5"><use href="#i-github"/></svg><span data-i18n="proj.code">Code source</span>
                 </a>
               </div>
@@ -1504,6 +1529,12 @@ html {
     FR['meta.desc']  = $('meta[name="description"]').content;
 
     const EN = {
+"f.soft":"Software",
+"p6.kind": "Software development",
+"p6.date": "Sports timing",
+"p6.title": "Backyard Ultra race timing",
+"p6.desc": "Simultaneous bib entry, spectator display and announcer dashboard on one race server.",
+
 "p5.kind": "Personal project",
 "p5.date": "Apr 2025",
 "p5.title": "Automatic chicken coop door",
