@@ -339,11 +339,11 @@
 
 <dialog id="pcb-dialog" aria-labelledby="pcb-title">
  <div class="pcb-toolbar"><h2 id="pcb-title" data-i18n="pcb.title">Carte électronique · Vue 3D</h2><button type="button" class="pcb-close" aria-label="Fermer / Close" autofocus>×</button></div>
- <model-viewer id="pcb-viewer" alt="Circuit imprimé audio / Audio PCB" camera-controls touch-action="none" camera-orbit="15deg 91deg 98%" field-of-view="30deg" min-camera-orbit="auto 0deg auto" max-camera-orbit="auto 180deg auto" shadow-intensity="0.3" exposure="1" interaction-prompt="auto"></model-viewer>
+ <model-viewer id="pcb-viewer" alt="Circuit imprimé audio / Audio PCB" camera-controls touch-action="none" camera-orbit="13deg 92deg 0.134m" field-of-view="30deg" min-camera-orbit="auto 0deg auto" max-camera-orbit="auto 180deg auto" shadow-intensity="0.3" exposure="1" interaction-prompt="auto"></model-viewer>
  <div class="pcb-variants pcb-views" role="group" aria-label="Finition du PCB / PCB finish">
 <button type="button" data-model="masked" aria-pressed="true" data-i18n="finish.masked">Sans cuivre apparent</button>
 <button type="button" data-model="copper" aria-pressed="false" data-i18n="finish.copper">Cuivre apparent</button>
-</div><div class="pcb-bottom"><p data-i18n="pcb.help">Glissez pour tourner · Molette ou pincement pour zoomer</p><div class="pcb-views"><button type="button" data-orbit="0deg 90deg 92%" data-i18n="pcb.top">Dessus</button><button type="button" data-orbit="180deg 90deg 92%" data-i18n="pcb.bottom">Dessous</button><button type="button" data-orbit="15deg 91deg 98%" data-i18n="pcb.reset">Perspective</button></div></div>
+</div><div class="pcb-bottom"><p data-i18n="pcb.help">Glissez pour tourner · Molette ou pincement pour zoomer</p><div class="pcb-views"><button type="button" data-orbit="0deg 90deg 92%" data-i18n="pcb.top">Dessus</button><button type="button" data-orbit="180deg 90deg 92%" data-i18n="pcb.bottom">Dessous</button><button type="button" data-orbit="13deg 92deg 0.134m" data-i18n="pcb.reset">Perspective</button></div></div>
  <p id="pcb-status" role="status" aria-live="polite"></p>
 </dialog>
 
@@ -546,7 +546,18 @@
    copper: 'assets/projets/amplificateur/amplificateur.glb'
  };
  let request = 0;
- async function selectModel(key) {
+ let pendingCamera = null;
+ function captureCamera() {
+   const {theta, phi, radius} = viewer.getCameraOrbit();
+   const {x, y, z} = viewer.getCameraTarget();
+   return {
+     orbit: `${theta}rad ${phi}rad ${radius}m`,
+     target: `${x}m ${y}m ${z}m`,
+     fov: `${viewer.getFieldOfView()}deg`
+   };
+ }
+ async function selectModel(key, preserveCamera = true) {
+   if (!preserveCamera) pendingCamera = null;
    const sequence = ++request;
    const src = variants[key];
    dialog.querySelectorAll('[data-model]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.model === key)));
@@ -556,6 +567,7 @@
      await loadViewer();
      if (sequence !== request || !dialog.open) return;
      if (viewer.getAttribute('src') !== src) {
+       if (preserveCamera && ready) pendingCamera = captureCamera();
        ready = false;
        viewer.setAttribute('src', src);
      }
@@ -572,9 +584,23 @@
    viewer.setAttribute('camera-orbit', dialog.querySelector('[data-i18n="pcb.reset"]').dataset.orbit);
    viewer.setAttribute('camera-target', 'auto auto auto');
    viewer.setAttribute('field-of-view', '30deg');
-   selectModel('masked');
+   selectModel('masked', false);
  }));
- viewer.addEventListener('load', () => {ready = true; status.textContent = '';});
+ viewer.addEventListener('load', async () => {
+   const camera = pendingCamera;
+   const sequence = request;
+   if (camera) {
+     viewer.setAttribute('camera-target', camera.target);
+     viewer.setAttribute('camera-orbit', camera.orbit);
+     viewer.setAttribute('field-of-view', camera.fov);
+     await viewer.updateComplete;
+     if (sequence !== request) return;
+     viewer.jumpCameraToGoal();
+     pendingCamera = null;
+   }
+   ready = true;
+   status.textContent = '';
+ });
  viewer.addEventListener('error', () => {
    ready = false;
    viewer.removeAttribute('src');
