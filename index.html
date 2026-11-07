@@ -1076,6 +1076,30 @@ html {
               </div>
             </div>
           </article>
+<article class="project surface group reveal flex w-[85vw] max-w-[340px] flex-none snap-start flex-col overflow-hidden sm:w-[340px] md:w-auto md:max-w-none" data-cat="hardware embedded" style="transition-delay:.2s">
+            <a href="poulailler.html" tabindex="-1" aria-hidden="true" class="media-placeholder relative block aspect-video overflow-hidden border-b border-[var(--border)]">
+              <div class="media-icon absolute inset-0 grid place-items-center"><svg class="h-12 w-12"><use href="#i-activity"/></svg></div>
+              <!-- 📸 IMAGE PROJET 3 : graphique de trajectoires / capture de simulation → assets/projets/tipe.jpg (16:9) -->
+              <img src="assets/projets/poulailler/ensemble.jpg" alt="Vue extérieure du poulailler et de sa porte" loading="lazy"
+                   class="absolute inset-0 h-full w-full object-contain transition duration-500 " onerror="this.remove()">
+            </a>
+            <div class="flex flex-1 flex-col p-6">
+              <p class="font-mono text-xs text-[var(--text-muted)]"><span class="block" data-i18n="p5.kind">Projet personnel</span><span class="mt-1 block text-[var(--text-faint)]" data-i18n="p5.date">Mécatronique</span></p>
+              <h3 class="mt-2 text-xl font-semibold text-[var(--text-strong)]">
+                <a href="poulailler.html" class="transition-colors hover:text-accent-soft" data-i18n="p5.title">Porte de poulailler automatisée</a>
+              </h3>
+              <p class="mt-3 flex-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="p5.desc">Un capteur de lumière commande un pont-levis motorisé. Un treuil entraîne les câbles et un contact détecte la fermeture.</p>
+              <ul class="mt-5 flex flex-wrap gap-2"><li class="tag">ATmega328P</li><li class="tag">C++</li><li class="tag">Arduino</li></ul>
+              <div class="mt-6 flex flex-wrap items-center gap-2">
+                <a href="poulailler.html" class="btn-primary !px-3.5 !py-2.5 !text-xs whitespace-nowrap">
+                  <span data-i18n="proj.more">En savoir plus</span><svg class="h-3.5 w-3.5"><use href="#i-arrow"/></svg>
+                </a>
+                <a href="https://github.com/AurelienCapron/automated-chicken-coop-door" target="_blank" rel="noopener noreferrer" class="btn-ghost !px-3.5 !py-2.5 !text-xs whitespace-nowrap">
+                  <svg class="h-3.5 w-3.5"><use href="#i-github"/></svg><span data-i18n="proj.code">Code source</span>
+                </a>
+              </div>
+            </div>
+          </article>
         </div>
 
         <!-- Indicateurs de pagination des projets (mobile uniquement, générés dynamiquement selon le filtre) -->
@@ -1480,6 +1504,11 @@ html {
     FR['meta.desc']  = $('meta[name="description"]').content;
 
     const EN = {
+"p5.kind": "Personal project",
+"p5.date": "Mechatronics",
+"p5.title": "Automatic chicken coop door",
+"p5.desc": "A light sensor controls a motorised drawbridge. A winch drives the cables and a limit switch detects closure.",
+
 "p4.kind": "Engineering lab · Phelma",
 "p4.date": "Feb – Apr 2026",
 "p4.title": "Piezo audio amplifier",

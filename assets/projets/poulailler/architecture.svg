@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 440" width="100%" height="100%" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#0284c7"/>
+    </marker>
+    <marker id="arrow-teal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#0d9488"/>
+    </marker>
+    <marker id="arrow-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#d97706"/>
+    </marker>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- Fond principal -->
+  <rect width="960" height="440" rx="12" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>
+
+  <!-- Titre -->
+  <text x="480" y="36" text-anchor="middle" font-size="16" font-weight="700" fill="#0f172a" letter-spacing="0.5">ARCHITECTURE DU SYSTÈME D'AUTOMATISATION DU POULAILLER</text>
+
+  <!-- COLONNE 1 : CAPTEURS ET COMMANDES -->
+  <rect x="30" y="60" width="250" height="350" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="30" y="60" width="250" height="38" rx="10" fill="#0284c7"/>
+  <rect x="30" y="88" width="250" height="10" fill="#0284c7"/>
+  <text x="155" y="84" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff" letter-spacing="0.5">CAPTEURS ET COMMANDES</text>
+
+  <!-- Capteur 1 : LDR -->
+  <rect x="48" y="115" width="214" height="58" rx="6" fill="#f0f9ff" stroke="#bae6fd" stroke-width="1.5"/>
+  <text x="60" y="138" font-size="13" font-weight="700" fill="#0369a1">Photorésistance (LDR)</text>
+  <text x="60" y="157" font-size="11" fill="#475569">Mesure luminosité ambiante</text>
+
+  <!-- Capteur 2 : FDC -->
+  <rect x="48" y="190" width="214" height="58" rx="6" fill="#f0f9ff" stroke="#bae6fd" stroke-width="1.5"/>
+  <text x="60" y="213" font-size="13" font-weight="700" fill="#0369a1">Capteur Fin de Course (FDC)</text>
+  <text x="60" y="232" font-size="11" fill="#475569">Détection porte fermée (état bas)</text>
+
+  <!-- Bouton 1 : Seuil -->
+  <rect x="48" y="265" width="214" height="58" rx="6" fill="#f0f9ff" stroke="#bae6fd" stroke-width="1.5"/>
+  <text x="60" y="288" font-size="13" font-weight="700" fill="#0369a1">Bouton Calibration Seuil</text>
+  <text x="60" y="307" font-size="11" fill="#475569">Mémorise la consigne jour/nuit</text>
+
+  <!-- Bouton 2 : Manuel -->
+  <rect x="48" y="340" width="214" height="55" rx="6" fill="#f0f9ff" stroke="#bae6fd" stroke-width="1.5"/>
+  <text x="60" y="362" font-size="13" font-weight="700" fill="#0369a1">Bouton Commande Manuelle</text>
+  <text x="60" y="381" font-size="11" fill="#475569">Ouverture / Fermeture forcée</text>
+
+  <!-- COLONNE 2 : MICROCONTROLEUR -->
+  <rect x="355" y="60" width="250" height="350" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="355" y="60" width="250" height="38" rx="10" fill="#0f766e"/>
+  <rect x="355" y="88" width="250" height="10" fill="#0f766e"/>
+  <text x="480" y="84" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff" letter-spacing="0.5">UNITÉ DE COMMANDE (PCB)</text>
+
+  <rect x="375" y="125" width="210" height="260" rx="8" fill="#f0fdfa" stroke="#99f6e4" stroke-width="1.5"/>
+  <text x="480" y="155" text-anchor="middle" font-size="15" font-weight="700" fill="#115e59">ATmega328P</text>
+  <text x="480" y="175" text-anchor="middle" font-size="11" font-weight="600" fill="#0d9488">Logique Embarquée (C++)</text>
+  <line x1="395" y1="190" x2="565" y2="190" stroke="#cbd5e1" stroke-width="1"/>
+
+  <text x="390" y="218" font-size="11.5" fill="#334155">• Lecture ADC 10 bits (0–1023)</text>
+  <text x="390" y="245" font-size="11.5" fill="#334155">• Comparaison avec hystérésis</text>
+  <text x="390" y="272" font-size="11.5" fill="#334155">• Levage temporisé (8 s)</text>
+  <text x="390" y="299" font-size="11.5" fill="#334155">• Sécurité timeout (max 38 s)</text>
+  <text x="390" y="326" font-size="11.5" fill="#334155">• Anti-répétition (pause 10 s)</text>
+  <text x="390" y="353" font-size="11.5" fill="#334155">• État logique (OUVERT 1 / 0)</text>
+
+  <!-- COLONNE 3 : PUISSANCE ET ACTIONNEUR -->
+  <rect x="680" y="60" width="250" height="350" rx="10" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="680" y="60" width="250" height="38" rx="10" fill="#b45309"/>
+  <rect x="680" y="88" width="250" height="10" fill="#b45309"/>
+  <text x="805" y="84" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff" letter-spacing="0.5">PUISSANCE ET ACTIONNEUR</text>
+
+  <!-- Bloc Relais Alim -->
+  <rect x="698" y="120" width="214" height="65" rx="6" fill="#fffbeb" stroke="#fde68a" stroke-width="1.5"/>
+  <text x="710" y="144" font-size="13" font-weight="700" fill="#92400e">Relais Alimentation (ALIM)</text>
+  <text x="710" y="164" font-size="11" fill="#475569">Activation / Coupure moteur CC</text>
+
+  <!-- Bloc Relais Sens -->
+  <rect x="698" y="205" width="214" height="75" rx="6" fill="#fffbeb" stroke="#fde68a" stroke-width="1.5"/>
+  <text x="710" y="229" font-size="13" font-weight="700" fill="#92400e">Relais 1 et 2 (Inversion)</text>
+  <text x="710" y="249" font-size="11" fill="#475569">HIGH : Sens Ouverture</text>
+  <text x="710" y="266" font-size="11" fill="#475569">LOW : Sens Fermeture</text>
+
+  <!-- Bloc Moteur et Pont-levis -->
+  <rect x="698" y="315" width="214" height="78" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="805" y="341" text-anchor="middle" font-size="13" font-weight="700" fill="#78350f">Motoréducteur CC et Treuil</text>
+  <text x="805" y="361" text-anchor="middle" font-size="11" fill="#92400e">Enroulement des câbles</text>
+  <text x="805" y="378" text-anchor="middle" font-size="11" font-weight="600" fill="#78350f">Ouverture / Fermeture Pont-Levis</text>
+
+  <!-- FLECHES ENTREES (Col 1 -> Col 2) -->
+  <line x1="262" y1="144" x2="368" y2="144" stroke="#0284c7" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <rect x="295" y="132" width="42" height="20" rx="4" fill="#e0f2fe"/>
+  <text x="316" y="146" text-anchor="middle" font-size="11" font-weight="700" fill="#0369a1">A0</text>
+
+  <line x1="262" y1="219" x2="368" y2="219" stroke="#0284c7" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <rect x="295" y="207" width="42" height="20" rx="4" fill="#e0f2fe"/>
+  <text x="316" y="221" text-anchor="middle" font-size="11" font-weight="700" fill="#0369a1">A1</text>
+
+  <line x1="262" y1="294" x2="368" y2="294" stroke="#0284c7" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <rect x="295" y="282" width="42" height="20" rx="4" fill="#e0f2fe"/>
+  <text x="316" y="296" text-anchor="middle" font-size="11" font-weight="700" fill="#0369a1">A2</text>
+
+  <line x1="262" y1="367" x2="368" y2="367" stroke="#0284c7" stroke-width="2" marker-end="url(#arrow-blue)"/>
+  <rect x="295" y="355" width="42" height="20" rx="4" fill="#e0f2fe"/>
+  <text x="316" y="369" text-anchor="middle" font-size="11" font-weight="700" fill="#0369a1">A3</text>
+
+  <!-- FLECHES SORTIES (Col 2 -> Col 3) -->
+  <line x1="585" y1="152" x2="690" y2="152" stroke="#0d9488" stroke-width="2" marker-end="url(#arrow-teal)"/>
+  <rect x="618" y="140" width="45" height="20" rx="4" fill="#ccfbf1"/>
+  <text x="640.5" y="154" text-anchor="middle" font-size="11" font-weight="700" fill="#0f766e">D4</text>
+
+  <line x1="585" y1="242" x2="690" y2="242" stroke="#0d9488" stroke-width="2" marker-end="url(#arrow-teal)"/>
+  <rect x="612" y="230" width="58" height="20" rx="4" fill="#ccfbf1"/>
+  <text x="641" y="244" text-anchor="middle" font-size="11" font-weight="700" fill="#0f766e">D5 / D6</text>
+
+  <!-- FLECHE RELAIS -> MOTEUR -->
+  <line x1="805" y1="280" x2="805" y2="308" stroke="#d97706" stroke-width="2.5" marker-end="url(#arrow-amber)"/>
+</svg>
