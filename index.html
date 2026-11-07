@@ -730,9 +730,10 @@ html {
   </script>
 <style>
 @media screen and (min-width:768px){
- #projects-track.is-carousel{display:flex;overflow-x:auto;scroll-snap-type:x mandatory}
- #projects-track.is-carousel>.project:not(.hidden){flex:0 0 calc((100% - 3rem)/3);min-width:0;scroll-snap-align:start}
+ #projects-track:not(.is-carousel){grid-template-columns:repeat(var(--visible-columns,2),minmax(0,1fr))}#projects-track.is-carousel{display:flex;overflow-x:auto;scroll-snap-type:x mandatory}
+ #projects-track.is-carousel>.project:not(.hidden){flex:0 0 calc((100% - 4.5rem)/3.22);min-width:0;scroll-snap-align:start}
 }
+@media screen and (min-width:768px) and (max-width:1000px){#projects-track.is-carousel>.project:not(.hidden){flex-basis:calc((100% - 3rem)/2.2)}#projects-track:not(.is-carousel){grid-template-columns:repeat(var(--tablet-columns,2),minmax(0,1fr))}}
 #project-controls{display:flex;justify-content:center;align-items:center;gap:1rem;margin-top:1rem}
 #project-controls[hidden]{display:none}#project-controls button:disabled{opacity:.35}
 @media print{#project-controls{display:none}}
@@ -1738,6 +1739,8 @@ html {
     }
     function renderProjectDots() {
       const cards = getVisibleProjects();
+      projTrack.style.setProperty('--visible-columns', Math.max(1, Math.min(3, cards.length)));
+      projTrack.style.setProperty('--tablet-columns', Math.max(1, Math.min(2, cards.length)));
       projTrack.classList.toggle('is-carousel', cards.length > 3);
       const max = Math.max(0, projTrack.scrollWidth - projTrack.clientWidth);
       const first = cards[0]?.getBoundingClientRect().left || 0;
