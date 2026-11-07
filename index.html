@@ -46,7 +46,7 @@
   ║   assets/photo.jpg                                                   ║
   ║   assets/CV_Aurelien_Capron.pdf                                      ║
   ║   assets/CV_Aurelien_Capron_EN.pdf                                   ║
-  ║   assets/projets/domethic.jpg | telecommande.jpg | tipe.jpg          ║
+  ║   assets/projets/<projet>/ : images classées par projet          ║
   ║   assets/hobbies/judo.jpg | perouges.jpg | sacha-heritage.jpg        ║
   ║                                                                      ║
   ║  Astuce : si une image est absente, un visuel de remplacement        ║
@@ -975,7 +975,7 @@ html {
           <article class="project surface group reveal flex w-[85vw] max-w-[340px] flex-none snap-start flex-col overflow-hidden sm:w-[340px] md:w-auto md:max-w-none" data-cat="embedded hardware" style="transition-delay:.1s">
             <a href="telecommande.html" tabindex="-1" aria-hidden="true" class="crop-boitier media-placeholder relative block aspect-video overflow-hidden border-b border-[var(--border)]">
               <div class="media-icon absolute inset-0 grid place-items-center"><svg class="h-12 w-12"><use href="#i-code"/></svg></div>
-              <!-- 📸 IMAGE PROJET 2 : photo du prototype → assets/projets/telecommande.jpg (16:9, ~1200×675 px) -->
+              <!-- 📸 IMAGE PROJET 2 : photo du prototype → assets/projets/telecommande/prototype_assembled_box.png -->
               <img src="assets/projets/telecommande/prototype_assembled_box.png" alt="Télécommande assemblée avec ses connexions" loading="lazy"
                    class="absolute inset-0 h-full w-full object-contain transition duration-500 " onerror="this.remove()">
             </a>
@@ -1052,7 +1052,7 @@ html {
 <article class="project surface group reveal flex w-[85vw] max-w-[340px] flex-none snap-start flex-col overflow-hidden sm:w-[340px] md:w-auto md:max-w-none" data-cat="hardware embedded">
             <a href="domethic.html" tabindex="-1" aria-hidden="true" class="media-placeholder relative block aspect-video overflow-hidden border-b border-[var(--border)]">
               <div class="media-icon absolute inset-0 grid place-items-center"><svg class="h-12 w-12"><use href="#i-cpu"/></svg></div>
-              <!-- 📸 IMAGE PROJET 1 : boîtier Myha Pro → assets/projets/domethic.jpg (16:9, ~1200×675 px) -->
+              <!-- 📸 IMAGE PROJET 1 : boîtier Myha Pro → assets/projets/myha/myha-pro.jpg -->
               <img src="assets/projets/myha/myha-pro.jpg" alt="Centrale Myha Pro sur rail DIN" loading="lazy"
                    class="absolute inset-0 h-full w-full object-contain transition duration-500 " onerror="this.remove()">
             </a>
@@ -1079,8 +1079,8 @@ html {
 <article class="project surface group reveal flex w-[85vw] max-w-[340px] flex-none snap-start flex-col overflow-hidden sm:w-[340px] md:w-auto md:max-w-none" data-cat="hardware embedded" style="transition-delay:.2s">
             <a href="poulailler.html" tabindex="-1" aria-hidden="true" class="media-placeholder relative block aspect-video overflow-hidden border-b border-[var(--border)]">
               <div class="media-icon absolute inset-0 grid place-items-center"><svg class="h-12 w-12"><use href="#i-activity"/></svg></div>
-              <!-- 📸 IMAGE PROJET 3 : graphique de trajectoires / capture de simulation → assets/projets/tipe.jpg (16:9) -->
-              <img src="assets/projets/poulailler/ensemble.jpg" alt="Vue extérieure du poulailler et de sa porte" loading="lazy"
+              <!-- Vignette du pont-levis ouvert avec les poules à l’entrée. -->
+              <img src="assets/projets/poulailler/entree-poules.webp" alt="Poules à l’entrée du poulailler, pont-levis abaissé" loading="lazy"
                    class="absolute inset-0 h-full w-full object-contain transition duration-500 " onerror="this.remove()">
             </a>
             <div class="flex flex-1 flex-col p-6">
