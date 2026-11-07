@@ -728,7 +728,15 @@ html {
     ]
   }
   </script>
-</head>
+<style>
+@media screen and (min-width:768px){
+ #projects-track.is-carousel{display:flex;overflow-x:auto;scroll-snap-type:x mandatory}
+ #projects-track.is-carousel>.project:not(.hidden){flex:0 0 calc((100% - 3rem)/3);min-width:0;scroll-snap-align:start}
+}
+#project-controls{display:flex;justify-content:center;align-items:center;gap:1rem;margin-top:1rem}
+#project-controls[hidden]{display:none}#project-controls button:disabled{opacity:.35}
+@media print{#project-controls{display:none}}
+</style></head>
 
 <body class="bg-[var(--bg)] font-sans text-[var(--text)] antialiased">
 
@@ -957,35 +965,6 @@ html {
                     [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
 
           <!-- ───────── Projet 1 : Domethic System ───────── -->
-          <article class="project surface group reveal flex w-[85vw] max-w-[340px] flex-none snap-start flex-col overflow-hidden sm:w-[340px] md:w-auto md:max-w-none" data-cat="hardware embedded">
-            <a href="domethic.html" tabindex="-1" aria-hidden="true" class="media-placeholder relative block aspect-video overflow-hidden border-b border-[var(--border)]">
-              <div class="media-icon absolute inset-0 grid place-items-center"><svg class="h-12 w-12"><use href="#i-cpu"/></svg></div>
-              <!-- 📸 IMAGE PROJET 1 : boîtier Myha Pro → assets/projets/domethic.jpg (16:9, ~1200×675 px) -->
-              <img src="assets/projets/domethic.jpg" alt="Boîtier Myha Pro — Domethic System" loading="lazy"
-                   class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" onerror="this.remove()">
-            </a>
-            <div class="flex flex-1 flex-col p-6">
-              <p class="font-mono text-xs text-[var(--text-muted)]"><span class="block" data-i18n="p1.kind">Projet entrepreneurial</span><span class="mt-1 block text-[var(--text-faint)]" data-i18n="p1.date">Fév. 2022 — Présent</span></p>
-              <h3 class="mt-2 text-xl font-semibold text-[var(--text-strong)]">
-                <a href="domethic.html" class="transition-colors hover:text-accent-soft">Domethic System</a>
-              </h3>
-              <p class="mt-3 flex-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="p1.desc">Assemblage de cartes électroniques (soudure, modules radio, mémoire EEPROM), paramétrage du firmware et tests de robustesse : charges de forte puissance et vérification de la CEM.</p>
-              <ul class="mt-5 flex flex-wrap gap-2">
-                <li class="tag">Firmware</li><li class="tag">Hardware</li><li class="tag">EEPROM</li><li class="tag" data-i18n="tag.radio">Modules radio</li>
-              </ul>
-              <div class="mt-6 flex flex-wrap items-center gap-2">
-                <a href="domethic.html" class="btn-primary !px-3.5 !py-2.5 !text-xs whitespace-nowrap">
-                  <span data-i18n="proj.more">En savoir plus</span><svg class="h-3.5 w-3.5"><use href="#i-arrow"/></svg>
-                </a>
-                <!-- 🔗 Site commercial du produit (le code est confidentiel). -->
-                <a href="https://www.domethic-system.com/" target="_blank" rel="noopener noreferrer" class="btn-ghost !px-3.5 !py-2.5 !text-xs whitespace-nowrap">
-                  <svg class="h-3.5 w-3.5"><use href="#i-external"/></svg><span data-i18n="proj.site">Site du produit</span>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- ───────── Projet 2 : Télécommande autonome ───────── -->
           <article class="project surface group reveal flex w-[85vw] max-w-[340px] flex-none snap-start flex-col overflow-hidden sm:w-[340px] md:w-auto md:max-w-none" data-cat="embedded hardware" style="transition-delay:.1s">
             <a href="telecommande.html" tabindex="-1" aria-hidden="true" class="media-placeholder relative block aspect-video overflow-hidden border-b border-[var(--border)]">
               <div class="media-icon absolute inset-0 grid place-items-center"><svg class="h-12 w-12"><use href="#i-code"/></svg></div>
@@ -1013,9 +992,32 @@ html {
               </div>
             </div>
           </article>
-
-          <!-- ───────── Projet 3 : TIPE ───────── -->
-          <article class="project surface group reveal flex w-[85vw] max-w-[340px] flex-none snap-start flex-col overflow-hidden sm:w-[340px] md:w-auto md:max-w-none" data-cat="simulation" style="transition-delay:.2s">
+<article class="project surface group reveal flex w-[85vw] max-w-[340px] flex-none snap-start flex-col overflow-hidden sm:w-[340px] md:w-auto md:max-w-none" data-cat="hardware simulation" style="transition-delay:.2s">
+            <a href="amplificateur.html" tabindex="-1" aria-hidden="true" class="media-placeholder relative block aspect-video overflow-hidden border-b border-[var(--border)]">
+              <div class="media-icon absolute inset-0 grid place-items-center"><svg class="h-12 w-12"><use href="#i-activity"/></svg></div>
+              
+              <img src="assets/projets/amplificateur/carte-preampli.jpg" alt="Carte de préamplification piézoélectrique" loading="lazy"
+                   class="absolute inset-0 h-full w-full object-contain transition duration-500 group-hover:scale-105" onerror="this.remove()">
+            </a>
+            <div class="flex flex-1 flex-col p-6">
+              <p class="font-mono text-xs text-[var(--text-muted)]"><span class="block" data-i18n="p4.kind">PI 3 · Électronique analogique</span><span class="mt-1 block text-[var(--text-faint)]" data-i18n="p4.date">Grenoble INP – Phelma</span></p>
+              <h3 class="mt-2 text-xl font-semibold text-[var(--text-strong)]">
+                <a href="amplificateur.html" class="transition-colors hover:text-accent-soft" data-i18n="p4.title">Amplificateur audio piézoélectrique</a>
+              </h3>
+              <p class="mt-3 flex-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="p4.desc">Du capteur de guitare au haut-parleur : deux cartes CMS, un correcteur de tonalité et une comparaison entre calculs et mesures.</p>
+              <ul class="mt-5 flex flex-wrap gap-2">
+                <li class="tag">KiCad</li><li class="tag">SPICE</li><li class="tag">PCB</li></ul>
+              <div class="mt-6 flex flex-wrap items-center gap-2">
+                <a href="amplificateur.html" class="btn-primary !px-3.5 !py-2.5 !text-xs whitespace-nowrap">
+                  <span data-i18n="proj.more">En savoir plus</span><svg class="h-3.5 w-3.5"><use href="#i-arrow"/></svg>
+                </a>
+                <a href="https://github.com/AurelienCapron/kicad-piezo-audio-amplifier" target="_blank" rel="noopener noreferrer" class="btn-ghost !px-3.5 !py-2.5 !text-xs whitespace-nowrap">
+                  <svg class="h-3.5 w-3.5"><use href="#i-github"/></svg><span data-i18n="proj.code">Code source</span>
+                </a>
+              </div>
+            </div>
+          </article>
+<article class="project surface group reveal flex w-[85vw] max-w-[340px] flex-none snap-start flex-col overflow-hidden sm:w-[340px] md:w-auto md:max-w-none" data-cat="simulation" style="transition-delay:.2s">
             <a href="tipe.html" tabindex="-1" aria-hidden="true" class="media-placeholder relative block aspect-video overflow-hidden border-b border-[var(--border)]">
               <div class="media-icon absolute inset-0 grid place-items-center"><svg class="h-12 w-12"><use href="#i-activity"/></svg></div>
               <!-- 📸 IMAGE PROJET 3 : graphique de trajectoires / capture de simulation → assets/projets/tipe.jpg (16:9) -->
@@ -1041,27 +1043,29 @@ html {
               </div>
             </div>
           </article>
-<article class="project surface group reveal flex w-[85vw] max-w-[340px] flex-none snap-start flex-col overflow-hidden sm:w-[340px] md:w-auto md:max-w-none" data-cat="hardware simulation" style="transition-delay:.2s">
-            <a href="amplificateur.html" tabindex="-1" aria-hidden="true" class="media-placeholder relative block aspect-video overflow-hidden border-b border-[var(--border)]">
-              <div class="media-icon absolute inset-0 grid place-items-center"><svg class="h-12 w-12"><use href="#i-activity"/></svg></div>
-              
-              <img src="assets/projets/amplificateur/pcb_part1_preamp.png" alt="Carte de préamplification piézoélectrique" loading="lazy"
-                   class="absolute inset-0 h-full w-full object-contain transition duration-500 group-hover:scale-105" onerror="this.remove()">
+<article class="project surface group reveal flex w-[85vw] max-w-[340px] flex-none snap-start flex-col overflow-hidden sm:w-[340px] md:w-auto md:max-w-none" data-cat="hardware embedded">
+            <a href="domethic.html" tabindex="-1" aria-hidden="true" class="media-placeholder relative block aspect-video overflow-hidden border-b border-[var(--border)]">
+              <div class="media-icon absolute inset-0 grid place-items-center"><svg class="h-12 w-12"><use href="#i-cpu"/></svg></div>
+              <!-- 📸 IMAGE PROJET 1 : boîtier Myha Pro → assets/projets/domethic.jpg (16:9, ~1200×675 px) -->
+              <img src="assets/projets/domethic.jpg" alt="Boîtier Myha Pro — Domethic System" loading="lazy"
+                   class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" onerror="this.remove()">
             </a>
             <div class="flex flex-1 flex-col p-6">
-              <p class="font-mono text-xs text-[var(--text-muted)]"><span class="block" data-i18n="p4.kind">PI 3 · Électronique analogique</span><span class="mt-1 block text-[var(--text-faint)]" data-i18n="p4.date">Grenoble INP – Phelma</span></p>
+              <p class="font-mono text-xs text-[var(--text-muted)]"><span class="block" data-i18n="p1.kind">Projet entrepreneurial</span><span class="mt-1 block text-[var(--text-faint)]" data-i18n="p1.date">Fév. 2022 — Présent</span></p>
               <h3 class="mt-2 text-xl font-semibold text-[var(--text-strong)]">
-                <a href="amplificateur.html" class="transition-colors hover:text-accent-soft" data-i18n="p4.title">Amplificateur audio piézoélectrique</a>
+                <a href="domethic.html" class="transition-colors hover:text-accent-soft">Domethic System</a>
               </h3>
-              <p class="mt-3 flex-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="p4.desc">Du capteur de guitare au haut-parleur : deux cartes CMS, un correcteur de tonalité et une comparaison entre calculs et mesures.</p>
+              <p class="mt-3 flex-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="p1.desc">Assemblage de cartes électroniques (soudure, modules radio, mémoire EEPROM), paramétrage du firmware et tests de robustesse : charges de forte puissance et vérification de la CEM.</p>
               <ul class="mt-5 flex flex-wrap gap-2">
-                <li class="tag">KiCad</li><li class="tag">SPICE</li><li class="tag">PCB</li></ul>
+                <li class="tag">Firmware</li><li class="tag">Hardware</li><li class="tag">EEPROM</li><li class="tag" data-i18n="tag.radio">Modules radio</li>
+              </ul>
               <div class="mt-6 flex flex-wrap items-center gap-2">
-                <a href="amplificateur.html" class="btn-primary !px-3.5 !py-2.5 !text-xs whitespace-nowrap">
+                <a href="domethic.html" class="btn-primary !px-3.5 !py-2.5 !text-xs whitespace-nowrap">
                   <span data-i18n="proj.more">En savoir plus</span><svg class="h-3.5 w-3.5"><use href="#i-arrow"/></svg>
                 </a>
-                <a href="https://github.com/AurelienCapron/kicad-piezo-audio-amplifier" target="_blank" rel="noopener noreferrer" class="btn-ghost !px-3.5 !py-2.5 !text-xs whitespace-nowrap">
-                  <svg class="h-3.5 w-3.5"><use href="#i-github"/></svg><span data-i18n="proj.code">Code source</span>
+                <!-- 🔗 Site commercial du produit (le code est confidentiel). -->
+                <a href="https://www.domethic-system.com/" target="_blank" rel="noopener noreferrer" class="btn-ghost !px-3.5 !py-2.5 !text-xs whitespace-nowrap">
+                  <svg class="h-3.5 w-3.5"><use href="#i-external"/></svg><span data-i18n="proj.site">Site du produit</span>
                 </a>
               </div>
             </div>
@@ -1069,7 +1073,7 @@ html {
         </div>
 
         <!-- Indicateurs de pagination des projets (mobile uniquement, générés dynamiquement selon le filtre) -->
-        <div id="projects-dots" class="mt-4 flex justify-center gap-2 md:hidden" role="group" aria-label="Pagination des projets"></div>
+        <div id="project-controls" hidden><button type="button" class="icon-btn" id="projects-prev" aria-label="Projets précédents / Previous projects" aria-controls="projects-track">←</button><div id="projects-dots" class="flex gap-2" role="group" aria-label="Pagination des projets"></div><button type="button" class="icon-btn" id="projects-next" aria-label="Projets suivants / Next projects" aria-controls="projects-track">→</button></div>
       </div>
     </section>
 
@@ -1712,31 +1716,49 @@ html {
     function getVisibleProjects() {
       return $$('.project').filter(c => !c.classList.contains('hidden'));
     }
-    function projStep() {
-      if (!projTrack) return 340;
-      const gap = parseFloat(getComputedStyle(projTrack).columnGap || getComputedStyle(projTrack).gap) || 16;
-      const firstVisible = getVisibleProjects()[0];
-      return (firstVisible?.getBoundingClientRect().width || 300) + gap;
+    const controls = document.getElementById('project-controls');
+    const prevProject = document.getElementById('projects-prev');
+    const nextProject = document.getElementById('projects-next');
+    let stops = [];
+    function currentStop() {
+      return stops.reduce((best, x, i) =>
+        Math.abs(x - projTrack.scrollLeft) < Math.abs(stops[best] - projTrack.scrollLeft) ? i : best, 0);
     }
-    function renderProjectDots() {
-      if (!projDotsContainer || !projTrack) return;
-      const visible = getVisibleProjects();
-      if (visible.length <= 1) {
-        projDotsContainer.innerHTML = '';
-        return;
-      }
-      projDotsContainer.innerHTML = visible.map((_, i) =>
-        `<button type="button" class="proj-dot h-2 ${i === 0 ? 'w-6 bg-accent' : 'w-2 bg-[var(--border)]'} rounded-full transition-all duration-300" data-index="${i}" aria-label="Projet ${i + 1}" aria-current="${i === 0}"></button>`
-      ).join('');
-      $$('.proj-dot', projDotsContainer).forEach(d => d.addEventListener('click', () => {
-        const idx = Number(d.dataset.index) || 0;
-        projTrack.scrollTo({ left: idx * projStep(), behavior: 'smooth' });
-      }));
-      updateProjectDots();
+    function goToStop(index) {
+      projTrack.scrollTo({left: stops[index], behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
     }
     function updateProjectDots() {
-      if (!projDotsContainer || !projTrack) return;
-      const dots = $$('.proj-dot', projDotsContainer);       if (!dots.length) return;       const idx = Math.min(dots.length - 1, Math.max(0, Math.round(projTrack.scrollLeft / projStep())));       dots.forEach((d, i) => {         const active = i === idx;         d.classList.toggle('w-6', active);         d.classList.toggle('bg-accent', active);         d.classList.toggle('w-2', !active);         d.classList.toggle('bg-[var(--border)]', !active);         d.setAttribute('aria-current', String(active));       });     }     projTrack?.addEventListener('scroll', () => { requestAnimationFrame(updateProjectDots); }, { passive: true });     addEventListener('resize', updateProjectDots);     renderProjectDots();      let filterTimer;     $$('.filter-btn').forEach(btn => btn.addEventListener('click', () => {
+      const active = currentStop();
+      [...projDotsContainer.children].forEach((dot, i) => {
+        dot.setAttribute('aria-current', String(i === active));
+        dot.className = 'proj-dot h-2 rounded-full ' + (i === active ? 'w-6 bg-accent' : 'w-2 bg-[var(--border)]');
+      });
+      prevProject.disabled = active === 0;
+      nextProject.disabled = active >= stops.length - 1;
+    }
+    function renderProjectDots() {
+      const cards = getVisibleProjects();
+      projTrack.classList.toggle('is-carousel', cards.length > 3);
+      const max = Math.max(0, projTrack.scrollWidth - projTrack.clientWidth);
+      const first = cards[0]?.getBoundingClientRect().left || 0;
+      stops = [...new Set(cards.map(card => Math.min(max, Math.round(card.getBoundingClientRect().left - first))))];
+      controls.hidden = stops.length < 2 || max < 2;
+      projDotsContainer.replaceChildren();
+      stops.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.setAttribute('aria-label', 'Vue / View ' + (i + 1));
+        dot.addEventListener('click', () => goToStop(i));
+        projDotsContainer.append(dot);
+      });
+      updateProjectDots();
+    }
+    prevProject.addEventListener('click', () => goToStop(Math.max(0, currentStop()-1)));
+    nextProject.addEventListener('click', () => goToStop(Math.min(stops.length-1, currentStop()+1)));
+    projTrack.addEventListener('scroll', updateProjectDots, {passive:true});
+    addEventListener('resize', renderProjectDots);
+    renderProjectDots();
+    let filterTimer;     $$('.filter-btn').forEach(btn => btn.addEventListener('click', () => {
       if (btn.getAttribute('aria-pressed') === 'true') return;
       const f = btn.dataset.filter;
       $$('.filter-btn').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));        const cards = $$
