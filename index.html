@@ -739,9 +739,10 @@ html {
 @media print{#project-controls{display:none}}
 </style><style>#projects-track .media-placeholder{background:var(--surface)}#projects-track .media-placeholder .media-icon{display:none}#projects-track .media-placeholder img{object-fit:contain;padding:4px}#projects-track .amp-pair{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;gap:3px;padding:5px;align-items:center}#projects-track .amp-pair img{width:100%;height:100%;min-width:0;min-height:0;object-fit:contain}</style><style>
 #projects-track .crop-boitier img,#projects-track .crop-cameras img{object-fit:cover;padding:0}
-#projects-track .crop-boitier img{object-position:50% 38%;transform:scale(1.6)}
+#projects-track .crop-boitier img{object-position:50% 32%;transform:scale(1.32)}
 #projects-track .crop-cameras img{object-position:50% 36%;transform:scale(1.44)}
-.myha-actions{gap:5px;flex-wrap:nowrap}.myha-actions a{padding-inline:7px!important;gap:4px;font-size:11px!important;white-space:nowrap}.myha-actions svg{width:12px;height:12px}
+.myha-actions{gap:.5rem;flex-wrap:nowrap;container-type:inline-size}
+@container (max-width:235px){.myha-actions a{padding-inline:.55rem!important}.myha-actions svg{display:none}}
 </style></head>
 
 <body class="bg-[var(--bg)] font-sans text-[var(--text)] antialiased">
@@ -1005,7 +1006,7 @@ html {
               <span class="amp-pair"><img src="assets/projets/amplificateur/carte-preampli.jpg" alt="Carte de préamplification"><img src="assets/projets/amplificateur/carte-puissance.jpg" alt="Carte de puissance"></span>
             </a>
             <div class="flex flex-1 flex-col p-6">
-              <p class="font-mono text-xs text-[var(--text-muted)]"><span class="block" data-i18n="p4.kind">PI 3 · Électronique analogique</span><span class="mt-1 block text-[var(--text-faint)]" data-i18n="p4.date">Grenoble INP – Phelma</span></p>
+              <p class="font-mono text-xs text-[var(--text-muted)]"><span class="block" data-i18n="p4.kind">Bureau d’études · Phelma</span><span class="mt-1 block text-[var(--text-faint)]" data-i18n="p4.date">Février – avril 2026</span></p>
               <h3 class="mt-2 text-xl font-semibold text-[var(--text-strong)]">
                 <a href="amplificateur.html" class="transition-colors hover:text-accent-soft" data-i18n="p4.title">Amplificateur audio piézoélectrique</a>
               </h3>
@@ -1070,7 +1071,7 @@ html {
                 </a>
                 <!-- 🔗 Site commercial du produit (le code est confidentiel). -->
                 <a href="https://www.domethic-system.com/" target="_blank" rel="noopener noreferrer" class="btn-ghost !px-3.5 !py-2.5 !text-xs whitespace-nowrap">
-                  <svg class="h-3.5 w-3.5"><use href="#i-external"/></svg><span data-i18n="proj.site">Site du produit</span>
+                  <svg class="h-3.5 w-3.5"><use href="#i-external"/></svg><span data-i18n="proj.site">Site Myha</span>
                 </a>
               </div>
             </div>
@@ -1479,8 +1480,8 @@ html {
     FR['meta.desc']  = $('meta[name="description"]').content;
 
     const EN = {
-"p4.kind": "PI 3 \u00b7 Analogue electronics",
-"p4.date": "Grenoble INP \u2013 Phelma",
+"p4.kind": "Engineering lab · Phelma",
+"p4.date": "February – April 2026",
 "p4.title": "Piezo audio amplifier",
 "p4.desc": "From guitar pickup to loudspeaker: two surface-mount boards, tone controls and a comparison of predictions with measurements.",
 
@@ -1501,7 +1502,7 @@ html {
       "proj.eyebrow": "Projects", "proj.title": "Selected work",
       "proj.sub": "From electronic boards to numerical simulations.",
       "f.all": "All", "f.hw": "Hardware", "f.emb": "Embedded", "f.sim": "Simulation",
-      "proj.code": "Source code", "proj.site": "Product website", "proj.more": "Learn more",
+      "proj.code": "Source code", "proj.site": "Myha website", "proj.more": "Learn more",
       "p1.kind": "Entrepreneurial project", "p1.date": "Feb 2022 — Present",
       "p1.desc": "Electronic board assembly (soldering, radio modules, EEPROM memory), firmware configuration and robustness testing: high-power loads and EMC verification.",
       "tag.radio": "Radio modules",
