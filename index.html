@@ -953,7 +953,7 @@ html {
         -->
         <div id="projects-track"
              class="-mx-6 flex snap-x snap-mandatory flex-row gap-4 overflow-x-auto scroll-px-6 px-6 pb-4
-                    md:mx-0 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-3
+                    md:mx-0 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0 md:pb-0
                     [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
 
           <!-- ───────── Projet 1 : Domethic System ───────── -->
@@ -1036,6 +1036,31 @@ html {
                   <span data-i18n="proj.more">En savoir plus</span><svg class="h-3.5 w-3.5"><use href="#i-arrow"/></svg>
                 </a>
                 <a href="https://github.com/AurelienCapron/badminton-launcher-vision" target="_blank" rel="noopener noreferrer" class="btn-ghost !px-3.5 !py-2.5 !text-xs whitespace-nowrap">
+                  <svg class="h-3.5 w-3.5"><use href="#i-github"/></svg><span data-i18n="proj.code">Code source</span>
+                </a>
+              </div>
+            </div>
+          </article>
+<article class="project surface group reveal flex w-[85vw] max-w-[340px] flex-none snap-start flex-col overflow-hidden sm:w-[340px] md:w-auto md:max-w-none" data-cat="hardware simulation" style="transition-delay:.2s">
+            <a href="amplificateur.html" tabindex="-1" aria-hidden="true" class="media-placeholder relative block aspect-video overflow-hidden border-b border-[var(--border)]">
+              <div class="media-icon absolute inset-0 grid place-items-center"><svg class="h-12 w-12"><use href="#i-activity"/></svg></div>
+              
+              <img src="assets/projets/amplificateur/pcb_part1_preamp.png" alt="Carte de préamplification piézoélectrique" loading="lazy"
+                   class="absolute inset-0 h-full w-full object-contain transition duration-500 group-hover:scale-105" onerror="this.remove()">
+            </a>
+            <div class="flex flex-1 flex-col p-6">
+              <p class="font-mono text-xs text-[var(--text-muted)]"><span class="block" data-i18n="p4.kind">PI 3 · Électronique analogique</span><span class="mt-1 block text-[var(--text-faint)]" data-i18n="p4.date">Grenoble INP – Phelma</span></p>
+              <h3 class="mt-2 text-xl font-semibold text-[var(--text-strong)]">
+                <a href="amplificateur.html" class="transition-colors hover:text-accent-soft" data-i18n="p4.title">Amplificateur audio piézoélectrique</a>
+              </h3>
+              <p class="mt-3 flex-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="p4.desc">Du capteur de guitare au haut-parleur : deux cartes CMS, un correcteur de tonalité et une comparaison entre calculs et mesures.</p>
+              <ul class="mt-5 flex flex-wrap gap-2">
+                <li class="tag">KiCad</li><li class="tag">SPICE</li><li class="tag">PCB</li></ul>
+              <div class="mt-6 flex flex-wrap items-center gap-2">
+                <a href="amplificateur.html" class="btn-primary !px-3.5 !py-2.5 !text-xs whitespace-nowrap">
+                  <span data-i18n="proj.more">En savoir plus</span><svg class="h-3.5 w-3.5"><use href="#i-arrow"/></svg>
+                </a>
+                <a href="https://github.com/AurelienCapron/kicad-piezo-audio-amplifier" target="_blank" rel="noopener noreferrer" class="btn-ghost !px-3.5 !py-2.5 !text-xs whitespace-nowrap">
                   <svg class="h-3.5 w-3.5"><use href="#i-github"/></svg><span data-i18n="proj.code">Code source</span>
                 </a>
               </div>
@@ -1445,6 +1470,11 @@ html {
     FR['meta.desc']  = $('meta[name="description"]').content;
 
     const EN = {
+"p4.kind": "PI 3 \u00b7 Analogue electronics",
+"p4.date": "Grenoble INP \u2013 Phelma",
+"p4.title": "Piezo audio amplifier",
+"p4.desc": "From guitar pickup to loudspeaker: two surface-mount boards, tone controls and a comparison of predictions with measurements.",
+
       "meta.title": "Aurélien CAPRON — Portfolio | Embedded Systems Engineering Student",
       "meta.desc": "Portfolio of Aurélien Capron, engineering student at Grenoble INP - Phelma (Integrated Electronic Systems). Embedded systems, microelectronics, hardware design.",
       "skip": "Skip to content",

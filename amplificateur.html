@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Amplificateur audio piézoélectrique — Aurélien Capron</title>
+  <meta name="description" content="Du capteur piézo au haut-parleur : conception sous KiCad, correcteur de Baxandall, classe D et mesures expérimentales.">
+  <meta name="theme-color" content="#f6f7f9">
+  <meta name="color-scheme" content="light">
+
+  <script>
+    try {
+      const saved = localStorage.getItem('theme');
+      if (saved === 'dark' || (saved !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#0c0e11');
+        document.querySelector('meta[name="color-scheme"]')?.setAttribute('content', 'dark');
+      }
+    } catch (e) {}
+  </script>
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Amplificateur audio piézoélectrique — Aurélien Capron">
+  <meta property="og:description" content="Du capteur piézo au haut-parleur : conception sous KiCad, correcteur de Baxandall, classe D et mesures expérimentales.">
+  <meta property="og:url" content="https://aureliencapron.github.io/amplificateur.html">
+  <meta property="og:image" content="https://aureliencapron.github.io/assets/projets/amplificateur/pcb_part1_preamp.png">
+  <link rel="canonical" href="https://aureliencapron.github.io/amplificateur.html">
+
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+
+  <style>
+    /* 🔤 AUTO-HÉBERGEMENT DES POLICES : dépose les 8 fichiers .woff2 listés ci-dessous
+       dans assets/fonts/ (voir le mode d'emploi dans le checklist tout en haut du fichier).
+       Tant qu'ils n'y sont pas, le navigateur bascule automatiquement sur une police
+       système proche (aucune casse visuelle, juste un rendu légèrement différent). */
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 400; font-display: swap; src: url('assets/fonts/inter-400.woff2') format('woff2'); }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 500; font-display: swap; src: url('assets/fonts/inter-500.woff2') format('woff2'); }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 600; font-display: swap; src: url('assets/fonts/inter-600.woff2') format('woff2'); }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 700; font-display: swap; src: url('assets/fonts/inter-700.woff2') format('woff2'); }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 800; font-display: swap; src: url('assets/fonts/inter-800.woff2') format('woff2'); }
+    @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url('assets/fonts/jetbrains-mono-400.woff2') format('woff2'); }
+    @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 500; font-display: swap; src: url('assets/fonts/jetbrains-mono-500.woff2') format('woff2'); }
+    @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 600; font-display: swap; src: url('assets/fonts/jetbrains-mono-600.woff2') format('woff2'); }
+    /* Titres (h1 / h2) : Barlow Semi Condensed. Sans ces 2 fichiers, les titres retombent sur Inter. */
+    @font-face { font-family: 'Barlow Semi Condensed'; font-style: normal; font-weight: 600; font-display: swap; src: url('assets/fonts/barlow-semi-condensed-600.woff2') format('woff2'); }
+    @font-face { font-family: 'Barlow Semi Condensed'; font-style: normal; font-weight: 700; font-display: swap; src: url('assets/fonts/barlow-semi-condensed-700.woff2') format('woff2'); }
+  </style>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Barlow Semi Condensed', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'monospace']
+          },
+          colors: {
+            ink: { 950: '#0c0e11', 900: '#121519', 800: '#181c21', 700: '#232830', 600: '#333a45' },
+            accent: { DEFAULT: 'rgb(var(--accent-rgb) / <alpha-value>)', soft: 'var(--accent-soft)' },
+            volt: { DEFAULT: 'rgb(var(--volt-rgb) / <alpha-value>)', soft: 'var(--volt-soft)' }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style type="text/tailwindcss">
+    @layer components {
+      .surface   { @apply rounded-[var(--r-card)] border border-[var(--border)] bg-[var(--surface)] transition-colors duration-300 hover:border-[var(--text-faint)]; box-shadow: var(--card-shadow); }
+      .tag       { @apply inline-flex cursor-default items-center rounded-sm border border-[var(--border)] bg-[var(--chip-bg)] px-2.5 py-1 font-mono text-xs text-[var(--text-soft)]; }
+      .btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-md bg-accent px-5 py-3 text-sm font-semibold text-[var(--on-accent)] shadow-lg shadow-accent/15 transition hover:-translate-y-0.5 hover:brightness-110; }
+      .btn-ghost { @apply inline-flex items-center justify-center gap-2 rounded-md border border-[var(--border)] px-5 py-3 text-sm font-semibold text-[var(--text-soft)] transition hover:-translate-y-0.5 hover:border-volt/60 hover:bg-volt/10; }
+      .eyebrow   { @apply text-xs font-semibold uppercase tracking-widest text-[var(--text-muted)]; }
+      .h2        { @apply mt-2 text-balance font-display text-4xl font-bold tracking-tight text-[var(--text-strong)] sm:text-5xl; }
+      .nav-link  { @apply text-sm text-[var(--text-muted)] transition-colors hover:text-[var(--text-strong)]; }
+      .nav-link[aria-current="true"] { @apply font-medium text-[var(--text-strong)]; }
+      .lang-btn  { @apply rounded-md px-2.5 py-1 text-[var(--text-muted)] transition-colors hover:text-[var(--text-strong)]; }
+      .lang-btn[aria-pressed="true"] { @apply bg-[var(--chip-bg-active)] text-[var(--text-strong)]; }
+      .filter-btn { @apply rounded-md border border-[var(--border)] px-4 py-1.5 text-sm text-[var(--text-muted)] transition-colors hover:text-[var(--text-strong)]; }
+      .filter-btn[aria-pressed="true"] { @apply border-accent/40 bg-accent/10 font-medium text-accent-soft; }
+      .icon-btn  { @apply grid h-12 w-12 place-items-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] transition hover:-translate-y-1 hover:border-accent/50 hover:text-accent-soft; box-shadow: var(--card-shadow); }
+      .media-placeholder { background: linear-gradient(135deg, var(--placeholder-from), var(--placeholder-to)); }
+      .media-icon { color: var(--placeholder-icon); }
+    }
+  </style>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --r-card: 6px; /* arrondi des cartes : 0 = angles vifs, 16px = ancien rendu */
+      --bg: #0c0e11;
+      --bg-alt: rgba(18,21,25,.45);
+      --surface: rgba(22,27,34,.85);
+      --header-bg: rgba(12,14,17,.78);
+      --border: rgba(255,255,255,.11);
+      --chip-bg: rgba(255,255,255,.055);
+      --chip-bg-active: rgba(255,255,255,.11);
+      --text: #cbd5e1;
+      --text-strong: #ffffff;
+      --text-soft: #e2e8f0;
+      --text-muted: #94a3b8;
+      --text-faint: #64748b;
+      --accent-soft: #e0915c; --accent-rgb: 224 145 92; --on-accent: #0c0e11; --volt-rgb: 148 163 184;
+      --volt-soft: #94a3b8;
+      --placeholder-from: #232830;
+      --placeholder-to: #181c21;
+      --placeholder-icon: #475569;
+      --card-shadow: 0 10px 30px -10px rgba(0,0,0,.45);
+      --pcb-trace: rgba(255,255,255,.10);
+      --pcb-pad: rgba(255,255,255,.20);
+    }
+    :root[data-theme="light"] {
+      color-scheme: light;
+      --bg: #f6f7f9;
+      --bg-alt: rgba(226,232,240,.5);
+      --surface: rgba(255,255,255,.94);
+      --header-bg: rgba(246,247,249,.85);
+      --border: rgba(15,23,42,.09);
+      --chip-bg: rgba(15,23,42,.045);
+      --chip-bg-active: rgba(15,23,42,.09);
+      --text: #334155;
+      --text-strong: #0f172a;
+      --text-soft: #1e293b;
+      --text-muted: #475569;
+      --text-faint: #64748b;
+      --accent-soft: #b4531a; --accent-rgb: 180 83 26; --on-accent: #ffffff; --volt-rgb: 71 85 105;
+      --volt-soft: #475569;
+      --placeholder-from: #eef2f6;
+      --placeholder-to: #e2e8f0;
+      --placeholder-icon: #94a3b8;
+      --card-shadow: 0 8px 24px -4px rgba(15,23,42,.05), 0 2px 6px -1px rgba(15,23,42,.03);
+      --pcb-trace: rgba(15,23,42,.11);
+      --pcb-pad: rgba(15,23,42,.22);
+    }
+
+    html { scroll-behavior: smooth; }
+    ::selection { background: rgba(180,83,26,.3); color: #fff; }
+    :focus-visible { outline: 2px solid var(--accent-soft); outline-offset: 3px; border-radius: 6px; }
+
+    .grid-bg {
+      background-image:
+        linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+      background-size: 44px 44px;
+      -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 25%, transparent 75%);
+              mask-image: radial-gradient(ellipse at 50% 30%, #000 25%, transparent 75%);
+    }
+
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+  </style>
+  <noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
+
+  <style>
+    /* Shared visual language with index.html: copper, slate, compact cards. */
+    .project-title { max-width: 950px; margin-top: 18px; font-size: clamp(2.5rem,5.3vw,4.5rem); line-height: 1.06; }
+    .project-hero { padding-top: 16px; }
+    .project-hero [data-i18n="hero.sub"] { max-width: 850px; }
+    .grid-bg { --grid-line: var(--border); background-size: 80px 80px; opacity: .5; }
+    .project-resources { border-left: 3px solid var(--accent-soft); }
+    .project-resources a { border-radius: 6px; }
+    .project-toc { display: flex; flex-wrap: wrap; gap: 8px; padding: 22px 0; margin-bottom: 44px; border-block: 1px solid var(--border); }
+    .project-toc a { color: var(--text-muted); font-size: 13px; padding: 8px 14px; border: 1px solid var(--border); border-radius: 6px; transition: color .2s, background .2s; }
+    .project-toc a:hover { color: var(--accent-soft); background: rgb(var(--accent-rgb) / .08); }
+    .project-section { scroll-margin-top: 90px; }
+    .project-section + .project-section { border-top: 1px solid var(--border); padding-top: 48px; margin-top: 56px; }
+    .project-section > h2 { font-family: 'Barlow Semi Condensed', 'Inter', sans-serif; font-size: clamp(1.8rem,3vw,2.6rem); line-height: 1.15; letter-spacing: -.025em; }
+    .project-section > p { max-width: 920px; line-height: 1.85; }
+    .project-section li.surface { padding: 22px; }
+    .project-section ul { display: grid; gap: 16px; }
+    .project-section ul > li { margin-top: 0 !important; }
+    .project-section img { background: white; }
+    #section-6 { padding: 32px; border: 1px solid var(--border); border-left: 3px solid var(--accent-soft); border-radius: 6px; background: var(--surface); }
+    table thead { background: var(--chip-bg); }
+    table tbody tr:hover { background: var(--chip-bg); }
+    .surface.bg-white > p { color: #475569; }
+    @media (min-width: 900px) { #section-5 ul { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) {
+      header nav { padding-inline: 16px; }
+      header nav > div { gap: 8px; }
+      header .nav-link { font-family: 'Inter', sans-serif; font-size: 11px; margin-right: 0; gap: 4px; }
+      .project-toc { gap: 6px; } .project-toc a { padding: 8px 10px; }
+      .project-section li.surface { padding: 16px; }
+      #section-6 { padding: 22px; }
+      #contact .surface { flex-wrap: wrap; justify-content: center; padding: 10px 14px; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+  </style>
+<style>
+.pcb-open {display:block;position:relative;width:100%;height:100%;cursor:grab;min-height:160px;background:white;border:0;padding:0;}
+.pcb-open img{display:block;margin:auto;}
+.pcb-badge{position:absolute;right:12px;bottom:12px;padding:9px 13px;border-radius:6px;background:var(--surface);color:var(--accent-soft);border:1px solid var(--border);font:600 12px Inter,sans-serif;box-shadow:var(--card-shadow)}
+#pcb-dialog{width:min(1100px,94vw);max-height:94dvh;padding:0;border:1px solid var(--border);border-radius:10px;background:var(--bg);color:var(--text);margin:auto;}
+#pcb-dialog::backdrop{background:rgba(0,0,0,.7);backdrop-filter:blur(6px)}
+.pcb-toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 22px;border-bottom:1px solid var(--border)}
+.pcb-toolbar h2{font-family:'Barlow Semi Condensed',Inter,sans-serif;font-size:24px;color:var(--text-strong)}
+.pcb-close{padding:6px 12px;font-size:24px;border:1px solid var(--border);border-radius:6px}
+#pcb-viewer{display:block;width:100%;height:min(62dvh,640px);min-height:260px;background:var(--surface)}
+.pcb-bottom{padding:16px 22px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.pcb-views{display:flex;gap:8px;flex-wrap:wrap}.pcb-views button{padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-size:13px}
+.pcb-views button:hover{color:var(--accent-soft)}
+#pcb-status{padding:0 22px 12px;font-size:13px;color:var(--text-muted)}
+</style><style>
+#video-dialog{width:min(820px,94vw);max-height:92dvh;overflow:auto;padding:0;border:1px solid var(--border);border-radius:10px;background:var(--bg);color:var(--text);margin:auto}
+#video-dialog::backdrop{background:rgba(0,0,0,.7);backdrop-filter:blur(6px)}
+#project-video{display:block;width:100%;max-height:65dvh;background:#111}
+#video-dialog .pcb-bottom{font-size:13px}details[open]>summary{margin-bottom:20px}
+</style>
+<style id="chronological-layout">
+.story-main{max-width:1120px;margin:auto;padding:132px 28px 64px;outline:none}
+.story-main h1,.story-main h2,.story-main h3{font-family:'Barlow Semi Condensed',Inter,system-ui,sans-serif;color:var(--text-strong);letter-spacing:-.035em;font-weight:600}
+.story-hero{display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center;padding-bottom:64px}
+.story-eyebrow{font:600 11px Inter,sans-serif;letter-spacing:.15em;color:var(--accent-soft);line-height:1.8}
+.story-hero h1{font-size:clamp(40px,5vw,64px);line-height:1.08;max-width:620px;margin:20px 0 24px}
+.story-lead{font-size:18px;line-height:1.75;color:var(--text-muted);max-width:580px}
+.story-role{font-size:12px;line-height:1.8;color:var(--text-faint);margin-top:24px}.story-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.story-figure{margin:0;min-width:0}.image-open{width:100%;display:block;border:0;border-radius:8px;background:var(--chip-bg);overflow:hidden;cursor:zoom-in;padding:14px}
+.story-figure img{width:100%;height:280px;object-fit:contain;display:block;image-orientation:from-image}
+.story-figure figcaption{font-size:12px;line-height:1.6;color:var(--text-muted);padding:12px 0 0}
+.hero-photo .image-open{padding:0;background:transparent}.hero-photo img{height:420px;object-fit:contain;border-radius:8px}
+.story-nav{display:flex;flex-wrap:wrap;gap:12px 28px;border-block:1px solid var(--border);padding:22px 0;margin-bottom:16px}.story-nav a{font-size:13px;display:flex;gap:8px;align-items:center;color:var(--text-muted)}.story-nav a>span:first-child{font:11px 'JetBrains Mono',monospace;color:var(--accent-soft)}.story-nav a:hover{color:var(--text-strong)}
+.story-step{padding:62px 0;border-bottom:1px solid var(--border);scroll-margin-top:90px}.step-heading{display:flex;gap:20px;align-items:baseline;margin-bottom:26px}.step-number{font:13px 'JetBrains Mono',monospace;color:var(--accent-soft)}.step-heading h2{font-size:clamp(28px,3vw,38px);line-height:1.15}.step-body{margin-left:40px}.step-body>p{max-width:820px;line-height:1.85;color:var(--text-muted);margin:16px 0}.story-main h3{font-size:25px;margin-bottom:14px}
+.story-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:30px 0;padding:26px 0;border-block:1px solid var(--border)}.story-facts strong{display:block;font-size:30px;font-weight:500;color:var(--accent-soft);letter-spacing:-.04em}.story-facts span{display:block;margin-top:8px;font-size:12px;line-height:1.6;color:var(--text-muted);max-width:230px}
+.story-media{display:grid;gap:24px;margin:30px 0}.story-media.pair,.story-media.portraits{grid-template-columns:1fr 1fr}.story-media.trio{grid-template-columns:repeat(3,1fr)}.trio img{height:210px}.portraits img{height:360px}.story-details{margin-top:28px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:18px 0}.story-details summary{cursor:pointer;font-size:14px;font-weight:600;color:var(--text-soft)}.story-details>p{line-height:1.8;margin:20px 0;color:var(--text-muted)}.story-details .story-figure{margin:24px auto;max-width:800px}.story-details img{height:auto;max-height:600px}.table-scroll{overflow:auto;margin-top:20px}
+.board-feature{display:grid;grid-template-columns:.8fr 1.2fr;gap:30px;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:8px;margin-top:30px;padding:30px}.board-feature h3{margin-top:14px}.board-feature p{font-size:14px;line-height:1.8;color:var(--text-muted)}.board-feature .pcb-open{height:300px;border-radius:6px;padding:16px}.board-feature .pcb-open img{width:100%;height:100%;object-fit:contain}.story-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:20px}.story-tags span{font:10px 'JetBrains Mono',monospace;padding:6px 8px;background:var(--chip-bg);border:1px solid var(--border);border-radius:3px}
+.test-layout{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}.test-layout p{font-size:15px;line-height:1.85;color:var(--text-muted);margin-bottom:20px}.test-layout img{height:320px}.story-note{border-left:2px solid var(--accent-soft);margin-top:30px;padding:8px 20px;font-size:12px;line-height:1.8;color:var(--text-muted)}
+.story-closing{padding:50px 40px;background:var(--bg-alt);margin-top:48px;border-radius:8px}.story-closing h2,.story-resources h2{font-size:30px;margin-bottom:18px}.story-closing p{line-height:1.8;max-width:820px;color:var(--text-muted);margin-top:14px}.story-closing p:last-child{font-size:13px}.story-resources{margin-top:50px}.resource-links{display:grid;grid-template-columns:1fr 1fr;gap:12px}.resource-links a{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:20px;border:1px solid var(--border);border-radius:6px;font-size:14px;background:var(--surface)}.resource-links a:hover{border-color:var(--accent-soft)}.resource-links small{font:10px 'JetBrains Mono',monospace;color:var(--accent-soft);white-space:nowrap}.story-end{margin-top:40px}
+#image-dialog{width:min(1200px,96vw);max-height:94dvh;padding:0;margin:auto;background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:8px}#image-dialog::backdrop{background:rgba(0,0,0,.8);backdrop-filter:blur(4px)}#image-large{max-width:100%;width:auto;max-height:76dvh;margin:auto;display:block;object-fit:contain}#image-caption{font-size:13px;line-height:1.6;padding:16px 24px}#image-dialog .pcb-toolbar{justify-content:flex-end;padding:8px 14px}
+@media(max-width:760px){.story-main{padding:104px 20px 40px}.story-hero{grid-template-columns:1fr;gap:30px;padding-bottom:34px}.hero-photo img{height:310px}.story-lead{font-size:16px}.story-nav{gap:14px 20px}.story-step{padding:40px 0}.step-body{margin-left:0}.step-heading{gap:12px}.story-facts{gap:14px}.story-facts strong{font-size:23px}.board-feature{grid-template-columns:1fr;padding:20px;gap:20px}.board-feature .pcb-open{height:260px}.test-layout{grid-template-columns:1fr}.story-media.trio{grid-template-columns:1fr}.trio img{height:250px}.story-media.pair,.story-media.portraits{grid-template-columns:1fr}.story-figure img{height:auto;max-height:360px}.story-closing{padding:26px}.resource-links{grid-template-columns:1fr}.story-actions .btn-primary,.story-actions .btn-ghost{padding:12px 14px}}
+</style>
+<style id="caption-alignment">.story-figure figcaption,#image-caption{text-align:center;text-wrap:pretty;margin-inline:auto;max-width:68ch}#image-caption{padding:16px 24px 22px}</style></head>
+
+<body class="bg-[var(--bg)] font-sans text-[var(--text)] antialiased">
+
+  <a href="#main" data-i18n="skip"
+     class="sr-only z-[60] rounded-md bg-accent px-4 py-2 font-semibold text-ink-950 focus:not-sr-only focus:fixed focus:left-4 focus:top-4">Aller au contenu</a>
+
+  <svg xmlns="http://www.w3.org/2000/svg" class="absolute h-0 w-0 overflow-hidden" aria-hidden="true" focusable="false">
+    <symbol id="i-github" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol>
+    <symbol id="i-linkedin" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+    <symbol id="i-cpu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></symbol>
+    <symbol id="i-activity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></symbol>
+    <symbol id="i-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></symbol>
+  </svg>
+
+  <header class="fixed inset-x-0 top-0 z-50 border-b border-[var(--border)] bg-[var(--header-bg)] backdrop-blur-md">
+    <div id="progress" class="absolute left-0 top-0 h-[2px] w-0 bg-gradient-to-r from-accent to-volt"></div>
+    <nav class="mx-auto flex h-16 max-w-6xl items-center justify-between px-6" aria-label="Navigation principale">
+      <a href="index.html#accueil" class="flex items-center gap-3">
+        <span class="grid h-8 w-8 place-items-center rounded-lg border border-[var(--border)] bg-[var(--surface)] font-sans text-sm font-bold text-accent-soft">AC</span>
+        <span class="hidden text-sm font-semibold text-[var(--text-strong)] sm:inline">Aurélien Capron</span>
+      </a>
+
+      <div class="flex items-center gap-3">
+        <a href="index.html#projets" class="nav-link mr-2 inline-flex items-center gap-2 font-mono text-xs sm:text-sm">
+          <svg class="h-4 w-4"><use href="#i-arrow" transform="rotate(180 12 12)"/></svg>
+          <span data-i18n="nav.back">Retour aux projets</span>
+        </a>
+        <div class="flex items-center rounded-lg border border-[var(--border)] p-0.5 font-mono text-xs" role="group" aria-label="Langue / Language">
+          <button type="button" class="lang-btn" data-lang="fr" aria-pressed="true">FR</button>
+          <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <button id="theme-toggle" type="button"
+                class="grid h-9 w-9 place-items-center rounded-lg border border-[var(--border)] text-[var(--text-muted)] transition-colors hover:text-[var(--text-strong)]"
+                aria-pressed="true" aria-label="Basculer le thème clair/sombre">
+          <svg class="h-4 w-4"><use id="theme-icon-use" href="#i-moon"/></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="story-main" id="main" tabindex="-1"><section class="story-hero"><div><p class="story-eyebrow" data-i18n="audio.1">PI 3 · GRENOBLE INP – PHELMA</p><h1 class="" data-i18n="audio.2">Du capteur piézo au haut-parleur</h1><p class="story-lead" data-i18n="audio.3">Comment amplifier le signal d’une guitare acoustique tout en laissant au musicien le contrôle des graves, des aigus et du volume ? Deux cartes se partagent le travail, de l’entrée haute impédance à la sortie de puissance.</p><p class="story-role" data-i18n="audio.4">Aurélien Capron &amp; Amaury Simonnot · Électronique analogique</p><div class="story-actions"><button class="btn-primary" data-open-board type="button" aria-haspopup="dialog"><span class="" data-i18n="audio.5">Manipuler le PCB en 3D</span></button><a class="btn-ghost" href="#mesures"><span class="" data-i18n="audio.6">Voir les mesures</span></a></div></div><figure class="story-figure hero-photo"><button class="image-open" type="button" aria-haspopup="dialog"><img src="assets/projets/amplificateur/pcb_part1_preamp.png" alt="La carte de préamplification soudée, avec ses réglages de tonalité." loading="lazy"></button><figcaption class="" data-i18n="audio.7">La carte de préamplification soudée, avec ses réglages de tonalité.</figcaption></figure></section><nav class="story-nav" aria-label="Étapes / Project stages"><a href="#signal"><span>01</span><span class="" data-i18n="audio.8">Architecture</span></a><a href="#tonalite"><span>02</span><span class="" data-i18n="audio.9">Tonalité</span></a><a href="#puissance"><span>03</span><span class="" data-i18n="audio.10">Puissance</span></a><a href="#fabrication"><span>04</span><span class="" data-i18n="audio.11">Réalisation</span></a><a href="#mesures"><span>05</span><span class="" data-i18n="audio.12">Mesures</span></a></nav><section class="story-step" id="signal"><div class="step-heading"><span class="step-number">01</span><h2 class="" data-i18n="audio.16">Adapter le signal du capteur</h2></div><div class="step-body"><p class="" data-i18n="audio.13">Le disque piézoélectrique fournit un signal de faible amplitude. Un suiveur à haute impédance évite de charger le capteur. L’étage inverseur qui suit utilise des résistances de 10 et 100 kΩ pour obtenir un gain théorique de 10 en valeur absolue.</p><p class="" data-i18n="audio.14">La chaîne fonctionne sous 5 V. Une référence à 2,5 V centre le signal audio pour laisser de la marge aux deux alternances.</p><figure class="story-figure "><button class="image-open" type="button" aria-haspopup="dialog"><img src="assets/projets/amplificateur/audio_chain_architecture.svg" alt="Architecture des deux cartes, de l’entrée instrument au haut-parleur." loading="lazy"></button><figcaption class="" data-i18n="audio.15">Architecture des deux cartes, de l’entrée instrument au haut-parleur.</figcaption></figure></div></section><section class="story-step" id="tonalite"><div class="step-heading"><span class="step-number">02</span><h2 class="" data-i18n="audio.19">Régler les graves et les aigus</h2></div><div class="step-body"><p class="" data-i18n="audio.17">Sur la première carte, le correcteur actif de Baxandall agit de part et d’autre de 1 kHz. Deux potentiomètres règlent séparément les graves et les aigus. Un troisième règle le volume envoyé à la carte de puissance. La simulation sert de référence pour comparer les réponses mesurées.</p><figure class="story-figure "><button class="image-open" type="button" aria-haspopup="dialog"><img src="assets/projets/amplificateur/baxandall_schematic.png" alt="Schéma du réseau de tonalité actif." loading="lazy"></button><figcaption class="" data-i18n="audio.18">Schéma du réseau de tonalité actif.</figcaption></figure></div></section><section class="story-step" id="puissance"><div class="step-heading"><span class="step-number">03</span><h2 class="" data-i18n="audio.23">Choisir entre classe AB et classe D</h2></div><div class="step-body"><div class="test-layout"><div><p class="" data-i18n="audio.20">La seconde carte applique une correction physiologique (« loudness ») destinée à l’écoute à faible volume. Un cavalier sélectionne ensuite l’étage qui pilote le haut-parleur de 8 Ω.</p><p class="" data-i18n="audio.21">Le TS4871 amplifie en classe AB. Le TS4962 utilise une sortie en pont de classe D : l’information audio est portée par la variation du rapport cyclique. La campagne de mesures examine cette commutation.</p></div><figure class="story-figure "><button class="image-open" type="button" aria-haspopup="dialog"><img src="assets/projets/amplificateur/pcb_part2_power_amp.png" alt="Carte de puissance assemblée et connecteurs de sortie." loading="lazy"></button><figcaption class="" data-i18n="audio.22">Carte de puissance assemblée et connecteurs de sortie.</figcaption></figure></div></div></section><section class="story-step" id="fabrication"><div class="step-heading"><span class="step-number">04</span><h2 class="" data-i18n="audio.26">Du schéma aux cartes assemblées</h2></div><div class="step-body"><p class="" data-i18n="audio.24">Les schémas KiCad sont répartis en deux feuilles, préamplification et puissance. Le routage fixe la position des composants CMS, des réglages et des connecteurs avant la soudure. Le modèle interactif permet d’examiner les implantations et de retourner le circuit.</p><button type="button" aria-haspopup="dialog" class="btn-primary" data-open-board><span class="" data-i18n="audio.25">Ouvrir la vue 3D</span></button></div></section><section class="story-step" id="mesures"><div class="step-heading"><span class="step-number">05</span><h2 class="" data-i18n="audio.35">Comparer les calculs au banc de mesure</h2></div><div class="step-body"><p class="" data-i18n="audio.27">Sept positions des réglages de tonalité sont testées. En renforcement maximal, le rapport relève +12,6 dB dans les graves et +11,2 dB dans les aigus. Lorsque les deux réglages sont au maximum, la réponse repasse près de 0 dB à 1 kHz.</p><div class="story-media pair"><figure class="story-figure "><button class="image-open" type="button" aria-haspopup="dialog"><img src="assets/projets/amplificateur/baxandall_bode_boost.png" alt="Réponse en fréquence en renforcement." loading="lazy"></button><figcaption class="" data-i18n="audio.28">Réponse en fréquence en renforcement.</figcaption></figure><figure class="story-figure "><button class="image-open" type="button" aria-haspopup="dialog"><img src="assets/projets/amplificateur/baxandall_bode_cut.png" alt="Réponse en fréquence en atténuation." loading="lazy"></button><figcaption class="" data-i18n="audio.29">Réponse en fréquence en atténuation.</figcaption></figure></div><p class="" data-i18n="audio.30">À environ 300 Hz, 280 mV crête à crête en entrée donnent 548 mV crête à crête en sortie différentielle. Le gain mesuré de 1,96 ± 0,15 est compatible avec le gain théorique de 2. Sur l’oscilloscope, la commutation atteint environ 266 kHz ; le résidu de découpage limite la précision de lecture.</p><figure class="story-figure "><button class="image-open" type="button" aria-haspopup="dialog"><img src="assets/projets/amplificateur/class_d_pwm_envelope.png" alt="Oscillogramme de l’étage de classe D." loading="lazy"></button><figcaption class="" data-i18n="audio.31">Oscillogramme de l’étage de classe D.</figcaption></figure><details class="story-details"><summary class="" data-i18n="audio.32">Observer un cycle de découpage</summary><div class="story-media pair"><figure class="story-figure "><button class="image-open" type="button" aria-haspopup="dialog"><img src="assets/projets/amplificateur/class_d_pwm_zoom_pos.png" alt="Alternance positive : impulsion haute plus longue." loading="lazy"></button><figcaption class="" data-i18n="audio.33">Alternance positive : impulsion haute plus longue.</figcaption></figure><figure class="story-figure "><button class="image-open" type="button" aria-haspopup="dialog"><img src="assets/projets/amplificateur/class_d_pwm_zoom_neg.png" alt="Alternance négative : impulsion haute plus courte." loading="lazy"></button><figcaption class="" data-i18n="audio.34">Alternance négative : impulsion haute plus courte.</figcaption></figure></div></details></div></section><section class="story-resources"><h2 class="" data-i18n="audio.36">Documents du projet</h2><div class="resource-links"><a target="_blank" rel="noopener noreferrer" href="assets/projets/amplificateur/caracterisation.pdf"><span class="" data-i18n="audio.37">Rapport de caractérisation</span><small>PDF ↗</small></a><a target="_blank" rel="noopener noreferrer" href="https://github.com/AurelienCapron/kicad-piezo-audio-amplifier/tree/main/hardware_kicad"><span class="" data-i18n="audio.38">Schémas et routage</span><small>KICAD ↗</small></a><a target="_blank" rel="noopener noreferrer" href="https://github.com/AurelienCapron/kicad-piezo-audio-amplifier"><span class="" data-i18n="audio.39">Dépôt du projet</span><small>GITHUB ↗</small></a></div></section><div class="story-end"><a href="index.html#projets" class="btn-ghost" data-i18n="nav.back">Retour aux projets</a></div></main>
+
+  <footer id="contact" class="relative overflow-hidden border-t border-[var(--border)] bg-[var(--bg-alt)]">
+    <div class="pointer-events-none absolute left-1/2 top-0 h-64 w-[36rem] -translate-x-1/2 rounded-full bg-accent/10 blur-3xl"></div>
+
+    <div class="relative mx-auto max-w-3xl px-6 py-20 text-center">
+      <p class="eyebrow reveal" data-i18n="contact.eyebrow">Contact</p>
+      <h2 class="h2 reveal" data-i18n="contact.title">Prêt à échanger sur vos projets technologiques ?</h2>
+      <p class="reveal mx-auto mt-4 max-w-lg text-[var(--text-muted)]" data-i18n="contact.sub">Stage d'assistant ingénieur en électronique — 16 semaines, dès mi-mai 2027.</p>
+
+      <div class="reveal mt-10 flex items-center justify-center gap-4">
+        <a class="icon-btn" href="https://www.linkedin.com/in/aurelien-capron" target="_blank" rel="noopener noreferrer" aria-label="Profil LinkedIn">
+          <svg class="h-5 w-5"><use href="#i-linkedin"/></svg>
+        </a>
+        <a class="icon-btn" href="https://github.com/AurelienCapron" target="_blank" rel="noopener noreferrer" aria-label="Profil GitHub">
+          <svg class="h-5 w-5"><use href="#i-github"/></svg>
+        </a>
+        <a class="icon-btn" href="mailto:aurelien-capron@outlook.fr" aria-label="Envoyer un email">
+          <svg class="h-5 w-5"><use href="#i-mail"/></svg>
+        </a>
+        <a class="icon-btn" href="tel:+33783073311" aria-label="Appeler">
+          <svg class="h-5 w-5"><use href="#i-phone"/></svg>
+        </a>
+      </div>
+
+      <div class="reveal mt-6 flex flex-wrap items-center justify-center gap-3">
+        <div class="surface inline-flex max-w-full items-center gap-2 !rounded-full py-1.5 pl-4 pr-1.5 font-mono text-xs text-[var(--text)] sm:gap-3 sm:pl-5 sm:text-sm">
+          <span class="whitespace-nowrap">aurelien-capron@outlook.fr</span>
+          <button id="copy-email" type="button" class="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-[var(--chip-bg)] px-3 py-1.5 text-xs text-[var(--text-soft)] transition hover:bg-accent/15 hover:text-accent-soft">
+            <svg class="h-3.5 w-3.5"><use href="#i-copy"/></svg><span data-i18n="contact.copy">Copier</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="relative border-t border-[var(--border)] px-6 py-6 text-center font-mono text-xs text-[var(--text-faint)]">
+      © <span id="year">2026</span> Aurélien Capron · <span data-i18n="footer.built">Conçu avec HTML &amp; CSS</span> · <a href="mentions-legales.html" data-i18n="footer.legal" class="underline-offset-4 transition-colors hover:text-[var(--text-strong)] hover:underline">Mentions légales</a>
+    </div>
+  </footer>
+
+  <button id="to-top" type="button" aria-label="Retour en haut"
+          class="pointer-events-none fixed bottom-6 right-6 z-40 grid h-11 w-11 place-items-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text-soft)] opacity-0 shadow-lg backdrop-blur transition-all duration-300 hover:border-accent/50 hover:text-accent-soft">
+    <svg class="h-5 w-5"><use href="#i-up"/></svg>
+  </button>
+
+  <div id="toast" role="status" aria-live="polite"
+       class="pointer-events-none fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-lg border border-accent/30 bg-[var(--surface)] px-4 py-2 text-sm font-medium text-accent-soft opacity-0 shadow-xl transition-opacity duration-300"></div>
+
+
+<dialog id="image-dialog" aria-label="Image agrandie / Enlarged image"><div class="pcb-toolbar"><button type="button" class="pcb-close" aria-label="Fermer / Close" autofocus>×</button></div><img id="image-large" alt=""><p id="image-caption"></p></dialog>
+
+<dialog id="pcb-dialog" aria-labelledby="pcb-title">
+ <div class="pcb-toolbar"><h2 id="pcb-title" data-i18n="pcb.title">Carte électronique · Vue 3D</h2><button type="button" class="pcb-close" aria-label="Fermer / Close" autofocus>×</button></div>
+ <model-viewer id="pcb-viewer" alt="Circuit imprimé audio / Audio PCB" camera-controls touch-action="none" camera-orbit="20deg 40deg 90%" field-of-view="30deg" min-camera-orbit="auto 0deg auto" max-camera-orbit="auto 180deg auto" shadow-intensity="0.3" exposure="1" interaction-prompt="auto"></model-viewer>
+ <div class="pcb-bottom"><p data-i18n="pcb.help">Glissez pour tourner · Molette ou pincement pour zoomer</p><div class="pcb-views"><button type="button" data-orbit="0deg 0deg 90%" data-i18n="pcb.top">Dessus</button><button type="button" data-orbit="0deg 180deg 90%" data-i18n="pcb.bottom">Dessous</button><button type="button" data-orbit="20deg 40deg 90%" data-i18n="pcb.reset">Perspective</button></div></div>
+ <p id="pcb-status" role="status" aria-live="polite"></p>
+</dialog>
+
+  <script>
+  (() => {
+    const $  = (s, r = document) => r.querySelector(s);
+    const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+    $('#year').textContent = new Date().getFullYear();
+
+    const themeBtn = $('#theme-toggle');
+    const themeIconUse = $('#theme-icon-use');
+    const metaThemeColor = $('meta[name="theme-color"]');
+    function applyTheme(theme, persist) {
+      document.documentElement.setAttribute('data-theme', theme);
+      themeIconUse?.setAttribute('href', theme === 'light' ? '#i-moon' : '#i-sun');
+      themeBtn?.setAttribute('aria-pressed', String(theme === 'light'));
+      metaThemeColor?.setAttribute('content', theme === 'light' ? '#f6f7f9' : '#0c0e11');
+      $('meta[name="color-scheme"]')?.setAttribute('content', theme);
+      if (persist) { try { localStorage.setItem('theme', theme); } catch (e) {} }
+    }
+    let savedTheme = null;
+    try { savedTheme = localStorage.getItem('theme'); } catch (e) {}
+    applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light', false);
+    themeBtn?.addEventListener('click', () => {
+      const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      applyTheme(next, true);
+    });
+
+    const FR = {};
+    $$('[data-i18n]').forEach(el => { FR[el.dataset.i18n] = el.textContent.trim(); });
+    FR['meta.title'] = document.title;
+    FR['meta.desc']  = $('meta[name="description"]').content;
+    FR['toast.copied'] = "Email copié !";
+
+    const EN = {
+  "audio.1": "PI 3 · GRENOBLE INP – PHELMA",
+  "audio.2": "From piezo pickup to loudspeaker",
+  "audio.3": "How can an acoustic guitar pickup drive a loudspeaker while giving the musician control over bass, treble and volume? Two boards connect a high-impedance input to the power output.",
+  "audio.4": "Aurélien Capron & Amaury Simonnot · Analogue electronics",
+  "audio.5": "Explore the PCB in 3D",
+  "audio.6": "View measurements",
+  "audio.7": "The assembled preamp board with tone controls.",
+  "audio.8": "Architecture",
+  "audio.9": "Tone",
+  "audio.10": "Power",
+  "audio.11": "PCB design",
+  "audio.12": "Measurements",
+  "audio.13": "The piezo pickup produces a small signal. A high-impedance buffer limits loading of the pickup. The following inverting stage uses 10 and 100 kΩ resistors for a theoretical gain magnitude of 10.",
+  "audio.14": "The circuit runs from a 5 V supply. A 2.5 V reference centres the audio signal and leaves room for both halves of the waveform.",
+  "audio.15": "Two-board signal path from instrument input to loudspeaker.",
+  "audio.16": "Conditioning the pickup signal",
+  "audio.17": "On the first board, an active Baxandall network shapes the response on either side of 1 kHz. Separate potentiometers set bass and treble, and a third controls the level sent to the power board. Simulation provides a reference for the measured responses.",
+  "audio.18": "Active tone-control network.",
+  "audio.19": "Adjusting bass and treble",
+  "audio.20": "The second board adds loudness compensation for low-volume listening. A jumper then selects which stage drives the 8 Ω loudspeaker.",
+  "audio.21": "The TS4871 is a class AB amplifier. The TS4962 uses a class D bridge output that encodes audio in a changing duty cycle. The measurement campaign examines this switching behaviour.",
+  "audio.22": "Assembled power board and output connectors.",
+  "audio.23": "Choosing between class AB and class D",
+  "audio.24": "The KiCad schematics are split into preamplifier and power sheets. PCB layout sets the positions of the surface-mount components, controls and connectors before soldering. Rotate the interactive model to inspect component placement and the reverse side.",
+  "audio.25": "Open the 3D view",
+  "audio.26": "From schematic to assembled boards",
+  "audio.27": "Seven tone-control settings were tested. Maximum boost reached +12.6 dB in the bass and +11.2 dB in the treble. With both controls at maximum, the response returned to about 0 dB at 1 kHz.",
+  "audio.28": "Frequency response with boost.",
+  "audio.29": "Frequency response with cut.",
+  "audio.30": "At about 300 Hz, a 280 mV peak-to-peak input gives a 548 mV peak-to-peak differential output. The measured gain of 1.96 ± 0.15 agrees with the theoretical value of 2. The oscilloscope shows switching at about 266 kHz. Switching residue limits the precision of the amplitude reading.",
+  "audio.31": "Class D oscilloscope trace.",
+  "audio.32": "Inspect a switching cycle",
+  "audio.33": "Positive half-cycle: longer high pulse.",
+  "audio.34": "Negative half-cycle: shorter high pulse.",
+  "audio.35": "Comparing predictions with bench measurements",
+  "audio.36": "Project documents",
+  "audio.37": "Characterisation report",
+  "audio.38": "Schematics and layout",
+  "audio.39": "Project repository",
+  "footer.legal": "Legal notice",
+  "pcb.open": "Explore in 3D ↗",
+  "pcb.title": "Circuit board · 3D view",
+  "pcb.help": "Drag to rotate · Scroll or pinch to zoom",
+  "pcb.top": "Top",
+  "pcb.bottom": "Bottom",
+  "pcb.reset": "Perspective",
+  "skip": "Skip to content",
+  "nav.back": "Back to projects",
+  "nav.prev": "← Previous",
+  "nav.prevTitle": "Domethic System",
+  "nav.next": "Next →",
+  "nav.nextTitle": "Kinematic simulation (TIPE)",
+  "contact.eyebrow": "Contact",
+  "contact.title": "Ready to talk about your tech projects?",
+  "contact.sub": "Electronics engineering assistant internship — 16 weeks, from mid-May 2027.",
+  "contact.copy": "Copy",
+  "toast.copied": "Email copied!",
+  "footer.built": "Built with HTML & CSS",
+  "meta.title": "Piezo audio amplifier — Aurélien Capron",
+  "meta.desc": "A piezo audio amplifier, from KiCad design to Baxandall tone control and class D bench measurements."
+};
+
+    const DICT = { fr: FR, en: EN };
+    let lang = 'fr';
+
+    function setLang(next, persist) {
+      lang = next;
+      const d = DICT[lang];
+      document.documentElement.lang = lang;
+      $$('[data-i18n]').forEach(el => { const v = d[el.dataset.i18n]; if (v != null) el.textContent = v; });
+      document.title = d['meta.title'];
+      $('meta[name="description"]')?.setAttribute('content', d['meta.desc']);
+      $$('.lang-btn').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+      if (persist) { try { localStorage.setItem('lang', lang); } catch (e) {} }
+    }
+    $$('.lang-btn').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang, true)));
+
+    let urlLang = null;
+    try { urlLang = new URLSearchParams(location.search).get('lang'); } catch (e) {}
+    let savedLang = null;
+    try { savedLang = localStorage.getItem('lang'); } catch (e) {}
+    const browserLang = (navigator.language || '').toLowerCase().startsWith('fr') ? 'fr' : 'en';
+    const initialLang = (urlLang === 'en' || urlLang === 'fr')
+      ? urlLang
+      : (savedLang === 'en' || savedLang === 'fr' ? savedLang : browserLang);
+    if (initialLang === 'en') setLang('en', Boolean(urlLang));
+
+    const bar = $('#progress'), topBtn = $('#to-top');
+    let ticking = false;
+    function onScroll() {
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      const hidden = h.scrollTop < 500;
+      topBtn.classList.toggle('opacity-0', hidden);
+      topBtn.classList.toggle('pointer-events-none', hidden);
+      ticking = false;
+    }
+    addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+    onScroll();
+    topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    const copyBtn = $('#copy-email'), toast = $('#toast');
+    let toastTimer;
+    copyBtn?.addEventListener('click', async () => {
+      const email = 'aurelien-capron@outlook.fr';
+      try { await navigator.clipboard.writeText(email); } catch (e) {}
+      toast.textContent = DICT[lang]['toast.copied'];
+      toast.classList.remove('opacity-0');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.add('opacity-0'), 2200);
+    });
+
+    const reveal = new IntersectionObserver((entries, obs) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    $$('.reveal').forEach(el => reveal.observe(el));
+  })();
+  </script>
+
+<script>
+(() => {
+ const dialog=document.getElementById('pcb-dialog'), viewer=document.getElementById('pcb-viewer'), status=document.getElementById('pcb-status');
+ let loader, ready=false, previousFocus, previousOverflow;
+ const message=(fr,en)=>document.documentElement.lang==='en'?en:fr;
+ function loadViewer(){
+   if(window.customElements.get('model-viewer')) return Promise.resolve();
+   if(loader) return loader;
+   loader=new Promise((resolve,reject)=>{
+     const script=document.createElement('script');script.type='module';
+     script.src='https://cdn.jsdelivr.net/npm/@google/model-viewer@4.0.0/dist/model-viewer.min.js';
+     script.onload=()=>customElements.whenDefined('model-viewer').then(resolve);
+     script.onerror=()=>{script.remove();loader=null;reject(new Error('Viewer loading failed'));};
+     document.head.append(script);
+   });return loader;
+ }
+ document.querySelectorAll('[data-open-board]').forEach(button=>button.addEventListener('click',async()=>{
+   viewer.setAttribute('camera-orbit','20deg 40deg 90%');viewer.setAttribute('field-of-view','30deg');viewer.setAttribute('camera-target','auto auto auto');
+   previousFocus=button;previousOverflow=document.body.style.overflow;dialog.showModal();document.body.style.overflow='hidden';
+   status.textContent=ready?'':message('Chargement de la carte 3D…','Loading the 3D board…');
+   try {await loadViewer();if(!viewer.hasAttribute('src')) viewer.setAttribute('src','assets/projets/amplificateur/amplificateur.glb');}
+   catch(e){status.textContent=message('Le lecteur 3D ne peut pas se charger. Vérifiez votre connexion puis rouvrez cette fenêtre.','The 3D viewer could not load. Check your connection and reopen this window.');}
+ }));
+ viewer.addEventListener('load',()=>{ready=true;status.textContent='';});
+ viewer.addEventListener('error',()=>{ready=false;viewer.removeAttribute('src');status.textContent=message((location.protocol==='file:' ? 'Ouvrez cette page via http://localhost:8000/amplificateur.html ou sur le site publié : le chargement 3D est bloqué en ouverture directe file://.' : 'Impossible de charger le modèle. Vérifiez la présence du fichier amplificateur.glb sur le site.'),'Unable to load the model. Check that amplificateur.glb is present on the site.');});
+ dialog.querySelector('.pcb-close').addEventListener('click',()=>dialog.close());
+ dialog.addEventListener('click',event=>{if(event.target===dialog){const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)dialog.close();}});
+ dialog.addEventListener('close',()=>{document.body.style.overflow=previousOverflow||'';previousFocus?.focus();});
+ dialog.querySelectorAll('[data-orbit]').forEach(button=>button.addEventListener('click',()=>{viewer.setAttribute('camera-orbit',button.dataset.orbit);viewer.setAttribute('camera-target','auto auto auto');viewer.setAttribute('field-of-view','30deg');}));
+})();
+</script>
+<script>
+(()=>{const d=document.getElementById('image-dialog'),large=document.getElementById('image-large'),caption=document.getElementById('image-caption');let trigger,overflow;
+document.querySelectorAll('.image-open').forEach(b=>b.addEventListener('click',()=>{trigger=b;const img=b.querySelector('img');large.src=img.src;large.alt=img.alt;caption.textContent=b.closest('figure').querySelector('figcaption').textContent;overflow=document.body.style.overflow;d.showModal();document.body.style.overflow='hidden';}));
+d.querySelector('.pcb-close').addEventListener('click',()=>d.close());d.addEventListener('close',()=>{document.body.style.overflow=overflow||'';large.removeAttribute('src');trigger?.focus();});d.addEventListener('click',e=>{if(e.target===d){const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)d.close();}});
+})();</script></body>
+</html>
