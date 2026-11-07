@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Domethic System (Myha) — Aurélien Capron</title>
-  <meta name="description" content="Intégration électronique, programmation firmware/EEPROM, modules radio et essais CEM pour la gamme domotique sans Internet Myha (Domethic System).">
+  <title>Myha® · Domethic System — Aurélien Capron</title>
+  <meta name="description" content="Myha® chez Domethic System : pilotage par SMS, assemblage des centrales, mise en service et essais. Une expérience industrielle à Béganne.">
   <meta name="theme-color" content="#f6f7f9">
   <meta name="color-scheme" content="light">
 
@@ -19,10 +19,10 @@
   </script>
 
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Domethic System (Myha) — Aurélien Capron">
-  <meta property="og:description" content="Fabrication de cartes électroniques, programmation EEPROM, modules radio et tests CEM pour le système domotique par SMS Myha.">
+  <meta property="og:title" content="Myha® · Domethic System — Aurélien Capron">
+  <meta property="og:description" content="Myha® chez Domethic System : pilotage par SMS, assemblage des centrales, mise en service et essais. Une expérience industrielle à Béganne.">
   <meta property="og:url" content="https://aureliencapron.github.io/domethic.html">
-  <meta property="og:image" content="https://aureliencapron.github.io/assets/projets/myha-pro-domotique-sans-internet-300x300.jpg">
+  <meta property="og:image" content="https://aureliencapron.github.io/assets/projets/myha/myha-pro.jpg">
   <link rel="canonical" href="https://aureliencapron.github.io/domethic.html">
 
   <link rel="icon" href="/favicon.ico" sizes="48x48">
@@ -51,8 +51,8 @@
           },
           colors: {
             ink: { 950: '#0c0e11', 900: '#121519', 800: '#181c21', 700: '#232830', 600: '#333a45' },
-            accent: { DEFAULT: '#10b981', soft: 'var(--accent-soft)' },
-            volt: { DEFAULT: '#3b82f6', soft: 'var(--volt-soft)' }
+            accent: { DEFAULT: 'rgb(var(--accent-rgb) / <alpha-value>)', soft: 'var(--accent-soft)' },
+            volt: { DEFAULT: 'rgb(var(--volt-rgb) / <alpha-value>)', soft: 'var(--volt-soft)' }
           }
         }
       }
@@ -63,7 +63,7 @@
     @layer components {
       .surface   { @apply rounded-2xl border border-[var(--border)] bg-[var(--surface)] transition-colors duration-300; box-shadow: var(--card-shadow); }
       .tag       { @apply inline-flex cursor-default items-center rounded-md border border-[var(--border)] bg-[var(--chip-bg)] px-2.5 py-1 font-mono text-xs text-[var(--text-soft)]; }
-      .btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-5 py-3 text-sm font-semibold text-ink-950 shadow-lg shadow-accent/15 transition hover:-translate-y-0.5 hover:bg-[#34d399]; }
+      .btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-md bg-accent px-5 py-3 text-sm font-semibold text-[var(--on-accent)] shadow-lg shadow-accent/15 transition hover:-translate-y-0.5 hover:brightness-110; }
       .btn-ghost { @apply inline-flex items-center justify-center gap-2 rounded-lg border border-[var(--border)] px-5 py-3 text-sm font-semibold text-[var(--text-soft)] transition hover:-translate-y-0.5 hover:border-volt/60 hover:bg-volt/10; }
       .eyebrow   { @apply font-mono text-sm font-medium text-accent-soft; }
       .h2        { @apply mt-2 text-balance text-3xl font-bold tracking-tight text-[var(--text-strong)] sm:text-4xl; }
@@ -90,8 +90,8 @@
       --text-soft: #e2e8f0;
       --text-muted: #94a3b8;
       --text-faint: #64748b;
-      --accent-soft: #34d399;
-      --volt-soft: #60a5fa;
+      --accent-soft: #e0915c; --accent-rgb: 224 145 92; --on-accent: #0c0e11; --volt-rgb: 148 163 184;
+      --volt-soft: #94a3b8;
       --placeholder-from: #232830;
       --placeholder-to: #181c21;
       --card-shadow: 0 10px 30px -10px rgba(0,0,0,.45);
@@ -111,8 +111,8 @@
       --text-soft: #1e293b;
       --text-muted: #475569;
       --text-faint: #64748b;
-      --accent-soft: #059669;
-      --volt-soft: #2563eb;
+      --accent-soft: #b4531a; --accent-rgb: 180 83 26; --on-accent: #ffffff; --volt-rgb: 71 85 105;
+      --volt-soft: #475569;
       --placeholder-from: #eef2f6;
       --placeholder-to: #e2e8f0;
       --card-shadow: 0 8px 24px -4px rgba(15,23,42,.05), 0 2px 6px -1px rgba(15,23,42,.03);
@@ -120,8 +120,8 @@
     }
 
     html { scroll-behavior: smooth; }
-    ::selection { background: rgba(16,185,129,.35); color: #fff; }
-    :focus-visible { outline: 2px solid #10b981; outline-offset: 3px; border-radius: 6px; }
+    ::selection { background: rgba(180,83,26,.3); color: #fff; }
+    :focus-visible { outline: 2px solid var(--accent-soft); outline-offset: 3px; border-radius: 6px; }
 
     .grid-bg {
       background-image:
@@ -140,7 +140,30 @@
     }
   </style>
   <noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
-</head>
+<style id="chronological-layout">
+.story-main{max-width:1120px;margin:auto;padding:132px 28px 64px;outline:none}
+.story-main h1,.story-main h2,.story-main h3{font-family:'Barlow Semi Condensed',Inter,system-ui,sans-serif;color:var(--text-strong);letter-spacing:-.035em;font-weight:600}
+.story-hero{display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center;padding-bottom:64px}
+.story-eyebrow{font:600 11px Inter,sans-serif;letter-spacing:.15em;color:var(--accent-soft);line-height:1.8}
+.story-hero h1{font-size:clamp(40px,5vw,64px);line-height:1.08;max-width:620px;margin:20px 0 24px}
+.story-lead{font-size:18px;line-height:1.75;color:var(--text-muted);max-width:580px}
+.story-role{font-size:12px;line-height:1.8;color:var(--text-faint);margin-top:24px}.story-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.story-figure{margin:0;min-width:0}.image-open{width:100%;display:block;border:0;border-radius:8px;background:var(--chip-bg);overflow:hidden;cursor:zoom-in;padding:14px}
+.story-figure img{width:100%;height:280px;object-fit:contain;display:block;image-orientation:from-image}
+.story-figure figcaption{font-size:12px;line-height:1.6;color:var(--text-muted);padding:12px 0 0}
+.hero-photo .image-open{padding:0;background:transparent}.hero-photo img{height:420px;object-fit:contain;border-radius:8px}
+.story-nav{display:flex;flex-wrap:wrap;gap:12px 28px;border-block:1px solid var(--border);padding:22px 0;margin-bottom:16px}.story-nav a{font-size:13px;display:flex;gap:8px;align-items:center;color:var(--text-muted)}.story-nav a>span:first-child{font:11px 'JetBrains Mono',monospace;color:var(--accent-soft)}.story-nav a:hover{color:var(--text-strong)}
+.story-step{padding:62px 0;border-bottom:1px solid var(--border);scroll-margin-top:90px}.step-heading{display:flex;gap:20px;align-items:baseline;margin-bottom:26px}.step-number{font:13px 'JetBrains Mono',monospace;color:var(--accent-soft)}.step-heading h2{font-size:clamp(28px,3vw,38px);line-height:1.15}.step-body{margin-left:40px}.step-body>p{max-width:820px;line-height:1.85;color:var(--text-muted);margin:16px 0}.story-main h3{font-size:25px;margin-bottom:14px}
+.story-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:30px 0;padding:26px 0;border-block:1px solid var(--border)}.story-facts strong{display:block;font-size:30px;font-weight:500;color:var(--accent-soft);letter-spacing:-.04em}.story-facts span{display:block;margin-top:8px;font-size:12px;line-height:1.6;color:var(--text-muted);max-width:230px}
+.story-media{display:grid;gap:24px;margin:30px 0}.story-media.pair,.story-media.portraits{grid-template-columns:1fr 1fr}.story-media.trio{grid-template-columns:repeat(3,1fr)}.trio img{height:210px}.portraits img{height:360px}.story-details{margin-top:28px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:18px 0}.story-details summary{cursor:pointer;font-size:14px;font-weight:600;color:var(--text-soft)}.story-details>p{line-height:1.8;margin:20px 0;color:var(--text-muted)}.story-details .story-figure{margin:24px auto;max-width:800px}.story-details img{height:auto;max-height:600px}.table-scroll{overflow:auto;margin-top:20px}
+.board-feature{display:grid;grid-template-columns:.8fr 1.2fr;gap:30px;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:8px;margin-top:30px;padding:30px}.board-feature h3{margin-top:14px}.board-feature p{font-size:14px;line-height:1.8;color:var(--text-muted)}.board-feature .pcb-open{height:300px;border-radius:6px;padding:16px}.board-feature .pcb-open img{width:100%;height:100%;object-fit:contain}.story-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:20px}.story-tags span{font:10px 'JetBrains Mono',monospace;padding:6px 8px;background:var(--chip-bg);border:1px solid var(--border);border-radius:3px}
+.test-layout{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}.test-layout p{font-size:15px;line-height:1.85;color:var(--text-muted);margin-bottom:20px}.test-layout img{height:320px}.story-note{border-left:2px solid var(--accent-soft);margin-top:30px;padding:8px 20px;font-size:12px;line-height:1.8;color:var(--text-muted)}
+.story-closing{padding:50px 40px;background:var(--bg-alt);margin-top:48px;border-radius:8px}.story-closing h2,.story-resources h2{font-size:30px;margin-bottom:18px}.story-closing p{line-height:1.8;max-width:820px;color:var(--text-muted);margin-top:14px}.story-closing p:last-child{font-size:13px}.story-resources{margin-top:50px}.resource-links{display:grid;grid-template-columns:1fr 1fr;gap:12px}.resource-links a{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:20px;border:1px solid var(--border);border-radius:6px;font-size:14px;background:var(--surface)}.resource-links a:hover{border-color:var(--accent-soft)}.resource-links small{font:10px 'JetBrains Mono',monospace;color:var(--accent-soft);white-space:nowrap}.story-end{margin-top:40px}
+#image-dialog{width:min(1200px,96vw);max-height:94dvh;padding:0;margin:auto;background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:8px}#image-dialog::backdrop{background:rgba(0,0,0,.8);backdrop-filter:blur(4px)}#image-large{max-width:100%;width:auto;max-height:76dvh;margin:auto;display:block;object-fit:contain}#image-caption{font-size:13px;line-height:1.6;padding:16px 24px}#image-dialog .pcb-toolbar{justify-content:flex-end;padding:8px 14px}
+@media(max-width:760px){.story-main{padding:104px 20px 40px}.story-hero{grid-template-columns:1fr;gap:30px;padding-bottom:34px}.hero-photo img{height:310px}.story-lead{font-size:16px}.story-nav{gap:14px 20px}.story-step{padding:40px 0}.step-body{margin-left:0}.step-heading{gap:12px}.story-facts{gap:14px}.story-facts strong{font-size:23px}.board-feature{grid-template-columns:1fr;padding:20px;gap:20px}.board-feature .pcb-open{height:260px}.test-layout{grid-template-columns:1fr}.story-media.trio{grid-template-columns:1fr}.trio img{height:250px}.story-media.pair,.story-media.portraits{grid-template-columns:1fr}.story-figure img{height:auto;max-height:360px}.story-closing{padding:26px}.resource-links{grid-template-columns:1fr}.story-actions .btn-primary,.story-actions .btn-ghost{padding:12px 14px}}
+</style><style>
+.story-main table{width:100%;border-collapse:collapse;font-size:14px;text-align:left}.story-main th,.story-main td{padding:15px;border-bottom:1px solid var(--border);white-space:nowrap}.story-main th{font-weight:500}.story-main caption{text-align:left;font-size:12px;color:var(--text-muted);padding:15px}.formula{font-family:monospace;font-size:18px}#video-dialog{width:min(850px,94vw);padding:16px;background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:12px;margin:auto}#video-dialog::backdrop{background:#000b}#project-video{width:100%;max-height:70dvh;background:#000}.pcb-toolbar{display:flex;justify-content:space-between;align-items:center;padding:8px}.pcb-close{padding:8px 16px;font-size:25px;cursor:pointer;border:1px solid var(--border);border-radius:6px}button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--accent-soft);outline-offset:4px}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style><style id="caption-alignment">.story-figure figcaption,#image-caption{text-align:center;text-wrap:pretty;margin-inline:auto;max-width:68ch}#image-caption{padding:16px 24px 22px}</style><style>.press-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:2rem}.press-list article{border-top:1px solid var(--border);padding-top:1.2rem}.press-list h3,.step-body>h3{margin-top:1.5rem}.press-list p:not(.story-eyebrow){line-height:1.8;color:var(--text-muted);margin-bottom:1rem}</style></head>
 
 <body class="bg-[var(--bg)] font-sans text-[var(--text)] antialiased">
 
@@ -168,7 +191,7 @@
     <div id="progress" class="absolute left-0 top-0 h-[2px] w-0 bg-gradient-to-r from-accent to-volt"></div>
     <nav class="mx-auto flex h-16 max-w-6xl items-center justify-between px-6" aria-label="Navigation principale">
       <a href="index.html#accueil" class="flex items-center gap-3">
-        <span class="grid h-8 w-8 place-items-center rounded-lg border border-[var(--border)] bg-[var(--surface)] font-mono text-xs font-bold text-accent-soft">AC</span>
+        <span class="grid h-8 w-8 place-items-center rounded-lg border border-[var(--border)] bg-[var(--surface)] font-sans text-sm font-bold text-accent-soft">AC</span>
         <span class="hidden text-sm font-semibold text-[var(--text-strong)] sm:inline">Aurélien Capron</span>
       </a>
 
@@ -190,219 +213,7 @@
     </nav>
   </header>
 
-  <main id="main" tabindex="-1" class="outline-none pt-28">
-
-    <section class="relative overflow-hidden pb-12">
-      <div class="grid-bg pointer-events-none absolute inset-0"></div>
-      <div class="pointer-events-none absolute -top-40 right-0 h-[28rem] w-[28rem] rounded-full bg-volt/10 blur-3xl"></div>
-
-      <div class="relative mx-auto max-w-4xl px-6">
-        <p class="reveal font-mono text-xs text-[var(--text-muted)]">
-          <a href="index.html#projets" class="hover:text-accent-soft" data-i18n="breadcrumb.proj">Projets</a>
-          <span class="mx-1">/</span> Domethic System (Myha)
-        </p>
-        <p class="reveal eyebrow mt-4" data-i18n="hero.eyebrow">Expérience industrielle &amp; entrepreneuriale · Février 2022 — Présent</p>
-        <h1 class="reveal h2 mt-2 !text-3xl sm:!text-5xl" data-i18n="hero.title">Domethic System — Gamme domotique sans Internet Myha</h1>
-        <p class="reveal mt-4 max-w-3xl text-base leading-relaxed text-[var(--text-muted)] sm:text-lg" data-i18n="hero.sub">
-          Assemblage de cartes électroniques en composants CMS et traversants, intégration des modules GSM / radio sub-GHz, programmation de la mémoire EEPROM et qualification CEM pour un système domotique pilotable par SMS, sans connexion Internet ni cloud.
-        </p>
-
-        <div class="reveal mt-6 flex flex-wrap gap-2">
-          <span class="tag">Hardware &amp; PCB</span>
-          <span class="tag">Firmware</span>
-          <span class="tag">EEPROM</span>
-          <span class="tag" data-i18n="tag.gsm">GSM / Nano SIM (SMS)</span>
-          <span class="tag" data-i18n="tag.radio">Modules radio sans fil</span>
-          <span class="tag" data-i18n="tag.power">Relais 230V AC / 500W</span>
-          <span class="tag" data-i18n="tag.emc">Qualification CEM</span>
-        </div>
-
-        <div class="surface reveal mt-8 flex flex-col items-center justify-between gap-6 border-volt/25 p-6 sm:flex-row sm:px-8">
-          <div class="flex flex-col items-center gap-5 text-center sm:flex-row sm:text-left">
-            <div class="flex items-center gap-3">
-              <span class="font-sans text-xs font-bold uppercase tracking-wider text-[var(--text-muted)]" data-i18n="tf1.seen">VU SUR</span>
-              <div class="inline-flex h-9 items-center overflow-hidden rounded shadow-sm">
-                <img src="assets/logos/tf1.webp" alt="TF1" class="h-full w-auto object-cover">
-              </div>
-            </div>
-            <div class="h-10 w-px bg-[var(--border)] hidden sm:block"></div>
-            <div>
-              <p class="text-base font-bold text-[var(--text-strong)]" data-i18n="tf1.title">Myha présenté par Anicet Mbida</p>
-              <p class="mt-0.5 text-sm italic text-[var(--text-muted)]" data-i18n="tf1.show">« C'est déjà demain » dans Bonjour ! La Matinale TF1</p>
-            </div>
-          </div>
-
-          <a href="https://www.tf1.fr/tf1/bonjour-la-matinale-tf1/videos/cest-deja-demain-controlez-votre-maison-par-sms-46920937.html"
-             target="_blank" rel="noopener noreferrer"
-             class="inline-flex shrink-0 items-center gap-2.5 rounded-full border-2 border-[#0e879c] px-5 py-2.5 text-sm font-semibold text-[#0e879c] transition hover:-translate-y-0.5 hover:bg-[#0e879c] hover:text-white">
-            <svg class="h-5 w-5"><use href="#i-play"/></svg>
-            <span data-i18n="tf1.cta">Voir le reportage</span>
-          </a>
-        </div>
-
-        <div class="reveal mt-8 grid gap-6 sm:grid-cols-2">
-          <div class="surface flex flex-col overflow-hidden">
-            <div class="media-placeholder relative flex aspect-square max-h-72 w-full items-center justify-center border-b border-[var(--border)] bg-white p-4">
-              <img src="assets/projets/myha-pro-domotique-sans-internet-300x300.jpg"
-                   alt="Boîtier rail DIN Myha Pro — Domotique par SMS sans Internet"
-                   class="h-full w-full object-contain transition duration-500 hover:scale-105">
-            </div>
-            <div class="flex flex-1 flex-col p-6">
-              <p class="font-mono text-xs text-accent-soft" data-i18n="prod1.tag">Module Rail DIN · GSM / SMS</p>
-              <h2 class="mt-1 text-lg font-bold text-[var(--text-strong)]" data-i18n="prod1.title">Myha Pro — Centrale domotique sans Internet</h2>
-              <p class="mt-2 flex-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="prod1.desc">
-                Boîtier modulaire sur rail DIN alimenté en 12V DC intégrant un modem cellulaire (Nano SIM), un bouton d'appairage SYNC et 5 sorties relais indépendantes (NF / COM / NO) capables de commuter jusqu'à 230V AC (500W max) ou 12V DC (50W max) par simple SMS.
-              </p>
-            </div>
-          </div>
-
-          <div class="surface flex flex-col overflow-hidden">
-            <div class="media-placeholder relative flex aspect-square max-h-72 w-full items-center justify-center border-b border-[var(--border)] bg-white p-4">
-              <img src="assets/projets/myha-radio-domotique-sans-wifi-300x300.jpg"
-                   alt="Boîtier Myha Radio — Extension domotique sans Wi-Fi"
-                   class="h-full w-full object-contain transition duration-500 hover:scale-105">
-            </div>
-            <div class="flex flex-1 flex-col p-6">
-              <p class="font-mono text-xs text-volt-soft" data-i18n="prod2.tag">Module Déporté · Liaison Radio</p>
-              <h2 class="mt-1 text-lg font-bold text-[var(--text-strong)]" data-i18n="prod2.title">Myha Radio — Pilotage déporté sans Wi-Fi</h2>
-              <p class="mt-2 flex-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="prod2.desc">
-                Module d'extension autonome équipé d'une antenne externe SMA sur connecteur coudé, dialoguant par ondes radio avec la centrale pour piloter des équipements distants sans aucune dépendance à une box Wi-Fi ni serveur externe.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="pb-24">
-      <div class="mx-auto max-w-4xl px-6">
-        <div class="reveal">
-          <h2 class="text-2xl font-bold text-[var(--text-strong)]" data-i18n="sec1.title">1. Le concept Myha : la domotique frugale, sécurisée et sans Internet</h2>
-          <p class="mt-3 leading-relaxed text-[var(--text-muted)]" data-i18n="sec1.p1">
-            Développée par Domethic System, la solution Myha répond aux limites des objets connectés traditionnels : pannes de box Internet, résidences secondaires non raccordées au Wi-Fi, vulnérabilités liées aux serveurs Cloud et obsolescence logicielle. Le pilotage du chauffage, de l'éclairage, du chauffe-eau ou des accès s'effectue directement par SMS via le réseau cellulaire GSM, garantissant une confidentialité totale et une consommation énergétique minimale au repos.
-          </p>
-        </div>
-
-        <div class="reveal mt-12">
-          <h2 class="text-2xl font-bold text-[var(--text-strong)]" data-i18n="sec2.title">2. Chaîne de production, d'intégration et de qualification</h2>
-          <p class="mt-3 leading-relaxed text-[var(--text-muted)]" data-i18n="sec2.p1">
-            De la carte électronique nue jusqu'au produit fini prêt à être installé dans un tableau électrique, mon intervention couvre les quatre étapes critiques d'industrialisation matérielle et logicielle :
-          </p>
-
-          <div class="surface mt-6 overflow-hidden p-4 sm:p-6">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 210" class="w-full h-auto" role="img" aria-label="Flux d'intégration matérielle et de validation CEM">
-              <defs>
-                <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                  <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981"/>
-                </marker>
-              </defs>
-              <rect x="10" y="20" width="200" height="170" rx="12" fill="rgba(16,185,129,0.08)" stroke="#10b981" stroke-width="1.5"/>
-              <text x="110" y="50" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#10b981">01 · HARDWARE</text>
-              <text x="110" y="76" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="currentColor">Assemblage PCB</text>
-              <text x="110" y="104" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#64748b">• Soudure CMS &amp; traversant</text>
-              <text x="110" y="124" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#64748b">• Borniers &amp; relais 230V</text>
-              <text x="110" y="144" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#64748b">• Connectique SMA &amp; SIM</text>
-
-              <line x1="214" y1="105" x2="236" y2="105" stroke="#10b981" stroke-width="2" marker-end="url(#arr)"/>
-
-              <rect x="242" y="20" width="200" height="170" rx="12" fill="rgba(59,130,246,0.08)" stroke="#3b82f6" stroke-width="1.5"/>
-              <text x="342" y="50" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#3b82f6">02 · FIRMWARE &amp; MÉMOIRE</text>
-              <text x="342" y="76" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="currentColor">Flashage &amp; EEPROM</text>
-              <text x="342" y="104" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#64748b">• Injection du firmware MCU</text>
-              <text x="342" y="124" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#64748b">• Implantation EEPROM</text>
-              <text x="342" y="144" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#64748b">• Appairage modules radio</text>
-
-              <line x1="446" y1="105" x2="468" y2="105" stroke="#10b981" stroke-width="2" marker-end="url(#arr)"/>
-
-              <rect x="474" y="20" width="200" height="170" rx="12" fill="rgba(16,185,129,0.08)" stroke="#10b981" stroke-width="1.5"/>
-              <text x="574" y="50" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#10b981">03 · ROBUSTESSE</text>
-              <text x="574" y="76" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="currentColor">Essais en Puissance</text>
-              <text x="574" y="104" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#64748b">• Commutation 230V / 500W</text>
-              <text x="574" y="124" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#64748b">• Courants d'appel &amp; thermique</text>
-              <text x="574" y="144" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#64748b">• Continuité sur coupure 12V</text>
-
-              <line x1="678" y1="105" x2="700" y2="105" stroke="#10b981" stroke-width="2" marker-end="url(#arr)"/>
-
-              <rect x="706" y="20" width="204" height="170" rx="12" fill="rgba(59,130,246,0.08)" stroke="#3b82f6" stroke-width="1.5"/>
-              <text x="808" y="50" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#3b82f6">04 · QUALIFICATION</text>
-              <text x="808" y="76" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="currentColor">Validation CEM</text>
-              <text x="808" y="104" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#64748b">• Immunité aux transitoires</text>
-              <text x="808" y="124" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#64748b">• Coexistence GSM / Radio</text>
-              <text x="808" y="144" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#64748b">• Contrôle qualité série</text>
-            </svg>
-          </div>
-        </div>
-
-        <div class="reveal mt-12">
-          <h2 class="text-2xl font-bold text-[var(--text-strong)]" data-i18n="sec3.title">3. Ma contribution technique</h2>
-          <ul class="mt-5 space-y-4">
-            <li class="surface flex items-start gap-3.5 p-4">
-              <svg class="mt-0.5 h-5 w-5 flex-none text-accent-soft"><use href="#i-cpu"/></svg>
-              <div>
-                <h3 class="text-sm font-semibold text-[var(--text-strong)]" data-i18n="c1.title">Assemblage électronique CMS &amp; traversant</h3>
-                <p class="mt-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="c1.desc">
-                  Brasage des composants CMS de commande et des composants traversants de puissance (borniers à vis, relais de commutation 230V AC / 12V DC, régulation 12V, support Nano SIM et embase d'antenne SMA).
-                </p>
-              </div>
-            </li>
-            <li class="surface flex items-start gap-3.5 p-4">
-              <svg class="mt-0.5 h-5 w-5 flex-none text-volt-soft"><use href="#i-activity"/></svg>
-              <div>
-                <h3 class="text-sm font-semibold text-[var(--text-strong)]" data-i18n="c2.title">Implantation mémoire EEPROM, firmware &amp; modules radio</h3>
-                <p class="mt-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="c2.desc">
-                  Flashage du firmware embarqué et structuration de la mémoire non-volatile EEPROM afin de sauvegarder les numéros administrateurs autorisés, les identifiants d'appairage radio (bouton SYNC) et l'état des 5 voies en cas de coupure secteur.
-                </p>
-              </div>
-            </li>
-            <li class="surface flex items-start gap-3.5 p-4">
-              <svg class="mt-0.5 h-5 w-5 flex-none text-accent-soft"><use href="#i-activity"/></svg>
-              <div>
-                <h3 class="text-sm font-semibold text-[var(--text-strong)]" data-i18n="c3.title">Essais de robustesse sur charges de forte puissance &amp; tests CEM</h3>
-                <p class="mt-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="c3.desc">
-                  Validation de la tenue des étages de sortie sur charges réelles (500W en 230V AC) et campagnes de vérification en compatibilité électromagnétique (CEM) : immunité du microcontrôleur aux arcs de commutation des relais et absence de réinitialisation lors des pics d'émission GSM.
-                </p>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        <div class="surface reveal mt-10 flex items-start gap-4 border-amber-500/30 bg-amber-500/5 p-5">
-          <svg class="mt-0.5 h-5 w-5 flex-none text-amber-500"><use href="#i-shield"/></svg>
-          <p class="text-xs leading-relaxed text-[var(--text-muted)] sm:text-sm" data-i18n="ip.note">
-            Note de confidentialité industrielle : Les produits de la gamme Myha étant commercialisés par Domethic System, les schémas électriques détaillés, fichiers Gerber et codes sources internes sont couverts par le secret industriel et ne sont pas publiés en open-source.
-          </p>
-        </div>
-
-        <div class="reveal mt-10 flex flex-wrap gap-3">
-          <a href="https://www.domethic-system.com/" target="_blank" rel="noopener noreferrer" class="btn-primary">
-            <span data-i18n="btn.site">Découvrir le site</span>
-            <svg class="h-4 w-4"><use href="#i-external"/></svg>
-          </a>
-          <a href="https://www.tf1.fr/tf1/bonjour-la-matinale-tf1/videos/cest-deja-demain-controlez-votre-maison-par-sms-46920937.html" target="_blank" rel="noopener noreferrer" class="btn-ghost">
-            <svg class="h-4 w-4"><use href="#i-play"/></svg>
-            <span data-i18n="btn.tf1">Reportage TF1</span>
-          </a>
-          <a href="index.html#projets" class="btn-ghost">
-            <svg class="h-4 w-4"><use href="#i-arrow" transform="rotate(180 12 12)"/></svg>
-            <span data-i18n="nav.back">Retour aux projets</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="border-t border-[var(--border)] bg-[var(--bg-alt)] py-14">
-      <div class="mx-auto flex max-w-4xl items-center justify-between px-6">
-        <a href="tipe.html" class="group max-w-[45%]">
-          <p class="font-mono text-xs text-[var(--text-faint)]" data-i18n="nav.prev">← Précédent</p>
-          <p class="mt-1 truncate font-semibold text-[var(--text-soft)] transition-colors group-hover:text-accent-soft" data-i18n="nav.prevTitle">Simulation cinématique (TIPE)</p>
-        </a>
-        <a href="telecommande.html" class="group max-w-[45%] text-right">
-          <p class="font-mono text-xs text-[var(--text-faint)]" data-i18n="nav.next">Suivant →</p>
-          <p class="mt-1 truncate font-semibold text-[var(--text-soft)] transition-colors group-hover:text-accent-soft" data-i18n="nav.nextTitle">Télécommande autonome</p>
-        </a>
-      </div>
-    </section>
-  </main>
+  <main id="main" class="story-main" tabindex="-1"><section class="story-hero"><div><p class="story-eyebrow" data-i18n="myha.0">DOMETHIC SYSTEM · BÉGANNE, MORBIHAN</p><h1 class="" data-i18n="myha.1">Myha® : piloter une maison par SMS</h1><p class="story-lead" data-i18n="myha.2">Dans une résidence secondaire, comment remettre le chauffage en marche avant son arrivée quand il n’y a pas de box Internet ? Myha reçoit la consigne par SMS et commande les équipements sur place.</p><p class="story-role" data-i18n="myha.3">Aurélien Capron · Contribution à l’industrialisation depuis février 2022</p><div class="story-actions"><a href="#contribution" class="btn-primary"><span class="" data-i18n="myha.4">Mon intervention</span></a><a class="btn-ghost" href="https://www.tf1.fr/tf1/bonjour-la-matinale-tf1/videos/cest-deja-demain-controlez-votre-maison-par-sms-46920937.html" target="_blank" rel="noopener noreferrer"><span class="" data-i18n="myha.5">Voir la chronique TF1 ↗</span></a></div></div><figure class="story-figure hero-photo"><button type="button" class="image-open" aria-haspopup="dialog"><img src="assets/projets/myha/myha-pro.jpg" alt="Myha® Pro — Domethic System"></button><figcaption class="" data-i18n="myha.6">Myha Pro, la centrale sur rail DIN. Photo Domethic System.</figcaption></figure></section><nav class="story-nav" aria-label="Sections"><a href="#usage"><span>01</span><span class="" data-i18n="myha.7">L’usage</span></a><a href="#gamme"><span>02</span><span class="" data-i18n="myha.8">Les centrales</span></a><a href="#contribution"><span>03</span><span class="" data-i18n="myha.9">Mon intervention</span></a><a href="#presse"><span>04</span><span class="" data-i18n="myha.10">Dans les médias</span></a></nav><section class="story-step" id="usage"><div class="step-heading"><span class="step-number">01</span><h2 class="" data-i18n="myha.13">Du téléphone à l’équipement</h2></div><div class="step-body"><p class="" data-i18n="myha.11">Une consigne envoyée depuis un téléphone rejoint la centrale via le réseau mobile. Sa carte SIM permet aussi le trajet inverse : en cas de détection, la centrale peut avertir l’utilisateur par SMS. Le site à équiper a donc besoin d’une couverture mobile, sans dépendre d’une connexion Internet locale.</p><p class="" data-i18n="myha.12">Ce même principe répond à deux besoins très différents : commander volontairement un chauffage à distance et recevoir une alerte d’intrusion même lorsqu’on est absent.</p></div></section><section class="story-step" id="gamme"><div class="step-heading"><span class="step-number">02</span><h2 class="" data-i18n="myha.19">Choisir la centrale selon l’installation</h2></div><div class="step-body"><div class="test-layout"><figure class="story-figure "><button type="button" class="image-open" aria-haspopup="dialog"><img src="assets/projets/myha/myha-radio.jpg" alt="Myha® Radio — Domethic System"></button><figcaption class="" data-i18n="myha.14">Myha Radio avec son antenne. Photo Domethic System.</figcaption></figure><div><h3 class="" data-i18n="myha.15">Myha Radio</h3><p class="" data-i18n="myha.16">Dans un lieu déjà équipé, la version Radio peut commander des modules compatibles, par exemple une prise pour un éclairage. La centrale est alimentée en 12 V et reçoit elle-même les SMS.</p><h3 class="" data-i18n="myha.17">Myha Pro</h3><p class="" data-i18n="myha.18">Dans un tableau électrique, la version Pro associe commandes radio et cinq entrées/sorties filaires. Elle peut notamment transmettre un ordre de chauffage par fil pilote.</p></div></div></div></section><section class="story-step" id="contribution"><div class="step-heading"><span class="step-number">03</span><h2 class="" data-i18n="myha.27">Mon travail sur les centrales</h2></div><div class="step-body"><p class="" data-i18n="myha.20">Mon intervention chez Domethic System suit la centrale depuis l’assemblage de la carte jusqu’aux essais sur le produit équipé.</p><h3 class="" data-i18n="myha.21">Assembler</h3><p class="" data-i18n="myha.22">J’ai soudé les composants montés en surface et les composants traversants, notamment les borniers et les relais. Ces opérations relient l’électronique de commande aux équipements que la centrale doit piloter.</p><h3 class="" data-i18n="myha.23">Mettre en service</h3><p class="" data-i18n="myha.24">J’ai participé au chargement du programme embarqué, à la préparation de la mémoire de configuration et à l’appairage radio. À ce stade, la carte assemblée devient une centrale configurée pour ses équipements.</p><h3 class="" data-i18n="myha.25">Éprouver le fonctionnement</h3><p class="" data-i18n="myha.26">Les essais portaient notamment sur la commutation de charges réelles et le comportement de la centrale pendant une émission cellulaire. L’un des points surveillés était un éventuel redémarrage lors de ces sollicitations.</p></div></section><section class="story-step" id="presse"><div class="step-heading"><span class="step-number">04</span><h2 class="" data-i18n="myha.36">Myha dans la presse et à la télévision</h2></div><div class="step-body"><div class="press-list"><article><p class="story-eyebrow" data-i18n="myha.28">21 MAI 2025 · PRESSE ÉCONOMIQUE BRETONNE</p><h3 class="" data-i18n="myha.29">7 Jours raconte le lancement dans le Morbihan</h3><p class="" data-i18n="myha.30">Sophie Boltz présente la jeune entreprise et explique le choix d’une centrale qui fonctionne par SMS. Le début de l’article est public ; la suite est réservée aux abonnés.</p><a class="btn-ghost" href="https://www.7jours.fr/actualites/dans-le-morbihan-domethic-system-lance-une-centrale-domotique-fonctionnant-sans-internet/" target="_blank" rel="noopener noreferrer"><span class="" data-i18n="myha.31">Lire dans 7 Jours ↗</span></a></article><article><p class="story-eyebrow" data-i18n="myha.32">TF1 · BONJOUR ! LA MATINALE</p><h3 class="" data-i18n="myha.33">La commande par SMS à l’écran</h3><p class="" data-i18n="myha.34">Dans « C’est déjà demain », Anicet Mbida présente Myha au grand public. La chronique permet de découvrir le produit par son usage.</p><a class="btn-ghost" href="https://www.tf1.fr/tf1/bonjour-la-matinale-tf1/videos/cest-deja-demain-controlez-votre-maison-par-sms-46920937.html" target="_blank" rel="noopener noreferrer"><span class="" data-i18n="myha.35">Voir « Contrôlez votre maison par SMS » ↗</span></a></article></div></div></section><section class="story-resources"><h2 class="" data-i18n="myha.37">Pour découvrir Myha</h2><div class="resource-links"><a class="" href="https://www.domethic-system.com/" target="_blank" rel="noopener noreferrer"><span class="" data-i18n="myha.38">Site de Domethic System ↗</span></a><a class="" href="https://www.domethic-system.com/documentation-myha-domotique/" target="_blank" rel="noopener noreferrer"><span class="" data-i18n="myha.39">Notices publiques ↗</span></a></div></section><div class="story-end"><a href="index.html#projets" class="btn-ghost" data-i18n="nav.back">Retour aux projets</a></div></main>
 
   <footer id="contact" class="relative overflow-hidden border-t border-[var(--border)] bg-[var(--bg-alt)]">
     <div class="pointer-events-none absolute left-1/2 top-0 h-64 w-[36rem] -translate-x-1/2 rounded-full bg-accent/10 blur-3xl"></div>
@@ -438,7 +249,7 @@
     </div>
 
     <div class="relative border-t border-[var(--border)] px-6 py-6 text-center font-mono text-xs text-[var(--text-faint)]">
-      © <span id="year">2026</span> Aurélien Capron · <span data-i18n="footer.built">Conçu avec HTML &amp; CSS</span>
+      © <span id="year">2026</span> Aurélien Capron · <span data-i18n="footer.built">Conçu avec HTML &amp; CSS</span> · <a href="mentions-legales.html" data-i18n="footer.legal" class="underline-offset-4 transition-colors hover:text-[var(--text-strong)] hover:underline">Mentions légales</a>
     </div>
   </footer>
 
@@ -483,54 +294,58 @@
     FR['toast.copied'] = "Email copié !";
 
     const EN = {
-      "meta.title": "Domethic System (Myha) — Aurélien Capron",
-      "meta.desc": "Electronic board assembly, EEPROM/firmware programming, radio modules and EMC testing for the Myha internet-free smart home system (Domethic System).",
-      "skip": "Skip to content",
-      "nav.back": "Back to projects",
-      "breadcrumb.proj": "Projects",
-      "hero.eyebrow": "Industrial & Entrepreneurial Experience · February 2022 — Present",
-      "hero.title": "Domethic System — Myha Internet-Free Smart Home Range",
-      "hero.sub": "SMD and through-hole electronic board assembly, GSM / sub-GHz radio module integration, EEPROM memory programming and EMC qualification for an SMS-controlled smart home system operating without Internet or cloud.",
-      "tag.gsm": "GSM / Nano SIM (SMS)",
-      "tag.radio": "Wireless radio modules",
-      "tag.power": "230V AC / 500W Relays",
-      "tag.emc": "EMC Qualification",
-      "tf1.seen": "FEATURED ON",
-      "tf1.title": "Myha featured by Anicet Mbida",
-      "tf1.show": "“C'est déjà demain” on Bonjour ! La Matinale TF1",
-      "tf1.cta": "Watch TV segment",
-      "prod1.tag": "DIN Rail Module · GSM / SMS",
-      "prod1.title": "Myha Pro — Internet-Free Smart Home Controller",
-      "prod1.desc": "12V DC DIN-rail modular controller integrating a cellular modem (Nano SIM), a SYNC pairing button and 5 independent relay outputs (NC / COM / NO) switching up to 230V AC (500W max) or 12V DC (50W max) via SMS.",
-      "prod2.tag": "Remote Unit · Radio Link",
-      "prod2.title": "Myha Radio — Wi-Fi-Free Remote Control",
-      "prod2.desc": "Standalone extension unit equipped with a right-angle SMA external antenna, communicating over radio waves with the main unit to control remote appliances without any Wi-Fi router or cloud server.",
-      "sec1.title": "1. The Myha concept: frugal, secure, internet-free home automation",
-      "sec1.p1": "Developed by Domethic System, the Myha range addresses the shortcomings of conventional IoT devices: internet outages, off-grid second homes, cloud security vulnerabilities and software obsolescence. Heating, lighting, water heaters and access control are operated directly via SMS over the GSM cellular network, ensuring complete privacy and minimal standby power consumption.",
-      "sec2.title": "2. Production, integration and qualification workflow",
-      "sec2.p1": "From bare PCBs to finished DIN-rail units ready for electrical panels, my work covers four critical hardware and firmware industrialization stages:",
-      "sec3.title": "3. My technical contribution",
-      "c1.title": "SMD & through-hole electronic board assembly",
-      "c1.desc": "Soldering of SMD control components and through-hole power parts (screw terminals, 230V AC / 12V DC switching relays, 12V power regulation, Nano SIM holder and SMA antenna connector).",
-      "c2.title": "EEPROM memory layout, firmware & radio modules",
-      "c2.desc": "Flashing the embedded microcontroller firmware and structuring non-volatile EEPROM memory to store authorized administrator phone numbers, radio pairing IDs (SYNC button) and the state of the 5 relay channels across power outages.",
-      "c3.title": "High-power load robustness & EMC testing",
-      "c3.desc": "Validating output stages under real loads (500W at 230V AC) and performing Electromagnetic Compatibility (EMC) verification: microcontroller immunity to relay switching arcs and voltage stability during GSM transmission bursts.",
-      "ip.note": "Industrial confidentiality notice: Because the Myha product line is commercially distributed by Domethic System, detailed electrical schematics, Gerber files and proprietary firmware source code are protected by trade secrecy and are not published as open-source.",
-      "btn.site": "Visit the website",
-      "btn.tf1": "TF1 TV Report",
-      "nav.prev": "← Previous",
-      "nav.prevTitle": "Kinematic simulation (TIPE)",
-      "nav.next": "Next →",
-      "nav.nextTitle": "Autonomous IR remote",
-      "contact.eyebrow": "Contact",
-      "contact.title": "Ready to talk about your tech projects?",
-      "contact.sub": "Electronics engineering assistant internship — 16 weeks, from mid-May 2027.",
-      "contact.copy": "Copy",
-      "toast.copied": "Email copied!",
-      "footer.built": "Built with HTML & CSS"
-    };
-
+  "myha.0": "DOMETHIC SYSTEM · BÉGANNE, BRITTANY",
+  "myha.1": "Myha®: controlling a home by text message",
+  "myha.2": "How do you turn the heating on before arriving at a second home with no broadband connection? Myha receives a text message and controls the equipment on site.",
+  "myha.3": "Aurélien Capron · Contribution to production and testing since February 2022",
+  "myha.4": "My contribution",
+  "myha.5": "Watch the TF1 segment ↗",
+  "myha.6": "Myha Pro, the DIN-rail controller. Photo: Domethic System.",
+  "myha.7": "In use",
+  "myha.8": "Controllers",
+  "myha.9": "My contribution",
+  "myha.10": "In the media",
+  "myha.11": "A phone sends a command over the mobile network. The controller’s SIM card also supports the return path: when a detector is triggered, the controller can alert the user by text. The installation needs mobile coverage and operates without local broadband.",
+  "myha.12": "The same principle serves two different needs: turning heating on remotely and receiving an intrusion alert while away.",
+  "myha.13": "From phone to equipment",
+  "myha.14": "Myha Radio with its antenna. Photo: Domethic System.",
+  "myha.15": "Myha Radio",
+  "myha.16": "In an existing installation, the Radio version can control compatible wireless modules, such as a socket for a lamp. The controller runs on 12 V and receives text messages directly.",
+  "myha.17": "Myha Pro",
+  "myha.18": "For electrical panels, the Pro version combines wireless control with five wired inputs/outputs. It can also control compatible heaters through their pilot wire.",
+  "myha.19": "Choosing a controller for the installation",
+  "myha.20": "At Domethic System I worked on the controller from board assembly through to tests on the assembled product.",
+  "myha.21": "Assemble",
+  "myha.22": "I soldered surface-mount and through-hole components, including terminal blocks and relays. These connections link the control electronics to the equipment the unit operates.",
+  "myha.23": "Commission",
+  "myha.24": "I helped load the embedded software, prepare configuration memory and pair wireless modules. At this stage the assembled board becomes a controller configured for its equipment.",
+  "myha.25": "Test under load",
+  "myha.26": "Tests included switching real loads and observing the controller during cellular transmissions. One of the checks was whether these events caused an unexpected restart.",
+  "myha.27": "My work on the controllers",
+  "myha.28": "21 MAY 2025 · BRETON BUSINESS PRESS",
+  "myha.29": "7 Jours covers the launch in Morbihan",
+  "myha.30": "Sophie Boltz introduces the company and explains its decision to build a text-controlled device. The opening is public; the full article is for subscribers.",
+  "myha.31": "Read in 7 Jours ↗",
+  "myha.32": "TF1 · BONJOUR! MORNING SHOW",
+  "myha.33": "Text-message control on screen",
+  "myha.34": "In the “C’est déjà demain” segment, Anicet Mbida introduces Myha to a national audience through its everyday use.",
+  "myha.35": "Watch the TF1 demonstration ↗",
+  "myha.36": "Myha in the press and on television",
+  "myha.37": "Explore Myha",
+  "myha.38": "Domethic System website ↗",
+  "myha.39": "Public user guides ↗",
+  "footer.legal": "Legal notice",
+  "skip": "Skip to content",
+  "nav.back": "Back to projects",
+  "contact.eyebrow": "Contact",
+  "contact.title": "Ready to talk about your tech projects?",
+  "contact.sub": "Electronics engineering assistant internship — 16 weeks, from mid-May 2027.",
+  "contact.copy": "Copy",
+  "toast.copied": "Email copied!",
+  "footer.built": "Built with HTML & CSS",
+  "meta.title": "Myha® · Domethic System — Aurélien Capron",
+  "meta.desc": "Text-message home automation, assembly and testing of Myha controllers at Domethic System."
+};
     const DICT = { fr: FR, en: EN };
     let lang = 'fr';
 
@@ -588,5 +403,9 @@
     $$('.reveal').forEach(el => reveal.observe(el));
   })();
   </script>
-</body>
+<dialog id="image-dialog" aria-label="Image agrandie / Enlarged image"><div class="pcb-toolbar"><button type="button" class="pcb-close" aria-label="Fermer / Close" autofocus>×</button></div><img id="image-large" alt=""><p id="image-caption"></p></dialog><script>
+(()=>{const d=document.getElementById('image-dialog'),large=document.getElementById('image-large'),caption=document.getElementById('image-caption');let trigger,overflow;
+document.querySelectorAll('.image-open').forEach(b=>b.addEventListener('click',()=>{trigger=b;const img=b.querySelector('img');large.src=img.src;large.alt=img.alt;caption.textContent=b.closest('figure').querySelector('figcaption').textContent;overflow=document.body.style.overflow;d.showModal();document.body.style.overflow='hidden';}));
+d.querySelector('.pcb-close').addEventListener('click',()=>d.close());d.addEventListener('close',()=>{document.body.style.overflow=overflow||'';large.removeAttribute('src');trigger?.focus();});d.addEventListener('click',e=>{if(e.target===d){const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)d.close();}});
+})();</script></body>
 </html>

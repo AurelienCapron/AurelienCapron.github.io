@@ -737,7 +737,7 @@ html {
 #project-controls{display:flex;justify-content:center;align-items:center;gap:1rem;margin-top:1rem}
 #project-controls[hidden]{display:none}#project-controls button:disabled{opacity:.35}
 @media print{#project-controls{display:none}}
-</style></head>
+</style><style>#projects-track .media-placeholder{background:var(--surface)}#projects-track .media-placeholder .media-icon{display:none}#projects-track .media-placeholder img{object-fit:contain;padding:4px}#projects-track .amp-pair{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;gap:3px;padding:5px;align-items:center}#projects-track .amp-pair img{width:100%;height:100%;min-width:0;min-height:0;object-fit:contain}</style></head>
 
 <body class="bg-[var(--bg)] font-sans text-[var(--text)] antialiased">
 
@@ -970,8 +970,8 @@ html {
             <a href="telecommande.html" tabindex="-1" aria-hidden="true" class="media-placeholder relative block aspect-video overflow-hidden border-b border-[var(--border)]">
               <div class="media-icon absolute inset-0 grid place-items-center"><svg class="h-12 w-12"><use href="#i-code"/></svg></div>
               <!-- 📸 IMAGE PROJET 2 : photo du prototype → assets/projets/telecommande.jpg (16:9, ~1200×675 px) -->
-              <img src="assets/projets/telecommande.jpg" alt="Prototype de télécommande autonome" loading="lazy"
-                   class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" onerror="this.remove()">
+              <img src="assets/projets/telecommande/prototype_assembled_box.png" alt="Télécommande assemblée avec ses connexions" loading="lazy"
+                   class="absolute inset-0 h-full w-full object-contain transition duration-500 " onerror="this.remove()">
             </a>
             <div class="flex flex-1 flex-col p-6">
               <p class="font-mono text-xs text-[var(--text-muted)]"><span class="block" data-i18n="p2.kind">Projet industriel · Phelma</span><span class="mt-1 block text-[var(--text-faint)]" data-i18n="p2.date">Mars — Mai 2026</span></p>
@@ -997,8 +997,7 @@ html {
             <a href="amplificateur.html" tabindex="-1" aria-hidden="true" class="media-placeholder relative block aspect-video overflow-hidden border-b border-[var(--border)]">
               <div class="media-icon absolute inset-0 grid place-items-center"><svg class="h-12 w-12"><use href="#i-activity"/></svg></div>
               
-              <img src="assets/projets/amplificateur/carte-preampli.jpg" alt="Carte de préamplification piézoélectrique" loading="lazy"
-                   class="absolute inset-0 h-full w-full object-contain transition duration-500 group-hover:scale-105" onerror="this.remove()">
+              <span class="amp-pair"><img src="assets/projets/amplificateur/carte-preampli.jpg" alt="Carte de préamplification"><img src="assets/projets/amplificateur/carte-puissance.jpg" alt="Carte de puissance"></span>
             </a>
             <div class="flex flex-1 flex-col p-6">
               <p class="font-mono text-xs text-[var(--text-muted)]"><span class="block" data-i18n="p4.kind">PI 3 · Électronique analogique</span><span class="mt-1 block text-[var(--text-faint)]" data-i18n="p4.date">Grenoble INP – Phelma</span></p>
@@ -1022,8 +1021,8 @@ html {
             <a href="tipe.html" tabindex="-1" aria-hidden="true" class="media-placeholder relative block aspect-video overflow-hidden border-b border-[var(--border)]">
               <div class="media-icon absolute inset-0 grid place-items-center"><svg class="h-12 w-12"><use href="#i-activity"/></svg></div>
               <!-- 📸 IMAGE PROJET 3 : graphique de trajectoires / capture de simulation → assets/projets/tipe.jpg (16:9) -->
-              <img src="assets/projets/tipe.jpg" alt="Simulation de trajectoires du TIPE" loading="lazy"
-                   class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" onerror="this.remove()">
+              <img src="assets/projets/tipe/support-exterieur.jpg" alt="Dispositif de vision du TIPE monté sur son trépied" loading="lazy"
+                   class="absolute inset-0 h-full w-full object-contain transition duration-500 " onerror="this.remove()">
             </a>
             <div class="flex flex-1 flex-col p-6">
               <p class="font-mono text-xs text-[var(--text-muted)]"><span class="block" data-i18n="p3.kind">TIPE · Classes préparatoires</span><span class="mt-1 block text-[var(--text-faint)]" data-i18n="p3.date">Jan. 2023 — Avr. 2025</span></p>
@@ -1048,13 +1047,13 @@ html {
             <a href="domethic.html" tabindex="-1" aria-hidden="true" class="media-placeholder relative block aspect-video overflow-hidden border-b border-[var(--border)]">
               <div class="media-icon absolute inset-0 grid place-items-center"><svg class="h-12 w-12"><use href="#i-cpu"/></svg></div>
               <!-- 📸 IMAGE PROJET 1 : boîtier Myha Pro → assets/projets/domethic.jpg (16:9, ~1200×675 px) -->
-              <img src="assets/projets/domethic.jpg" alt="Boîtier Myha Pro — Domethic System" loading="lazy"
-                   class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105" onerror="this.remove()">
+              <img src="assets/projets/myha/myha-pro.jpg" alt="Centrale Myha Pro sur rail DIN" loading="lazy"
+                   class="absolute inset-0 h-full w-full object-contain transition duration-500 " onerror="this.remove()">
             </a>
             <div class="flex flex-1 flex-col p-6">
               <p class="font-mono text-xs text-[var(--text-muted)]"><span class="block" data-i18n="p1.kind">Projet entrepreneurial</span><span class="mt-1 block text-[var(--text-faint)]" data-i18n="p1.date">Fév. 2022 — Présent</span></p>
               <h3 class="mt-2 text-xl font-semibold text-[var(--text-strong)]">
-                <a href="domethic.html" class="transition-colors hover:text-accent-soft">Domethic System</a>
+                <a href="domethic.html" class="transition-colors hover:text-accent-soft">Myha® · Domethic System</a>
               </h3>
               <p class="mt-3 flex-1 text-sm leading-relaxed text-[var(--text-muted)]" data-i18n="p1.desc">Assemblage de cartes électroniques (soudure, modules radio, mémoire EEPROM), paramétrage du firmware et tests de robustesse : charges de forte puissance et vérification de la CEM.</p>
               <ul class="mt-5 flex flex-wrap gap-2">
