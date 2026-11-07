@@ -743,7 +743,13 @@ html {
 #projects-track .crop-cameras img{object-position:50% 36%;transform:scale(1.44)}
 .myha-actions{gap:.5rem;flex-wrap:nowrap;container-type:inline-size}
 @container (max-width:235px){.myha-actions a{padding-inline:.55rem!important}.myha-actions svg{display:none}}
-</style><style>#projects-track .race-cover img{object-fit:cover;object-position:center 57%;padding:0}</style></head>
+</style><style>#projects-track .race-cover img{object-fit:cover;object-position:center 57%;padding:0}</style><style id="project-filter-layout">
+@media screen and (min-width:768px){
+  #projets .project-heading{flex-wrap:wrap}
+  #projets .project-heading>div:first-child{flex:1 1 340px;min-width:0}
+  #projets .project-filters{flex:0 0 auto;flex-wrap:nowrap;white-space:nowrap}
+}
+</style></head>
 
 <body class="bg-[var(--bg)] font-sans text-[var(--text)] antialiased">
 
@@ -944,14 +950,14 @@ html {
     <!-- ═════════════════════════ 3. PROJETS ═════════════════════════ -->
     <section id="projets" class="border-y border-[var(--border)] bg-[var(--bg-alt)] py-24">
       <div class="mx-auto max-w-6xl px-6">
-        <div class="reveal mb-8 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <div class="project-heading reveal mb-8 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
             <p class="eyebrow"><span data-i18n="proj.eyebrow">Projets</span></p>
             <h2 class="h2" data-i18n="proj.title">Réalisations sélectionnées</h2>
             <p class="mt-3 max-w-xl text-[var(--text-muted)]" data-i18n="proj.sub">Des cartes électroniques aux simulations numériques.</p>
           </div>
           <!-- Filtres -->
-          <div class="flex flex-wrap gap-2" role="group" aria-label="Filtres">
+          <div class="project-filters flex flex-wrap gap-2" role="group" aria-label="Filtres">
             <button type="button" class="filter-btn" data-filter="all" aria-pressed="true" data-i18n="f.all">Tous</button>
             <button type="button" class="filter-btn" data-filter="hardware" aria-pressed="false" data-i18n="f.hw">Hardware</button>
             <button type="button" class="filter-btn" data-filter="embedded" aria-pressed="false" data-i18n="f.emb">Embarqué</button>
