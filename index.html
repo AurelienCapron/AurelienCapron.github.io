@@ -749,7 +749,15 @@ html {
   #projets .project-heading>div:first-child{flex:1 1 340px;min-width:0}
   #projets .project-filters{flex:0 0 auto;flex-wrap:nowrap;white-space:nowrap}
 }
-</style></head>
+</style><style id="carousel-vertical-scroll-fix">
+/* Garder le défilement vertical sur la page, même au-dessus des carrousels. */
+#projects-track,
+#hobbies-track {
+  overflow-y: hidden;
+  overscroll-behavior-y: auto;
+}
+</style>
+</head>
 
 <body class="bg-[var(--bg)] font-sans text-[var(--text)] antialiased">
 
