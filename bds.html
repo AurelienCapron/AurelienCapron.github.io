@@ -1,51 +1,45 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="light">
 <head>
-  <!--
-  ╔══════════════════════════════════════════════════════════════════════╗
-  ║  PORTFOLIO — Aurélien CAPRON                                         ║
-  ║  Fichier unique : index.html (Tailwind CSS via CDN)                  ║
-  ║                                                                      ║
-  ║  CHECKLIST DE PERSONNALISATION (cherche ces repères dans le code) :  ║
-  ║   📸 IMAGE   → photo de profil + visuels des projets et hobbies       ║
-  ║   🔗 LIEN    → ton pseudo GitHub + liens des dépôts                  ║
-  ║   📄 CV      → dépose ton PDF dans assets/CV_Aurelien_Capron.pdf     ║
-  ║   🌐 SEO     → image de partage (og:image) une fois le site en ligne ║
-  ║                                                                      ║
-  ║  Arborescence conseillée du dépôt GitHub :                           ║
-  ║   index.html                                                         ║
-  ║   assets/photo.jpg                                                   ║
-  ║   assets/CV_Aurelien_Capron.pdf                                      ║
-  ║   assets/projets/<projet>/ : images classées par projet          ║
-  ║   assets/hobbies/judo.jpg | perouges.jpg | sacha-heritage.jpg        ║
-  ║                                                                      ║
-  ║  Astuce : si une image est absente, un visuel de remplacement        ║
-  ║  élégant s'affiche automatiquement (le site ne « casse » jamais).    ║
-  ╚══════════════════════════════════════════════════════════════════════╝
-  -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Bureau des Sports — Phelma — Aurélien Capron</title>
-  <meta name="description" content="Engagement associatif au Bureau des Sports de Phelma, responsable des partenariats.">
-  <meta name="theme-color" content="#0c0e11">
-  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Responsable partenariats du BDS Phelma en 2026–2027 : intégration, volley, Olymps, organisation de la Backyard Ultra et préparation d’Unirox.">
+  <meta name="theme-color" content="#f6f7f9">
+  <meta name="color-scheme" content="light">
 
-  <!-- 🌐 SEO / partage sur les réseaux (LinkedIn, Slack, etc.) -->
-  <meta property="og:type" content="website">
+  <script>
+    try {
+      if (localStorage.getItem('theme') === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#0c0e11');
+        document.querySelector('meta[name="color-scheme"]')?.setAttribute('content', 'dark');
+      }
+    } catch (e) {}
+  </script>
+
+  <meta property="og:type" content="article">
   <meta property="og:title" content="Bureau des Sports — Phelma — Aurélien Capron">
-  <meta property="og:description" content="Engagement associatif au Bureau des Sports de Phelma, responsable des partenariats.">
-  <!-- 🌐 Une fois le site en ligne, décommente et adapte (URL ABSOLUE, image ~1200×630) : -->
-  <!-- <meta property="og:image" content="https://VOTRE-PSEUDO.github.io/assets/og-image.jpg"> -->
+  <meta property="og:description" content="Responsable partenariats du BDS Phelma en 2026–2027 : intégration, volley, Olymps, organisation de la Backyard Ultra et préparation d’Unirox.">
+  <meta property="og:url" content="https://aureliencapron.github.io/bds.html">
+  <meta property="og:image" content="https://aureliencapron.github.io/assets/hobbies/bds/equipe-2026-2027.jpg">
+  <link rel="canonical" href="https://aureliencapron.github.io/bds.html">
 
-  <!-- Favicon (monogramme « AC » intégré, aucun fichier requis) -->
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23121519'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='28' font-weight='700' text-anchor='middle' fill='%2310b981'%3EAC%3C/text%3E%3C/svg%3E">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
 
-  <!-- Polices : Inter (texte) + JetBrains Mono (touches « tech ») -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 400; font-display: swap; src: url('assets/fonts/inter-400.woff2') format('woff2'); }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 500; font-display: swap; src: url('assets/fonts/inter-500.woff2') format('woff2'); }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 600; font-display: swap; src: url('assets/fonts/inter-600.woff2') format('woff2'); }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 700; font-display: swap; src: url('assets/fonts/inter-700.woff2') format('woff2'); }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 800; font-display: swap; src: url('assets/fonts/inter-800.woff2') format('woff2'); }
+    @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url('assets/fonts/jetbrains-mono-400.woff2') format('woff2'); }
+    @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 500; font-display: swap; src: url('assets/fonts/jetbrains-mono-500.woff2') format('woff2'); }
+    @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 600; font-display: swap; src: url('assets/fonts/jetbrains-mono-600.woff2') format('woff2'); }
+  </style>
 
-  <!-- Tailwind CSS (CDN) + thème personnalisé -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -56,270 +50,788 @@
             mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'monospace']
           },
           colors: {
-            // Gris anthracite
             ink: { 950: '#0c0e11', 900: '#121519', 800: '#181c21', 700: '#232830', 600: '#333a45' },
-            // Vert émeraude (boutons principaux, disponibilité)
-            accent: { DEFAULT: '#10b981', soft: '#34d399' },
-            // Bleu électrique (survols, dégradés, code)
-            volt: { DEFAULT: '#3b82f6', soft: '#60a5fa' }
+            accent: { DEFAULT: 'rgb(var(--accent-rgb) / <alpha-value>)', soft: 'var(--accent-soft)' },
+            volt: { DEFAULT: 'rgb(var(--volt-rgb) / <alpha-value>)', soft: 'var(--volt-soft)' }
           }
         }
       }
     }
   </script>
 
-  <!-- Composants réutilisables (change les couleurs / arrondis ici, ça s'applique partout) -->
   <style type="text/tailwindcss">
     @layer components {
-      .surface   { @apply rounded-2xl border border-white/10 bg-ink-900/70; }
-      .tag       { @apply inline-flex items-center rounded-md border border-white/10 bg-white/5 px-2.5 py-1 font-mono text-xs text-slate-200 transition-colors hover:border-volt/50 hover:text-white; }
-      .btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-5 py-3 text-sm font-semibold text-ink-950 shadow-lg shadow-accent/10 transition hover:-translate-y-0.5 hover:bg-accent-soft; }
-      .btn-ghost { @apply inline-flex items-center justify-center gap-2 rounded-lg border border-white/15 px-5 py-3 text-sm font-semibold text-slate-100 transition hover:-translate-y-0.5 hover:border-volt/60 hover:bg-volt/10; }
-      .eyebrow   { @apply font-mono text-sm text-accent-soft; }
-      .h2        { @apply mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl; }
-      .nav-link  { @apply text-sm text-slate-400 transition-colors hover:text-white; }
-      .nav-link[aria-current="true"] { @apply text-white; }
-      .lang-btn  { @apply rounded-md px-2.5 py-1 text-slate-400 transition-colors hover:text-white; }
-      .lang-btn[aria-pressed="true"] { @apply bg-white/10 text-white; }
-      .filter-btn { @apply rounded-full border border-white/10 px-4 py-1.5 text-sm text-slate-400 transition-colors hover:text-white; }
-      .filter-btn[aria-pressed="true"] { @apply border-accent/40 bg-accent/10 text-accent-soft; }
-      .icon-btn  { @apply grid h-12 w-12 place-items-center rounded-full border border-white/10 bg-ink-900 text-slate-300 transition hover:-translate-y-1 hover:border-accent/50 hover:text-accent-soft; }
+      .surface   { @apply rounded-2xl border border-[var(--border)] bg-[var(--surface)] transition-colors duration-300; box-shadow: var(--card-shadow); }
+      .tag       { @apply inline-flex cursor-default items-center rounded-md border border-[var(--border)] bg-[var(--chip-bg)] px-2.5 py-1 font-mono text-xs text-[var(--text-soft)]; }
+      .btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-md bg-accent px-5 py-3 text-sm font-semibold text-[var(--on-accent)] shadow-lg shadow-accent/15 transition hover:-translate-y-0.5 hover:brightness-110; }
+      .btn-ghost { @apply inline-flex items-center justify-center gap-2 rounded-lg border border-[var(--border)] px-5 py-3 text-sm font-semibold text-[var(--text-soft)] transition hover:-translate-y-0.5 hover:border-volt/60 hover:bg-volt/10; }
+      .eyebrow   { @apply font-mono text-sm font-medium text-accent-soft; }
+      .h2        { @apply mt-2 text-balance text-3xl font-bold tracking-tight text-[var(--text-strong)] sm:text-4xl; }
+      .nav-link  { @apply text-sm text-[var(--text-muted)] transition-colors hover:text-[var(--text-strong)]; }
+      .lang-btn  { @apply rounded-md px-2.5 py-1 text-[var(--text-muted)] transition-colors hover:text-[var(--text-strong)]; }
+      .lang-btn[aria-pressed="true"] { @apply bg-[var(--chip-bg-active)] text-[var(--text-strong)]; }
+      .icon-btn  { @apply grid h-12 w-12 place-items-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] transition hover:-translate-y-1 hover:border-accent/50 hover:text-accent-soft; box-shadow: var(--card-shadow); }
+      .media-placeholder { background: linear-gradient(135deg, var(--placeholder-from), var(--placeholder-to)); }
     }
   </style>
 
   <style>
-    html { scroll-behavior: smooth; }
-    section[id], footer[id] { scroll-margin-top: 5rem; }
-    ::selection { background: rgba(16,185,129,.35); color: #fff; }
-    :focus-visible { outline: 2px solid #10b981; outline-offset: 3px; border-radius: 6px; }
+    :root {
+      color-scheme: dark;
+      --bg: #0c0e11;
+      --bg-alt: rgba(18,21,25,.45);
+      --surface: rgba(22,27,34,.85);
+      --header-bg: rgba(12,14,17,.78);
+      --border: rgba(255,255,255,.11);
+      --chip-bg: rgba(255,255,255,.055);
+      --chip-bg-active: rgba(255,255,255,.11);
+      --text: #cbd5e1;
+      --text-strong: #ffffff;
+      --text-soft: #e2e8f0;
+      --text-muted: #94a3b8;
+      --text-faint: #64748b;
+      --accent-soft: #e0915c; --accent-rgb: 224 145 92; --on-accent: #0c0e11; --volt-rgb: 148 163 184;
+      --volt-soft: #94a3b8;
+      --placeholder-from: #232830;
+      --placeholder-to: #181c21;
+      --card-shadow: 0 10px 30px -10px rgba(0,0,0,.45);
+      --grid-line: rgba(255,255,255,.04);
+    }
+    :root[data-theme="light"] {
+      color-scheme: light;
+      --bg: #f6f7f9;
+      --bg-alt: rgba(226,232,240,.5);
+      --surface: rgba(255,255,255,.94);
+      --header-bg: rgba(246,247,249,.85);
+      --border: rgba(15,23,42,.09);
+      --chip-bg: rgba(15,23,42,.045);
+      --chip-bg-active: rgba(15,23,42,.09);
+      --text: #334155;
+      --text-strong: #0f172a;
+      --text-soft: #1e293b;
+      --text-muted: #475569;
+      --text-faint: #64748b;
+      --accent-soft: #b4531a; --accent-rgb: 180 83 26; --on-accent: #ffffff; --volt-rgb: 71 85 105;
+      --volt-soft: #475569;
+      --placeholder-from: #eef2f6;
+      --placeholder-to: #e2e8f0;
+      --card-shadow: 0 8px 24px -4px rgba(15,23,42,.05), 0 2px 6px -1px rgba(15,23,42,.03);
+      --grid-line: rgba(15,23,42,.045);
+    }
 
-    /* Quadrillage discret façon « papier millimétré / PCB » */
+    html { scroll-behavior: smooth; }
+    ::selection { background: rgba(180,83,26,.3); color: #fff; }
+    :focus-visible { outline: 2px solid var(--accent-soft); outline-offset: 3px; border-radius: 6px; }
+
     .grid-bg {
       background-image:
-        linear-gradient(to right, rgba(255,255,255,.04) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255,255,255,.04) 1px, transparent 1px);
+        linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
       background-size: 44px 44px;
       -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 25%, transparent 75%);
               mask-image: radial-gradient(ellipse at 50% 30%, #000 25%, transparent 75%);
     }
 
-    /* Apparition douce au scroll */
     .reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }
     .reveal.in { opacity: 1; transform: none; }
-
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .reveal { opacity: 1; transform: none; transition: none; }
-      .animate-ping { animation: none; }
     }
   </style>
   <noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
+<style id="chronological-layout">
+.story-main{max-width:1120px;margin:auto;padding:132px 28px 64px;outline:none}
+.story-main h1,.story-main h2,.story-main h3{font-family:'Barlow Semi Condensed',Inter,system-ui,sans-serif;color:var(--text-strong);letter-spacing:-.035em;font-weight:600}
+.story-hero{display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center;padding-bottom:64px}
+.story-eyebrow{font:600 11px Inter,sans-serif;letter-spacing:.15em;color:var(--accent-soft);line-height:1.8}
+.story-hero h1{font-size:clamp(40px,5vw,64px);line-height:1.08;max-width:620px;margin:20px 0 24px}
+.story-lead{font-size:18px;line-height:1.75;color:var(--text-muted);max-width:580px}
+.story-role{font-size:12px;line-height:1.8;color:var(--text-faint);margin-top:24px}.story-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.story-figure{margin:0;min-width:0}.image-open{width:100%;display:block;border:0;border-radius:8px;background:var(--chip-bg);overflow:hidden;cursor:zoom-in;padding:14px}
+.story-figure img{width:100%;height:280px;object-fit:contain;display:block;image-orientation:from-image}
+.story-figure figcaption{font-size:12px;line-height:1.6;color:var(--text-muted);padding:12px 0 0}
+.hero-photo .image-open{padding:0;background:transparent}.hero-photo img{height:420px;object-fit:contain;border-radius:8px}
+.story-nav{display:flex;flex-wrap:wrap;gap:12px 28px;border-block:1px solid var(--border);padding:22px 0;margin-bottom:16px}.story-nav a{font-size:13px;display:flex;gap:8px;align-items:center;color:var(--text-muted)}.story-nav a>span:first-child{font:11px 'JetBrains Mono',monospace;color:var(--accent-soft)}.story-nav a:hover{color:var(--text-strong)}
+.story-step{padding:62px 0;border-bottom:1px solid var(--border);scroll-margin-top:90px}.step-heading{display:flex;gap:20px;align-items:baseline;margin-bottom:26px}.step-number{font:13px 'JetBrains Mono',monospace;color:var(--accent-soft)}.step-heading h2{font-size:clamp(28px,3vw,38px);line-height:1.15}.step-body{margin-left:40px}.step-body>p{max-width:820px;line-height:1.85;color:var(--text-muted);margin:16px 0}.story-main h3{font-size:25px;margin-bottom:14px}
+.story-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:30px 0;padding:26px 0;border-block:1px solid var(--border)}.story-facts strong{display:block;font-size:30px;font-weight:500;color:var(--accent-soft);letter-spacing:-.04em}.story-facts span{display:block;margin-top:8px;font-size:12px;line-height:1.6;color:var(--text-muted);max-width:230px}
+.story-media{display:grid;gap:24px;margin:30px 0}.story-media.pair,.story-media.portraits{grid-template-columns:1fr 1fr}.story-media.trio{grid-template-columns:repeat(3,1fr)}.trio img{height:210px}.portraits img{height:360px}.story-details{margin-top:28px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:18px 0}.story-details summary{cursor:pointer;font-size:14px;font-weight:600;color:var(--text-soft)}.story-details>p{line-height:1.8;margin:20px 0;color:var(--text-muted)}.story-details .story-figure{margin:24px auto;max-width:800px}.story-details img{height:auto;max-height:600px}.table-scroll{overflow:auto;margin-top:20px}
+.board-feature{display:grid;grid-template-columns:.8fr 1.2fr;gap:30px;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:8px;margin-top:30px;padding:30px}.board-feature h3{margin-top:14px}.board-feature p{font-size:14px;line-height:1.8;color:var(--text-muted)}.board-feature .pcb-open{height:300px;border-radius:6px;padding:16px}.board-feature .pcb-open img{width:100%;height:100%;object-fit:contain}.story-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:20px}.story-tags span{font:10px 'JetBrains Mono',monospace;padding:6px 8px;background:var(--chip-bg);border:1px solid var(--border);border-radius:3px}
+.test-layout{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}.test-layout p{font-size:15px;line-height:1.85;color:var(--text-muted);margin-bottom:20px}.test-layout img{height:320px}.story-note{border-left:2px solid var(--accent-soft);margin-top:30px;padding:8px 20px;font-size:12px;line-height:1.8;color:var(--text-muted)}
+.story-closing{padding:50px 40px;background:var(--bg-alt);margin-top:48px;border-radius:8px}.story-closing h2,.story-resources h2{font-size:30px;margin-bottom:18px}.story-closing p{line-height:1.8;max-width:820px;color:var(--text-muted);margin-top:14px}.story-closing p:last-child{font-size:13px}.story-resources{margin-top:50px}.resource-links{display:grid;grid-template-columns:1fr 1fr;gap:12px}.resource-links a{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:20px;border:1px solid var(--border);border-radius:6px;font-size:14px;background:var(--surface)}.resource-links a:hover{border-color:var(--accent-soft)}.resource-links small{font:10px 'JetBrains Mono',monospace;color:var(--accent-soft);white-space:nowrap}.story-end{margin-top:40px}
+#image-dialog{width:min(1200px,96vw);max-height:94dvh;padding:0;margin:auto;background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:8px}#image-dialog::backdrop{background:rgba(0,0,0,.8);backdrop-filter:blur(4px)}#image-large{max-width:100%;width:auto;max-height:76dvh;margin:auto;display:block;object-fit:contain}#image-caption{font-size:13px;line-height:1.6;padding:16px 24px}#image-dialog .pcb-toolbar{justify-content:flex-end;padding:8px 14px}
+@media(max-width:760px){.story-main{padding:104px 20px 40px}.story-hero{grid-template-columns:1fr;gap:30px;padding-bottom:34px}.hero-photo img{height:310px}.story-lead{font-size:16px}.story-nav{gap:14px 20px}.story-step{padding:40px 0}.step-body{margin-left:0}.step-heading{gap:12px}.story-facts{gap:14px}.story-facts strong{font-size:23px}.board-feature{grid-template-columns:1fr;padding:20px;gap:20px}.board-feature .pcb-open{height:260px}.test-layout{grid-template-columns:1fr}.story-media.trio{grid-template-columns:1fr}.trio img{height:250px}.story-media.pair,.story-media.portraits{grid-template-columns:1fr}.story-figure img{height:auto;max-height:360px}.story-closing{padding:26px}.resource-links{grid-template-columns:1fr}.story-actions .btn-primary,.story-actions .btn-ghost{padding:12px 14px}}
+</style><style>
+.story-main table{width:100%;border-collapse:collapse;font-size:14px;text-align:left}.story-main th,.story-main td{padding:15px;border-bottom:1px solid var(--border);white-space:nowrap}.story-main th{font-weight:500}.story-main caption{text-align:left;font-size:12px;color:var(--text-muted);padding:15px}.formula{font-family:monospace;font-size:18px}#video-dialog{width:min(850px,94vw);padding:16px;background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:12px;margin:auto}#video-dialog::backdrop{background:#000b}#project-video{width:100%;max-height:70dvh;background:#000}.pcb-toolbar{display:flex;justify-content:space-between;align-items:center;padding:8px}.pcb-close{padding:8px 16px;font-size:25px;cursor:pointer;border:1px solid var(--border);border-radius:6px}button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--accent-soft);outline-offset:4px}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style><style id="caption-alignment">.story-figure figcaption,#image-caption{text-align:center;text-wrap:pretty;margin-inline:auto;max-width:68ch}#image-caption{padding:16px 24px 22px}</style>
 
-  <!-- Données structurées (référencement Google) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Aurélien Capron",
-    "jobTitle": "Élève-ingénieur — Systèmes Électroniques Intégrés",
-    "alumniOf": { "@type": "CollegeOrUniversity", "name": "Grenoble INP - Phelma" },
-    "email": "mailto:aurelien-capron@outlook.fr",
-    "sameAs": [
-      "https://www.linkedin.com/in/aurelien-capron",
-      "https://github.com/VOTRE-PSEUDO"
-    ]
-  }
-  </script>
+
+
+<style id="bds-page-style">
+.story-hero{grid-template-columns:1fr 1.05fr;gap:42px}.hero-photo img{height:auto;max-height:440px}.story-facts strong{font-size:30px}.story-facts span{max-width:280px}.role-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px;margin:30px 0}.role-grid article{border-top:2px solid var(--accent-soft);padding-top:20px}.role-grid h3{font-size:23px}.role-grid p,.partner-grid p,.backyard-intro p,.timing-project p,.annual-partner p,.unirox-layout p{font-size:15px;color:var(--text-muted);line-height:1.85}.event-list{margin:36px 0}.event-list article{display:grid;grid-template-columns:185px 1fr;gap:24px;border-top:1px solid var(--border);padding:25px 0}.event-date{font:11px 'JetBrains Mono',monospace;line-height:1.8;color:var(--accent-soft)}.event-list h3{font-size:25px;margin:0 0 12px}.event-list article>div>p{font-size:15px;color:var(--text-muted);line-height:1.85}.wide-photo{margin:30px 0}.wide-photo img{height:auto;max-height:580px}.story-media img{height:300px}.story-details img{height:auto;max-height:540px}.story-details .story-media img{height:280px}.portraits img{height:440px}.backyard-intro{display:grid;grid-template-columns:.65fr 1.35fr;gap:32px;align-items:center;margin:30px 0 42px}.backyard-intro h3{margin:18px 0}.backyard-intro p{margin:16px 0}.backyard-visual img{height:auto;max-height:390px}.backyard-visual .image-open{padding:0}.partner-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin:24px 0 36px}.partner-grid article{border-top:2px solid var(--accent-soft);padding-top:20px}.partner-grid h4{font-size:21px;font-weight:600;color:var(--text-strong);margin-bottom:14px}.staff-feature{border-block:1px solid var(--border);padding:26px 0;margin:30px 0}.staff-feature strong{font-size:27px;color:var(--accent-soft);font-weight:500}.staff-feature p{color:var(--text-muted);font-size:15px;line-height:1.85;margin-top:15px}.timing-project{border-left:3px solid var(--accent-soft);background:var(--bg-alt);padding:28px;margin:36px 0;border-radius:0 8px 8px 0}.timing-project h3{margin-top:16px}.backyard-media{display:grid;grid-template-columns:.8fr 1fr;gap:32px;align-items:center;margin:36px 0}.music-video{margin:0;min-width:0}.music-video video{width:100%;max-height:580px;aspect-ratio:9/16;background:#101114;object-fit:contain;border-radius:8px;border:1px solid var(--border)}.music-video figcaption{font-size:12px;line-height:1.7;color:var(--text-muted);text-align:center;margin:12px auto;max-width:45ch}.backyard-poster img{height:auto;max-height:580px}.annual-partner{padding-top:34px;margin-top:30px;border-top:1px solid var(--border)}.unirox-layout{display:grid;grid-template-columns:.65fr 1.35fr;align-items:center;gap:32px}.unirox-logo img{height:auto;max-height:330px}.unirox-layout h3{margin-top:15px}.unirox-layout p{margin-bottom:24px}.resource-links small{white-space:normal;font-size:9px}.resource-links a{flex-wrap:wrap}.interest-navigation{display:grid;grid-template-columns:1fr auto 1fr;gap:18px;border-top:1px solid var(--border);padding-top:28px;margin-top:48px}.interest-navigation a{border:1px solid var(--border);border-radius:6px;padding:18px;display:flex;flex-direction:column;justify-content:center;gap:8px}.interest-navigation small{font:10px 'JetBrains Mono',monospace;color:var(--text-muted)}.interest-navigation strong{font-size:14px}.interest-navigation .all-interests{color:var(--accent-soft);font-size:13px;text-align:center}.next-interest{text-align:right}
+@media(max-width:760px){.story-hero,.role-grid,.backyard-intro,.backyard-media,.unirox-layout,.partner-grid{grid-template-columns:1fr;gap:26px}.hero-photo img{max-height:420px}.event-list article{grid-template-columns:1fr;gap:10px}.story-media img,.portraits img,.story-details .story-media img{height:auto;max-height:420px}.backyard-visual{max-width:330px;margin:auto}.backyard-media{max-width:460px;margin:32px auto}.unirox-logo{max-width:280px;margin:auto}.interest-navigation{grid-template-columns:1fr}.interest-navigation a,.next-interest{text-align:left}.interest-navigation .all-interests{order:3}.story-facts{grid-template-columns:1fr;gap:22px}.story-facts span{max-width:none}.timing-project{padding:22px}.story-hero h1{font-size:48px}}
+@media(max-width:420px){header.fixed nav{padding-inline:16px}header.fixed .nav-link{font-size:10px;gap:4px;margin-right:0}header.fixed .lang-btn{padding-inline:6px}.story-hero h1{font-size:43px}}
+</style>
+<link rel="stylesheet" href="assets/site-media.css">
+<script src="assets/site-media.js"></script>
 </head>
 
-<body class="bg-ink-950 font-sans text-slate-300 antialiased">
+<body class="bg-[var(--bg)] font-sans text-[var(--text)] antialiased">
 
-  <!-- Lien d'accessibilité (visible au clavier uniquement) -->
   <a href="#main" data-i18n="skip"
      class="sr-only z-[60] rounded-md bg-accent px-4 py-2 font-semibold text-ink-950 focus:not-sr-only focus:fixed focus:left-4 focus:top-4">Aller au contenu</a>
 
-  <!-- Bibliothèque d'icônes (SVG inline, aucune dépendance externe) -->
   <svg xmlns="http://www.w3.org/2000/svg" class="absolute h-0 w-0 overflow-hidden" aria-hidden="true" focusable="false">
     <symbol id="i-github" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol>
     <symbol id="i-linkedin" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.125 2.062 2.062 0 0 1 0 4.125zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></symbol>
-    <symbol id="i-instagram" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></symbol>
     <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol>
     <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
-    <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></symbol>
     <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
-    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
-    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
-    <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
     <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
     <symbol id="i-cpu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></symbol>
-    <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></symbol>
     <symbol id="i-activity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></symbol>
     <symbol id="i-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></symbol>
   </svg>
 
-  <!-- ═════════════════════════ NAVIGATION ═════════════════════════ -->
-<body class="bg-ink-950 font-sans text-slate-300 antialiased">
-
-
-  <header class="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-ink-950/75 backdrop-blur-md">
+  <header class="fixed inset-x-0 top-0 z-50 border-b border-[var(--border)] bg-[var(--header-bg)] backdrop-blur-md">
     <div id="progress" class="absolute left-0 top-0 h-[2px] w-0 bg-gradient-to-r from-accent to-volt"></div>
     <nav class="mx-auto flex h-16 max-w-6xl items-center justify-between px-6" aria-label="Navigation principale">
       <a href="index.html#accueil" class="flex items-center gap-3">
-        <span class="grid h-8 w-8 place-items-center rounded-lg border border-white/10 bg-ink-800 font-mono text-xs font-bold text-accent">AC</span>
-        <span class="hidden text-sm font-semibold text-white sm:inline">Aurélien Capron</span>
+        <span class="grid h-8 w-8 place-items-center rounded-lg border border-[var(--border)] bg-[var(--surface)] font-sans text-sm font-bold text-accent-soft">AC</span>
+        <span class="hidden text-sm font-semibold text-[var(--text-strong)] sm:inline">Aurélien Capron</span>
       </a>
-      <a href="index.html#hobbies" class="nav-link inline-flex items-center gap-2 font-mono text-sm">
-        <svg class="h-4 w-4"><use href="#i-arrow" transform="rotate(180 12 12)"/></svg>
-        Retour au portfolio
-      </a>
+
+      <div class="flex items-center gap-3">
+        <a href="index.html#hobbies" class="nav-link mr-2 inline-flex items-center gap-2 font-mono text-xs sm:text-sm">
+          <svg class="h-4 w-4"><use href="#i-arrow" transform="rotate(180 12 12)"/></svg>
+          <span data-i18n="nav.back">Retour aux loisirs</span>
+        </a>
+        <div class="flex items-center rounded-lg border border-[var(--border)] p-0.5 font-mono text-xs" role="group" aria-label="Langue / Language">
+          <button type="button" class="lang-btn" data-lang="fr" aria-pressed="true">FR</button>
+          <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <button id="theme-toggle" type="button"
+                class="grid h-9 w-9 place-items-center rounded-lg border border-[var(--border)] text-[var(--text-muted)] transition-colors hover:text-[var(--text-strong)]"
+                aria-pressed="true" aria-label="Basculer le thème clair/sombre">
+          <svg class="h-4 w-4"><use id="theme-icon-use" href="#i-moon"/></svg>
+        </button>
+      </div>
     </nav>
   </header>
 
+  <main id="main" class="story-main" tabindex="-1">
+<header class="story-hero">
+<div>
+<p data-i18n="hero.eyebrow" class="story-eyebrow">VIE ASSOCIATIVE · BDS PHELMA · 2026–2027</p>
+<h1 data-i18n="hero.title" class="">Faire vivre le sport à Phelma.</h1>
+<p data-i18n="hero.lead" class="story-lead">Responsable des partenariats du Bureau des Sports de Phelma pour l’année 2026–2027, je participe aussi à l’organisation et au staff des événements : accueillir les nouveaux étudiants, préparer le terrain et faire vivre les rencontres.</p>
+<p data-i18n="hero.role" class="story-role">Aurélien Capron · Partenariats, organisation et volley</p>
+<div class="story-actions">
+<a class="btn-primary" href="#backyard">
+<span data-i18n="hero.backyard" class="">La Backyard Ultra</span>
+<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
+<use href="#i-arrow" transform="rotate(90 12 12)"/>
+</svg>
+</a>
+<a class="btn-ghost" href="https://www.instagram.com/bds_phelma/" target="_blank" rel="noopener noreferrer">
+<span data-i18n="hero.instagram" class="">Le BDS sur Instagram</span>
+<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
+<use href="#i-external"/>
+</svg>
+</a>
+</div>
+</div>
+<figure class="story-figure hero-photo">
+<button type="button" class="image-open" aria-haspopup="dialog" aria-controls="image-dialog">
+<img src="assets/hobbies/bds/equipe-2026-2027.jpg" width="1600" height="1067" loading="eager" decoding="async" alt="L’équipe du BDS Phelma pour l’année 2026–2027.">
+</button>
+<figcaption data-i18n="hero.caption" class="">L’équipe du BDS Phelma pour l’année 2026–2027.</figcaption>
+</figure>
+</header>
+<div class="story-facts">
+<div>
+<strong data-i18n="fact.year" class="">2026–2027</strong>
+<span data-i18n="fact.year.desc" class="">Responsable partenariats du BDS</span>
+</div>
+<div>
+<strong data-i18n="fact.staff" class="">25 h</strong>
+<span data-i18n="fact.staff.desc" class="">De staff continu à la Backyard</span>
+</div>
+<div>
+<strong data-i18n="fact.offer" class="">−15 %</strong>
+<span data-i18n="fact.offer.desc" class="">Partenariat annuel Terre de Running pour les étudiants Phelma</span>
+</div>
+</div>
+<nav class="story-nav" aria-label="Sur cette page / On this page">
+<a href="#role">
+<span>01</span>
+<span data-i18n="nav.role" class="">Mon rôle</span>
+</a>
+<a href="#integration">
+<span>02</span>
+<span data-i18n="nav.integration" class="">L’intégration</span>
+</a>
+<a href="#olympiades">
+<span>03</span>
+<span data-i18n="nav.olympiades" class="">Les Olymps</span>
+</a>
+<a href="#backyard">
+<span>04</span>
+<span data-i18n="nav.backyard" class="">La Backyard</span>
+</a>
+<a href="#unirox">
+<span>05</span>
+<span data-i18n="nav.unirox" class="">La suite : Unirox</span>
+</a>
+</nav>
+<section class="story-step" id="role">
+<div class="step-heading">
+<span class="step-number">01</span>
+<h2 data-i18n="role.title" class="">Des partenariats au terrain</h2>
+</div>
+<div class="step-body">
+<p data-i18n="role.intro" class="">Mon poste porte sur les relations avec les partenaires : prendre contact, présenter nos projets et négocier des apports utiles aux événements comme aux étudiants. La Backyard m’a permis de concrétiser cette mission avec Fitness Park Grenoble et Terre de Running Grenoble.</p>
+<div class="role-grid">
+<article>
+<h3 data-i18n="role.partners" class="">Trouver des partenaires</h3>
+<p data-i18n="role.partners.desc" class="">Construire des échanges adaptés aux besoins du BDS et entretenir ces relations dans la durée.</p>
+</article>
+<article>
+<h3 data-i18n="role.events" class="">Participer sur le terrain</h3>
+<p data-i18n="role.events.desc" class="">Installation, préparation, présence pendant les événements et rangement : je participe à toutes ces étapes avec l’équipe.</p>
+</article>
+<article>
+<h3 data-i18n="role.sport" class="">Jouer collectif</h3>
+<p data-i18n="role.sport.desc" class="">Le volley occupe aussi une place dans mon engagement, des rencontres d’intégration à l’équipe 2 de Phelma aux Olymps.</p>
+</article>
+</div>
+</div>
+</section>
+<section class="story-step" id="integration">
+<div class="step-heading">
+<span class="step-number">02</span>
+<h2 data-i18n="integration.title" class="">Accueillir les premières années</h2>
+</div>
+<div class="step-body">
+<p data-i18n="integration.intro" class="">L’intégration de septembre 2026 a été un premier temps fort du mandat. J’ai participé au staff de plusieurs rendez-vous pour permettre aux premières années de se rencontrer et de trouver leur place à Phelma.</p>
+<div class="event-list">
+<article>
+<p data-i18n="event.day.date" class="event-date">6 SEPTEMBRE 2026</p>
+<div>
+<h3 data-i18n="event.day" class="">Journée O’INP</h3>
+<p data-i18n="event.day.desc" class="">À la Halle Belledonne, une journée de découverte des épreuves des Olymps : ultimate, tir à la corde, dodgeball et spikeball, avec un atelier banderoles et un premier entraînement de chorégraphie. J’y ai participé en tant que staff.</p>
+</div>
+</article>
+<article>
+<p data-i18n="event.beach.date" class="event-date">7 SEPTEMBRE 2026</p>
+<div>
+<h3 data-i18n="event.beach" class="">Soirée plage à la Bifurk</h3>
+<p data-i18n="event.beach.desc" class="">Un tournoi de beach-volley, du jeu libre et une soirée pour faire connaissance. J’ai participé au staff et profité de ce rendez-vous autour d’un sport que j’aime : le volley.</p>
+</div>
+</article>
+<article>
+<p data-i18n="event.color.date" class="event-date">12 SEPTEMBRE 2026</p>
+<div>
+<h3 data-i18n="event.color" class="">Color Run inter-écoles</h3>
+<p data-i18n="event.color.desc" class="">Une course conviviale d’environ 4 à 5 km, sans chronomètre, ponctuée de stands et de lancers de poudre colorée. J’ai également fait partie du staff.</p>
+</div>
+</article>
+<article>
+<p data-i18n="event.kfet.date" class="event-date">14 SEPTEMBRE, PUIS AU FIL DE L’ANNÉE</p>
+<div>
+<h3 data-i18n="event.kfet" class="">Les Kfet à la MINP</h3>
+<p data-i18n="event.kfet.desc" class="">Ces soirées ont lieu à la Maison de l’INP, à Saint-Martin-d’Hères. Mon implication va de l’installation et de la préparation au staff pendant la soirée, jusqu’au rangement final. D’autres Kfet ont suivi après l’intégration.</p>
+</div>
+</article>
+<article>
+<p data-i18n="event.wa.date" class="event-date">18–20 SEPTEMBRE 2026</p>
+<div>
+<h3 data-i18n="event.wa" class="">Le week-end d’accueil (WA)</h3>
+<p data-i18n="event.wa.desc" class="">Un week-end d’activités et de soirées qui clôture le mois d’accueil, organisé avec les trois bureaux. J’ai contribué au staff de ce temps fort de l’intégration.</p>
+</div>
+</article>
+</div>
+<div class="story-media pair">
+<figure class="story-figure ">
+<button type="button" class="image-open" aria-haspopup="dialog" aria-controls="image-dialog">
+<img src="assets/hobbies/bds/journee-olympique-staff.jpg" width="1600" height="1200" loading="lazy" decoding="async" alt="Avec le staff lors de la journée O’INP.">
+</button>
+<figcaption data-i18n="integration.day" class="">Avec le staff lors de la journée O’INP.</figcaption>
+</figure>
+<figure class="story-figure ">
+<button type="button" class="image-open" aria-haspopup="dialog" aria-controls="image-dialog">
+<img src="assets/hobbies/bds/soiree-plage-staff.jpg" width="1600" height="1066" loading="lazy" decoding="async" alt="Un moment avec l’équipe pendant la soirée plage.">
+</button>
+<figcaption data-i18n="integration.beach" class="">Un moment avec l’équipe pendant la soirée plage.</figcaption>
+</figure>
+</div>
+<figure class="story-figure wide-photo">
+<button type="button" class="image-open" aria-haspopup="dialog" aria-controls="image-dialog">
+<img src="assets/hobbies/bds/color-run-2026.jpg" width="1600" height="1200" loading="lazy" decoding="async" alt="La Color Run : une rencontre entre étudiants des différentes écoles.">
+</button>
+<figcaption data-i18n="integration.color" class="">La Color Run : une rencontre entre étudiants des différentes écoles.</figcaption>
+</figure>
+<details class="story-details">
+<summary>
+<span data-i18n="integration.more" class="">Le planning et d’autres souvenirs de l’intégration</span>
+</summary>
+<figure class="story-figure wide-photo">
+<button type="button" class="image-open" aria-haspopup="dialog" aria-controls="image-dialog">
+<img src="assets/hobbies/bds/planning-integration-2026.jpg" width="1600" height="900" loading="lazy" decoding="async" alt="Le planning d’intégration de 2026 ; les événements du BDS sont en bleu.">
+</button>
+<figcaption data-i18n="integration.schedule" class="">Le planning d’intégration de 2026 ; les événements du BDS sont en bleu.</figcaption>
+</figure>
+<div class="story-media pair">
+<figure class="story-figure ">
+<button type="button" class="image-open" aria-haspopup="dialog" aria-controls="image-dialog">
+<img src="assets/hobbies/bds/journee-olympique-equipe.jpg" width="1600" height="1200" loading="lazy" decoding="async" alt="Rassemblement de l’équipe pendant la journée O’INP.">
+</button>
+<figcaption data-i18n="integration.team" class="">Rassemblement de l’équipe pendant la journée O’INP.</figcaption>
+</figure>
+<figure class="story-figure ">
+<button type="button" class="image-open" aria-haspopup="dialog" aria-controls="image-dialog">
+<img src="assets/hobbies/bds/soiree-plage-equipe.jpg" width="1600" height="1066" loading="lazy" decoding="async" alt="Les maillots du BDS autour du filet.">
+</button>
+<figcaption data-i18n="integration.net" class="">Les maillots du BDS autour du filet.</figcaption>
+</figure>
+<figure class="story-figure ">
+<button type="button" class="image-open" aria-haspopup="dialog" aria-controls="image-dialog">
+<img src="assets/hobbies/bds/soiree-plage-volley.jpg" width="1600" height="1200" loading="lazy" decoding="async" alt="Le beach-volley au programme de la soirée plage.">
+</button>
+<figcaption data-i18n="integration.volley" class="">Le beach-volley au programme de la soirée plage.</figcaption>
+</figure>
+<figure class="story-figure ">
+<button type="button" class="image-open" aria-haspopup="dialog" aria-controls="image-dialog">
+<img src="assets/hobbies/bds/soiree-plage-groupe.jpg" width="1600" height="1066" loading="lazy" decoding="async" alt="Une photo de groupe pour terminer la soirée.">
+</button>
+<figcaption data-i18n="integration.group" class="">Une photo de groupe pour terminer la soirée.</figcaption>
+</figure>
+</div>
+</details>
+</div>
+</section>
+<section class="story-step" id="olympiades">
+<div class="step-heading">
+<span class="step-number">03</span>
+<h2 data-i18n="olympiades.title" class="">Préparer, construire, puis jouer</h2>
+</div>
+<div class="step-body">
+<p data-i18n="olympiades.intro" class="">Les Ol’INPiades des 17 et 18 octobre 2026 réunissaient les écoles de Grenoble INP sur le campus de Saint-Martin-d’Hères, autour d’épreuves sportives et artistiques. En amont du week-end, j’ai participé à la préparation des couleurs de Phelma.</p>
+<div class="story-media pair portraits">
+<figure class="story-figure ">
+<button type="button" class="image-open" aria-haspopup="dialog" aria-controls="image-dialog">
+<img src="assets/hobbies/bds/banderole-olympiades.jpg" width="1125" height="1500" loading="lazy" decoding="async" alt="La banderole que j’ai réalisée avec Damien Bouichou, Gaël Marquet et Amaury Simonnot.">
+</button>
+<figcaption data-i18n="olympiades.banner" class="">La banderole que j’ai réalisée avec Damien Bouichou, Gaël Marquet et Amaury Simonnot.</figcaption>
+</figure>
+<figure class="story-figure ">
+<button type="button" class="image-open" aria-haspopup="dialog" aria-controls="image-dialog">
+<img src="assets/hobbies/bds/char-phelma.jpg" width="1125" height="1500" loading="lazy" decoding="async" alt="Le char représentant Phelma, à la construction duquel j’ai participé.">
+</button>
+<figcaption data-i18n="olympiades.float" class="">Le char représentant Phelma, à la construction duquel j’ai participé.</figcaption>
+</figure>
+</div>
+<p data-i18n="olympiades.volley" class="">Le week-end des Olymps, j’ai également joué au volley dans l’équipe 2 de Phelma. Une autre manière de prendre part à l’événement, cette fois sur le terrain.</p>
+</div>
+</section>
+<section class="story-step" id="backyard">
+<div class="step-heading">
+<span class="step-number">04</span>
+<h2 data-i18n="backyard.title" class="">La Backyard : des sponsors au dernier rangement</h2>
+</div>
+<div class="step-body">
+<div class="backyard-intro">
+<figure class="story-figure backyard-visual">
+<button type="button" class="image-open" aria-haspopup="dialog" aria-controls="image-dialog">
+<img src="assets/hobbies/bds/visuel-backyard.jpg" width="1024" height="1024" loading="lazy" decoding="async" alt="La Backyard Phelma · 24 et 25 octobre 2026.">
+</button>
+<figcaption data-i18n="backyard.visual" class="">La Backyard Phelma · 24 et 25 octobre 2026.</figcaption>
+</figure>
+<div>
+<p data-i18n="backyard.date" class="event-date">24–25 OCTOBRE 2026 · GYMNASE BELLEDONNE</p>
+<h3 data-i18n="backyard.subtitle" class="">Un événement porté à trois</h3>
+<p data-i18n="backyard.team" class="">Après les Olymps, j’ai organisé cette Backyard Ultra avec l’aide d’Amaury Simonnot et de Damien Bouichou. Je me suis particulièrement occupé des sponsors, tout en développant le système de pointage et en participant au staff.</p>
+<p data-i18n="backyard.rules" class="">Le principe : terminer une boucle d’environ 6,7 km en moins d’une heure et repartir à chaque heure pile. Le camp de base était installé au gymnase Belledonne, à Saint-Martin-d’Hères, avec ravitaillement et zone de repos.</p>
+</div>
+</div>
+<h3 data-i18n="backyard.partners" class="">Des partenariats utiles aux coureurs</h3>
+<div class="partner-grid">
+<article>
+<h4 data-i18n="partner.fitness" class="">Fitness Park Grenoble</h4>
+<p data-i18n="partner.fitness.desc" class="">J’ai obtenu des goodies pour les gagnants et une séance offerte à chaque coureur de la Backyard.</p>
+</article>
+<article>
+<h4 data-i18n="partner.tdr" class="">Terre de Running Grenoble</h4>
+<p data-i18n="partner.tdr.desc" class="">Le partenariat a permis le prêt de l’arche gonflable et du podium, ainsi que des conditions négociées pour constituer une dotation de 800 € en bons d’achat.</p>
+</article>
+</div>
+<div class="staff-feature">
+<strong data-i18n="backyard.25h" class="">25 heures de staff d’affilée</strong>
+<p data-i18n="backyard.staff" class="">Préparation, installation, pointage des coureurs, ravitaillement et suivi du bon déroulement de la course, puis rangement jusqu’à la toute fin : j’ai accompagné l’événement sur l’ensemble de ces étapes.</p>
+</div>
+<aside class="timing-project">
+<p data-i18n="backyard.project.eyebrow" class="story-eyebrow">DANS MES PROJETS TECHNIQUES</p>
+<h3 data-i18n="backyard.project.title" class="">Le système de pointage que j’ai développé</h3>
+<p data-i18n="backyard.project.desc" class="">Pour suivre les passages et les résultats de la course, j’ai réalisé un outil de chronométrage et de pointage. Sa page dédiée présente le fonctionnement du logiciel, les écrans et les résultats.</p>
+<div class="story-actions">
+<a class="btn-primary" href="backyard.html">
+<span data-i18n="backyard.project.link" class="">Découvrir le projet de pointage</span>
+<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
+<use href="#i-arrow"/>
+</svg>
+</a>
+<a class="btn-ghost" href="index.html#projets">
+<span data-i18n="backyard.project.all" class="">Tous mes projets</span>
+<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
+<use href="#i-arrow"/>
+</svg>
+</a>
+</div>
+</aside>
+<div class="backyard-media">
+<figure class="music-video">
+<video controls playsinline preload="none" poster="assets/hobbies/bds/teaser-backyard.jpg" aria-describedby="teaser-caption">
+<source src="assets/hobbies/bds/teaser-backyard.mp4" type="video/mp4">
+</video>
+<figcaption id="teaser-caption" data-i18n="backyard.teaser" class="">Le teaser réalisé pour annoncer la Backyard Phelma.</figcaption>
+</figure>
+<figure class="story-figure backyard-poster">
+<button type="button" class="image-open" aria-haspopup="dialog" aria-controls="image-dialog">
+<img src="assets/hobbies/bds/affiche-backyard.jpg" width="849" height="1200" loading="lazy" decoding="async" alt="L’affiche de l’événement, les 24 et 25 octobre 2026.">
+</button>
+<figcaption data-i18n="backyard.poster" class="">L’affiche de l’événement, les 24 et 25 octobre 2026.</figcaption>
+</figure>
+</div>
+<div class="resource-links">
+<a href="https://www.instagram.com/p/DeJk_fdiDaQ/?img_index=1" target="_blank" rel="noopener noreferrer">
+<span data-i18n="backyard.announcement" class="">La présentation de la Backyard</span>
+<small>INSTAGRAM <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+<use href="#i-external"/>
+</svg>
+</small>
+</a>
+<a href="https://www.instagram.com/p/DfF9MnjCC1Y/?img_index=4" target="_blank" rel="noopener noreferrer">
+<span data-i18n="backyard.results" class="">Le bilan et les résultats</span>
+<small>INSTAGRAM <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+<use href="#i-external"/>
+</svg>
+</small>
+</a>
+<a href="https://www.instagram.com/p/DdbhG9yIXV3/" target="_blank" rel="noopener noreferrer">
+<span data-i18n="backyard.preteaser" class="">Le pré-teaser</span>
+<small>INSTAGRAM <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+<use href="#i-external"/>
+</svg>
+</small>
+</a>
+<a href="assets/hobbies/bds/affiche-backyard.pdf" target="_blank" rel="noopener noreferrer">
+<span data-i18n="backyard.pdf" class="">Voir l’affiche complète</span>
+<small>PDF <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+<use href="#i-external"/>
+</svg>
+</small>
+</a>
+</div>
+<div class="annual-partner">
+<h3 data-i18n="annual.title" class="">Un partenariat qui se poursuit à l’année</h3>
+<p data-i18n="annual.desc" class="">À la suite de cet événement, j’ai concrétisé un partenariat annuel avec Terre de Running Grenoble : les étudiants Phelma bénéficient de 15 % de réduction. Cette relation se prolonge aussi dans la préparation d’Unirox.</p>
+</div>
+</div>
+</section>
+<section class="story-step" id="unirox">
+<div class="step-heading">
+<span class="step-number">05</span>
+<h2 data-i18n="unirox.title" class="">Continuer à construire avec les partenaires</h2>
+</div>
+<div class="step-body">
+<div class="unirox-layout">
+<figure class="story-figure unirox-logo">
+<button type="button" class="image-open" aria-haspopup="dialog" aria-controls="image-dialog">
+<img src="assets/hobbies/bds/logo-unirox.jpg" width="1080" height="1080" loading="lazy" decoding="async" alt="Unirox, le prochain rendez-vous en préparation avec le BDS.">
+</button>
+<figcaption data-i18n="unirox.logo" class="">Unirox, le prochain rendez-vous en préparation avec le BDS.</figcaption>
+</figure>
+<div>
+<p data-i18n="unirox.date" class="event-date">EN PRÉPARATION · 29 NOVEMBRE 2026</p>
+<h3 data-i18n="unirox.name" class="">Unirox, entre course et fitness</h3>
+<p data-i18n="unirox.desc" class="">Nous préparons actuellement Unirox, un événement de type Hyrox prévu le 29 novembre 2026. Terre de Running Grenoble nous accompagne également sur ce nouveau projet.</p>
+<a class="btn-ghost" href="https://www.instagram.com/bds_phelma/" target="_blank" rel="noopener noreferrer">
+<span data-i18n="unirox.follow" class="">Suivre les annonces du BDS</span>
+<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
+<use href="#i-external"/>
+</svg>
+</a>
+</div>
+</div>
+</div>
+</section>
+<nav class="interest-navigation" aria-label="Navigation entre les loisirs / Interest navigation">
+<a href="saxhorn.html">
+<small data-i18n="journey.prev" class="">← Loisir précédent</small>
+<strong data-i18n="journey.music" class="">Saxhorn &amp; musique</strong>
+</a>
+<a href="index.html#hobbies" class="all-interests">
+<span data-i18n="journey.all" class="">Tous les loisirs</span>
+</a>
+<a href="judo.html" class="next-interest">
+<small data-i18n="journey.next" class="">Loisir suivant →</small>
+<strong data-i18n="journey.judo" class="">Judo</strong>
+</a>
+</nav>
+</main>
 
-  <main id="main" tabindex="-1" class="outline-none pt-28">
-    <section class="relative overflow-hidden pb-16">
-      <div class="grid-bg pointer-events-none absolute inset-0"></div>
-      <div class="pointer-events-none absolute -top-40 right-0 h-[28rem] w-[28rem] rounded-full bg-volt/10 blur-3xl"></div>
-      <div class="relative mx-auto max-w-4xl px-6">
-        <p class="reveal font-mono text-xs text-slate-400">
-          <a href="index.html#hobbies" class="hover:text-accent-soft">Hobbies</a> <span class="mx-1">/</span> Bureau des Sports — Phelma
-        </p>
-        <p class="reveal eyebrow mt-4">Vie associative · Phelma · </p>
-        <h1 class="reveal h2 mt-2 !text-4xl sm:!text-5xl">Bureau des Sports — Phelma</h1>
-        <p class="reveal mt-4 max-w-2xl text-lg text-slate-400">Engagement associatif au Bureau des Sports de Phelma, responsable des partenariats.</p>
-
-        <div class="reveal mt-8 flex flex-wrap gap-2">
-          <span class="tag">Vie associative</span><span class="tag">Partenariats</span><span class="tag">Gestion de budget</span><span class="tag">Esprit d'équipe</span>
-        </div>
-
-        <div class="reveal relative mt-10 aspect-video overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-ink-700 to-ink-800">
-          <div class="absolute inset-0 grid place-items-center text-ink-600"><svg class="h-16 w-16"><use href="#i-activity"/></svg></div>
-          <!-- 📸 IMAGE : assets/hobbies/bds.jpg (16:9) -->
-          <img src="assets/hobbies/bds.jpg" alt="Équipe du Bureau des Sports de Phelma" loading="lazy" class="absolute inset-0 h-full w-full object-cover" onerror="this.remove()">
-        </div>
-      </div>
-    </section>
-
-    <section class="pb-24">
-      <div class="mx-auto max-w-4xl px-6">
-        <p class="reveal text-base leading-relaxed text-slate-300">En parallèle des études, je me suis engagé dans la vie associative de l'école au Bureau des Sports (BDS) de Phelma, en charge des partenariats.</p>
-
-        <h2 class="reveal mt-12 text-xl font-bold text-white">Mon rôle</h2><ul class="reveal mt-4 space-y-2"><li class="flex items-start gap-2.5 text-sm text-slate-400">
-              <svg class="mt-0.5 h-4 w-4 flex-none text-accent-soft"><use href="#i-activity"/></svg>Négociation de sponsoring auprès de partenaires.</li><li class="flex items-start gap-2.5 text-sm text-slate-400">
-              <svg class="mt-0.5 h-4 w-4 flex-none text-accent-soft"><use href="#i-activity"/></svg>Gestion du budget associatif.</li><li class="flex items-start gap-2.5 text-sm text-slate-400">
-              <svg class="mt-0.5 h-4 w-4 flex-none text-accent-soft"><use href="#i-activity"/></svg>Organisation d'événements sportifs avec le reste de l'équipe.</li></ul>
-
-        <div class="reveal mt-12 flex flex-wrap gap-3">
-          <a href="index.html#hobbies" class="btn-ghost">
-            <svg class="h-4 w-4"><use href="#i-arrow" transform="rotate(180 12 12)"/></svg>
-            Retour aux hobbies</a>
-        </div>
-        
-      </div>
-    </section>
-
-    <section class="border-t border-white/5 bg-ink-900/40 py-14">
-      <div class="mx-auto flex max-w-4xl items-center justify-between px-6">
-        <a href="saxhorn.html" class="group max-w-[45%]">
-          <p class="font-mono text-xs text-slate-500">← Précédent</p>
-          <p class="mt-1 truncate font-semibold text-slate-300 group-hover:text-accent-soft">Saxhorn & musique</p>
-        </a>
-        <a href="judo.html" class="group max-w-[45%] text-right">
-          <p class="font-mono text-xs text-slate-500">Suivant →</p>
-          <p class="mt-1 truncate font-semibold text-slate-300 group-hover:text-accent-soft">Championnat de France de kata</p>
-        </a>
-      </div>
-    </section>
-  </main>
-
-  <!-- ═════════════════════════ 5. CONTACT (FOOTER) ═════════════════════════ -->
-  <footer id="contact" class="relative overflow-hidden border-t border-white/5 bg-ink-900/40">
+  <footer id="contact" class="relative overflow-hidden border-t border-[var(--border)] bg-[var(--bg-alt)]">
     <div class="pointer-events-none absolute left-1/2 top-0 h-64 w-[36rem] -translate-x-1/2 rounded-full bg-accent/10 blur-3xl"></div>
 
-    <div class="relative mx-auto max-w-3xl px-6 py-24 text-center">
+    <div class="relative mx-auto max-w-3xl px-6 py-20 text-center">
       <p class="eyebrow reveal" data-i18n="contact.eyebrow">Contact</p>
       <h2 class="h2 reveal" data-i18n="contact.title">Prêt à échanger sur vos projets technologiques ?</h2>
-      <p class="reveal mx-auto mt-4 max-w-lg text-slate-400" data-i18n="contact.sub">Stage d'assistant ingénieur en électronique — 16 semaines, dès mi-mai 2027.</p>
+      <p class="reveal mx-auto mt-4 max-w-lg text-[var(--text-muted)]" data-i18n="contact.sub">Stage d'assistant ingénieur en électronique — 16 semaines, dès mi-mai 2027.</p>
 
-      <!-- Icônes de contact -->
       <div class="reveal mt-10 flex items-center justify-center gap-4">
-        <a class="icon-btn" href="https://www.linkedin.com/in/aurelien-capron" target="_blank" rel="noopener noreferrer" aria-label="Profil LinkedIn" data-i18n-aria="aria.linkedin">
+        <a class="icon-btn" href="https://www.linkedin.com/in/aurelien-capron" target="_blank" rel="noopener noreferrer" aria-label="Profil LinkedIn">
           <svg class="h-5 w-5"><use href="#i-linkedin"/></svg>
         </a>
-        <!-- 🔗 LIEN : remplace VOTRE-PSEUDO par ton nom d'utilisateur GitHub -->
-        <a class="icon-btn" href="https://github.com/VOTRE-PSEUDO" target="_blank" rel="noopener noreferrer" aria-label="Profil GitHub" data-i18n-aria="aria.github">
+        <a class="icon-btn" href="https://github.com/AurelienCapron" target="_blank" rel="noopener noreferrer" aria-label="Profil GitHub">
           <svg class="h-5 w-5"><use href="#i-github"/></svg>
         </a>
-        <a class="icon-btn" href="mailto:aurelien-capron@outlook.fr" aria-label="Envoyer un email" data-i18n-aria="aria.email">
+        <a class="icon-btn" href="mailto:aurelien-capron@outlook.fr" aria-label="Envoyer un email">
           <svg class="h-5 w-5"><use href="#i-mail"/></svg>
         </a>
-        <a class="icon-btn" href="tel:+33783073311" aria-label="Appeler" data-i18n-aria="aria.phone">
+        <a class="icon-btn" href="tel:+33783073311" aria-label="Appeler">
           <svg class="h-5 w-5"><use href="#i-phone"/></svg>
         </a>
       </div>
 
-      <!-- Email en clair + copie rapide -->
-      <div class="reveal mt-6 inline-flex items-center gap-3 rounded-full border border-white/10 bg-ink-900 py-1.5 pl-5 pr-1.5 font-mono text-sm text-slate-300">
-        <span>aurelien-capron@outlook.fr</span>
-        <button id="copy-email" type="button" class="inline-flex items-center gap-1.5 rounded-full bg-white/5 px-3 py-1.5 text-xs text-slate-200 transition hover:bg-accent/15 hover:text-accent-soft"
-                aria-label="Copier l'adresse email" data-i18n-aria="aria.copy">
-          <svg class="h-3.5 w-3.5"><use href="#i-copy"/></svg><span data-i18n="contact.copy">Copier</span>
-        </button>
+      <div class="reveal mt-6 flex flex-wrap items-center justify-center gap-3">
+        <div class="surface inline-flex max-w-full items-center gap-2 !rounded-full py-1.5 pl-4 pr-1.5 font-mono text-xs text-[var(--text)] sm:gap-3 sm:pl-5 sm:text-sm">
+          <span class="whitespace-nowrap">aurelien-capron@outlook.fr</span>
+          <button id="copy-email" type="button" class="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-[var(--chip-bg)] px-3 py-1.5 text-xs text-[var(--text-soft)] transition hover:bg-accent/15 hover:text-accent-soft">
+            <svg class="h-3.5 w-3.5"><use href="#i-copy"/></svg><span data-i18n="contact.copy">Copier</span>
+          </button>
+        </div>
       </div>
     </div>
 
-    <div class="relative border-t border-white/5 py-6 text-center font-mono text-xs text-slate-500">
-      © <span id="year">2026</span> Aurélien Capron · <span data-i18n="footer.built">Conçu avec HTML &amp; Tailwind CSS</span>
+    <div class="relative border-t border-[var(--border)] px-6 py-6 text-center font-mono text-xs text-[var(--text-faint)]">
+      © <span id="year">2026</span> Aurélien Capron · <span data-i18n="footer.built">Conçu avec HTML &amp; CSS</span> · <a href="mentions-legales.html" data-i18n="footer.legal" class="underline-offset-4 transition-colors hover:text-[var(--text-strong)] hover:underline">Mentions légales</a>
     </div>
   </footer>
-  <div id="toast" role="status" aria-live="polite"
-       class="pointer-events-none fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-lg border border-accent/30 bg-ink-800 px-4 py-2 text-sm text-accent-soft opacity-0 shadow-xl transition-opacity duration-300"></div>
-
-
 
   <button id="to-top" type="button" aria-label="Retour en haut"
-          class="pointer-events-none fixed bottom-6 right-6 z-40 grid h-11 w-11 place-items-center rounded-full border border-white/10 bg-ink-800/90 text-slate-200 opacity-0 shadow-lg backdrop-blur transition-opacity hover:border-accent/50 hover:text-accent-soft">
+          class="pointer-events-none fixed bottom-6 right-6 z-40 grid h-11 w-11 place-items-center rounded-full border border-[var(--border)] bg-[var(--surface)] text-[var(--text-soft)] opacity-0 shadow-lg backdrop-blur transition-all duration-300 hover:border-accent/50 hover:text-accent-soft">
     <svg class="h-5 w-5"><use href="#i-up"/></svg>
   </button>
-  <script>
-    (() => {
-      const bar = document.getElementById('progress'), topBtn = document.getElementById('to-top');
-      let ticking = false;
-      function onScroll() {
-        const h = document.documentElement;
-        const max = h.scrollHeight - h.clientHeight;
-        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
-        const hidden = h.scrollTop < 600;
-        topBtn.classList.toggle('opacity-0', hidden);
-        topBtn.classList.toggle('pointer-events-none', hidden);
-        ticking = false;
-      }
-      addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
-      onScroll();
-      topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-      document.getElementById('year') && (document.getElementById('year').textContent = new Date().getFullYear());
-      const copyBtn = document.getElementById('copy-email'), toast = document.getElementById('toast');
-      let toastTimer;
-      copyBtn && copyBtn.addEventListener('click', async () => {
-        const email = 'aurelien-capron@outlook.fr';
-        try { await navigator.clipboard.writeText(email); }
-        catch (e) {
-          const t = document.createElement('textarea');
-          t.value = email; document.body.appendChild(t); t.select();
-          try { document.execCommand('copy'); } catch (_) {}
-          t.remove();
-        }
-        toast.textContent = 'Email copié !';
-        toast.classList.remove('opacity-0');
-        clearTimeout(toastTimer);
-        toastTimer = setTimeout(() => toast.classList.add('opacity-0'), 2200);
-      });
-      const reveal = new IntersectionObserver((entries, obs) => {
-        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
-      }, { threshold: 0.12 });
-      document.querySelectorAll('.reveal').forEach(el => reveal.observe(el));
-    })();
-  </script>
 
-</body>
+  <div id="toast" role="status" aria-live="polite"
+       class="pointer-events-none fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-lg border border-accent/30 bg-[var(--surface)] px-4 py-2 text-sm font-medium text-accent-soft opacity-0 shadow-xl transition-opacity duration-300"></div>
+
+  <script>
+  (() => {
+    const $  = (s, r = document) => r.querySelector(s);
+    const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+    $('#year').textContent = new Date().getFullYear();
+
+    const themeBtn = $('#theme-toggle');
+    const themeIconUse = $('#theme-icon-use');
+    const metaThemeColor = $('meta[name="theme-color"]');
+    function applyTheme(theme, persist) {
+      document.documentElement.setAttribute('data-theme', theme);
+      themeIconUse?.setAttribute('href', theme === 'light' ? '#i-moon' : '#i-sun');
+      themeBtn?.setAttribute('aria-pressed', String(theme === 'light'));
+      metaThemeColor?.setAttribute('content', theme === 'light' ? '#f6f7f9' : '#0c0e11');
+      $('meta[name="color-scheme"]')?.setAttribute('content', theme);
+      if (persist) { try { localStorage.setItem('theme', theme); } catch (e) {} }
+    }
+    let savedTheme = null;
+    try { savedTheme = localStorage.getItem('theme'); } catch (e) {}
+    applyTheme(savedTheme === 'dark' ? 'dark' : 'light', false);
+    themeBtn?.addEventListener('click', () => {
+      const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      applyTheme(next, true);
+    });
+
+    const FR = {};
+    $$('[data-i18n]').forEach(el => { FR[el.dataset.i18n] = el.textContent.trim(); });
+    FR['meta.title'] = document.title;
+    FR['meta.desc']  = $('meta[name="description"]').content;
+    FR['toast.copied'] = "Email copié !";
+
+    const EN = {
+  "skip": "Skip to content",
+  "nav.back": "Back to interests",
+  "contact.eyebrow": "Contact",
+  "contact.title": "Ready to talk about your tech projects?",
+  "contact.sub": "Electronics engineering assistant internship — 16 weeks, from mid-May 2027.",
+  "contact.copy": "Copy",
+  "toast.copied": "Email copied!",
+  "footer.built": "Built with HTML & CSS",
+  "footer.legal": "Legal notice",
+  "meta.title": "Phelma Sports Office — Aurélien Capron",
+  "meta.desc": "Partnerships officer at Phelma’s Sports Office in 2026–2027: student events, volleyball, the Backyard Ultra and Unirox.",
+  "hero.eyebrow": "STUDENT LIFE · PHELMA SPORTS OFFICE · 2026–2027",
+  "hero.title": "Bringing sport to life at Phelma.",
+  "hero.lead": "As partnerships officer for Phelma’s Sports Office in 2026–2027, I also help organise and staff events: welcoming new students, preparing venues and bringing people together.",
+  "hero.role": "Aurélien Capron · Partnerships, event organisation and volleyball",
+  "hero.backyard": "The Backyard Ultra",
+  "hero.instagram": "The BDS on Instagram",
+  "hero.caption": "The Phelma Sports Office team for 2026–2027.",
+  "fact.year": "2026–2027",
+  "fact.year.desc": "BDS partnerships officer",
+  "fact.staff": "25 hours",
+  "fact.staff.desc": "Of continuous staffing at the Backyard",
+  "fact.offer": "−15%",
+  "fact.offer.desc": "Annual Terre de Running partnership for Phelma students",
+  "nav.role": "My role",
+  "nav.integration": "Welcoming new students",
+  "nav.olympiades": "The Olymps",
+  "nav.backyard": "The Backyard",
+  "nav.unirox": "Next: Unirox",
+  "role.intro": "My role centres on partner relations: making contact, presenting our projects and negotiating contributions that benefit both events and students. The Backyard gave me the opportunity to put this into practice with Fitness Park Grenoble and Terre de Running Grenoble.",
+  "role.partners": "Finding partners",
+  "role.partners.desc": "Building partnerships around the BDS’s needs and maintaining those relationships over time.",
+  "role.events": "Helping on the ground",
+  "role.events.desc": "Setup, preparation, on-site staffing and pack-down: I take part in all these stages with the team.",
+  "role.sport": "Playing as a team",
+  "role.sport.desc": "Volleyball is also part of my involvement, from welcome events to Phelma’s second team at the Olymps.",
+  "role.title": "From partnerships to the event itself",
+  "integration.intro": "The September 2026 welcome programme was an early highlight of the year. I helped staff several events designed to help first-year students meet one another and settle into life at Phelma.",
+  "event.day.date": "6 SEPTEMBER 2026",
+  "event.day": "O’INP day",
+  "event.day.desc": "At Halle Belledonne, a day introducing Olymps activities: ultimate, tug of war, dodgeball and spikeball, alongside banner-making and a first choreography rehearsal. I helped staff the event.",
+  "event.beach.date": "7 SEPTEMBER 2026",
+  "event.beach": "Beach evening at La Bifurk",
+  "event.beach.desc": "A beach-volleyball tournament, informal games and an evening to get to know each other. I helped staff it and enjoyed an event built around a sport I love: volleyball.",
+  "event.color.date": "12 SEPTEMBER 2026",
+  "event.color": "Inter-school Color Run",
+  "event.color.desc": "A relaxed, untimed run of around 4–5 km, with activity stands and coloured powder along the route. I was also part of the event staff.",
+  "event.kfet.date": "14 SEPTEMBER, THEN THROUGHOUT THE YEAR",
+  "event.kfet": "Kfet evenings at the MINP",
+  "event.kfet.desc": "These evenings take place at the Maison de l’INP in Saint-Martin-d’Hères. I help with setup and preparation, staffing during the evening and the final pack-down. More Kfet evenings followed after the welcome period.",
+  "event.wa.date": "18–20 SEPTEMBER 2026",
+  "event.wa": "The welcome weekend (WA)",
+  "event.wa.desc": "A weekend of activities and evenings that rounds off the welcome month, organised with the three student offices. I helped staff this highlight of the programme.",
+  "integration.day": "With the staff at the O’INP day.",
+  "integration.beach": "A moment with the team during the beach evening.",
+  "integration.color": "The Color Run: bringing students from different schools together.",
+  "integration.more": "The programme and more memories from the welcome events",
+  "integration.schedule": "The 2026 welcome programme; BDS events are shown in blue.",
+  "integration.team": "The team gathering during the O’INP day.",
+  "integration.net": "The BDS team around the volleyball net.",
+  "integration.volley": "Beach volleyball during the beach evening.",
+  "integration.group": "A group photo during the evening.",
+  "integration.title": "Welcoming first-year students",
+  "olympiades.intro": "The Ol’INPiades on 17–18 October 2026 brought Grenoble INP schools together on the Saint-Martin-d’Hères campus for sporting and artistic events. Before the weekend, I helped prepare Phelma’s contribution.",
+  "olympiades.banner": "The banner I made with Damien Bouichou, Gaël Marquet and Amaury Simonnot.",
+  "olympiades.float": "The float representing Phelma, which I helped build.",
+  "olympiades.volley": "During the Olymps weekend, I also played volleyball in Phelma’s second team: another way to take part, this time on the court.",
+  "olympiades.title": "Preparing, building, then playing",
+  "backyard.visual": "The Phelma Backyard · 24–25 October 2026.",
+  "backyard.date": "24–25 OCTOBER 2026 · GYMNASE BELLEDONNE",
+  "backyard.subtitle": "An event organised by three people",
+  "backyard.team": "After the Olymps, I organised this Backyard Ultra with the help of Amaury Simonnot and Damien Bouichou. I focused particularly on sponsors, while also developing the check-in system and helping staff the event.",
+  "backyard.rules": "The format: complete a loop of around 6.7 km in under an hour, then start again on the hour. The base camp was at Gymnase Belledonne in Saint-Martin-d’Hères, with refreshments and a rest area.",
+  "backyard.partners": "Partnerships that benefited the runners",
+  "partner.fitness": "Fitness Park Grenoble",
+  "partner.fitness.desc": "I secured goodies for the winners and a complimentary session for each Backyard runner.",
+  "partner.tdr": "Terre de Running Grenoble",
+  "partner.tdr.desc": "The partnership provided the loan of an inflatable arch and podium, plus negotiated terms for a prize pool of €800 in shopping vouchers.",
+  "backyard.25h": "25 hours of continuous event staffing",
+  "backyard.staff": "Preparation, setup, runner check-ins, refreshments and keeping the race running smoothly, followed by the final pack-down: I supported the event through all these stages.",
+  "backyard.project.eyebrow": "AMONG MY TECHNICAL PROJECTS",
+  "backyard.project.title": "The check-in system I developed",
+  "backyard.project.desc": "To track runner passages and race results, I built a timing and check-in tool. Its dedicated project page explains how the software works and presents its screens and results.",
+  "backyard.project.link": "Explore the timing project",
+  "backyard.project.all": "All my projects",
+  "backyard.teaser": "The teaser made to announce the Phelma Backyard.",
+  "backyard.poster": "The event poster for 24–25 October 2026.",
+  "backyard.announcement": "Introducing the Backyard",
+  "backyard.results": "Event recap and results",
+  "backyard.preteaser": "The pre-teaser",
+  "backyard.pdf": "View the full poster",
+  "annual.title": "A partnership that continues throughout the year",
+  "annual.desc": "Following this event, I secured an annual partnership with Terre de Running Grenoble, offering Phelma students a 15% discount. The relationship also continues through preparations for Unirox.",
+  "backyard.title": "The Backyard: from sponsors to the final pack-down",
+  "unirox.logo": "Unirox, the next event being prepared with the BDS.",
+  "unirox.date": "IN PREPARATION · 29 NOVEMBER 2026",
+  "unirox.name": "Unirox: running meets fitness",
+  "unirox.desc": "We are currently preparing Unirox, a Hyrox-style event scheduled for 29 November 2026. Terre de Running Grenoble is also supporting this new project.",
+  "unirox.follow": "Follow the BDS announcements",
+  "unirox.title": "Continuing to build with our partners",
+  "journey.prev": "← Previous interest",
+  "journey.music": "Tenor horn & music",
+  "journey.all": "All interests",
+  "journey.next": "Next interest →",
+  "journey.judo": "Judo"
+};
+    const DICT = { fr: FR, en: EN };
+    let lang = 'fr';
+
+    function setLang(next, persist) {
+      lang = next;
+      const d = DICT[lang];
+      document.documentElement.lang = lang;
+      $$('[data-i18n]').forEach(el => { const v = d[el.dataset.i18n]; if (v != null) el.textContent = v; });
+      $$('figure.story-figure').forEach(figure => { const image = figure.querySelector('img'); if (image) image.alt = figure.querySelector('figcaption').textContent.trim(); });
+      document.title = d['meta.title'];
+      $('meta[name="description"]')?.setAttribute('content', d['meta.desc']);
+      $$('.lang-btn').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+      if (persist) { try { localStorage.setItem('lang', lang); } catch (e) {} }
+    }
+    $$('.lang-btn').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang, true)));
+
+    let urlLang = null;
+    try { urlLang = new URLSearchParams(location.search).get('lang'); } catch (e) {}
+    let savedLang = null;
+    try { savedLang = localStorage.getItem('lang'); } catch (e) {}
+    const browserLang = (navigator.language || '').toLowerCase().startsWith('fr') ? 'fr' : 'en';
+    const initialLang = (urlLang === 'en' || urlLang === 'fr')
+      ? urlLang
+      : (savedLang === 'en' || savedLang === 'fr' ? savedLang : browserLang);
+    if (initialLang === 'en') setLang('en', Boolean(urlLang));
+
+    const bar = $('#progress'), topBtn = $('#to-top');
+    let ticking = false;
+    function onScroll() {
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      const hidden = h.scrollTop < 500;
+      topBtn.classList.toggle('opacity-0', hidden);
+      topBtn.classList.toggle('pointer-events-none', hidden);
+      ticking = false;
+    }
+    addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+    onScroll();
+    topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    const copyBtn = $('#copy-email'), toast = $('#toast');
+    let toastTimer;
+    copyBtn?.addEventListener('click', async () => {
+      const email = 'aurelien-capron@outlook.fr';
+      try { await navigator.clipboard.writeText(email); } catch (e) {}
+      toast.textContent = DICT[lang]['toast.copied'];
+      toast.classList.remove('opacity-0');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.add('opacity-0'), 2200);
+    });
+
+    const reveal = new IntersectionObserver((entries, obs) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    $$('.reveal').forEach(el => reveal.observe(el));
+  })();
+  </script>
+<dialog id="image-dialog" aria-label="Image agrandie / Enlarged image"><div class="pcb-toolbar"><button type="button" class="pcb-close" aria-label="Fermer / Close" autofocus>×</button></div><img id="image-large" alt=""><p id="image-caption"></p></dialog><script>
+(()=>{const d=document.getElementById('image-dialog'),large=document.getElementById('image-large'),caption=document.getElementById('image-caption');let trigger,overflow;
+document.querySelectorAll('.image-open').forEach(b=>b.addEventListener('click',()=>{trigger=b;const img=b.querySelector('img');large.src=img.src;large.alt=img.alt;caption.textContent=b.closest('figure').querySelector('figcaption').textContent;overflow=document.body.style.overflow;d.showModal();document.body.style.overflow='hidden';}));
+d.querySelector('.pcb-close').addEventListener('click',()=>d.close());d.addEventListener('close',()=>{document.body.style.overflow=overflow||'';large.removeAttribute('src');trigger?.focus();});d.addEventListener('click',e=>{if(e.target===d){const r=d.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)d.close();}});
+
+})();</script><script>document.querySelectorAll('video').forEach(video=>video.addEventListener('play',()=>document.querySelectorAll('video').forEach(other=>{if(other!==video)other.pause();})));</script></body>
 </html>

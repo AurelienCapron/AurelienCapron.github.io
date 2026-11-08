@@ -1,0 +1,44 @@
+/* Shared image loading treatment and reading progress bar. */
+#progress {
+  height: 3px !important;
+  background-image: linear-gradient(90deg, rgb(var(--accent-rgb) / .55), rgb(var(--accent-rgb))) !important;
+  box-shadow: 0 0 10px rgb(var(--accent-rgb) / .55);
+}
+.site-media-frame[data-media-state="loading"] {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(135deg, var(--placeholder-from, #eef2f6), var(--placeholder-to, #e2e8f0));
+}
+.site-media-frame[data-media-state="loading"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 2;
+  background: linear-gradient(105deg, transparent 25%, rgb(128 142 160 / .12) 48%, transparent 70%);
+  background-size: 230% 100%;
+  animation: site-image-wait 1.65s ease-in-out infinite;
+}
+img.site-image-loading {
+  color: transparent;
+  background: var(--chip-bg, #e8ecf1);
+}
+.site-media-frame[data-media-state="loading"] > img.site-image-loading {
+  opacity: 0;
+}
+img.site-image-reveal {
+  animation: site-image-in .38s ease-out both;
+}
+@keyframes site-image-wait {
+  from { background-position: 140% 0; }
+  to { background-position: -140% 0; }
+}
+@keyframes site-image-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-media-frame[data-media-state="loading"]::after,
+  img.site-image-reveal { animation: none; }
+}
