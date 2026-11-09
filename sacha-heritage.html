@@ -4,9 +4,9 @@
  @author Aurélien Capron
  @description Présenter le projet familial Sacha Heritage et les missions financières, commerciales et logistiques.
  @created Non renseignée — date d’origine non vérifiée.
- @since 2026-09-26 — premier ajout retrouvé dans Git.
  @documented 2026-11-09 — nettoyage et documentation des sources.
  @updated 2026-11-09
+ @since 2026-09-26 — premier ajout retrouvé dans Git.
 -->
 <html lang="fr" data-theme="light">
   <head>
@@ -2283,6 +2283,8 @@
     </style>
     <link rel="stylesheet" href="assets/site-media.css" />
     <script src="assets/site-media.js"></script>
+    <link rel="stylesheet" href="assets/site-experience.css" />
+    <script src="assets/site-experience.js" defer></script>
   </head>
 
   <body class="bg-[var(--bg)] font-sans text-[var(--text)] antialiased">
@@ -2578,32 +2580,36 @@
           <span data-i18n="fact.role">Mes deux dimensions au quotidien</span>
         </div>
       </div>
-      <nav class="story-nav" aria-label="Sur cette page / On this page">
-        <a href="#histoire">
-          <span>01</span>
-          <span data-i18n="nav.histoire">L’histoire et l’équipe</span>
-        </a>
-        <a href="#missions">
-          <span>02</span>
-          <span data-i18n="nav.missions">Finance et stocks</span>
-        </a>
-        <a href="#produits">
-          <span>03</span>
-          <span data-i18n="nav.produits">Les produits</span>
-        </a>
-        <a href="#terrain">
-          <span>04</span>
-          <span data-i18n="nav.terrain">Les points de vente</span>
-        </a>
-        <a href="#communication">
-          <span>05</span>
-          <span data-i18n="nav.communication">La communication</span>
-        </a>
-        <a href="#sources">
-          <span>06</span>
-          <span data-i18n="nav.sources">Les liens</span>
-        </a>
-      </nav>
+      <details class="page-toc">
+        <summary>
+          <span data-i18n="enh.toc.label">Sommaire</span
+          ><span class="toc-current" aria-hidden="true"></span>
+        </summary>
+        <nav class="story-nav" aria-label="Sommaire / On this page">
+          <a href="#histoire"
+            ><span aria-hidden="true">01</span
+            ><span data-i18n="histoire.title">Une histoire de famille, entre deux cultures</span></a
+          ><a href="#missions"
+            ><span aria-hidden="true">02</span
+            ><span data-i18n="missions.title">Relier finances, rentabilité et stocks</span></a
+          ><a href="#produits"
+            ><span aria-hidden="true">03</span
+            ><span data-i18n="produits.title">Les produits derrière les chiffres</span></a
+          ><a href="#terrain"
+            ><span aria-hidden="true">04</span
+            ><span data-i18n="terrain.title">Participer aux ventes sur le terrain</span></a
+          ><a href="#communication"
+            ><span aria-hidden="true">05</span
+            ><span data-i18n="communication.title">Prendre part à la communication</span></a
+          ><a href="#sources"
+            ><span aria-hidden="true">06</span
+            ><span data-i18n="sources.title">Découvrir la marque et ses produits</span></a
+          ><a href="#acquis"
+            ><span aria-hidden="true">07</span
+            ><span data-i18n="enh.gains.title">Ce que cette expérience m’apporte</span></a
+          >
+        </nav>
+      </details>
       <!-- Section : histoire. -->
       <section class="story-step" id="histoire">
         <div class="step-heading">
@@ -2986,6 +2992,32 @@
         </div>
         <p data-i18n="credits">Visuels de marque et vidéos : Sacha Heritage.</p>
       </section>
+      <!-- Compétences développées dans cette expérience. -->
+      <section class="story-resources experience-section" id="acquis">
+        <h2 data-i18n="enh.gains.title">Ce que cette expérience m’apporte</h2>
+        <div class="experience-grid">
+          <article>
+            <h3 data-i18n="enh.gain.0.title">Analyse financière</h3>
+            <p data-i18n="enh.gain.0.desc">
+              Relier les coûts, les ventes et les stocks pour comprendre la rentabilité des produits
+              et des lieux de vente.
+            </p>
+          </article>
+          <article>
+            <h3 data-i18n="enh.gain.1.title">Relation client</h3>
+            <p data-i18n="enh.gain.1.desc">
+              Présenter le poivre de Kampot, répondre aux questions et accompagner les achats sur
+              les salons et marchés.
+            </p>
+          </article>
+          <article>
+            <h3 data-i18n="enh.gain.2.title">Organisation</h3>
+            <p data-i18n="enh.gain.2.desc">
+              Suivre les produits entre les magasins, les salons et les autres lieux de stockage.
+            </p>
+          </article>
+        </div>
+      </section>
       <!-- Navigation entre les pages du portfolio. -->
       <nav
         class="interest-navigation"
@@ -3253,6 +3285,26 @@
           'hobbyNav.previousTitle': 'Tenor horn & music',
           'hobbyNav.nextTitle': 'Phelma Sports Office',
         };
+        Object.assign(EN, {
+          'enh.toc.label': 'On this page',
+          'enh.gains.title': 'What I take from this experience',
+          'enh.related.title': 'Explore related work',
+          'enh.contact.title': 'A question about this project?',
+          'enh.contact.desc':
+            'I would be happy to discuss my contribution, design choices and tests.',
+          'enh.contact.link': 'Discuss this project',
+          'enh.skills.hint': 'Select an underlined skill to explore related projects.',
+          'enh.skills.panel': 'Projects using this skill',
+          'enh.skills.close': 'Close',
+          'enh.gain.0.title': 'Financial analysis',
+          'enh.gain.0.desc':
+            'Connecting costs, sales and stock to understand product and sales-location profitability.',
+          'enh.gain.1.title': 'Customer relations',
+          'enh.gain.1.desc':
+            'Presenting Kampot pepper, answering questions and helping customers at fairs and markets.',
+          'enh.gain.2.title': 'Organisation',
+          'enh.gain.2.desc': 'Tracking products between shops, fairs and other storage locations.',
+        });
         const DICT = { fr: FR, en: EN };
         let lang = 'fr';
 

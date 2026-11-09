@@ -3,8 +3,8 @@
  * @author Aurélien Capron
  * @description Styles partagés : progression, chargement des images et navigation des loisirs.
  * @created Non renseignée — date d’origine non vérifiée.
- * @since 2026-11-09 — premier ajout retrouvé dans Git.
  * @documented 2026-11-09 — nettoyage et documentation des sources.
+ * @since 2026-11-09 — premier ajout retrouvé dans Git.
  */
 /* Progression de lecture commune à toutes les pages. */
 #progress {
@@ -161,7 +161,9 @@ img.site-image-reveal {
   outline-offset: 4px;
 }
 .project-navigation small {
-  font: 11px 'JetBrains Mono', monospace;
+  font:
+    11px 'JetBrains Mono',
+    monospace;
   color: var(--text-muted);
 }
 .project-navigation strong {
@@ -169,16 +171,62 @@ img.site-image-reveal {
   font-weight: 600;
   overflow-wrap: anywhere;
 }
-.project-navigation .project-next { text-align: right; }
+.project-navigation .project-next {
+  text-align: right;
+}
 .project-navigation .project-all {
   text-align: center;
   color: var(--accent-soft);
   font-size: 13px;
 }
 @media (max-width: 640px) {
-  .project-navigation { grid-template-columns: 1fr; gap: 10px; }
+  .project-navigation {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
   .project-navigation .project-previous,
-  .project-navigation .project-next { text-align: left; }
-  .project-navigation .project-all { order: 3; }
+  .project-navigation .project-next {
+    text-align: left;
+  }
+  .project-navigation .project-all {
+    order: 3;
+  }
 }
 /* Fin de la navigation circulaire des projets. */
+
+/* Solutions de repli des images et vidéos indisponibles. */
+.site-media-error {
+  padding: 24px;
+  min-height: 140px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--chip-bg);
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+.site-media-error [data-error-title] {
+  color: var(--text-strong);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.site-media-error > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-top: 16px;
+}
+.site-media-error button,
+.site-media-error a {
+  padding: 7px 12px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  color: var(--accent-soft);
+  text-decoration: none;
+}
+.site-media-error button:focus-visible,
+.site-media-error a:focus-visible {
+  outline: 2px solid var(--accent-soft);
+  outline-offset: 3px;
+}

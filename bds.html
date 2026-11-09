@@ -4,9 +4,9 @@
  @author Aurélien Capron
  @description Présenter le mandat 2026–2027 au BDS Phelma, les partenariats et l’organisation des événements.
  @created Non renseignée — date d’origine non vérifiée.
- @since 2026-09-26 — premier ajout retrouvé dans Git.
  @documented 2026-11-09 — nettoyage et documentation des sources.
  @updated 2026-11-09
+ @since 2026-09-26 — premier ajout retrouvé dans Git.
 -->
 <html lang="fr" data-theme="light">
   <head>
@@ -2279,6 +2279,8 @@
     </style>
     <link rel="stylesheet" href="assets/site-media.css" />
     <script src="assets/site-media.js"></script>
+    <link rel="stylesheet" href="assets/site-experience.css" />
+    <script src="assets/site-experience.js" defer></script>
   </head>
 
   <body class="bg-[var(--bg)] font-sans text-[var(--text)] antialiased">
@@ -2576,28 +2578,38 @@
           >
         </div>
       </div>
-      <nav class="story-nav" aria-label="Sur cette page / On this page">
-        <a href="#role">
-          <span>01</span>
-          <span data-i18n="nav.role">Mon rôle</span>
-        </a>
-        <a href="#integration">
-          <span>02</span>
-          <span data-i18n="nav.integration">L’intégration</span>
-        </a>
-        <a href="#olympiades">
-          <span>03</span>
-          <span data-i18n="nav.olympiades">Les Olymps</span>
-        </a>
-        <a href="#backyard">
-          <span>04</span>
-          <span data-i18n="nav.backyard">La Backyard</span>
-        </a>
-        <a href="#unirox">
-          <span>05</span>
-          <span data-i18n="nav.unirox">La suite : Unirox</span>
-        </a>
-      </nav>
+      <details class="page-toc">
+        <summary>
+          <span data-i18n="enh.toc.label">Sommaire</span
+          ><span class="toc-current" aria-hidden="true"></span>
+        </summary>
+        <nav class="story-nav" aria-label="Sommaire / On this page">
+          <a href="#role"
+            ><span aria-hidden="true">01</span
+            ><span data-i18n="role.title">Des partenariats au terrain</span></a
+          ><a href="#integration"
+            ><span aria-hidden="true">02</span
+            ><span data-i18n="integration.title">Accueillir les premières années</span></a
+          ><a href="#olympiades"
+            ><span aria-hidden="true">03</span
+            ><span data-i18n="olympiades.title">Préparer, construire, puis jouer</span></a
+          ><a href="#backyard"
+            ><span aria-hidden="true">04</span
+            ><span data-i18n="backyard.title"
+              >La Backyard : des sponsors au dernier rangement</span
+            ></a
+          ><a href="#bilan"
+            ><span aria-hidden="true">05</span
+            ><span data-i18n="enh.bilan.title">Le bilan de la Backyard</span></a
+          ><a href="#unirox"
+            ><span aria-hidden="true">06</span
+            ><span data-i18n="unirox.title">Continuer à construire avec les partenaires</span></a
+          ><a href="#acquis"
+            ><span aria-hidden="true">07</span
+            ><span data-i18n="enh.gains.title">Ce que cette expérience m’apporte</span></a
+          >
+        </nav>
+      </details>
       <!-- Section : role. -->
       <section class="story-step" id="role">
         <div class="step-heading">
@@ -3134,6 +3146,47 @@
           </div>
         </div>
       </section>
+      <section class="story-resources experience-section" id="bilan">
+        <h2 data-i18n="enh.bilan.title">Le bilan de la Backyard</h2>
+        <div class="event-metrics">
+          <div>
+            <strong>94</strong
+            ><span data-i18n="enh.bilan.stat.0">coureurs classés dans l’export</span>
+          </div>
+          <div>
+            <strong>18</strong
+            ><span data-i18n="enh.bilan.stat.1">boucles au maximum dans l’export</span>
+          </div>
+          <div>
+            <strong>25 h</strong><span data-i18n="enh.bilan.stat.2">de staff consécutives</span>
+          </div>
+          <div>
+            <strong>800 €</strong
+            ><span data-i18n="enh.bilan.stat.3">de dotation en bons d’achat</span>
+          </div>
+        </div>
+        <p data-i18n="enh.bilan.source">
+          L’export des résultats du logiciel répertorie 94 coureurs, avec un maximum de 18 boucles.
+          Ces chiffres décrivent les résultats enregistrés ; ils ne constituent pas un décompte de
+          l’ensemble des inscriptions.
+        </p>
+        <p data-i18n="enh.bilan.partners">
+          Deux partenaires ont accompagné l’événement : Fitness Park Grenoble et Terre de Running
+          Grenoble. Leurs apports comprennent des récompenses, une séance offerte à chaque coureur
+          et le prêt d’une arche et d’un podium.
+        </p>
+        <p data-i18n="enh.bilan.outcome">
+          La relation avec Terre de Running se poursuit au-delà de la course, avec une réduction de
+          15 % pour les étudiants Phelma et un accompagnement pour Unirox.
+        </p>
+        <div class="experience-actions">
+          <a href="assets/projets/backyard/resultats.pdf" target="_blank" rel="noopener noreferrer"
+            ><span data-i18n="enh.bilan.pdf">Consulter l’export des résultats (PDF)</span></a
+          ><a href="backyard.html#resultats"
+            ><span data-i18n="enh.bilan.software">Comprendre le système de pointage</span></a
+          >
+        </div>
+      </section>
       <!-- Section : unirox. -->
       <section class="story-step" id="unirox">
         <div class="step-heading">
@@ -3182,6 +3235,33 @@
               </a>
             </div>
           </div>
+        </div>
+      </section>
+      <!-- Compétences développées dans cette expérience. -->
+      <section class="story-resources experience-section" id="acquis">
+        <h2 data-i18n="enh.gains.title">Ce que cette expérience m’apporte</h2>
+        <div class="experience-grid">
+          <article>
+            <h3 data-i18n="enh.gain.0.title">Négociation</h3>
+            <p data-i18n="enh.gain.0.desc">
+              Présenter un événement à des partenaires et obtenir des apports adaptés aux besoins
+              des coureurs et des étudiants.
+            </p>
+          </article>
+          <article>
+            <h3 data-i18n="enh.gain.1.title">Coordination</h3>
+            <p data-i18n="enh.gain.1.desc">
+              Travailler avec Amaury Simonnot, Damien Bouichou et les autres bénévoles, de la
+              préparation au rangement.
+            </p>
+          </article>
+          <article>
+            <h3 data-i18n="enh.gain.2.title">Réactivité sur le terrain</h3>
+            <p data-i18n="enh.gain.2.desc">
+              Alterner pointage, ravitaillement et suivi du déroulement de la Backyard pendant 25
+              heures de staff consécutives.
+            </p>
+          </article>
         </div>
       </section>
       <!-- Navigation entre les pages du portfolio. -->
@@ -3480,6 +3560,40 @@
           'hobbyNav.previousTitle': 'Sacha Heritage',
           'hobbyNav.nextTitle': 'My judo journey',
         };
+        Object.assign(EN, {
+          'enh.toc.label': 'On this page',
+          'enh.gains.title': 'What I take from this experience',
+          'enh.related.title': 'Explore related work',
+          'enh.contact.title': 'A question about this project?',
+          'enh.contact.desc':
+            'I would be happy to discuss my contribution, design choices and tests.',
+          'enh.contact.link': 'Discuss this project',
+          'enh.skills.hint': 'Select an underlined skill to explore related projects.',
+          'enh.skills.panel': 'Projects using this skill',
+          'enh.skills.close': 'Close',
+          'enh.bilan.stat.0': 'runners ranked in the export',
+          'enh.bilan.stat.1': 'maximum laps recorded in the export',
+          'enh.bilan.stat.2': 'of consecutive staffing',
+          'enh.bilan.stat.3': 'in shopping-voucher prizes',
+          'enh.bilan.title': 'The Backyard recap',
+          'enh.bilan.source':
+            'The software’s results export lists 94 runners, with up to 18 laps. These figures describe the recorded results; they do not establish the total number of registrations.',
+          'enh.bilan.partners':
+            'Two partners supported the event: Fitness Park Grenoble and Terre de Running Grenoble. Their contributions included prizes, a free gym session for each runner, and the loan of an arch and podium.',
+          'enh.bilan.outcome':
+            'The relationship with Terre de Running continued beyond the race through a 15% student discount for Phelma and support for Unirox.',
+          'enh.bilan.pdf': 'Read the results export (PDF)',
+          'enh.bilan.software': 'See how the timing software works',
+          'enh.gain.0.title': 'Negotiation',
+          'enh.gain.0.desc':
+            'Presenting an event to partners and securing contributions suited to runners and students.',
+          'enh.gain.1.title': 'Coordination',
+          'enh.gain.1.desc':
+            'Working with Amaury Simonnot, Damien Bouichou and other volunteers, from preparation to cleanup.',
+          'enh.gain.2.title': 'Responding on site',
+          'enh.gain.2.desc':
+            'Moving between timing, refreshments and event operations over 25 consecutive hours of staffing.',
+        });
         const DICT = { fr: FR, en: EN };
         let lang = 'fr';
 

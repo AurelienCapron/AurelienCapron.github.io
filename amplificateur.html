@@ -4,9 +4,9 @@
  @author Aurélien Capron
  @description Présenter la conception électronique et la validation d’un amplificateur audio piézoélectrique.
  @created Non renseignée — date d’origine non vérifiée.
- @since 2026-09-26 — premier ajout retrouvé dans Git.
  @documented 2026-11-09 — nettoyage et documentation des sources.
  @updated 2026-11-09
+ @since 2026-09-26 — premier ajout retrouvé dans Git.
 -->
 <html lang="fr" data-theme="light">
   <head>
@@ -2350,6 +2350,8 @@
     </style>
     <link rel="stylesheet" href="assets/site-media.css" />
     <script src="assets/site-media.js"></script>
+    <link rel="stylesheet" href="assets/site-experience.css" />
+    <script src="assets/site-experience.js" defer></script>
   </head>
 
   <body class="bg-[var(--bg)] font-sans text-[var(--text)] antialiased">
@@ -2609,13 +2611,36 @@
           </figcaption>
         </figure>
       </section>
-      <nav class="story-nav" aria-label="Étapes / Project stages">
-        <a href="#signal"><span>01</span><span data-i18n="audio.8">Architecture</span></a
-        ><a href="#tonalite"><span>02</span><span data-i18n="audio.9">Tonalité</span></a
-        ><a href="#puissance"><span>03</span><span data-i18n="audio.10">Puissance</span></a
-        ><a href="#fabrication"><span>04</span><span data-i18n="audio.11">Réalisation</span></a
-        ><a href="#mesures"><span>05</span><span data-i18n="audio.12">Mesures</span></a>
-      </nav>
+      <details class="page-toc">
+        <summary>
+          <span data-i18n="enh.toc.label">Sommaire</span
+          ><span class="toc-current" aria-hidden="true"></span>
+        </summary>
+        <nav class="story-nav" aria-label="Sommaire / On this page">
+          <a href="#signal"
+            ><span aria-hidden="true">01</span
+            ><span data-i18n="audio.16">Adapter le signal du capteur</span></a
+          ><a href="#tonalite"
+            ><span aria-hidden="true">02</span
+            ><span data-i18n="audio.19">Régler les graves et les aigus</span></a
+          ><a href="#puissance"
+            ><span aria-hidden="true">03</span
+            ><span data-i18n="audio.23">Choisir entre classe AB et classe D</span></a
+          ><a href="#fabrication"
+            ><span aria-hidden="true">04</span
+            ><span data-i18n="audio.26">Du schéma aux cartes assemblées</span></a
+          ><a href="#mesures"
+            ><span aria-hidden="true">05</span
+            ><span data-i18n="audio.35">Comparer les calculs au banc de mesure</span></a
+          ><a href="#section-7"
+            ><span aria-hidden="true">06</span
+            ><span data-i18n="audio.36">Documents du projet</span></a
+          ><a href="#aussi"
+            ><span aria-hidden="true">07</span
+            ><span data-i18n="enh.related.title">À découvrir également</span></a
+          >
+        </nav>
+      </details>
       <!-- Section : signal. -->
       <section class="story-step" id="signal">
         <div class="step-heading">
@@ -2884,7 +2909,7 @@
           </p>
         </div>
       </section>
-      <section class="story-resources">
+      <section id="section-7" class="story-resources">
         <h2 data-i18n="audio.36">Documents du projet</h2>
         <div class="resource-links">
           <a
@@ -2900,13 +2925,46 @@
           >
         </div>
       </section>
-          <!-- Navigation entre les pages du portfolio. -->
+
+      <section class="story-resources experience-section" id="aussi">
+        <h2 data-i18n="enh.related.title">À découvrir également</h2>
+        <div class="related-links">
+          <a href="telecommande.html#carte"
+            ><strong data-i18n="enh.related.0.title">Concevoir une autre carte</strong
+            ><span data-i18n="enh.related.0.desc"
+              >L’intégration électronique de la télécommande autonome.</span
+            ><span aria-hidden="true">→</span></a
+          ><a href="domethic.html#contribution"
+            ><strong data-i18n="enh.related.1.title">Assembler et tester en entreprise</strong
+            ><span data-i18n="enh.related.1.desc"
+              >Ma contribution aux centrales Myha chez Domethic System.</span
+            ><span aria-hidden="true">→</span></a
+          >
+        </div>
+      </section>
+      <aside class="project-contact" id="echanger">
+        <h2 data-i18n="enh.contact.title">Une question sur ce projet ?</h2>
+        <p data-i18n="enh.contact.desc">
+          Je peux présenter ma contribution, les choix de conception et les essais réalisés.
+        </p>
+        <a
+          class="btn-primary"
+          data-project-contact
+          data-title-fr="Amplificateur audio"
+          data-title-en="Audio amplifier"
+          href="mailto:aurelien-capron@outlook.fr?subject=%C3%89change%20au%20sujet%20du%20projet%20%3A%20Amplificateur%20audio&amp;body=Bonjour%20Aur%C3%A9lien%2C%0A%0AJe%20vous%20contacte%20au%20sujet%20de%20votre%20projet%20%C2%AB%20Amplificateur%20audio%20%C2%BB.%0A%0A"
+          ><span data-i18n="enh.contact.link">Échanger sur ce projet</span></a
+        >
+      </aside>
+      <!-- Navigation entre les pages du portfolio. -->
       <nav class="project-navigation" aria-label="Navigation entre les projets">
         <a class="project-previous" href="telecommande.html">
           <small data-i18n="journey.prev">← Projet précédent</small>
           <strong data-i18n="journey.prev.title">Télécommande autonome</strong>
         </a>
-        <a class="project-all" href="index.html#projets" data-i18n="journey.all">Tous les projets</a>
+        <a class="project-all" href="index.html#projets" data-i18n="journey.all"
+          >Tous les projets</a
+        >
         <a class="project-next" href="tipe.html">
           <small data-i18n="journey.next">Projet suivant →</small>
           <strong data-i18n="journey.next.title">TIPE · Badminton</strong>
@@ -3058,6 +3116,9 @@
         </div>
       </div>
       <p id="pcb-status" role="status" aria-live="polite"></p>
+      <a class="viewer-photo-link" data-media-back href="#fabrication"
+        ><span data-i18n="enh.viewer.photos">Consulter les photos du projet</span></a
+      >
     </dialog>
 
     <script>
@@ -3219,12 +3280,29 @@
 
         Object.assign(FR, { 'journey.nav': 'Navigation entre les projets' });
         Object.assign(EN, {
-          "journey.nav": "Project navigation",
-          "journey.all": "All projects",
-          "journey.prev": "← Previous project",
-          "journey.prev.title": "Autonomous remote control",
-          "journey.next": "Next project →",
-          "journey.next.title": "TIPE · Badminton"
+          'journey.nav': 'Project navigation',
+          'journey.all': 'All projects',
+          'journey.prev': '← Previous project',
+          'journey.prev.title': 'Autonomous remote control',
+          'journey.next': 'Next project →',
+          'journey.next.title': 'TIPE · Badminton',
+        });
+        Object.assign(EN, {
+          'enh.toc.label': 'On this page',
+          'enh.gains.title': 'What I take from this experience',
+          'enh.related.title': 'Explore related work',
+          'enh.contact.title': 'A question about this project?',
+          'enh.contact.desc':
+            'I would be happy to discuss my contribution, design choices and tests.',
+          'enh.contact.link': 'Discuss this project',
+          'enh.skills.hint': 'Select an underlined skill to explore related projects.',
+          'enh.skills.panel': 'Projects using this skill',
+          'enh.skills.close': 'Close',
+          'enh.related.0.title': 'Designing another PCB',
+          'enh.related.0.desc': 'Electronic integration of the autonomous remote.',
+          'enh.related.1.title': 'Assembly and testing in a company',
+          'enh.related.1.desc': 'My contribution to Myha controllers at Domethic System.',
+          'enh.viewer.photos': 'View project photos',
         });
         const DICT = { fr: FR, en: EN };
         let lang = 'fr';
@@ -3238,7 +3316,9 @@
           lang = next;
           const d = DICT[lang];
           document.documentElement.lang = lang;
-          document.querySelector('.project-navigation')?.setAttribute('aria-label', d['journey.nav']);
+          document
+            .querySelector('.project-navigation')
+            ?.setAttribute('aria-label', d['journey.nav']);
           $$('[data-i18n]').forEach((el) => {
             const v = d[el.dataset.i18n];
             if (v != null) el.textContent = v;

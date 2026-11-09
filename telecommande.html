@@ -4,9 +4,9 @@
  @author Aurélien Capron
  @description Présenter la conception et le fonctionnement d’une télécommande autonome de vidéoprojecteurs.
  @created Non renseignée — date d’origine non vérifiée.
- @since 2026-09-26 — premier ajout retrouvé dans Git.
  @documented 2026-11-09 — nettoyage et documentation des sources.
  @updated 2026-11-09
+ @since 2026-09-26 — premier ajout retrouvé dans Git.
 -->
 <html lang="fr" data-theme="light">
   <head>
@@ -2338,6 +2338,8 @@
 
     <link rel="stylesheet" href="assets/site-media.css" />
     <script src="assets/site-media.js"></script>
+    <link rel="stylesheet" href="assets/site-experience.css" />
+    <script src="assets/site-experience.js" defer></script>
   </head>
 
   <body class="bg-[var(--bg)] font-sans text-[var(--text)] antialiased">
@@ -2604,13 +2606,39 @@
           <figcaption data-i18n="story.herofig">Le prototype final, assemblé et câblé.</figcaption>
         </figure>
       </section>
-      <nav class="story-nav" aria-label="Étapes du projet / Project stages">
-        <a href="#besoin"><span>01</span><span data-i18n="story.navbesoin">Le besoin</span></a
-        ><a href="#signal"><span>02</span><span data-i18n="story.navsignal">Le signal</span></a
-        ><a href="#carte"><span>03</span><span data-i18n="story.navcarte">La carte</span></a
-        ><a href="#boitier"><span>04</span><span data-i18n="story.navboitier">Le boîtier</span></a
-        ><a href="#essais"><span>05</span><span data-i18n="story.navessais">Les essais</span></a>
-      </nav>
+      <details class="page-toc">
+        <summary>
+          <span data-i18n="enh.toc.label">Sommaire</span
+          ><span class="toc-current" aria-hidden="true"></span>
+        </summary>
+        <nav class="story-nav" aria-label="Sommaire / On this page">
+          <a href="#besoin"
+            ><span aria-hidden="true">01</span
+            ><span data-i18n="story.besoin">Comprendre le besoin</span></a
+          ><a href="#signal"
+            ><span aria-hidden="true">02</span
+            ><span data-i18n="story.signal">Capturer, décoder, reproduire</span></a
+          ><a href="#carte"
+            ><span aria-hidden="true">03</span
+            ><span data-i18n="story.carte">Concevoir et assembler l’électronique</span></a
+          ><a href="#boitier"
+            ><span aria-hidden="true">04</span
+            ><span data-i18n="story.boitier">Intégrer dans un boîtier</span></a
+          ><a href="#essais"
+            ><span aria-hidden="true">05</span
+            ><span data-i18n="story.essais">Tester en situation</span></a
+          ><a href="#section-7"
+            ><span aria-hidden="true">06</span
+            ><span data-i18n="story.myrole">Mon rôle dans le projet</span></a
+          ><a href="#section-8"
+            ><span aria-hidden="true">07</span
+            ><span data-i18n="story.resources">Pour aller plus loin</span></a
+          ><a href="#aussi"
+            ><span aria-hidden="true">08</span
+            ><span data-i18n="enh.related.title">À découvrir également</span></a
+          >
+        </nav>
+      </details>
       <div class="story-timeline">
         <!-- Section : besoin. -->
         <section id="besoin" class="story-step">
@@ -3054,7 +3082,7 @@
           </div>
         </section>
       </div>
-      <section class="story-closing">
+      <section id="section-7" class="story-closing">
         <h2 data-i18n="story.myrole">Mon rôle dans le projet</h2>
         <p data-i18n="story.contrib">
           Chef de projet de l’équipe Télécommande autonome : coordination, conception du PCB sous
@@ -3065,7 +3093,7 @@
           Julien Traveaux, Sophie Cornu et l’équipe du FabLab de Phelma.
         </p>
       </section>
-      <section class="story-resources">
+      <section id="section-8" class="story-resources">
         <h2 data-i18n="story.resources">Pour aller plus loin</h2>
         <div class="resource-links">
           <a
@@ -3091,13 +3119,46 @@
           >
         </div>
       </section>
-          <!-- Navigation entre les pages du portfolio. -->
+
+      <section class="story-resources experience-section" id="aussi">
+        <h2 data-i18n="enh.related.title">À découvrir également</h2>
+        <div class="related-links">
+          <a href="poulailler.html#electronique"
+            ><strong data-i18n="enh.related.0.title">Une autre commande embarquée</strong
+            ><span data-i18n="enh.related.0.desc"
+              >La lumière et les relais au service d’un mécanisme motorisé.</span
+            ><span aria-hidden="true">→</span></a
+          ><a href="amplificateur.html#fabrication"
+            ><strong data-i18n="enh.related.1.title">Une autre réalisation de cartes</strong
+            ><span data-i18n="enh.related.1.desc"
+              >Du schéma KiCad aux cartes assemblées et mesurées.</span
+            ><span aria-hidden="true">→</span></a
+          >
+        </div>
+      </section>
+      <aside class="project-contact" id="echanger">
+        <h2 data-i18n="enh.contact.title">Une question sur ce projet ?</h2>
+        <p data-i18n="enh.contact.desc">
+          Je peux présenter ma contribution, les choix de conception et les essais réalisés.
+        </p>
+        <a
+          class="btn-primary"
+          data-project-contact
+          data-title-fr="Télécommande autonome"
+          data-title-en="Autonomous remote control"
+          href="mailto:aurelien-capron@outlook.fr?subject=%C3%89change%20au%20sujet%20du%20projet%20%3A%20T%C3%A9l%C3%A9commande%20autonome&amp;body=Bonjour%20Aur%C3%A9lien%2C%0A%0AJe%20vous%20contacte%20au%20sujet%20de%20votre%20projet%20%C2%AB%20T%C3%A9l%C3%A9commande%20autonome%20%C2%BB.%0A%0A"
+          ><span data-i18n="enh.contact.link">Échanger sur ce projet</span></a
+        >
+      </aside>
+      <!-- Navigation entre les pages du portfolio. -->
       <nav class="project-navigation" aria-label="Navigation entre les projets">
         <a class="project-previous" href="backyard.html">
           <small data-i18n="journey.prev">← Projet précédent</small>
           <strong data-i18n="journey.prev.title">Chronométrage Backyard Ultra</strong>
         </a>
-        <a class="project-all" href="index.html#projets" data-i18n="journey.all">Tous les projets</a>
+        <a class="project-all" href="index.html#projets" data-i18n="journey.all"
+          >Tous les projets</a
+        >
         <a class="project-next" href="amplificateur.html">
           <small data-i18n="journey.next">Projet suivant →</small>
           <strong data-i18n="journey.next.title">Amplificateur audio</strong>
@@ -3268,6 +3329,9 @@
         </div>
       </div>
       <p id="pcb-status" role="status" aria-live="polite"></p>
+      <a class="viewer-photo-link" data-media-back href="#carte"
+        ><span data-i18n="enh.viewer.photos">Consulter les photos du projet</span></a
+      >
     </dialog>
 
     <script>
@@ -3519,12 +3583,29 @@
 
         Object.assign(FR, { 'journey.nav': 'Navigation entre les projets' });
         Object.assign(EN, {
-          "journey.nav": "Project navigation",
-          "journey.all": "All projects",
-          "journey.prev": "← Previous project",
-          "journey.prev.title": "Backyard Ultra timing",
-          "journey.next": "Next project →",
-          "journey.next.title": "Audio amplifier"
+          'journey.nav': 'Project navigation',
+          'journey.all': 'All projects',
+          'journey.prev': '← Previous project',
+          'journey.prev.title': 'Backyard Ultra timing',
+          'journey.next': 'Next project →',
+          'journey.next.title': 'Audio amplifier',
+        });
+        Object.assign(EN, {
+          'enh.toc.label': 'On this page',
+          'enh.gains.title': 'What I take from this experience',
+          'enh.related.title': 'Explore related work',
+          'enh.contact.title': 'A question about this project?',
+          'enh.contact.desc':
+            'I would be happy to discuss my contribution, design choices and tests.',
+          'enh.contact.link': 'Discuss this project',
+          'enh.skills.hint': 'Select an underlined skill to explore related projects.',
+          'enh.skills.panel': 'Projects using this skill',
+          'enh.skills.close': 'Close',
+          'enh.related.0.title': 'Another embedded controller',
+          'enh.related.0.desc': 'Light sensing and relays controlling a motorised mechanism.',
+          'enh.related.1.title': 'Another PCB build',
+          'enh.related.1.desc': 'From KiCad schematics to assembled and measured boards.',
+          'enh.viewer.photos': 'View project photos',
         });
         const DICT = { fr: FR, en: EN };
         let lang = 'fr';
@@ -3703,8 +3784,8 @@
           status.textContent = message(
             location.protocol === 'file:'
               ? 'Ouvrez cette page via http://localhost:8000/telecommande.html ou sur le site publié : le chargement 3D est bloqué en ouverture directe file://.'
-              : 'Impossible de charger le modèle. Vérifiez la présence du fichier telecommande.glb sur le site.',
-            'Unable to load the model. Check that telecommande.glb is present on the site.',
+              : 'Le modèle 3D n’est pas disponible pour le moment. Les photos du projet restent accessibles.',
+            'The 3D model is unavailable at the moment. You can still view the project photos.',
           );
         });
         dialog.querySelector('.pcb-close').addEventListener('click', () => dialog.close());

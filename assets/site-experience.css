@@ -1,0 +1,294 @@
+/**
+ * @file site-experience.css
+ * @author Aurélien Capron
+ * @description Sommaires, preuves de compétences, bilans et liens de parcours.
+ * @created 2026-11-09
+ */
+.page-toc {
+  position: sticky;
+  top: 76px;
+  z-index: 20;
+  margin: 28px 0 46px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: 0 6px 18px rgb(0 0 0 / 4%);
+  backdrop-filter: blur(16px);
+}
+.page-toc > summary {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  cursor: pointer;
+  list-style: none;
+  font-size: 13px;
+  color: var(--text-strong);
+}
+.page-toc > summary::-webkit-details-marker {
+  display: none;
+}
+.page-toc > summary::after {
+  content: '+';
+  margin-left: auto;
+  color: var(--accent-soft);
+}
+.page-toc[open] > summary::after {
+  content: '−';
+}
+.toc-current {
+  color: var(--text-muted);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.page-toc .story-nav {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  margin: 0;
+  padding: 0 12px 12px;
+  border: 0;
+}
+.page-toc .story-nav a {
+  display: flex;
+  gap: 12px;
+  padding: 10px;
+  min-width: 0;
+  line-height: 1.5;
+  font-size: 12px;
+  border: 0;
+}
+.page-toc .story-nav a[aria-current='location'] {
+  color: var(--accent-soft);
+  background: var(--chip-bg);
+  border-radius: 4px;
+}
+.page-toc .story-nav a > span:first-child {
+  color: var(--accent-soft);
+  font-family: 'JetBrains Mono', monospace;
+}
+.page-toc ~ section[id] {
+  scroll-margin-top: 155px;
+}
+.experience-section {
+  margin-top: 48px;
+}
+.experience-section h2 {
+  margin-bottom: 24px;
+}
+.experience-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+.experience-grid article {
+  padding: 22px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+.experience-grid h3 {
+  margin: 0 0 12px;
+  color: var(--text-strong);
+  font-size: 17px;
+  font-weight: 600;
+}
+.experience-grid p,
+.experience-section > p,
+.event-recap p,
+.project-contact p {
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+.experience-section > p + p {
+  margin-top: 14px;
+}
+.related-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.related-links a {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding: 22px 38px 22px 22px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  text-decoration: none;
+}
+.related-links a strong {
+  color: var(--text-strong);
+  font-size: 15px;
+}
+.related-links a > span {
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+.related-links a > span[aria-hidden] {
+  position: absolute;
+  right: 17px;
+  top: 20px;
+  color: var(--accent-soft);
+}
+.related-links a:hover {
+  border-color: var(--accent-soft);
+}
+.experience-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 22px;
+}
+.experience-actions a,
+.event-recap a {
+  color: var(--accent-soft);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  font-size: 14px;
+}
+.event-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin: 24px 0;
+}
+.event-metrics > div {
+  padding: 22px;
+  border-left: 2px solid var(--accent-soft);
+  background: var(--chip-bg);
+}
+.event-metrics strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-strong);
+  font-size: 30px;
+  line-height: 1.1;
+}
+.event-metrics span {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+.project-contact,
+.event-recap {
+  margin: 40px 0 0;
+  padding: 26px;
+  background: var(--chip-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.project-contact h2 {
+  font-size: 22px;
+  color: var(--text-strong);
+  margin: 0 0 12px;
+  font-weight: 600;
+}
+.project-contact .btn-primary {
+  margin-top: 20px;
+}
+.event-recap h3 {
+  margin-bottom: 12px;
+  font-size: 18px;
+  color: var(--text-strong);
+  font-weight: 600;
+}
+.event-recap a {
+  display: inline-block;
+  margin-top: 14px;
+}
+.skill-link {
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 4px;
+}
+.skill-link[aria-expanded='true'] {
+  border-color: var(--accent-soft);
+  color: var(--accent-soft);
+}
+.skill-hint {
+  margin-top: 18px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.skill-evidence {
+  margin-top: 24px;
+  padding: 24px;
+  border: 1px solid var(--accent-soft);
+  border-radius: 8px;
+  background: var(--chip-bg);
+}
+.skill-evidence-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 20px;
+  align-items: start;
+}
+.skill-evidence h3 {
+  color: var(--text-strong);
+  font-size: 17px;
+  font-weight: 600;
+}
+[data-skill-name] {
+  display: block;
+  margin-top: 6px;
+  color: var(--accent-soft);
+}
+[data-close-skills] {
+  font-size: 12px;
+  padding: 5px 9px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-muted);
+}
+.page-toc summary:focus-visible,
+.skill-link:focus-visible,
+.related-links a:focus-visible,
+[data-close-skills]:focus-visible {
+  outline: 2px solid var(--accent-soft);
+  outline-offset: 4px;
+}
+[hidden] {
+  display: none !important;
+}
+.viewer-photo-link {
+  display: block;
+  padding: 14px 20px;
+  color: var(--accent-soft);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  font-size: 13px;
+}
+@media (max-width: 760px) {
+  .page-toc {
+    top: 72px;
+    margin: 22px 0 32px;
+  }
+  .page-toc > summary {
+    padding: 12px;
+    gap: 10px;
+  }
+  .page-toc .story-nav {
+    grid-template-columns: 1fr;
+  }
+  .experience-grid,
+  .related-links {
+    grid-template-columns: 1fr;
+  }
+  .event-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .experience-grid article,
+  .skill-evidence,
+  .project-contact,
+  .event-recap {
+    padding: 20px;
+  }
+}

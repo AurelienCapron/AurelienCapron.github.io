@@ -4,9 +4,9 @@
  @author Aurélien Capron
  @description Présenter l’expérience de modèle et de bénévole au salon du mariage de Pérouges.
  @created Non renseignée — date d’origine non vérifiée.
- @since 2026-09-26 — premier ajout retrouvé dans Git.
  @documented 2026-11-09 — nettoyage et documentation des sources.
  @updated 2026-11-09
+ @since 2026-09-26 — premier ajout retrouvé dans Git.
 -->
 <html lang="fr" data-theme="light">
   <head>
@@ -2116,6 +2116,8 @@
 
     <link rel="stylesheet" href="assets/site-media.css" />
     <script src="assets/site-media.js"></script>
+    <link rel="stylesheet" href="assets/site-experience.css" />
+    <script src="assets/site-experience.js" defer></script>
   </head>
 
   <body class="bg-[var(--bg)] font-sans text-[var(--text)] antialiased">
@@ -2404,24 +2406,30 @@
           <span data-i18n="fact.welcome">Une nouvelle édition à l’accueil</span>
         </div>
       </div>
-      <nav class="story-nav" aria-label="Sur cette page / On this page">
-        <a href="#modele">
-          <span>01</span>
-          <span data-i18n="nav.modele">Modèle en 2025</span>
-        </a>
-        <a href="#benevolat">
-          <span>02</span>
-          <span data-i18n="nav.benevolat">Bénévole depuis 2023</span>
-        </a>
-        <a href="#equipe">
-          <span>03</span>
-          <span data-i18n="nav.equipe">L’équipe du salon</span>
-        </a>
-        <a href="#sources">
-          <span>04</span>
-          <span data-i18n="nav.sources">Pour découvrir le salon</span>
-        </a>
-      </nav>
+      <details class="page-toc">
+        <summary>
+          <span data-i18n="enh.toc.label">Sommaire</span
+          ><span class="toc-current" aria-hidden="true"></span>
+        </summary>
+        <nav class="story-nav" aria-label="Sommaire / On this page">
+          <a href="#modele"
+            ><span aria-hidden="true">01</span
+            ><span data-i18n="modele.title">2025 : participer comme modèle</span></a
+          ><a href="#benevolat"
+            ><span aria-hidden="true">02</span
+            ><span data-i18n="benevolat.title">Depuis 2023 : contribuer en coulisses</span></a
+          ><a href="#equipe"
+            ><span aria-hidden="true">03</span
+            ><span data-i18n="equipe.title">Une expérience collective</span></a
+          ><a href="#sources"
+            ><span aria-hidden="true">04</span
+            ><span data-i18n="sources.title">Découvrir « Tout Commence Ici »</span></a
+          ><a href="#acquis"
+            ><span aria-hidden="true">05</span
+            ><span data-i18n="enh.gains.title">Ce que cette expérience m’apporte</span></a
+          >
+        </nav>
+      </details>
       <!-- Section : modele. -->
       <section class="story-step" id="modele">
         <div class="step-heading">
@@ -2663,6 +2671,32 @@
           portfolio.
         </p>
       </section>
+      <!-- Compétences développées dans cette expérience. -->
+      <section class="story-resources experience-section" id="acquis">
+        <h2 data-i18n="enh.gains.title">Ce que cette expérience m’apporte</h2>
+        <div class="experience-grid">
+          <article>
+            <h3 data-i18n="enh.gain.0.title">Accueil et écoute</h3>
+            <p data-i18n="enh.gain.0.desc">
+              Orienter les visiteurs et échanger avec les professionnels du salon.
+            </p>
+          </article>
+          <article>
+            <h3 data-i18n="enh.gain.1.title">Logistique événementielle</h3>
+            <p data-i18n="enh.gain.1.desc">
+              Aider à l’installation des exposants et à la préparation des espaces avant
+              l’ouverture.
+            </p>
+          </article>
+          <article>
+            <h3 data-i18n="enh.gain.2.title">Adaptation</h3>
+            <p data-i18n="enh.gain.2.desc">
+              Passer des coulisses aux présentations comme modèle, avec des équipes et des
+              contraintes différentes.
+            </p>
+          </article>
+        </div>
+      </section>
       <!-- Navigation entre les pages du portfolio. -->
       <nav
         class="interest-navigation"
@@ -2901,6 +2935,25 @@
           'hobbyNav.previousTitle': 'My judo journey',
           'hobbyNav.nextTitle': 'Tenor horn & music',
         };
+        Object.assign(EN, {
+          'enh.toc.label': 'On this page',
+          'enh.gains.title': 'What I take from this experience',
+          'enh.related.title': 'Explore related work',
+          'enh.contact.title': 'A question about this project?',
+          'enh.contact.desc':
+            'I would be happy to discuss my contribution, design choices and tests.',
+          'enh.contact.link': 'Discuss this project',
+          'enh.skills.hint': 'Select an underlined skill to explore related projects.',
+          'enh.skills.panel': 'Projects using this skill',
+          'enh.skills.close': 'Close',
+          'enh.gain.0.title': 'Welcoming and listening',
+          'enh.gain.0.desc': 'Guiding visitors and talking with wedding-fair professionals.',
+          'enh.gain.1.title': 'Event logistics',
+          'enh.gain.1.desc': 'Helping exhibitors set up and preparing the spaces before opening.',
+          'enh.gain.2.title': 'Adaptability',
+          'enh.gain.2.desc':
+            'Moving from behind-the-scenes work to modelling, with different teams and constraints.',
+        });
         const DICT = { fr: FR, en: EN };
         let lang = 'fr';
 

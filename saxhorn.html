@@ -4,9 +4,9 @@
  @author Aurélien Capron
  @description Retracer le parcours musical, les ensembles et les concerts de 2018 à 2023.
  @created Non renseignée — date d’origine non vérifiée.
- @since 2026-09-26 — premier ajout retrouvé dans Git.
  @documented 2026-11-09 — nettoyage et documentation des sources.
  @updated 2026-11-09
+ @since 2026-09-26 — premier ajout retrouvé dans Git.
 -->
 <html lang="fr" data-theme="light">
   <head>
@@ -2246,6 +2246,8 @@
     </style>
     <link rel="stylesheet" href="assets/site-media.css" />
     <script src="assets/site-media.js"></script>
+    <link rel="stylesheet" href="assets/site-experience.css" />
+    <script src="assets/site-experience.js" defer></script>
   </head>
 
   <body class="bg-[var(--bg)] font-sans text-[var(--text)] antialiased">
@@ -2527,32 +2529,36 @@
           <span data-i18n="fact.theory.desc">Formation musicale suivie en parallèle</span>
         </div>
       </div>
-      <nav class="story-nav" aria-label="Sur cette page / On this page">
-        <a href="#parcours">
-          <span>01</span>
-          <span data-i18n="nav.parcours">L’apprentissage</span>
-        </a>
-        <a href="#instrument">
-          <span>02</span>
-          <span data-i18n="nav.instrument">La Pichotte</span>
-        </a>
-        <a href="#ensembles">
-          <span>03</span>
-          <span data-i18n="nav.ensembles">Jouer en groupe</span>
-        </a>
-        <a href="#bluebird">
-          <span>04</span>
-          <span data-i18n="nav.bluebird">Bluebird, 2019</span>
-        </a>
-        <a href="#concerts">
-          <span>05</span>
-          <span data-i18n="nav.concerts">Les concerts</span>
-        </a>
-        <a href="#sources">
-          <span>06</span>
-          <span data-i18n="nav.sources">Les sources</span>
-        </a>
-      </nav>
+      <details class="page-toc">
+        <summary>
+          <span data-i18n="enh.toc.label">Sommaire</span
+          ><span class="toc-current" aria-hidden="true"></span>
+        </summary>
+        <nav class="story-nav" aria-label="Sommaire / On this page">
+          <a href="#parcours"
+            ><span aria-hidden="true">01</span
+            ><span data-i18n="parcours.title">Cinq années d’apprentissage</span></a
+          ><a href="#instrument"
+            ><span aria-hidden="true">02</span
+            ><span data-i18n="instrument.title">Le saxhorn alto : ma « Pichotte »</span></a
+          ><a href="#ensembles"
+            ><span aria-hidden="true">03</span
+            ><span data-i18n="ensembles.title">De l’orchestre au brass band</span></a
+          ><a href="#bluebird"
+            ><span aria-hidden="true">04</span
+            ><span data-i18n="bluebird.title">2019 : l’aventure « Autour de Bluebird »</span></a
+          ><a href="#concerts"
+            ><span aria-hidden="true">05</span
+            ><span data-i18n="concerts.title">Quelques souvenirs de scène</span></a
+          ><a href="#sources"
+            ><span aria-hidden="true">06</span
+            ><span data-i18n="sources.title">L’école, les ensembles et les intervenants</span></a
+          ><a href="#acquis"
+            ><span aria-hidden="true">07</span
+            ><span data-i18n="enh.gains.title">Ce que cette expérience m’apporte</span></a
+          >
+        </nav>
+      </details>
       <!-- Section : parcours. -->
       <section class="story-step" id="parcours">
         <div class="step-heading">
@@ -2613,6 +2619,7 @@
               aria-controls="image-dialog"
             >
               <img
+                data-media-source="https://www.facebook.com/photo.php?fbid=351877342042984&amp;set=pb.100057263446861.-2207520000&amp;type=3"
                 src="assets/hobbies/saxhorn/premier-concert-19-novembre-2018.jpg"
                 loading="lazy"
                 alt="L’un de mes premiers concerts, le 19 novembre 2018. Photo publiée par l’EM3R sur Facebook."
@@ -2798,6 +2805,7 @@
           </div>
           <figure class="music-video">
             <video
+              data-media-source="https://www.youtube.com/watch?v=bQw3jF0pAP8"
               controls
               playsinline
               preload="none"
@@ -2857,6 +2865,7 @@
           <div class="concert-grid">
             <figure class="music-video">
               <video
+                data-media-source="https://www.youtube.com/watch?v=UXCN8NvFpJU"
                 controls
                 playsinline
                 preload="none"
@@ -2871,6 +2880,7 @@
             </figure>
             <figure class="music-video">
               <video
+                data-media-source="https://www.youtube.com/watch?v=B2hjlvtPHMI"
                 controls
                 playsinline
                 preload="none"
@@ -3015,6 +3025,31 @@
           sous les captations. Le crédit photographique visible sur la photo de répétition est
           conservé.
         </p>
+      </section>
+      <!-- Compétences développées dans cette expérience. -->
+      <section class="story-resources experience-section" id="acquis">
+        <h2 data-i18n="enh.gains.title">Ce que cette expérience m’apporte</h2>
+        <div class="experience-grid">
+          <article>
+            <h3 data-i18n="enh.gain.0.title">Écoute collective</h3>
+            <p data-i18n="enh.gain.0.desc">
+              Trouver ma place dans un orchestre et ajuster mon jeu à celui des autres musiciens.
+            </p>
+          </article>
+          <article>
+            <h3 data-i18n="enh.gain.1.title">Travail régulier</h3>
+            <p data-i18n="enh.gain.1.desc">
+              Associer les cours d’instrument, le solfège et les répétitions pendant cinq années.
+            </p>
+          </article>
+          <article>
+            <h3 data-i18n="enh.gain.2.title">Ouverture musicale</h3>
+            <p data-i18n="enh.gain.2.desc">
+              Découvrir des répertoires variés dans les orchestres, les ateliers amplifiés, le brass
+              band et le projet Bluebird.
+            </p>
+          </article>
+        </div>
       </section>
       <!-- Navigation entre les pages du portfolio. -->
       <nav
@@ -3297,6 +3332,27 @@
           'hobbyNav.previousTitle': 'Pérouges Wedding Fair',
           'hobbyNav.nextTitle': 'Sacha Heritage',
         };
+        Object.assign(EN, {
+          'enh.toc.label': 'On this page',
+          'enh.gains.title': 'What I take from this experience',
+          'enh.related.title': 'Explore related work',
+          'enh.contact.title': 'A question about this project?',
+          'enh.contact.desc':
+            'I would be happy to discuss my contribution, design choices and tests.',
+          'enh.contact.link': 'Discuss this project',
+          'enh.skills.hint': 'Select an underlined skill to explore related projects.',
+          'enh.skills.panel': 'Projects using this skill',
+          'enh.skills.close': 'Close',
+          'enh.gain.0.title': 'Listening as a group',
+          'enh.gain.0.desc':
+            'Finding my place in an orchestra and adapting my playing to other musicians.',
+          'enh.gain.1.title': 'Regular practice',
+          'enh.gain.1.desc':
+            'Combining instrument lessons, music theory and rehearsals over five years.',
+          'enh.gain.2.title': 'Musical openness',
+          'enh.gain.2.desc':
+            'Exploring different repertoires in orchestras, amplified-music workshops, brass band and the Bluebird project.',
+        });
         const DICT = { fr: FR, en: EN };
         let lang = 'fr';
 

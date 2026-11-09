@@ -56,7 +56,12 @@ Les loisirs suivent l’ordre **Sacha Heritage → BDS → Judo → Pérouges �
 - Carrousels de projets et de loisirs, avec filtres pour les projets.
 - Pages détaillées, navigation entre les réalisations et retour aux sections de l’accueil.
 - Agrandissement des images, lecture de vidéos, documents PDF et modèles 3D sur les pages concernées.
-- États de chargement des images et fondu à leur apparition.
+- États de chargement des images et fondu à leur apparition, messages d’indisponibilité et bouton de nouvelle tentative pour les images et les vidéos.
+- Accès aux publications originales des médias lorsqu’elles sont identifiées.
+- Compétences cliquables reliées à des réalisations documentées.
+- Sommaires repliables avec indication de la section en cours.
+- Compétences acquises dans les loisirs et bilan chiffré de la Backyard, relié à l’export des résultats.
+- Liens de contact propres à chaque projet, avec objet et message préparés en français ou en anglais.
 - Barre de progression de lecture et bouton de retour en haut.
 - Navigation au clavier, liens d’évitement, libellés accessibles et prise en compte de la préférence de réduction des animations.
 - CV en français et en anglais, liens de contact et copie de l’adresse e-mail.
@@ -77,7 +82,9 @@ Les styles utilitaires issus de Tailwind CSS sont **précompilés et intégrés 
 | `assets/hobbies/<activite>/` | Médias et documents associés à chaque loisir. |
 | `assets/fonts/` | Polices locales. |
 | `assets/site-media.css` | Styles communs des médias, de la progression et de la navigation. |
-| `assets/site-media.js` | Suivi du chargement des images et de leurs changements de source. |
+| `assets/site-media.js` | Chargement des images et des vidéos, gestion des erreurs et solutions de repli. |
+| `assets/site-experience.css` | Sommaires, bilans, acquis et liens entre les pages. |
+| `assets/site-experience.js` | Preuves de compétences, suivi du sommaire et contact contextualisé. |
 | `assets/licenses/tailwindcss.txt` | Licence des styles utilitaires Tailwind CSS. |
 | `assets/CV_Aurelien_Capron.pdf`, `assets/CV_Aurelien_Capron_EN.pdf` | CV proposés sur le site. |
 

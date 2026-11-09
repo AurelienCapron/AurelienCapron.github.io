@@ -4,9 +4,9 @@
  @author Aurélien Capron
  @description Présenter le parcours, les compétences, les projets et les engagements d’Aurélien Capron.
  @created Non renseignée — date d’origine non vérifiée.
- @since 2026-09-26 — premier ajout retrouvé dans Git.
  @documented 2026-11-09 — nettoyage et documentation des sources.
  @updated 2026-11-09
+ @since 2026-09-26 — premier ajout retrouvé dans Git.
 -->
 <html lang="fr" data-theme="light">
   <head>
@@ -2902,6 +2902,8 @@
 
     <link rel="stylesheet" href="assets/site-media.css" />
     <script src="assets/site-media.js"></script>
+    <link rel="stylesheet" href="assets/site-experience.css" />
+    <script src="assets/site-experience.js" defer></script>
   </head>
 
   <body class="bg-[var(--bg)] font-sans text-[var(--text)] antialiased">
@@ -3350,7 +3352,6 @@
                   fetchpriority="high"
                   decoding="async"
                   class="absolute inset-0 h-full w-full object-cover"
-                  onerror="this.remove()"
                 />
               </div>
 
@@ -3397,7 +3398,17 @@
                   Électronique &amp; CAO
                 </h3>
                 <ul class="mt-4 flex flex-wrap gap-2">
-                  <li class="tag">KiCad</li>
+                  <li>
+                    <button
+                      type="button"
+                      class="tag skill-link"
+                      data-skill="kicad"
+                      aria-controls="skill-evidence"
+                      aria-expanded="false"
+                    >
+                      KiCad
+                    </button>
+                  </li>
                   <li class="tag">EasyEDA</li>
                   <li class="tag">Matlab</li>
                   <li class="tag">SolidWorks</li>
@@ -3417,10 +3428,40 @@
                   Embarqué &amp; Code
                 </h3>
                 <ul class="mt-4 flex flex-wrap gap-2">
-                  <li class="tag">C/C++</li>
+                  <li>
+                    <button
+                      type="button"
+                      class="tag skill-link"
+                      data-skill="cpp"
+                      aria-controls="skill-evidence"
+                      aria-expanded="false"
+                    >
+                      C/C++
+                    </button>
+                  </li>
                   <li class="tag">Verilog</li>
-                  <li class="tag">Python</li>
-                  <li class="tag">Arduino</li>
+                  <li>
+                    <button
+                      type="button"
+                      class="tag skill-link"
+                      data-skill="python"
+                      aria-controls="skill-evidence"
+                      aria-expanded="false"
+                    >
+                      Python
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      type="button"
+                      class="tag skill-link"
+                      data-skill="arduino"
+                      aria-controls="skill-evidence"
+                      aria-expanded="false"
+                    >
+                      Arduino
+                    </button>
+                  </li>
                   <li class="tag">Linux</li>
                 </ul>
               </div>
@@ -3438,11 +3479,65 @@
                   Instrumentation
                 </h3>
                 <ul class="mt-4 flex flex-wrap gap-2">
-                  <li class="tag" data-i18n="tag.scope">Oscilloscope</li>
-                  <li class="tag" data-i18n="tag.sigGen">Générateur de signaux</li>
-                  <li class="tag" data-i18n="tag.emcTest">Test CEM</li>
+                  <li>
+                    <button
+                      type="button"
+                      class="tag skill-link"
+                      data-skill="scope"
+                      aria-controls="skill-evidence"
+                      aria-expanded="false"
+                      data-i18n="tag.scope"
+                    >
+                      Oscilloscope
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      type="button"
+                      class="tag skill-link"
+                      data-skill="generator"
+                      aria-controls="skill-evidence"
+                      aria-expanded="false"
+                      data-i18n="tag.sigGen"
+                    >
+                      Générateur de signaux
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      type="button"
+                      class="tag skill-link"
+                      data-skill="emc"
+                      aria-controls="skill-evidence"
+                      aria-expanded="false"
+                      data-i18n="tag.emcTest"
+                    >
+                      Test CEM
+                    </button>
+                  </li>
                 </ul>
               </div>
+            </div>
+            <p data-i18n="enh.skills.hint" class="skill-hint">
+              Choisir une compétence soulignée pour découvrir les projets associés.
+            </p>
+            <div
+              class="skill-evidence"
+              id="skill-evidence"
+              hidden
+              tabindex="-1"
+              aria-labelledby="skill-evidence-title"
+            >
+              <div class="skill-evidence-heading">
+                <h3 id="skill-evidence-title">
+                  <span data-i18n="enh.skills.panel">Projets associés à cette compétence</span
+                  ><span data-skill-name></span>
+                </h3>
+                <button type="button" data-close-skills>
+                  <span data-i18n="enh.skills.close">Fermer</span>
+                </button>
+              </div>
+              <div class="related-links" data-skill-links></div>
             </div>
           </div>
         </section>
@@ -3542,7 +3637,6 @@
                     alt="Télécommande assemblée avec ses connexions"
                     loading="lazy"
                     class="absolute inset-0 h-full w-full object-contain transition duration-500"
-                    onerror="this.remove()"
                   />
                 </a>
                 <div class="flex flex-1 flex-col p-6">
@@ -3685,7 +3779,6 @@
                     alt="Dispositif de vision du TIPE monté sur son trépied"
                     loading="lazy"
                     class="absolute inset-0 h-full w-full object-contain transition duration-500"
-                    onerror="this.remove()"
                   />
                 </a>
                 <div class="flex flex-1 flex-col p-6">
@@ -3755,7 +3848,6 @@
                     alt="Centrale Myha Pro sur rail DIN"
                     loading="lazy"
                     class="absolute inset-0 h-full w-full object-contain transition duration-500"
-                    onerror="this.remove()"
                   />
                 </a>
                 <div class="flex flex-1 flex-col p-6">
@@ -3825,7 +3917,6 @@
                     alt="Poules à l’entrée du poulailler, pont-levis abaissé"
                     loading="lazy"
                     class="absolute inset-0 h-full w-full object-contain transition duration-500"
-                    onerror="this.remove()"
                   />
                 </a>
                 <div class="flex flex-1 flex-col p-6">
@@ -3895,7 +3986,6 @@
                     alt="Poste de chronométrage et affichage de la course"
                     loading="lazy"
                     class="absolute inset-0 h-full w-full object-contain transition duration-500"
-                    onerror="this.remove()"
                   />
                 </a>
                 <div class="flex flex-1 flex-col p-6">
@@ -4196,7 +4286,6 @@
                       alt="Avec Sacharalen Capron au stand Sacha Heritage à Sousdey Lyon en 2026"
                       loading="lazy"
                       class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                      onerror="this.remove()"
                     />
                   </a>
                   <div class="flex flex-1 flex-col p-6">
@@ -4258,7 +4347,6 @@
                       alt="Équipe du Bureau des Sports de Phelma"
                       loading="lazy"
                       class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                      onerror="this.remove()"
                     />
                   </a>
                   <div class="flex flex-1 flex-col p-6">
@@ -4318,7 +4406,6 @@
                       alt="Podium de compétition de kata avec Gaëtan Peyronnet"
                       loading="lazy"
                       class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                      onerror="this.remove()"
                     />
                   </a>
                   <div class="flex flex-1 flex-col p-6">
@@ -4370,7 +4457,6 @@
                       alt="Les modèles de Tout Commence Ici à Pérouges en 2025"
                       loading="lazy"
                       class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                      onerror="this.remove()"
                     />
                   </a>
                   <div class="flex flex-1 flex-col p-6">
@@ -4431,7 +4517,6 @@
                       alt="Répétition de saxhorn"
                       loading="lazy"
                       class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                      onerror="this.remove()"
                     />
                   </a>
                   <div class="flex flex-1 flex-col p-6">
@@ -4936,6 +5021,18 @@
         FR['contact.copiedBtn'] = 'Copié';
         FR['toast.copied'] = 'Email copié !';
         FR['toast.copiedPhone'] = 'Numéro copié !';
+        Object.assign(EN, {
+          'enh.toc.label': 'On this page',
+          'enh.gains.title': 'What I take from this experience',
+          'enh.related.title': 'Explore related work',
+          'enh.contact.title': 'A question about this project?',
+          'enh.contact.desc':
+            'I would be happy to discuss my contribution, design choices and tests.',
+          'enh.contact.link': 'Discuss this project',
+          'enh.skills.hint': 'Select an underlined skill to explore related projects.',
+          'enh.skills.panel': 'Projects using this skill',
+          'enh.skills.close': 'Close',
+        });
         const DICT = { fr: FR, en: EN };
         let lang = 'fr';
 

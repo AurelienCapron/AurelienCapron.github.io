@@ -4,9 +4,9 @@
  @author Aurélien Capron
  @description Présenter la contribution aux cartes électroniques, au paramétrage et aux essais du système Myha.
  @created Non renseignée — date d’origine non vérifiée.
- @since 2026-09-26 — premier ajout retrouvé dans Git.
  @documented 2026-11-09 — nettoyage et documentation des sources.
  @updated 2026-11-09
+ @since 2026-09-26 — premier ajout retrouvé dans Git.
 -->
 <html lang="fr" data-theme="light">
   <head>
@@ -2040,6 +2040,8 @@
 
     <link rel="stylesheet" href="assets/site-media.css" />
     <script src="assets/site-media.js"></script>
+    <link rel="stylesheet" href="assets/site-experience.css" />
+    <script src="assets/site-experience.js" defer></script>
   </head>
 
   <body class="bg-[var(--bg)] font-sans text-[var(--text)] antialiased">
@@ -2299,12 +2301,33 @@
           </figcaption>
         </figure>
       </section>
-      <nav class="story-nav" aria-label="Sections">
-        <a href="#usage"><span>01</span><span data-i18n="myha.7">L’usage</span></a
-        ><a href="#gamme"><span>02</span><span data-i18n="myha.8">Les centrales</span></a
-        ><a href="#contribution"><span>03</span><span data-i18n="myha.9">Mon intervention</span></a
-        ><a href="#presse"><span>04</span><span data-i18n="myha.10">Dans les médias</span></a>
-      </nav>
+      <details class="page-toc">
+        <summary>
+          <span data-i18n="enh.toc.label">Sommaire</span
+          ><span class="toc-current" aria-hidden="true"></span>
+        </summary>
+        <nav class="story-nav" aria-label="Sommaire / On this page">
+          <a href="#usage"
+            ><span aria-hidden="true">01</span
+            ><span data-i18n="myha.13">Du téléphone à l’équipement</span></a
+          ><a href="#gamme"
+            ><span aria-hidden="true">02</span
+            ><span data-i18n="myha.19">Choisir la centrale selon l’installation</span></a
+          ><a href="#contribution"
+            ><span aria-hidden="true">03</span
+            ><span data-i18n="myha.27">Mon travail sur les centrales</span></a
+          ><a href="#presse"
+            ><span aria-hidden="true">04</span
+            ><span data-i18n="myha.36">Myha dans la presse et à la télévision</span></a
+          ><a href="#section-6"
+            ><span aria-hidden="true">05</span
+            ><span data-i18n="myha.37">Pour découvrir Myha</span></a
+          ><a href="#aussi"
+            ><span aria-hidden="true">06</span
+            ><span data-i18n="enh.related.title">À découvrir également</span></a
+          >
+        </nav>
+      </details>
       <!-- Section : usage. -->
       <section class="story-step" id="usage">
         <div class="step-heading">
@@ -2480,7 +2503,7 @@
           </ul>
         </div>
       </section>
-      <section class="story-resources">
+      <section id="section-6" class="story-resources">
         <h2 data-i18n="myha.37">Pour découvrir Myha</h2>
         <div class="resource-links">
           <a href="https://www.domethic-system.com/" target="_blank" rel="noopener noreferrer"
@@ -2493,13 +2516,46 @@
           >
         </div>
       </section>
-          <!-- Navigation entre les pages du portfolio. -->
+
+      <section class="story-resources experience-section" id="aussi">
+        <h2 data-i18n="enh.related.title">À découvrir également</h2>
+        <div class="related-links">
+          <a href="telecommande.html#essais"
+            ><strong data-i18n="enh.related.0.title">Tester en situation</strong
+            ><span data-i18n="enh.related.0.desc"
+              >Les essais de la télécommande dans son environnement d’utilisation.</span
+            ><span aria-hidden="true">→</span></a
+          ><a href="amplificateur.html#mesures"
+            ><strong data-i18n="enh.related.1.title">Mesurer sur banc</strong
+            ><span data-i18n="enh.related.1.desc"
+              >Comparer le comportement d’une carte aux calculs et aux simulations.</span
+            ><span aria-hidden="true">→</span></a
+          >
+        </div>
+      </section>
+      <aside class="project-contact" id="echanger">
+        <h2 data-i18n="enh.contact.title">Une question sur ce projet ?</h2>
+        <p data-i18n="enh.contact.desc">
+          Je peux présenter ma contribution, les choix de conception et les essais réalisés.
+        </p>
+        <a
+          class="btn-primary"
+          data-project-contact
+          data-title-fr="Myha · Domethic System"
+          data-title-en="Myha · Domethic System"
+          href="mailto:aurelien-capron@outlook.fr?subject=%C3%89change%20au%20sujet%20du%20projet%20%3A%20Myha%20%C2%B7%20Domethic%20System&amp;body=Bonjour%20Aur%C3%A9lien%2C%0A%0AJe%20vous%20contacte%20au%20sujet%20de%20votre%20projet%20%C2%AB%20Myha%20%C2%B7%20Domethic%20System%20%C2%BB.%0A%0A"
+          ><span data-i18n="enh.contact.link">Échanger sur ce projet</span></a
+        >
+      </aside>
+      <!-- Navigation entre les pages du portfolio. -->
       <nav class="project-navigation" aria-label="Navigation entre les projets">
         <a class="project-previous" href="tipe.html">
           <small data-i18n="journey.prev">← Projet précédent</small>
           <strong data-i18n="journey.prev.title">TIPE · Badminton</strong>
         </a>
-        <a class="project-all" href="index.html#projets" data-i18n="journey.all">Tous les projets</a>
+        <a class="project-all" href="index.html#projets" data-i18n="journey.all"
+          >Tous les projets</a
+        >
         <a class="project-next" href="poulailler.html">
           <small data-i18n="journey.next">Projet suivant →</small>
           <strong data-i18n="journey.next.title">Porte de poulailler</strong>
@@ -2727,12 +2783,29 @@
 
         Object.assign(FR, { 'journey.nav': 'Navigation entre les projets' });
         Object.assign(EN, {
-          "journey.nav": "Project navigation",
-          "journey.all": "All projects",
-          "journey.prev": "← Previous project",
-          "journey.prev.title": "TIPE · Badminton",
-          "journey.next": "Next project →",
-          "journey.next.title": "Chicken coop door"
+          'journey.nav': 'Project navigation',
+          'journey.all': 'All projects',
+          'journey.prev': '← Previous project',
+          'journey.prev.title': 'TIPE · Badminton',
+          'journey.next': 'Next project →',
+          'journey.next.title': 'Chicken coop door',
+        });
+        Object.assign(EN, {
+          'enh.toc.label': 'On this page',
+          'enh.gains.title': 'What I take from this experience',
+          'enh.related.title': 'Explore related work',
+          'enh.contact.title': 'A question about this project?',
+          'enh.contact.desc':
+            'I would be happy to discuss my contribution, design choices and tests.',
+          'enh.contact.link': 'Discuss this project',
+          'enh.skills.hint': 'Select an underlined skill to explore related projects.',
+          'enh.skills.panel': 'Projects using this skill',
+          'enh.skills.close': 'Close',
+          'enh.related.0.title': 'Testing in use',
+          'enh.related.0.desc': 'Testing the remote in its intended environment.',
+          'enh.related.1.title': 'Bench measurements',
+          'enh.related.1.desc': 'Comparing board behaviour with calculations and simulations.',
+          'enh.viewer.photos': 'View project photos',
         });
         const DICT = { fr: FR, en: EN };
         let lang = 'fr';

@@ -4,9 +4,9 @@
  @author Aurélien Capron
  @description Décrire l’architecture et les interfaces du système de pointage de la Backyard Ultra.
  @created Non renseignée — date d’origine non vérifiée.
- @since 2026-09-26 — premier ajout retrouvé dans Git.
  @documented 2026-11-09 — nettoyage et documentation des sources.
  @updated 2026-11-09
+ @since 2026-09-26 — premier ajout retrouvé dans Git.
 -->
 <html lang="fr" data-theme="light">
   <head>
@@ -2051,6 +2051,8 @@
 
     <link rel="stylesheet" href="assets/site-media.css" />
     <script src="assets/site-media.js"></script>
+    <link rel="stylesheet" href="assets/site-experience.css" />
+    <script src="assets/site-experience.js" defer></script>
   </head>
 
   <body class="bg-[var(--bg)] font-sans text-[var(--text)] antialiased">
@@ -2311,12 +2313,33 @@
           </figcaption>
         </figure>
       </section>
-      <nav class="story-nav" aria-label="Étapes / Stages">
-        <a href="#besoin"><span>01</span><span data-i18n="race.7">La boucle</span></a
-        ><a href="#pointage"><span>02</span><span data-i18n="race.8">Le pointage</span></a
-        ><a href="#ecrans"><span>03</span><span data-i18n="race.9">Les écrans</span></a
-        ><a href="#resultats"><span>04</span><span data-i18n="race.10">Les résultats</span></a>
-      </nav>
+      <details class="page-toc">
+        <summary>
+          <span data-i18n="enh.toc.label">Sommaire</span
+          ><span class="toc-current" aria-hidden="true"></span>
+        </summary>
+        <nav class="story-nav" aria-label="Sommaire / On this page">
+          <a href="#besoin"
+            ><span aria-hidden="true">01</span
+            ><span data-i18n="race.13">Une heure pour boucler et repartir</span></a
+          ><a href="#pointage"
+            ><span aria-hidden="true">02</span
+            ><span data-i18n="race.19">Deux postes, un seul passage enregistré</span></a
+          ><a href="#ecrans"
+            ><span aria-hidden="true">03</span
+            ><span data-i18n="race.23">Une vue pour chaque rôle</span></a
+          ><a href="#resultats"
+            ><span aria-hidden="true">04</span
+            ><span data-i18n="race.27">Retrouver la course après le dernier tour</span></a
+          ><a href="#section-6"
+            ><span aria-hidden="true">05</span
+            ><span data-i18n="race.28">Explorer le projet</span></a
+          ><a href="#aussi"
+            ><span aria-hidden="true">06</span
+            ><span data-i18n="enh.related.title">À découvrir également</span></a
+          >
+        </nav>
+      </details>
       <!-- Section : besoin. -->
       <section class="story-step" id="besoin">
         <div class="step-heading">
@@ -2470,7 +2493,17 @@
           </p>
         </div>
       </section>
-      <section class="story-resources">
+      <aside class="event-recap">
+        <h3 data-i18n="enh.event.title">Utilisé pour la Backyard Phelma</h3>
+        <p data-i18n="enh.event.desc">
+          L’export rassemble 94 coureurs classés et jusqu’à 18 boucles enregistrées. La page du BDS
+          présente l’organisation, les partenaires et mon engagement sur l’événement.
+        </p>
+        <a href="bds.html#bilan"
+          ><span data-i18n="enh.event.link">Voir le bilan et l’organisation de la course</span></a
+        >
+      </aside>
+      <section id="section-6" class="story-resources">
         <h2 data-i18n="race.28">Explorer le projet</h2>
         <div class="resource-links">
           <a
@@ -2487,13 +2520,46 @@
           >
         </div>
       </section>
-          <!-- Navigation entre les pages du portfolio. -->
+
+      <section class="story-resources experience-section" id="aussi">
+        <h2 data-i18n="enh.related.title">À découvrir également</h2>
+        <div class="related-links">
+          <a href="bds.html#backyard"
+            ><strong data-i18n="enh.related.0.title">La course côté organisation</strong
+            ><span data-i18n="enh.related.0.desc"
+              >Les partenaires, la préparation et le staff de la Backyard Phelma.</span
+            ><span aria-hidden="true">→</span></a
+          ><a href="bds.html#bilan"
+            ><strong data-i18n="enh.related.1.title">Le bilan de l’événement</strong
+            ><span data-i18n="enh.related.1.desc"
+              >Les résultats enregistrés et les retombées des partenariats.</span
+            ><span aria-hidden="true">→</span></a
+          >
+        </div>
+      </section>
+      <aside class="project-contact" id="echanger">
+        <h2 data-i18n="enh.contact.title">Une question sur ce projet ?</h2>
+        <p data-i18n="enh.contact.desc">
+          Je peux présenter ma contribution, les choix de conception et les essais réalisés.
+        </p>
+        <a
+          class="btn-primary"
+          data-project-contact
+          data-title-fr="Chronométrage Backyard Ultra"
+          data-title-en="Backyard Ultra timing"
+          href="mailto:aurelien-capron@outlook.fr?subject=%C3%89change%20au%20sujet%20du%20projet%20%3A%20Chronom%C3%A9trage%20Backyard%20Ultra&amp;body=Bonjour%20Aur%C3%A9lien%2C%0A%0AJe%20vous%20contacte%20au%20sujet%20de%20votre%20projet%20%C2%AB%20Chronom%C3%A9trage%20Backyard%20Ultra%20%C2%BB.%0A%0A"
+          ><span data-i18n="enh.contact.link">Échanger sur ce projet</span></a
+        >
+      </aside>
+      <!-- Navigation entre les pages du portfolio. -->
       <nav class="project-navigation" aria-label="Navigation entre les projets">
         <a class="project-previous" href="poulailler.html">
           <small data-i18n="journey.prev">← Projet précédent</small>
           <strong data-i18n="journey.prev.title">Porte de poulailler</strong>
         </a>
-        <a class="project-all" href="index.html#projets" data-i18n="journey.all">Tous les projets</a>
+        <a class="project-all" href="index.html#projets" data-i18n="journey.all"
+          >Tous les projets</a
+        >
         <a class="project-next" href="telecommande.html">
           <small data-i18n="journey.next">Projet suivant →</small>
           <strong data-i18n="journey.next.title">Télécommande autonome</strong>
@@ -2722,12 +2788,33 @@
 
         Object.assign(FR, { 'journey.nav': 'Navigation entre les projets' });
         Object.assign(EN, {
-          "journey.nav": "Project navigation",
-          "journey.all": "All projects",
-          "journey.prev": "← Previous project",
-          "journey.prev.title": "Chicken coop door",
-          "journey.next": "Next project →",
-          "journey.next.title": "Autonomous remote control"
+          'journey.nav': 'Project navigation',
+          'journey.all': 'All projects',
+          'journey.prev': '← Previous project',
+          'journey.prev.title': 'Chicken coop door',
+          'journey.next': 'Next project →',
+          'journey.next.title': 'Autonomous remote control',
+        });
+        Object.assign(EN, {
+          'enh.toc.label': 'On this page',
+          'enh.gains.title': 'What I take from this experience',
+          'enh.related.title': 'Explore related work',
+          'enh.contact.title': 'A question about this project?',
+          'enh.contact.desc':
+            'I would be happy to discuss my contribution, design choices and tests.',
+          'enh.contact.link': 'Discuss this project',
+          'enh.skills.hint': 'Select an underlined skill to explore related projects.',
+          'enh.skills.panel': 'Projects using this skill',
+          'enh.skills.close': 'Close',
+          'enh.related.0.title': 'The event from the organiser’s side',
+          'enh.related.0.desc': 'Partners, preparation and staffing at the Phelma Backyard.',
+          'enh.related.1.title': 'The event recap',
+          'enh.related.1.desc': 'Recorded results and partnership outcomes.',
+          'enh.viewer.photos': 'View project photos',
+          'enh.event.title': 'Used at the Phelma Backyard',
+          'enh.event.desc':
+            'The export contains 94 ranked runners and up to 18 recorded laps. The BDS page presents the organisation, partners and my involvement in the event.',
+          'enh.event.link': 'See the event recap and organisation',
         });
         const DICT = { fr: FR, en: EN };
         let lang = 'fr';
