@@ -2041,6 +2041,7 @@
     <script src="assets/site-media.js"></script>
     <link rel="stylesheet" href="assets/site-experience.css" />
     <script src="assets/site-experience.js" defer></script>
+      <link rel="stylesheet" href="assets/site-summary.css" />
   </head>
 
   <body class="bg-[var(--bg)] font-sans text-[var(--text)] antialiased">
@@ -2267,7 +2268,7 @@
 
     <!-- Contenu principal. -->
     <main id="main" class="story-main" tabindex="-1">
-      <section class="story-hero">
+      <section class="story-hero summary-hero">
         <div>
           <p class="story-eyebrow" data-i18n="myha.0">DOMETHIC SYSTEM · BÉGANNE, MORBIHAN</p>
           <h1 data-i18n="myha.1">Myha® : piloter une maison par SMS</h1>
@@ -2291,6 +2292,9 @@
             >
           </div>
         </div>
+        
+        <!-- Synthèse commune : contexte, période, équipe, rôle, technologies et résultat. -->
+        <section class="project-summary" id="project-summary" aria-labelledby="project-summary-title"><h2 id="project-summary-title" data-i18n="brief.title">Le projet en bref</h2><dl><div><dt data-i18n="brief.label.context">Contexte</dt><dd data-i18n="brief.value.context">Contribution à l’industrialisation des centrales domotiques Myha chez Domethic System.</dd></div><div><dt data-i18n="brief.label.period">Durée / période</dt><dd data-i18n="brief.value.period">Depuis février 2022</dd></div><div><dt data-i18n="brief.label.team">Équipe</dt><dd data-i18n="brief.value.team">Au sein de l’équipe Domethic System.</dd></div><div><dt data-i18n="brief.label.role">Mon rôle</dt><dd data-i18n="brief.value.role">Assemblage et soudure, configuration du programme et de la mémoire, appairage radio et essais sur charges réelles.</dd></div><div><dt data-i18n="brief.label.tech">Technologies</dt><dd data-i18n="brief.value.tech">Électronique CMS et traversante · GSM/SMS · radio · EEPROM</dd></div><div class="summary-result"><dt data-i18n="brief.label.result">Résultat</dt><dd data-i18n="brief.value.result">Centrales assemblées et configurées, avec essais de commutation et de robustesse pendant les émissions cellulaires.</dd></div></dl></section>
         <figure class="story-figure hero-photo">
           <button type="button" class="image-open" aria-haspopup="dialog">
             <img src="assets/projets/myha/myha-pro.jpg" alt="Myha® Pro — Domethic System" />
@@ -2806,6 +2810,22 @@
           'enh.related.1.desc': 'Comparing board behaviour with calculations and simulations.',
           'enh.viewer.photos': 'View project photos',
         });
+        /* Synthèse des projets : traductions. */
+        Object.assign(EN, {
+  "brief.title": "Project at a glance",
+  "brief.label.context": "Context",
+  "brief.value.context": "Contributing to the industrialisation of Myha home-automation controllers at Domethic System.",
+  "brief.label.period": "Timeframe",
+  "brief.value.period": "Since February 2022",
+  "brief.label.team": "Team",
+  "brief.value.team": "Working with the Domethic System team.",
+  "brief.label.role": "My role",
+  "brief.value.role": "Assembly and soldering, firmware and memory configuration, radio pairing and tests with real loads.",
+  "brief.label.tech": "Technologies",
+  "brief.value.tech": "SMD and through-hole electronics · GSM/SMS · radio · EEPROM",
+  "brief.label.result": "Outcome",
+  "brief.value.result": "Assembled and configured controllers, with switching and robustness tests during cellular transmissions."
+});
         const DICT = { fr: FR, en: EN };
         let lang = 'fr';
 

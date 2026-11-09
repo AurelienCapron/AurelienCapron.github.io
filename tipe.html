@@ -2010,6 +2010,7 @@
     <script src="assets/site-media.js"></script>
     <link rel="stylesheet" href="assets/site-experience.css" />
     <script src="assets/site-experience.js" defer></script>
+      <link rel="stylesheet" href="assets/site-summary.css" />
   </head>
 
   <body class="bg-[var(--bg)] font-sans text-[var(--text)] antialiased">
@@ -2236,7 +2237,7 @@
 
     <!-- Contenu principal. -->
     <main id="main" tabindex="-1" class="story-main">
-      <section class="story-hero">
+      <section class="story-hero summary-hero">
         <div>
           <p class="story-eyebrow" data-i18n="s1">TIPE · VISION & COMMANDE · 2025</p>
           <h1 data-i18n="s2">Repérer le joueur. <br />Orienter le lancer.</h1>
@@ -2253,6 +2254,9 @@
             >
           </div>
         </div>
+        
+        <!-- Synthèse commune : contexte, période, équipe, rôle, technologies et résultat. -->
+        <section class="project-summary" id="project-summary" aria-labelledby="project-summary-title"><h2 id="project-summary-title" data-i18n="brief.title">Le projet en bref</h2><dl><div><dt data-i18n="brief.label.context">Contexte</dt><dd data-i18n="brief.value.context">TIPE en classes préparatoires : localiser un joueur et étudier la commande d’un lanceur de volants.</dd></div><div><dt data-i18n="brief.label.period">Durée / période</dt><dd data-i18n="brief.value.period">2023–2025 · classes préparatoires</dd></div><div><dt data-i18n="brief.label.team">Équipe</dt><dd data-i18n="brief.value.team">TIPE présenté par Aurélien Capron.</dd></div><div><dt data-i18n="brief.label.role">Mon rôle</dt><dd data-i18n="brief.value.role">Traitement d’image, calibration, triangulation, réalisation du prototype et étude balistique.</dd></div><div><dt data-i18n="brief.label.tech">Technologies</dt><dd data-i18n="brief.value.tech">Python · OpenCV · Arduino UNO · liaison série</dd></div><div class="summary-result"><dt data-i18n="brief.label.result">Résultat</dt><dd data-i18n="brief.value.result">Prototype testé ; écarts de distance de 19 à 32 mm sur trois positions de référence. L’automatisation du tir reste à poursuivre.</dd></div></dl></section>
         <figure class="story-figure hero-photo">
           <button
             type="button"
@@ -3078,6 +3082,22 @@
           'enh.related.1.desc': 'A shared timing server during a race.',
           'enh.viewer.photos': 'View project photos',
         });
+        /* Synthèse des projets : traductions. */
+        Object.assign(EN, {
+  "brief.title": "Project at a glance",
+  "brief.label.context": "Context",
+  "brief.value.context": "Preparatory-class TIPE: locating a player and investigating control of a shuttlecock launcher.",
+  "brief.label.period": "Timeframe",
+  "brief.value.period": "2023–2025 · preparatory classes",
+  "brief.label.team": "Team",
+  "brief.value.team": "TIPE presented by Aurélien Capron.",
+  "brief.label.role": "My role",
+  "brief.value.role": "Image processing, calibration, triangulation, prototype building and ballistic study.",
+  "brief.label.tech": "Technologies",
+  "brief.value.tech": "Python · OpenCV · Arduino UNO · serial communication",
+  "brief.label.result": "Outcome",
+  "brief.value.result": "Tested prototype; distance errors of 19–32 mm at three reference positions. Automatic shot-parameter control remains to be developed."
+});
         const DICT = { fr: FR, en: EN };
         let lang = 'fr';
 

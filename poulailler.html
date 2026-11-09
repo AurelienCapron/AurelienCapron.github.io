@@ -2003,6 +2003,7 @@
     <script src="assets/site-media.js"></script>
     <link rel="stylesheet" href="assets/site-experience.css" />
     <script src="assets/site-experience.js" defer></script>
+      <link rel="stylesheet" href="assets/site-summary.css" />
   </head>
 
   <body class="bg-[var(--bg)] font-sans text-[var(--text)] antialiased">
@@ -2229,7 +2230,7 @@
 
     <!-- Contenu principal. -->
     <main class="story-main" id="main" tabindex="-1">
-      <section class="story-hero">
+      <section class="story-hero summary-hero">
         <div>
           <p class="story-eyebrow" data-i18n="coop.0">
             PROJET PERSONNEL · SYSTÈME EMBARQUÉ · AVR. 2025
@@ -2247,6 +2248,9 @@
             >
           </div>
         </div>
+        
+        <!-- Synthèse commune : contexte, période, équipe, rôle, technologies et résultat. -->
+        <section class="project-summary" id="project-summary" aria-labelledby="project-summary-title"><h2 id="project-summary-title" data-i18n="brief.title">Le projet en bref</h2><dl><div><dt data-i18n="brief.label.context">Contexte</dt><dd data-i18n="brief.value.context">Projet personnel : automatiser un pont-levis de poulailler en fonction de la lumière extérieure.</dd></div><div><dt data-i18n="brief.label.period">Durée / période</dt><dd data-i18n="brief.value.period">Avril 2025</dd></div><div><dt data-i18n="brief.label.team">Équipe</dt><dd data-i18n="brief.value.team">Projet personnel · Aurélien Capron.</dd></div><div><dt data-i18n="brief.label.role">Mon rôle</dt><dd data-i18n="brief.value.role">Réalisation du mécanisme, de la commande électronique et du programme embarqué.</dd></div><div><dt data-i18n="brief.label.tech">Technologies</dt><dd data-i18n="brief.value.tech">ATmega328P · C++ / Arduino · photorésistance · relais · motoréducteur</dd></div><div class="summary-result"><dt data-i18n="brief.label.result">Résultat</dt><dd data-i18n="brief.value.result">Pont-levis motorisé en fonctionnement, commandé par la luminosité avec contact de fermeture et temporisation.</dd></div></dl></section>
         <figure class="story-figure hero-photo">
           <button type="button" class="image-open" aria-haspopup="dialog">
             <img
@@ -2714,6 +2718,22 @@
           'enh.related.1.desc': 'The badminton training-aid prototype.',
           'enh.viewer.photos': 'View project photos',
         });
+        /* Synthèse des projets : traductions. */
+        Object.assign(EN, {
+  "brief.title": "Project at a glance",
+  "brief.label.context": "Context",
+  "brief.value.context": "Personal project: automating a drawbridge-style chicken-coop door using ambient light.",
+  "brief.label.period": "Timeframe",
+  "brief.value.period": "April 2025",
+  "brief.label.team": "Team",
+  "brief.value.team": "Personal project · Aurélien Capron.",
+  "brief.label.role": "My role",
+  "brief.value.role": "Building the mechanism, electronic controller and embedded program.",
+  "brief.label.tech": "Technologies",
+  "brief.value.tech": "ATmega328P · C++ / Arduino · light sensor · relays · geared motor",
+  "brief.label.result": "Outcome",
+  "brief.value.result": "Working motorised door controlled by light levels, with a closed-position switch and timeout."
+});
         const DICT = { fr: FR, en: EN };
         let lang = 'fr';
 

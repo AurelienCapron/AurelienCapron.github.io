@@ -2351,6 +2351,7 @@
     <script src="assets/site-media.js"></script>
     <link rel="stylesheet" href="assets/site-experience.css" />
     <script src="assets/site-experience.js" defer></script>
+      <link rel="stylesheet" href="assets/site-summary.css" />
   </head>
 
   <body class="bg-[var(--bg)] font-sans text-[var(--text)] antialiased">
@@ -2577,7 +2578,7 @@
 
     <!-- Contenu principal. -->
     <main class="story-main" id="main" tabindex="-1">
-      <section class="story-hero">
+      <section class="story-hero summary-hero">
         <div>
           <p class="story-eyebrow" data-i18n="audio.1">PI 3 · GRENOBLE INP – PHELMA</p>
           <h1 data-i18n="audio.2">Du capteur piézo au haut-parleur</h1>
@@ -2597,6 +2598,9 @@
             >
           </div>
         </div>
+        
+        <!-- Synthèse commune : contexte, période, équipe, rôle, technologies et résultat. -->
+        <section class="project-summary" id="project-summary" aria-labelledby="project-summary-title"><h2 id="project-summary-title" data-i18n="brief.title">Le projet en bref</h2><dl><div><dt data-i18n="brief.label.context">Contexte</dt><dd data-i18n="brief.value.context">Bureau d’études à Phelma : amplifier le signal d’une guitare acoustique avec réglage de tonalité.</dd></div><div><dt data-i18n="brief.label.period">Durée / période</dt><dd data-i18n="brief.value.period">Février–avril 2026</dd></div><div><dt data-i18n="brief.label.team">Équipe</dt><dd data-i18n="brief.value.team">Aurélien Capron et Amaury Simonnot.</dd></div><div><dt data-i18n="brief.label.role">Mon rôle</dt><dd data-i18n="brief.value.role">Travail en binôme : conception électronique, assemblage des cartes et caractérisation sur banc.</dd></div><div><dt data-i18n="brief.label.tech">Technologies</dt><dd data-i18n="brief.value.tech">KiCad · SPICE · correcteur de Baxandall · classes AB et D</dd></div><div class="summary-result"><dt data-i18n="brief.label.result">Résultat</dt><dd data-i18n="brief.value.result">Deux cartes CMS assemblées et mesurées, de l’entrée piézoélectrique à la sortie de puissance sur 8 Ω.</dd></div></dl></section>
         <figure class="story-figure hero-photo">
           <button class="image-open" type="button" aria-haspopup="dialog">
             <img
@@ -3303,6 +3307,22 @@
           'enh.related.1.desc': 'My contribution to Myha controllers at Domethic System.',
           'enh.viewer.photos': 'View project photos',
         });
+        /* Synthèse des projets : traductions. */
+        Object.assign(EN, {
+  "brief.title": "Project at a glance",
+  "brief.label.context": "Context",
+  "brief.value.context": "Design project at Phelma: amplifying an acoustic-guitar signal with tone control.",
+  "brief.label.period": "Timeframe",
+  "brief.value.period": "February–April 2026",
+  "brief.label.team": "Team",
+  "brief.value.team": "Aurélien Capron and Amaury Simonnot.",
+  "brief.label.role": "My role",
+  "brief.value.role": "Paired work: electronic design, board assembly and bench characterisation.",
+  "brief.label.tech": "Technologies",
+  "brief.value.tech": "KiCad · SPICE · Baxandall tone control · classes AB and D",
+  "brief.label.result": "Outcome",
+  "brief.value.result": "Two assembled and measured SMD boards, from the piezo input to the 8 Ω power output."
+});
         const DICT = { fr: FR, en: EN };
         let lang = 'fr';
 

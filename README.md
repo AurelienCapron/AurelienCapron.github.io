@@ -55,6 +55,7 @@ Les loisirs suivent l’ordre **Sacha Heritage → BDS → Judo → Pérouges �
 - Affichage adapté aux ordinateurs, tablettes et téléphones.
 - Carrousels de projets et de loisirs, avec filtres pour les projets.
 - Pages détaillées, navigation entre les réalisations et retour aux sections de l’accueil.
+- Synthèse commune des projets : contexte, période, équipe, rôle, technologies et résultat.
 - Agrandissement des images, lecture de vidéos, documents PDF et modèles 3D sur les pages concernées.
 - États de chargement des images et fondu à leur apparition, messages d’indisponibilité et bouton de nouvelle tentative pour les images et les vidéos.
 - Accès aux publications originales des médias lorsqu’elles sont identifiées.

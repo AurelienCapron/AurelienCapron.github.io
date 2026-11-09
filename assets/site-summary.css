@@ -1,0 +1,54 @@
+/**
+ * @file site-summary.css
+ * @author Aurélien Capron
+ * @description Présentation commune des synthèses de projets.
+ * @created 2026-11-09
+ */
+.story-hero.summary-hero { row-gap: 28px; }
+.summary-hero > .hero-photo { grid-column: 2; grid-row: 1; }
+.project-summary {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  padding: 22px 24px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  scroll-margin-top: 150px;
+}
+.project-summary h2 {
+  margin: 0 0 18px;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 600;
+  color: var(--text-strong);
+}
+.project-summary dl {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  gap: 20px 28px;
+  margin: 0;
+}
+.project-summary dl > div { min-width: 0; }
+.project-summary dt {
+  margin: 0 0 7px;
+  font-family: 'JetBrains Mono',monospace;
+  font-size: 10px;
+  line-height: 1.6;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--accent-soft);
+}
+.project-summary dd {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.75;
+  color: var(--text-muted);
+  overflow-wrap: break-word;
+}
+.project-summary .summary-result dd { color: var(--text-strong); }
+@media (max-width: 760px) {
+  .summary-hero > .hero-photo { grid-column: 1; grid-row: 3; }
+  .project-summary { padding: 20px; }
+  .project-summary dl { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; }
+  .project-summary dl > div:nth-child(n+3) { grid-column: 1 / -1; }
+}

@@ -2052,6 +2052,7 @@
     <script src="assets/site-media.js"></script>
     <link rel="stylesheet" href="assets/site-experience.css" />
     <script src="assets/site-experience.js" defer></script>
+      <link rel="stylesheet" href="assets/site-summary.css" />
   </head>
 
   <body class="bg-[var(--bg)] font-sans text-[var(--text)] antialiased">
@@ -2278,7 +2279,7 @@
 
     <!-- Contenu principal. -->
     <main id="main" tabindex="-1" class="story-main">
-      <section class="story-hero">
+      <section class="story-hero summary-hero">
         <div>
           <p class="story-eyebrow" data-i18n="race.0">
             BACKYARD ULTRA · CHRONOMÉTRAGE MULTI-POSTES · SEPT. – OCT. 2026
@@ -2299,6 +2300,9 @@
             >
           </div>
         </div>
+        
+        <!-- Synthèse commune : contexte, période, équipe, rôle, technologies et résultat. -->
+        <section class="project-summary" id="project-summary" aria-labelledby="project-summary-title"><h2 id="project-summary-title" data-i18n="brief.title">Le projet en bref</h2><dl><div><dt data-i18n="brief.label.context">Contexte</dt><dd data-i18n="brief.value.context">BDS Phelma : suivre les passages, les classements et les écrans d’une Backyard Ultra.</dd></div><div><dt data-i18n="brief.label.period">Durée / période</dt><dd data-i18n="brief.value.period">Septembre–octobre 2026</dd></div><div><dt data-i18n="brief.label.team">Équipe</dt><dd data-i18n="brief.value.team">Développement : Aurélien Capron. Organisation avec Amaury Simonnot et Damien Bouichou.</dd></div><div><dt data-i18n="brief.label.role">Mon rôle</dt><dd data-i18n="brief.value.role">Conception et développement du système, installation puis pointage pendant l’événement.</dd></div><div><dt data-i18n="brief.label.tech">Technologies</dt><dd data-i18n="brief.value.tech">Python · Flask · API REST · CSV · export Excel</dd></div><div class="summary-result"><dt data-i18n="brief.label.result">Résultat</dt><dd data-i18n="brief.value.result">Utilisé pendant la course : pointage multi-postes et export de résultats regroupant 94 coureurs classés.</dd></div></dl></section>
         <figure class="story-figure hero-photo">
           <button type="button" class="image-open" aria-haspopup="dialog">
             <img
@@ -2815,6 +2819,22 @@
             'The export contains 94 ranked runners and up to 18 recorded laps. The BDS page presents the organisation, partners and my involvement in the event.',
           'enh.event.link': 'See the event recap and organisation',
         });
+        /* Synthèse des projets : traductions. */
+        Object.assign(EN, {
+  "brief.title": "Project at a glance",
+  "brief.label.context": "Context",
+  "brief.value.context": "Phelma Sports Office: tracking finishes, rankings and displays during a Backyard Ultra.",
+  "brief.label.period": "Timeframe",
+  "brief.value.period": "September–October 2026",
+  "brief.label.team": "Team",
+  "brief.value.team": "Development: Aurélien Capron. Event organisation with Amaury Simonnot and Damien Bouichou.",
+  "brief.label.role": "My role",
+  "brief.value.role": "System design and development, setup and timing operations during the event.",
+  "brief.label.tech": "Technologies",
+  "brief.value.tech": "Python · Flask · REST API · CSV · Excel export",
+  "brief.label.result": "Outcome",
+  "brief.value.result": "Used during the race: multi-desk timing and a results export containing 94 ranked runners."
+});
         const DICT = { fr: FR, en: EN };
         let lang = 'fr';
 
