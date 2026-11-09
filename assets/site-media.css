@@ -1,22 +1,42 @@
-/* Shared image loading treatment and reading progress bar. */
+/**
+ * @file site-media.css
+ * @author Aurélien Capron
+ * @description Styles partagés : progression, chargement des images et navigation des loisirs.
+ * @created 2026-11-09 — version documentée.
+ */
+/* Progression de lecture commune à toutes les pages. */
 #progress {
   height: 3px !important;
-  background-image: linear-gradient(90deg, rgb(var(--accent-rgb) / .55), rgb(var(--accent-rgb))) !important;
-  box-shadow: 0 0 10px rgb(var(--accent-rgb) / .55);
+  background-image: linear-gradient(
+    90deg,
+    rgb(var(--accent-rgb) / 0.55),
+    rgb(var(--accent-rgb))
+  ) !important;
+  box-shadow: 0 0 10px rgb(var(--accent-rgb) / 0.55);
 }
-.site-media-frame[data-media-state="loading"] {
+/* Attente, apparition et préférences de mouvement des images. */
+.site-media-frame[data-media-state='loading'] {
   position: relative;
   isolation: isolate;
-  background: linear-gradient(135deg, var(--placeholder-from, #eef2f6), var(--placeholder-to, #e2e8f0));
+  background: linear-gradient(
+    135deg,
+    var(--placeholder-from, #eef2f6),
+    var(--placeholder-to, #e2e8f0)
+  );
 }
-.site-media-frame[data-media-state="loading"]::after {
-  content: "";
+.site-media-frame[data-media-state='loading']::after {
+  content: '';
   position: absolute;
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
   z-index: 2;
-  background: linear-gradient(105deg, transparent 25%, rgb(128 142 160 / .12) 48%, transparent 70%);
+  background: linear-gradient(
+    105deg,
+    transparent 25%,
+    rgb(128 142 160 / 0.12) 48%,
+    transparent 70%
+  );
   background-size: 230% 100%;
   animation: site-image-wait 1.65s ease-in-out infinite;
 }
@@ -24,21 +44,85 @@ img.site-image-loading {
   color: transparent;
   background: var(--chip-bg, #e8ecf1);
 }
-.site-media-frame[data-media-state="loading"] > img.site-image-loading {
+.site-media-frame[data-media-state='loading'] > img.site-image-loading {
   opacity: 0;
 }
 img.site-image-reveal {
-  animation: site-image-in .38s ease-out both;
+  animation: site-image-in 0.38s ease-out both;
 }
 @keyframes site-image-wait {
-  from { background-position: 140% 0; }
-  to { background-position: -140% 0; }
+  from {
+    background-position: 140% 0;
+  }
+  to {
+    background-position: -140% 0;
+  }
 }
 @keyframes site-image-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
-  .site-media-frame[data-media-state="loading"]::after,
-  img.site-image-reveal { animation: none; }
+  .site-media-frame[data-media-state='loading']::after,
+  img.site-image-reveal {
+    animation: none;
+  }
+}
+
+/* Navigation circulaire des loisirs : précédent, liste, suivant. */
+.interest-navigation {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 18px;
+  border-top: 1px solid var(--border);
+  padding-top: 28px;
+  margin-top: 48px;
+}
+.interest-navigation a {
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+}
+.interest-navigation a:hover {
+  border-color: var(--accent-soft);
+}
+.interest-navigation small {
+  font:
+    10px 'JetBrains Mono',
+    monospace;
+  color: var(--text-muted);
+}
+.interest-navigation strong {
+  font-size: 14px;
+  color: var(--text-strong);
+}
+.interest-navigation .all-interests {
+  color: var(--accent-soft);
+  font-size: 13px;
+  text-align: center;
+}
+.interest-navigation .next-interest {
+  text-align: right;
+}
+@media (max-width: 760px) {
+  .interest-navigation {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .interest-navigation a,
+  .interest-navigation .next-interest {
+    text-align: left;
+  }
+  .interest-navigation .all-interests {
+    order: 3;
+  }
 }
