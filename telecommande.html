@@ -2333,88 +2333,6 @@
         padding: 16px 24px 22px;
       }
     </style>
-    <style id="project-navigation-style">
-      /**
- * Styles de présentation de la page.
- */
-
-      .project-navigation {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-        gap: 20px;
-        align-items: stretch;
-        margin-top: 48px;
-        padding-top: 28px;
-        border-top: 1px solid var(--border);
-      }
-      .project-navigation a {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 8px;
-        padding: 16px;
-        border: 1px solid var(--border);
-        border-radius: 6px;
-        color: var(--text-strong);
-        text-decoration: none;
-        min-width: 0;
-        line-height: 1.5;
-      }
-      .project-navigation a:hover {
-        border-color: var(--accent-soft);
-        background: var(--chip-bg);
-      }
-      .project-navigation a:focus-visible {
-        outline: 2px solid var(--accent-soft);
-        outline-offset: 4px;
-      }
-      .project-navigation small {
-        font:
-          11px 'JetBrains Mono',
-          monospace;
-        color: var(--text-muted);
-      }
-      .project-navigation strong {
-        font-size: 14px;
-        font-weight: 600;
-        overflow-wrap: anywhere;
-      }
-      .project-navigation .project-next {
-        text-align: right;
-      }
-      .project-navigation .project-all {
-        text-align: center;
-        color: var(--accent-soft);
-        font-size: 13px;
-        grid-column: 2;
-        grid-row: 1;
-      }
-      .project-navigation .project-previous {
-        grid-column: 1;
-        grid-row: 1;
-      }
-      .project-navigation .project-next {
-        grid-column: 3;
-        grid-row: 1;
-      }
-      @media (max-width: 640px) {
-        .project-navigation {
-          grid-template-columns: 1fr;
-          gap: 10px;
-        }
-        .project-navigation .project-previous,
-        .project-navigation .project-all,
-        .project-navigation .project-next {
-          grid-column: 1;
-          grid-row: auto;
-          text-align: left;
-        }
-        .project-navigation .project-all {
-          order: 3;
-          text-align: center;
-        }
-      }
-    </style>
 
     <link rel="stylesheet" href="assets/site-media.css" />
     <script src="assets/site-media.js"></script>
@@ -3171,17 +3089,17 @@
           >
         </div>
       </section>
-      <!-- Navigation entre les pages du portfolio. -->
+          <!-- Navigation entre les pages du portfolio. -->
       <nav class="project-navigation" aria-label="Navigation entre les projets">
-        <a class="project-next" href="amplificateur.html"
-          ><small data-i18n="journey.next">Projet suivant →</small
-          ><strong data-i18n="journey.next.title">Amplificateur audio</strong></a
-        ><a class="project-all" href="index.html#projets" data-i18n="journey.all"
-          >Tous les projets</a
-        ><a class="project-previous" href="backyard.html"
-          ><small data-i18n="journey.prev">← Projet précédent</small
-          ><strong data-i18n="journey.prev.title">Chronométrage Backyard Ultra</strong></a
-        >
+        <a class="project-previous" href="backyard.html">
+          <small data-i18n="journey.prev">← Projet précédent</small>
+          <strong data-i18n="journey.prev.title">Chronométrage Backyard Ultra</strong>
+        </a>
+        <a class="project-all" href="index.html#projets" data-i18n="journey.all">Tous les projets</a>
+        <a class="project-next" href="amplificateur.html">
+          <small data-i18n="journey.next">Projet suivant →</small>
+          <strong data-i18n="journey.next.title">Amplificateur audio</strong>
+        </a>
       </nav>
     </main>
 
@@ -3597,15 +3515,14 @@
           'footer.built': 'Built with HTML & CSS',
         };
 
+        Object.assign(FR, { 'journey.nav': 'Navigation entre les projets' });
         Object.assign(EN, {
-          'journey.nav': 'Project navigation',
-          'journey.all': 'All projects',
-          'journey.next': 'Next project →',
-          'journey.next.title': 'Audio amplifier',
-        });
-        Object.assign(EN, {
-          'journey.prev': '← Previous project',
-          'journey.prev.title': 'Backyard Ultra race timing',
+          "journey.nav": "Project navigation",
+          "journey.all": "All projects",
+          "journey.prev": "← Previous project",
+          "journey.prev.title": "Backyard Ultra timing",
+          "journey.next": "Next project →",
+          "journey.next.title": "Audio amplifier"
         });
         const DICT = { fr: FR, en: EN };
         let lang = 'fr';

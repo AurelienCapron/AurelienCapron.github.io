@@ -126,3 +126,57 @@ img.site-image-reveal {
     order: 3;
   }
 }
+
+/* Navigation circulaire des projets : précédent, liste, suivant. */
+.project-navigation {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 20px;
+  align-items: stretch;
+  margin-top: 48px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+}
+.project-navigation a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text-strong);
+  text-decoration: none;
+  min-width: 0;
+  line-height: 1.5;
+}
+.project-navigation a:hover {
+  border-color: var(--accent-soft);
+  background: var(--chip-bg);
+}
+.project-navigation a:focus-visible {
+  outline: 2px solid var(--accent-soft);
+  outline-offset: 4px;
+}
+.project-navigation small {
+  font: 11px 'JetBrains Mono', monospace;
+  color: var(--text-muted);
+}
+.project-navigation strong {
+  font-size: 14px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.project-navigation .project-next { text-align: right; }
+.project-navigation .project-all {
+  text-align: center;
+  color: var(--accent-soft);
+  font-size: 13px;
+}
+@media (max-width: 640px) {
+  .project-navigation { grid-template-columns: 1fr; gap: 10px; }
+  .project-navigation .project-previous,
+  .project-navigation .project-next { text-align: left; }
+  .project-navigation .project-all { order: 3; }
+}
+/* Fin de la navigation circulaire des projets. */
