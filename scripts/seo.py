@@ -258,6 +258,8 @@ def clean_managed(source):
     def preserve_meta(match):
         return '\n' + '\n'.join(re.findall(r'<meta\b[^>]*(?:name="description"|property="og:image")[^>]*>', match[0])) + '\n'
     source = re.sub(r'\s*<!-- seo:head:start -->[\s\S]*?<!-- seo:head:end -->', preserve_meta, source)
+    # Le lien du plan du site inséré dans la ligne des mentions est retiré tel quel.
+    source = re.sub(r'<!-- seo:footer-link:start -->[\s\S]*?<!-- seo:footer-link:end -->', '', source)
     for name in ('breadcrumb', 'footer'):
         source = re.sub(r'\s*<!-- seo:' + name + r':start -->[\s\S]*?<!-- seo:' + name + r':end -->\s*', '\n', source)
     source = re.sub(r'\s*/\* seo:translations:start \*/[\s\S]*?/\* seo:translations:end \*/\s*', '\n', source)
@@ -394,6 +396,30 @@ def language_links(source, slug, language):
     return re.sub(r'<script(?:\s[^>]*)?>[\s\S]*?</script>', scripts, source)
 
 
+def footer_site_map(source, language):
+    """Place le plan du site dans la ligne des mentions, sinon dans un paragraphe dédié."""
+    plan = '/en/plan-du-site.html' if language == 'en' else '/plan-du-site.html'
+    label = 'Site map' if language == 'en' else 'Plan du site'
+    doc = Document(source)
+    for footer in doc.find('footer'):
+        if footer['end'] is None:
+            continue
+        for legal in doc.find('a'):
+            href = legal['attrs'].get('href') or ''
+            if (footer['start'] < legal['start'] and legal['end'] is not None
+                    and legal['end'] <= footer['end']
+                    and href.split('#')[0].endswith('mentions-legales.html')):
+                classes = legal['attrs'].get('class')
+                attribute = ' class="' + escape(classes) + '"' if classes else ''
+                link = ('<!-- seo:footer-link:start --> · <a href="' + plan + '"' + attribute + '>' + label
+                        + '</a><!-- seo:footer-link:end -->')
+                return source[:legal['end']] + link + source[legal['end']:]
+    block = ('\n<!-- seo:footer:start -->\n<p class="seo-footer"><a href="' + plan + '">' + label
+             + '</a></p>\n<!-- seo:footer:end -->\n')
+    return re.sub(r'\s*</footer>', lambda _: block + '</footer>', source, count=1)
+
+
+
 def enhance_page(source, slug, language, data, image):
     source = fix_resource_paths(source, language)
     source = page_head(source, data, language, image)
@@ -405,9 +431,7 @@ def enhance_page(source, slug, language, data, image):
         label = ('Fil d’Ariane', 'Breadcrumb')[language == 'en']
         crumb = '\n<!-- seo:breadcrumb:start -->\n<nav class="seo-breadcrumb" aria-label="' + label + '"><ol><li><a href="' + home + '">' + LABELS['index'][language == 'en'] + '</a></li><li><a href="' + home + anchor + '">' + category[language == 'en'] + '</a></li><li aria-current="page">' + LABELS[slug][language == 'en'] + '</li></ol></nav>\n<!-- seo:breadcrumb:end -->\n'
         source = re.sub(r'(<main\b[^>]*>)\s*', lambda m: m[1] + crumb + '      ', source, count=1)
-    plan = '/en/plan-du-site.html' if language == 'en' else '/plan-du-site.html'
-    footer = '\n<!-- seo:footer:start -->\n<p class="seo-footer"><a href="' + plan + '">' + ('Site map' if language == 'en' else 'Plan du site') + '</a></p>\n<!-- seo:footer:end -->\n'
-    source = re.sub(r'\s*</footer>', lambda _: footer + '</footer>', source, count=1)
+    source = footer_site_map(source, language)
     # L’image de tête est prioritaire ; les images de détail restent différées.
     doc = Document(source)
     main = doc.find('main')[0]
