@@ -2,7 +2,8 @@
 <!--
  @file mentions-legales.html
  @author Aurélien Capron
- @description Présenter les informations relatives à l’éditeur, à l’hébergement, aux droits et aux données personnelles.
+ @description Identifier l’éditeur et l’hébergeur ; informer sur les droits, les données personnelles, le stockage local et les services externes.
+ @created 2026-11-06
  @documented 2026-11-09
  @updated 2026-11-09
 -->
@@ -12,7 +13,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mentions légales — Aurélien CAPRON</title>
-  <meta name="description" content="Mentions légales du portfolio d'Aurélien Capron.">
+  <meta name="description" content="Mentions légales et confidentialité du portfolio personnel non professionnel d'Aurélien Capron.">
   <meta name="theme-color" content="#f6f7f9">
   <meta name="color-scheme" content="light">
   <link rel="canonical" href="https://aureliencapron.github.io/mentions-legales.html">
@@ -47,19 +48,7 @@
     }
   </style>
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: { extend: {
-        fontFamily: {
-          sans: ['Inter', 'Inter Fallback', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-          display: ['Barlow Semi Condensed', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-          mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'monospace']
-        },
-        colors: { accent: { DEFAULT: 'rgb(var(--accent-rgb) / <alpha-value>)', soft: 'var(--accent-soft)' } }
-      } }
-    }
-  </script>
+
 
   <style>
     /* Palette et variables de présentation des thèmes. */
@@ -89,6 +78,41 @@
     .lang-btn[aria-pressed="true"] { background: var(--chip-bg-active); color: var(--text-strong); }
     .legal a:not(.plain) { color: var(--accent-soft); text-decoration: underline; text-underline-offset: 3px; }
     .legal a:not(.plain):hover { text-decoration-thickness: 2px; }
+
+    /* Mise en page autonome, commune aux versions française et anglaise. */
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.7 'Inter', 'Inter Fallback', system-ui, sans-serif; }
+    a { color: inherit; overflow-wrap: anywhere; }
+    button { font: inherit; cursor: pointer; }
+    header { position: sticky; top: 0; z-index: 50; background: var(--header-bg); border-bottom: 1px solid var(--border); backdrop-filter: blur(12px); }
+    header nav { max-width: 800px; margin: auto; min-height: 64px; padding: 10px 24px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    header nav > a { display: flex; gap: 8px; text-decoration: none; font-size: 14px; }
+    header nav > div { display: flex; align-items: center; gap: 12px; }
+    [role="group"] { display: flex; border: 1px solid var(--border); border-radius: 8px; padding: 2px; }
+    .lang-btn { border: 0; background: transparent; font: 12px 'JetBrains Mono', monospace; min-height: 30px; }
+    #theme-toggle { width: 36px; height: 36px; padding: 8px; display: grid; place-items: center; color: var(--text-muted); background: transparent; border: 1px solid var(--border); border-radius: 8px; }
+    #theme-toggle svg { width: 16px; height: 16px; }
+    #main { max-width: 800px; margin: auto; padding: 72px 24px; outline: none; }
+    #main > p:first-child { font-size: 12px; text-transform: uppercase; font-weight: 600; letter-spacing: .12em; color: var(--text-muted); }
+    h1 { margin: 8px 0 12px; color: var(--text-strong); font: 700 48px/1.1 'Barlow Semi Condensed', 'Inter', sans-serif; letter-spacing: -.02em; }
+    [data-i18n="updated"] { color: var(--text-faint); font: 12px/1.6 'JetBrains Mono', monospace; }
+    .legal > div { margin-top: 48px; }
+    .legal section + section { margin-top: 40px; }
+    .legal h2 { font-size: 21px; line-height: 1.35; color: var(--text-strong); margin: 0 0 12px; }
+    .legal h3 { font-size: 17px; color: var(--text-strong); margin: 24px 0 8px; }
+    .legal p { margin: 12px 0 0; }
+    .legal strong { color: var(--text-soft); }
+    .legal ul { padding-left: 24px; }
+    .legal li + li { margin-top: 8px; }
+    .privacy { padding-top: 32px; border-top: 1px solid var(--border); }
+    .legal .no-print { margin-top: 56px; }
+    .legal .plain { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; text-decoration: none; font-size: 14px; font-weight: 600; color: var(--text-soft); }
+    footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; color: var(--text-faint); font: 12px/1.6 'JetBrains Mono', monospace; }
+    body > a[href="#main"] { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+    body > a[href="#main"]:focus { position: fixed; top: 8px; left: 8px; z-index: 60; width: auto; height: auto; clip-path: none; padding: 8px 16px; background: var(--bg); }
+    @media (max-width: 480px) { #main { padding: 44px 20px; } h1 { font-size: 40px; } header nav { padding: 10px 16px; } header nav > div { gap: 8px; } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
     @media print {
       header, .no-print { display: none !important; }
       :root[data-theme] { --bg:#fff; --surface:#fff; --text:#1f2937; --text-strong:#000; --text-soft:#111827; --text-muted:#374151; --text-faint:#4b5563; --border:#d1d5db; --accent-soft:#9a3f10; }
@@ -127,42 +151,51 @@
   <main id="main" tabindex="-1" class="legal mx-auto max-w-3xl px-6 py-16 outline-none sm:py-20">
     <p class="text-xs font-semibold uppercase tracking-widest text-[var(--text-muted)]" data-i18n="eyebrow">Informations légales</p>
     <h1 class="mt-2 font-display text-4xl font-bold tracking-tight text-[var(--text-strong)] sm:text-5xl" data-i18n="title">Mentions légales</h1>
-    <p class="mt-3 font-mono text-xs text-[var(--text-faint)]" data-i18n="updated">Dernière mise à jour : 5 novembre 2026</p>
+    <p class="mt-3 font-mono text-xs text-[var(--text-faint)]" data-i18n="updated">Dernière mise à jour : 9 novembre 2026</p>
 
-    <div class="mt-12 space-y-10">
+    <div>
 
       <section>
-        <h2 class="text-xl font-semibold text-[var(--text-strong)]" data-i18n="s1.t">Éditeur du site</h2>
-        
-        <p class="mt-3 leading-relaxed" data-i18n="s1.p">Ce site est édité à titre personnel par <strong class="text-[var(--text-soft)]">Aurélien Capron</strong>, qui en est également le directeur de la publication.<br>Contact : <a href="mailto:aurelien-capron@outlook.fr">aurelien-capron@outlook.fr</a></p>
+        <h2 data-i18n="s1.t">Éditeur et objet du site</h2>
+        <p data-i18n="s1.p">Ce site est un <strong>portfolio personnel non professionnel</strong>, édité par <strong>Aurélien Capron</strong>, également directeur de la publication. Il présente son parcours, ses projets techniques, ses expériences et ses engagements associatifs. Il ne propose à la vente aucun produit ni aucune prestation et ne comporte aucun paiement en ligne.<br>Contact : <a href="mailto:aurelien-capron@outlook.fr">aurelien-capron@outlook.fr</a></p>
+        <p data-i18n="s1.status">L’<a href="https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000049568614" target="_blank" rel="noopener noreferrer">article 1-1, II, de la loi pour la confiance dans l’économie numérique</a> prévoit un régime d’identification allégé pour les éditeurs non professionnels qui souhaitent préserver leur anonymat, sous réserve d’avoir communiqué à leur hébergeur les éléments d’identification personnelle requis. Le domicile et le numéro de téléphone personnels de l’éditeur ne sont pas publiés sur cette page. Les coordonnées de l’hébergeur figurent ci-dessous. En cas d’évolution vers une activité de vente de produits ou de prestations, les mentions devront être adaptées au statut et à l’activité concernés.</p>
       </section>
 
       <section>
-        <h2 class="text-xl font-semibold text-[var(--text-strong)]" data-i18n="s2.t">Hébergeur</h2>
-        
-        <p class="mt-3 leading-relaxed" data-i18n="s2.p">Le site est hébergé par <strong class="text-[var(--text-soft)]">GitHub, Inc.</strong> (service GitHub Pages), 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis. Site web : <a href="https://github.com" target="_blank" rel="noopener noreferrer">github.com</a></p>
+        <h2 data-i18n="s2.t">Hébergement</h2>
+        <p data-i18n="s2.p"><strong>GitHub, Inc.</strong> — service GitHub Pages.<br>88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.<br>Téléphone du contact technique GitHub Ops : <a href="tel:+14157354488">+1 415 735 4488</a>.<br>Assistance : <a href="https://support.github.com/" target="_blank" rel="noopener noreferrer">support.github.com</a>.</p>
       </section>
 
       <section>
-        <h2 class="text-xl font-semibold text-[var(--text-strong)]" data-i18n="s3.t">Propriété intellectuelle</h2>
-        <p class="mt-3 leading-relaxed" data-i18n="s3.p">Sauf mention contraire, les textes, images, photographies, visuels et le code de ce site sont la propriété d'Aurélien Capron. Toute reproduction ou réutilisation sans autorisation préalable est interdite, à l'exception des courtes citations accompagnées de la source. Pour toute demande concernant une photographie (droit à l'image, retrait), écrivez à l'adresse de contact ci-dessus : elle sera traitée rapidement.</p>
+        <h2 data-i18n="s3.t">Droits sur les contenus et crédits</h2>
+        <p data-i18n="s3.p">Les créations originales d’Aurélien Capron restent protégées par le droit d’auteur. Les photographies, vidéos, extraits de presse, affiches, logos, marques et autres œuvres provenant de tiers appartiennent à leurs titulaires respectifs ; leur présence ici ne transfère aucun droit. Les sources et crédits indiqués à proximité des contenus doivent être conservés lors de toute réutilisation autorisée. Les projets collectifs peuvent comporter des contributions de plusieurs auteurs.<br>Le code, les bibliothèques et les polices restent soumis aux licences qui les accompagnent, notamment dans les dépôts associés et les fichiers de licence. Toute réutilisation doit respecter ces licences, les autorisations des titulaires et les exceptions prévues par la loi. La citation d’une source ne constitue pas, à elle seule, une autorisation de reproduire un contenu.</p>
+      </section>
+
+      <!-- Information sur les données et les droits des visiteurs. -->
+      <section class="privacy" id="confidentialite" aria-labelledby="privacy-title">
+        <h2 id="privacy-title" data-i18n="s4.t">Données personnelles et confidentialité</h2>
+        <p data-i18n="s4.p">Aurélien Capron est le point de contact pour les traitements liés à ce portfolio : <a href="mailto:aurelien-capron@outlook.fr">aurelien-capron@outlook.fr</a>. Le site ne comporte ni formulaire de collecte ni compte utilisateur. Les données éventuellement communiquées par courriel ne sont pas pour autant exclues de la protection des données personnelles.</p>
+        <h3 data-i18n="privacy.mail.title">Échanges par courriel</h3>
+        <p data-i18n="privacy.mail">Un lien de contact ouvre votre messagerie. Si vous envoyez un message, votre adresse, votre identité éventuelle et son contenu servent à répondre à votre demande et à en assurer le suivi, sur la base de l’intérêt légitime à échanger avec les visiteurs et contacts professionnels. L’envoi est volontaire ; sans coordonnées de réponse, il peut être impossible de vous répondre. Ces informations sont destinées à Aurélien Capron et traitées par les prestataires de messagerie nécessaires à l’échange, dont Microsoft pour l’adresse Outlook. Elles sont conservées pendant la durée nécessaire au traitement et au suivi de la demande, puis supprimées, sauf conservation justifiée par une obligation légale ou la défense d’un droit. Elles ne sont pas utilisées pour un envoi publicitaire automatique.</p>
+        <h3 data-i18n="privacy.host.title">Données techniques et prestataires</h3>
+        <p data-i18n="privacy.host">GitHub indique enregistrer l’adresse IP des visiteurs de GitHub Pages à des fins de sécurité. Ses modalités de traitement, de conservation et de transfert international sont décrites dans la <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer">politique de confidentialité de GitHub</a>. Certaines pages de projets chargent le visualiseur 3D depuis jsDelivr lorsque vous demandez l’ouverture de la vue 3D : la requête transmet notamment votre adresse IP et les informations techniques nécessaires au chargement. Voir la <a href="https://www.jsdelivr.com/terms/privacy-policy" target="_blank" rel="noopener noreferrer">politique de confidentialité de jsDelivr</a>. Les prestataires d’hébergement, de diffusion technique et de messagerie peuvent traiter des données hors de l’Union européenne, selon les garanties et modalités précisées dans leurs politiques. Pour la messagerie : <a href="https://www.microsoft.com/fr-fr/privacy/privacystatement" target="_blank" rel="noopener noreferrer">déclaration de confidentialité de Microsoft</a>.</p>
+        <h3 data-i18n="privacy.rights.title">Exercer vos droits</h3>
+        <p data-i18n="privacy.rights">Selon le traitement et les conditions prévues par le RGPD, vous pouvez demander l’accès, la rectification, l’effacement ou la limitation de vos données, vous opposer à un traitement fondé sur l’intérêt légitime et, lorsque cela s’applique, demander leur portabilité ou retirer votre consentement. Contact : <a href="mailto:aurelien-capron@outlook.fr">aurelien-capron@outlook.fr</a>. Indiquez la demande et les éléments permettant de retrouver les données concernées, sans transmettre de document d’identité inutile. Une réponse est apportée dans les délais prévus par le RGPD, en principe un mois. Vous pouvez également adresser une réclamation à la <a href="https://www.cnil.fr/fr/adresser-une-plainte" target="_blank" rel="noopener noreferrer">CNIL</a>.</p>
       </section>
 
       <section>
-        <h2 class="text-xl font-semibold text-[var(--text-strong)]" data-i18n="s4.t">Données personnelles</h2>
-        <p class="mt-3 leading-relaxed" data-i18n="s4.p">Ce site ne comporte ni formulaire, ni compte utilisateur, ni cookie publicitaire ou de suivi. Votre choix de thème (clair ou sombre) et de langue est mémorisé uniquement dans votre navigateur et n'est jamais transmis. Comme tout hébergeur, GitHub peut enregistrer des données techniques de connexion (adresse IP, journaux) selon sa propre politique de confidentialité. Des ressources techniques (feuilles de style) peuvent être chargées depuis un service tiers. Pour toute question ou pour exercer vos droits sur vos données, contactez : <a href="mailto:aurelien-capron@outlook.fr">aurelien-capron@outlook.fr</a></p>
+        <h2 data-i18n="storage.title">Préférences locales et statistiques</h2>
+        <p data-i18n="storage.p">Le site mémorise les choix de langue et de thème dans le stockage local de votre navigateur (« localStorage », clés « lang » et « theme »), uniquement pour retrouver la présentation choisie. Le code du portfolio n’envoie pas ces valeurs à un serveur. Elles n’ont pas d’expiration programmée et restent disponibles jusqu’à leur modification ou leur suppression, notamment en effaçant les données du site dans les réglages du navigateur.<br>Aucun outil de mesure d’audience, pixel publicitaire ou suivi intersites n’est activé dans cette version. Aucun consentement publicitaire n’est donc sollicité par le portfolio. Les journaux techniques de l’hébergeur et les politiques des sites ouverts par un lien restent distincts de ces préférences locales.</p>
       </section>
-
-      <!-- Mesure d’audience désactivée.
-<section>
-        <h2 class="text-xl font-semibold text-[var(--text-strong)]" data-i18n="s5.t">Mesure d'audience</h2>
-        <p class="mt-3 leading-relaxed" data-i18n="s5.p">Ce site utilise GoatCounter, un outil de statistiques de fréquentation qui n'utilise aucun cookie et ne produit que des données agrégées et anonymes (pages vues, pays, type d'appareil, origine de la visite). Ces statistiques servent uniquement à l'éditeur du site pour comprendre comment il est consulté ; elles ne sont ni recoupées avec d'autres données ni cédées à des tiers. Vous pouvez vous y opposer en activant le signal « Do Not Track » de votre navigateur ou en écrivant à l'adresse de contact.</p>
-      </section>
--->
 
       <section>
-        <h2 class="text-xl font-semibold text-[var(--text-strong)]" data-i18n="s6.t">Liens externes</h2>
-        <p class="mt-3 leading-relaxed" data-i18n="s6.p">Ce site contient des liens vers des services tiers (LinkedIn, GitHub, Instagram). Leur contenu et leurs pratiques ne relèvent pas de la responsabilité de l'éditeur.</p>
+        <h2 data-i18n="s6.t">Liens externes et vidéos</h2>
+        <p data-i18n="s6.p">Le portfolio propose notamment des liens vers YouTube, Instagram, Facebook, LinkedIn, GitHub, Linktree, des médias, des établissements et des partenaires. Les vidéos publiées sur YouTube sont accessibles par des liens vers la plateforme ; aucun lecteur YouTube ou Instagram n’est intégré à cette version. Les vidéos lues directement dans le portfolio sont servies par son hébergement. L’ouverture d’un lien externe vous conduit vers un autre service, soumis à ses propres conditions et règles de confidentialité, par exemple la <a href="https://policies.google.com/privacy?hl=fr" target="_blank" rel="noopener noreferrer">politique Google applicable à YouTube</a>. Ces services peuvent utiliser leurs propres traceurs. Leur contenu peut évoluer ; la présence d’un lien ne vaut pas approbation de l’ensemble de leur contenu ni garantie de disponibilité.</p>
+      </section>
+
+      <section>
+        <h2 data-i18n="image.title">Photographies, signalement et droit de réponse</h2>
+        <p data-i18n="image.p">Les photographies et vidéos documentent les projets, événements et activités présentés. Leur diffusion doit respecter le droit d’auteur, le droit à l’image et la vie privée des personnes représentées, en particulier celles qui étaient mineures lors de la prise de vue. Pour signaler un crédit erroné, demander une correction, exercer un droit de réponse ou demander le retrait d’un contenu vous concernant, écrivez à <a href="mailto:aurelien-capron@outlook.fr">aurelien-capron@outlook.fr</a> en indiquant la page et le contenu concerné. Les demandes sont examinées au regard des droits applicables. Cette procédure ne remplace pas les autorisations nécessaires à la publication.</p>
       </section>
     </div>
 
@@ -211,27 +244,36 @@
     FR['meta.desc']  = $('meta[name="description"]').content;
 
     const EN = {
-      'meta.title': 'Legal notice — Aurélien CAPRON',
-      'meta.desc': 'Legal notice of Aurélien Capron\'s portfolio.',
-      'skip': 'Skip to content',
-      'back': 'Back to portfolio',
-      'aria.theme': 'Toggle light/dark theme',
-      'eyebrow': 'Legal information',
-      'title': 'Legal notice',
-      'updated': 'Last updated: November 5, 2026',
-      's1.t': 'Site publisher',
-      's1.p': 'This website is published on a personal basis by <strong class="text-[var(--text-soft)]">Aurélien Capron</strong>, who is also the publication director.<br>Contact: <a href="mailto:aurelien-capron@outlook.fr">aurelien-capron@outlook.fr</a>',
-      's2.t': 'Hosting provider',
-      's2.p': 'The site is hosted by <strong class="text-[var(--text-soft)]">GitHub, Inc.</strong> (GitHub Pages service), 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, United States. Website: <a href="https://github.com" target="_blank" rel="noopener noreferrer">github.com</a>',
-      's3.t': 'Intellectual property',
-      's3.p': 'Unless otherwise stated, the texts, images, photographs, visuals and code of this site are the property of Aurélien Capron. Any reproduction or reuse without prior permission is prohibited, except for short quotations with the source credited. For any request concerning a photograph (image rights, removal), please write to the contact address above: it will be handled promptly.',
-      's4.t': 'Personal data',
-      's4.p': 'This site has no form, no user account, and no advertising or tracking cookies. Your theme (light or dark) and language choices are stored only in your browser and are never transmitted. Like any hosting provider, GitHub may record technical connection data (IP address, logs) under its own privacy policy. Technical resources (style sheets) may be loaded from a third-party service. For any question or to exercise your rights over your data, contact: <a href="mailto:aurelien-capron@outlook.fr">aurelien-capron@outlook.fr</a>',
-      's5.t': 'Audience measurement',
-      's5.p': 'This site uses GoatCounter, a traffic statistics tool that uses no cookies and only produces aggregated, anonymous data (page views, country, device type, referrer). These statistics are used solely by the site publisher to understand how the site is visited; they are neither cross-referenced with other data nor shared with third parties. You can object by enabling the "Do Not Track" signal in your browser or by writing to the contact address.',
-      's6.t': 'External links',
-      's6.p': 'This site contains links to third-party services (LinkedIn, GitHub, Instagram). Their content and practices are not the responsibility of the publisher.'
-    };
+      "meta.title": "Legal notice — Aurélien CAPRON",
+      "meta.desc": "Legal notice and privacy information for Aurélien Capron’s personal, non-professional portfolio.",
+      "skip": "Skip to content",
+      "back": "Back to portfolio",
+      "aria.theme": "Toggle light/dark theme",
+      "eyebrow": "Legal information",
+      "title": "Legal notice",
+      "updated": "Last updated: November 9, 2026",
+      "s1.t": "Publisher and purpose",
+      "s1.p": "This is a <strong>personal, non-professional portfolio</strong>, published by <strong>Aurélien Capron</strong>, who is also the publication director. It presents his background, technical projects, experience and community involvement. It offers no products or services for sale and includes no online payments.<br>Contact: <a href=\"mailto:aurelien-capron@outlook.fr\">aurelien-capron@outlook.fr</a>",
+      "s2.t": "Hosting",
+      "s2.p": "<strong>GitHub, Inc.</strong> — GitHub Pages service.<br>88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, United States.<br>GitHub Ops technical contact telephone: <a href=\"tel:+14157354488\">+1 415 735 4488</a>.<br>Support: <a href=\"https://support.github.com/\" target=\"_blank\" rel=\"noopener noreferrer\">support.github.com</a>.",
+      "s3.t": "Content rights and credits",
+      "s3.p": "Original works by Aurélien Capron remain protected by copyright. Third-party photographs, videos, press excerpts, posters, logos, trademarks and other works belong to their respective rights holders; their inclusion here transfers no rights. Source references and credits displayed alongside content must be retained in any authorised reuse. Team projects may include contributions by several authors.<br>Code, libraries and fonts remain subject to their accompanying licences, including those in linked repositories and licence files. Reuse must comply with those licences, rights-holder permissions and statutory exceptions. Crediting a source does not by itself authorise reproduction.",
+      "s4.t": "Personal data and privacy",
+      "s4.p": "Aurélien Capron is the contact for processing connected with this portfolio: <a href=\"mailto:aurelien-capron@outlook.fr\">aurelien-capron@outlook.fr</a>. The site has no data-collection form or user accounts. Personal data sent by email is nevertheless subject to data-protection rules.",
+      "privacy.mail.title": "Email correspondence",
+      "privacy.mail": "A contact link opens your email application. If you send a message, your address, any identity details and its content are used to answer and follow up on your request, based on the legitimate interest in communicating with visitors and professional contacts. Sending is voluntary; without reply details, an answer may be impossible. This information is intended for Aurélien Capron and handled by the email providers needed for the exchange, including Microsoft for the Outlook address. It is retained as needed to handle and follow up on the request, then deleted unless retention is justified by a legal obligation or the defence of a legal claim. It is not used for automated advertising.",
+      "privacy.host.title": "Technical data and providers",
+      "privacy.host": "GitHub states that it logs GitHub Pages visitors’ IP addresses for security. Its processing, retention and international transfer arrangements are described in the <a href=\"https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub Privacy Statement</a>. Some project pages load a 3D viewer from jsDelivr when you request the 3D view: this request sends your IP address and technical information needed for delivery. See the <a href=\"https://www.jsdelivr.com/terms/privacy-policy\" target=\"_blank\" rel=\"noopener noreferrer\">jsDelivr Privacy Policy</a>. Hosting, technical delivery and email providers may process data outside the European Union, under the safeguards and arrangements described in their policies. For email, see the <a href=\"https://www.microsoft.com/en-us/privacy/privacystatement\" target=\"_blank\" rel=\"noopener noreferrer\">Microsoft Privacy Statement</a>.",
+      "privacy.rights.title": "Exercising your rights",
+      "privacy.rights": "Depending on the processing and the conditions set by the GDPR, you may request access, rectification, erasure or restriction, object to processing based on legitimate interests and, where applicable, request portability or withdraw consent. Contact: <a href=\"mailto:aurelien-capron@outlook.fr\">aurelien-capron@outlook.fr</a>. Describe your request and provide information to locate the relevant data, without sending unnecessary identity documents. A response is provided within GDPR deadlines, normally one month. You may also lodge a complaint with the <a href=\"https://www.cnil.fr/fr/adresser-une-plainte\" target=\"_blank\" rel=\"noopener noreferrer\">CNIL</a>.",
+      "storage.title": "Local preferences and statistics",
+      "storage.p": "The site remembers language and theme choices in your browser’s local storage (“localStorage”, keys “lang” and “theme”), solely to restore your chosen presentation. Portfolio code does not send these values to a server. They have no programmed expiry and remain until changed or deleted, including by clearing site data in your browser settings.<br>No audience measurement tool, advertising pixel or cross-site tracking is enabled in this version. The portfolio therefore does not request advertising consent. Hosting security logs and the policies of sites opened through links are separate from these local preferences.",
+      "s6.t": "External links and videos",
+      "s6.p": "The portfolio includes links to YouTube, Instagram, Facebook, LinkedIn, GitHub, Linktree, news outlets, educational institutions and partners. YouTube videos are accessed through links to that platform; no YouTube or Instagram player is embedded in this version. Videos played directly in the portfolio are served by its hosting provider. Following an external link takes you to another service with its own terms and privacy rules, such as the <a href=\"https://policies.google.com/privacy?hl=en\" target=\"_blank\" rel=\"noopener noreferrer\">Google policy applicable to YouTube</a>. These services may use their own trackers. Their content may change; a link does not imply endorsement of all their content or guarantee availability.",
+      "image.title": "Photographs, reports and right of reply",
+      "image.p": "Photographs and videos document the projects, events and activities presented. Their publication must respect copyright, image rights and the privacy of those shown, especially people who were minors when photographed. To report an incorrect credit, request a correction, exercise a right of reply or request removal of content concerning you, write to <a href=\"mailto:aurelien-capron@outlook.fr\">aurelien-capron@outlook.fr</a> and identify the page and content. Requests are reviewed under applicable rights. This procedure does not replace permissions required for publication.",
+      "s1.status": "<a href=\"https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000049568614\" target=\"_blank\" rel=\"noopener noreferrer\">Article 1-1, II of the French Digital Economy Act</a> provides simplified identification requirements for non-professional publishers wishing to preserve their anonymity, provided they have supplied the required personal identification details to their hosting provider. The publisher’s home address and personal telephone number are not published on this page. Hosting details appear below. If the site develops into an activity selling products or services, the notice must be adapted to the relevant status and activity."
+};
     const DICT = { fr: FR, en: EN };
 
     /**
