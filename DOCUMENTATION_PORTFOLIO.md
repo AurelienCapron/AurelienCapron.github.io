@@ -51,9 +51,9 @@ sections et les responsabilités des modules.
 
 ## Dates et vérification
 
-Les en-têtes identifient l’auteur, le rôle du fichier et la date de cette version
-documentée. Les dates initiales de création n’étant pas disponibles dans les sources
-transmises, elles ne sont pas reconstituées.
+Les en-têtes identifient l’auteur et le rôle du fichier. Par convention, `@created`
+reprend la date du premier ajout du fichier dans Git, en suivant ses renommages.
+La date de documentation des sources est conservée séparément dans `@documented`.
 
 La mise à jour a été contrôlée pour la syntaxe JavaScript, les traductions des
 loisirs, les liens précédent/suivant et la conservation des sources des médias.

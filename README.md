@@ -108,7 +108,7 @@ Les contenus et leurs traductions sont définis dans les pages HTML. Lors d’un
 
 Les styles étant précompilés, une nouvelle classe utilitaire doit disposer d’une règle dans le CSS livré : elle ne sera pas générée automatiquement au chargement de la page.
 
-Les en-têtes distinguent la documentation d’un fichier de son origine. La date de documentation n’est pas une date de création ; lorsque l’historique Git est disponible, il permet d’identifier la première version enregistrée dans le dépôt. La date de création réelle reste non renseignée si elle ne peut pas être vérifiée.
+Par convention pour ce portfolio, le champ `@created` reprend la date du premier commit d’ajout du fichier dans Git, considéré comme sa date de création. Les renommages sont suivis lors de cette recherche. Le champ `@documented` indique séparément la date de documentation des sources.
 
 Conserver la licence Tailwind avec les styles distribués. Les bibliothèques, marques, articles et visuels de tiers conservent leurs droits et attributions respectifs ; leur présence dans le portfolio ne leur attribue pas la licence du code du site.
 

@@ -1,19 +1,15 @@
 <!DOCTYPE html>
+<!--
+ @file 404.html
+ @author Aurélien Capron
+ @description Afficher une page de secours pour les URL introuvables et orienter vers l’accueil et les projets.
+ @created 2026-09-26
+ @documented 2026-11-09
+ @updated 2026-11-09
+-->
 <html lang="fr" data-theme="light">
 <head>
-<!--
-  ╔══════════════════════════════════════════════════════════════════════╗
-  ║  PAGE 404 — GitHub Pages affiche automatiquement ce fichier           ║
-  ║  quand une URL du site n'existe pas (page supprimée, lien cassé...). ║
-  ║  Aucune configuration nécessaire : il suffit qu'il soit à la racine  ║
-  ║  du dépôt, au même niveau que index.html.                            ║
-  ║                                                                      ║
-  ║  ⚠ Cette page peut s'afficher depuis n'importe quelle URL              ║
-  ║    (ex. /a/b/c) : tous les chemins ci-dessous sont donc ABSOLUS       ║
-  ║    (commencent par « / »). Si le site est publié dans un sous-dossier, ║
-  ║    ajoute ce sous-dossier devant chacun d'eux.                        ║
-  ╚══════════════════════════════════════════════════════════════════════╝
--->
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
@@ -24,7 +20,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 
-<!-- Thème : choix mémorisé > préférence du système > clair (même logique que la page d'accueil) -->
+<!-- Application du thème avant le premier affichage. -->
 <script>
   try {
     let t = null;
@@ -39,7 +35,7 @@
 </script>
 
 <style>
-  /* Polices hébergées sur le site (aucun service tiers) — chemins absolus */
+  /* Polices locales : chemins absolus pour les URL de secours imbriquées. */
   @font-face { font-family: 'Inter'; font-style: normal; font-weight: 400; font-display: swap; src: url('/assets/fonts/inter-400.woff2') format('woff2'); }
   @font-face { font-family: 'Inter'; font-style: normal; font-weight: 600; font-display: swap; src: url('/assets/fonts/inter-600.woff2') format('woff2'); }
   @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url('/assets/fonts/jetbrains-mono-400.woff2') format('woff2'); }
@@ -50,7 +46,7 @@
     size-adjust: 107.4%; ascent-override: 90.2%; descent-override: 22.5%; line-gap-override: 0%;
   }
 
-  /* Mêmes jetons de couleur que le portfolio */
+  /* Palette et variables de présentation des thèmes. */
   :root {
     color-scheme: dark;
     --bg: #0c0e11; --surface: rgba(22,27,34,.85); --border: rgba(255,255,255,.11); --chip-bg: rgba(255,255,255,.06);
@@ -75,7 +71,7 @@
     background: var(--bg); color: var(--text);
     font-family: 'Inter', 'Inter Fallback', ui-sans-serif, system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
-    /* halo cuivre discret en haut de page */
+    /* Décor de fond. */
     background-image: radial-gradient(ellipse 60% 45% at 50% 0%, rgb(var(--accent-rgb) / .10), transparent 70%);
     background-repeat: no-repeat;
   }
@@ -111,7 +107,7 @@
   }
   .lead { margin: 1rem auto 0; max-width: 30rem; line-height: 1.65; color: var(--text-muted); text-wrap: pretty; }
 
-  /* « Terminal » : même univers que le message caché en bas de la page d'accueil */
+  /* Présentation du chemin introuvable sous forme de terminal. */
   .term {
     margin: 2rem auto 0; max-width: 30rem; text-align: left;
     background: var(--surface); border: 1px solid var(--border); border-radius: .75rem;
@@ -146,12 +142,14 @@
 </head>
 
 <body>
+  <!-- Navigation principale. -->
   <header>
     <a class="brand" href="/" aria-label="Aurélien Capron — accueil" data-i18n-aria="brand.aria">
       <span class="mark" aria-hidden="true">AC</span><span>Aurélien Capron</span>
     </a>
   </header>
 
+  <!-- Contenu principal. -->
   <main>
     <div class="wrap">
       <p class="eyebrow" data-i18n="eyebrow">Erreur 404</p>
@@ -172,16 +170,17 @@
   </main>
 
   <script>
+  /** Résolution du chemin demandé et adaptation des textes à la langue du visiteur. */
   (() => {
     const $$ = (s) => [...document.querySelectorAll(s)];
 
-    /* Chemin demandé (affiché en texte brut, tronqué s'il est très long) */
+    /* Le chemin reste du texte ; sa longueur est limitée pour préserver la mise en page. */
     let p = '/';
     try { p = decodeURIComponent(location.pathname); } catch (e) { p = location.pathname; }
     if (p.length > 48) p = p.slice(0, 47) + '…';
     document.getElementById('path').textContent = p;
 
-    /* Langue : choix mémorisé (même clé « lang » que le portfolio) > langue du navigateur */
+    /* Choix de langue : préférence mémorisée, puis langue du navigateur. */
     const FR = {};
     $$('[data-i18n]').forEach(el => { FR[el.dataset.i18n] = el.textContent; });
     FR['brand.aria'] = 'Aurélien Capron — accueil';
