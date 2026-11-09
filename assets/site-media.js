@@ -2,7 +2,9 @@
  * @file site-media.js
  * @author Aurélien Capron
  * @description Suit le chargement des images, leurs erreurs et les changements de source.
- * @created 2026-11-09 — version documentée.
+ * @created Non renseignée — date d’origine non vérifiée.
+ * @since 2026-11-09 — premier ajout retrouvé dans Git.
+ * @documented 2026-11-09 — nettoyage et documentation des sources.
  */
 (() => {
   'use strict';
