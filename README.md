@@ -88,6 +88,14 @@ Les styles utilitaires issus de Tailwind CSS sont **précompilés et intégrés 
 | `assets/site-experience.js` | Preuves de compétences, suivi du sommaire et contact contextualisé. |
 | `assets/licenses/tailwindcss.txt` | Licence des styles utilitaires Tailwind CSS. |
 | `assets/CV_Aurelien_Capron.pdf`, `assets/CV_Aurelien_Capron_EN.pdf` | CV proposés sur le site. |
+| `en/` | Versions anglaises générées à partir des pages françaises et de leurs dictionnaires. |
+| `scripts/seo.py` | Génération des pages anglaises, des métadonnées et des fichiers de référencement. |
+| `scripts/verifier_seo.py` | Contrôle manuel de la cohérence des pages et des liens internes. |
+| `sitemap.xml`, `robots.txt` | Plan d’exploration et consignes destinées aux robots. |
+| `plan-du-site.html` | Index des pages proposé aux visiteurs. |
+| `portfolio.json`, `llms.txt` | Résumé structuré et index textuel complémentaire du portfolio. |
+| `assets/site-seo.css`, `assets/site-seo.js`, `assets/seo/` | Navigation éditoriale, compatibilité des anciennes URL de langue et images de partage. |
+| `SEO_ET_IA.md` | Guide de maintenance du référencement, à consulter dans le dépôt. |
 
 Les icônes du site, l’image de partage et la photo de présentation restent des ressources communes. Les médias propres à une activité sont rangés dans son sous-dossier.
 
@@ -127,4 +135,8 @@ python3 scripts/seo.py .
 python3 scripts/verifier_seo.py .
 ```
 
-Le contrôle GitHub Actions vérifie la synchronisation après les modifications. Voir [SEO_ET_IA.md](SEO_ET_IA.md) pour l’architecture, les limites et les démarches à effectuer dans Search Console et Bing Webmaster Tools. Les fichiers techniques ne garantissent ni classement, ni indexation, ni citation par une IA.
+Après une modification, ces commandes régénèrent les fichiers dérivés et vérifient leur cohérence. Le contrôle se lance manuellement ; aucun workflow GitHub Actions n’est installé.
+
+[SEO_ET_IA.md](SEO_ET_IA.md) est le **guide technique de maintenance** : il explique les fichiers générés, les commandes à relancer et les démarches dans Search Console et Bing Webmaster Tools. Il est destiné à la personne qui entretient le dépôt. Les pages du portfolio ne le chargent pas et il n’est pas nécessaire à leur affichage. Sa présence n’est pas une consigne d’exploration pour les moteurs ou les assistants.
+
+Les fichiers techniques ne garantissent ni classement, ni indexation, ni citation par une IA.
