@@ -95,7 +95,7 @@ Les styles utilitaires issus de Tailwind CSS sont **précompilés et intégrés 
 | `plan-du-site.html` | Index des pages proposé aux visiteurs. |
 | `portfolio.json`, `llms.txt` | Résumé structuré et index textuel complémentaire du portfolio. |
 | `assets/site-seo.css`, `assets/site-seo.js`, `assets/seo/` | Navigation éditoriale, compatibilité des anciennes URL de langue et images de partage. |
-| `SEO_ET_IA.md` | Guide de maintenance du référencement, à consulter dans le dépôt. |
+| `docs/SEO_ET_IA.md` | Guide de maintenance du référencement, à consulter dans le dépôt. |
 
 Les icônes du site, l’image de partage et la photo de présentation restent des ressources communes. Les médias propres à une activité sont rangés dans son sous-dossier.
 
@@ -137,6 +137,6 @@ python3 scripts/verifier_seo.py .
 
 Après une modification, ces commandes régénèrent les fichiers dérivés et vérifient leur cohérence. Le contrôle se lance manuellement ; aucun workflow GitHub Actions n’est installé.
 
-[SEO_ET_IA.md](SEO_ET_IA.md) est le **guide technique de maintenance** : il explique les fichiers générés, les commandes à relancer et les démarches dans Search Console et Bing Webmaster Tools. Il est destiné à la personne qui entretient le dépôt. Les pages du portfolio ne le chargent pas et il n’est pas nécessaire à leur affichage. Sa présence n’est pas une consigne d’exploration pour les moteurs ou les assistants.
+[assets/docs/SEO_ET_IA.md](assets/docs/SEO_ET_IA.md) est le **guide technique de maintenance** : il explique les fichiers générés, les commandes à relancer et les démarches dans Search Console et Bing Webmaster Tools. Il est destiné à la personne qui entretient le dépôt. Les pages du portfolio ne le chargent pas et il n’est pas nécessaire à leur affichage. Sa présence n’est pas une consigne d’exploration pour les moteurs ou les assistants.
 
 Les fichiers techniques ne garantissent ni classement, ni indexation, ni citation par une IA.
