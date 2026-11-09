@@ -1,0 +1,106 @@
+{
+  "name": "Aurélien Capron",
+  "role": "Élève-ingénieur en Systèmes Électroniques Intégrés",
+  "school": "Grenoble INP – Phelma",
+  "url": "https://aureliencapron.github.io/",
+  "source": "https://aureliencapron.github.io/",
+  "languages": {
+    "fr": "https://aureliencapron.github.io/",
+    "en": "https://aureliencapron.github.io/en/"
+  },
+  "projects": [
+    {
+      "name": "Télécommande autonome",
+      "url": "https://aureliencapron.github.io/telecommande.html",
+      "english_url": "https://aureliencapron.github.io/en/telecommande.html",
+      "context": "Projet industriel à Phelma : éteindre automatiquement des vidéoprojecteurs après le départ des occupants.",
+      "period": "Mars–mai 2026",
+      "team": "Avec Amaury Simonnot, Corentin Pilleux, Corentin Eletti et Reda Lounis.",
+      "role": "Chef de projet : coordination, conception du PCB, rétro-ingénierie infrarouge, firmware et intégration.",
+      "tech": "KiCad · Raspberry Pi Pico 2WH · MicroPython · Arduino · infrarouge NEC",
+      "result": "Prototype assemblé et démontré : détection de présence, lecture de l’état des projecteurs et commande infrarouge."
+    },
+    {
+      "name": "Amplificateur audio piézoélectrique",
+      "url": "https://aureliencapron.github.io/amplificateur.html",
+      "english_url": "https://aureliencapron.github.io/en/amplificateur.html",
+      "context": "Bureau d’études à Phelma : amplifier le signal d’une guitare acoustique avec réglage de tonalité.",
+      "period": "Février–avril 2026",
+      "team": "Aurélien Capron et Amaury Simonnot.",
+      "role": "Travail en binôme : conception électronique, assemblage des cartes et caractérisation sur banc.",
+      "tech": "KiCad · SPICE · correcteur de Baxandall · classes AB et D",
+      "result": "Deux cartes CMS assemblées et mesurées, de l’entrée piézoélectrique à la sortie de puissance sur 8 Ω."
+    },
+    {
+      "name": "TIPE : vision et lanceur de badminton",
+      "url": "https://aureliencapron.github.io/tipe.html",
+      "english_url": "https://aureliencapron.github.io/en/tipe.html",
+      "context": "TIPE en classes préparatoires : localiser un joueur et étudier la commande d’un lanceur de volants.",
+      "period": "2023–2025 · classes préparatoires",
+      "team": "TIPE présenté par Aurélien Capron.",
+      "role": "Traitement d’image, calibration, triangulation, réalisation du prototype et étude balistique.",
+      "tech": "Python · OpenCV · Arduino UNO · liaison série",
+      "result": "Prototype testé ; écarts de distance de 19 à 32 mm sur trois positions de référence. L’automatisation du tir reste à poursuivre."
+    },
+    {
+      "name": "Myha · Domethic System",
+      "url": "https://aureliencapron.github.io/domethic.html",
+      "english_url": "https://aureliencapron.github.io/en/domethic.html",
+      "context": "Contribution à l’industrialisation des centrales domotiques Myha chez Domethic System.",
+      "period": "Depuis février 2022",
+      "team": "Au sein de l’équipe Domethic System.",
+      "role": "Assemblage et soudure, configuration du programme et de la mémoire, appairage radio et essais sur charges réelles.",
+      "tech": "Électronique CMS et traversante · GSM/SMS · radio · EEPROM",
+      "result": "Centrales assemblées et configurées, avec essais de commutation et de robustesse pendant les émissions cellulaires."
+    },
+    {
+      "name": "Porte de poulailler automatisée",
+      "url": "https://aureliencapron.github.io/poulailler.html",
+      "english_url": "https://aureliencapron.github.io/en/poulailler.html",
+      "context": "Projet personnel : automatiser un pont-levis de poulailler en fonction de la lumière extérieure.",
+      "period": "Avril 2025",
+      "team": "Projet personnel · Aurélien Capron.",
+      "role": "Réalisation du mécanisme, de la commande électronique et du programme embarqué.",
+      "tech": "ATmega328P · C++ / Arduino · photorésistance · relais · motoréducteur",
+      "result": "Pont-levis motorisé en fonctionnement, commandé par la luminosité avec contact de fermeture et temporisation."
+    },
+    {
+      "name": "Chronométrage Backyard Ultra",
+      "url": "https://aureliencapron.github.io/backyard.html",
+      "english_url": "https://aureliencapron.github.io/en/backyard.html",
+      "context": "BDS Phelma : suivre les passages, les classements et les écrans d’une Backyard Ultra.",
+      "period": "Septembre–octobre 2026",
+      "team": "Développement : Aurélien Capron. Organisation avec Amaury Simonnot et Damien Bouichou.",
+      "role": "Conception et développement du système, installation puis pointage pendant l’événement.",
+      "tech": "Python · Flask · API REST · CSV · export Excel",
+      "result": "Utilisé pendant la course : pointage multi-postes et export de résultats regroupant 94 coureurs classés."
+    }
+  ],
+  "activities": [
+    {
+      "name": "Sacha Heritage",
+      "url": "https://aureliencapron.github.io/sacha-heritage.html",
+      "description": "Mon rôle chez Sacha Heritage : suivi financier, rentabilité des produits et des ventes, budget, flux de stocks, vente directe et figuration dans les vidéos."
+    },
+    {
+      "name": "Bureau des Sports de Phelma",
+      "url": "https://aureliencapron.github.io/bds.html",
+      "description": "Responsable partenariats du BDS Phelma en 2026–2027 : intégration, volley, Olymps, organisation de la Backyard Ultra et préparation d’Unirox."
+    },
+    {
+      "name": "Judo et vie de club",
+      "url": "https://aureliencapron.github.io/judo.html",
+      "description": "Judo depuis 2011 : ceinture noire 1er dan, championnats de France de kata avec Gaëtan Peyronnet, bénévolat en club et stage international à Bardonecchia."
+    },
+    {
+      "name": "Salon du mariage de Pérouges",
+      "url": "https://aureliencapron.github.io/perouges.html",
+      "description": "Mon expérience au salon du mariage Tout Commence Ici à Pérouges : bénévole depuis 2023, modèle en 2025, accueil des visiteurs et aide à l’installation des exposants."
+    },
+    {
+      "name": "Saxhorn alto et musique",
+      "url": "https://aureliencapron.github.io/saxhorn.html",
+      "description": "Mon parcours musical de 2018 à 2023 : cornet et saxhorn alto en mi bémol, cours avec Vincent Gerbe, orchestres, brass band et projet Bluebird."
+    }
+  ]
+}

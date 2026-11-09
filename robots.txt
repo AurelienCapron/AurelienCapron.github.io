@@ -1,4 +1,8 @@
+# Aurélien Capron — exploration des pages publiques.
 User-agent: *
+Allow: /
+
+User-agent: OAI-SearchBot
 Allow: /
 
 Sitemap: https://aureliencapron.github.io/sitemap.xml

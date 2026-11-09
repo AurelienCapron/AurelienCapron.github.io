@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<!--
+ @file mentions-legales.html
+ @author Aurélien Capron
+ @description Identifier l’éditeur et l’hébergeur ; informer sur les droits, les données personnelles, le stockage local et les services externes.
+ @created Non renseignée — à renseigner au premier commit d’ajout.
+ @documented 2026-11-09
+ @updated 2026-11-09
+-->
+<html lang="en" data-theme="light">
+<head>
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Legal notice — Aurélien CAPRON</title>
+  
+  <meta name="theme-color" content="#f6f7f9">
+  <meta name="color-scheme" content="light">
+  
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png">
+
+  <!-- Application du thème avant le premier affichage. -->
+  <script>
+    try {
+      let t = null;
+      try { t = localStorage.getItem('theme'); } catch (e) {}
+      const dark = t === 'dark' || (t !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches);
+      if (dark) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#0c0e11');
+        document.querySelector('meta[name="color-scheme"]')?.setAttribute('content', 'dark');
+      }
+    } catch (e) {}
+  </script>
+
+  <style>
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 400; font-display: swap; src: url('/assets/fonts/inter-400.woff2') format('woff2'); }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 500; font-display: swap; src: url('/assets/fonts/inter-500.woff2') format('woff2'); }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 600; font-display: swap; src: url('/assets/fonts/inter-600.woff2') format('woff2'); }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 700; font-display: swap; src: url('/assets/fonts/inter-700.woff2') format('woff2'); }
+    @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url('/assets/fonts/jetbrains-mono-400.woff2') format('woff2'); }
+    @font-face { font-family: 'Barlow Semi Condensed'; font-style: normal; font-weight: 600; font-display: swap; src: url('/assets/fonts/barlow-semi-condensed-600.woff2') format('woff2'); }
+    @font-face { font-family: 'Barlow Semi Condensed'; font-style: normal; font-weight: 700; font-display: swap; src: url('/assets/fonts/barlow-semi-condensed-700.woff2') format('woff2'); }
+    @font-face {
+      font-family: 'Inter Fallback'; src: local('Arial');
+      size-adjust: 107.4%; ascent-override: 90.2%; descent-override: 22.5%; line-gap-override: 0%;
+    }
+  </style>
+
+
+
+  <style>
+    /* Palette et variables de présentation des thèmes. */
+    :root {
+      color-scheme: dark;
+      --bg: #0c0e11; --surface: rgba(22,27,34,.85); --header-bg: rgba(12,14,17,.78);
+      --border: rgba(255,255,255,.11); --chip-bg-active: rgba(255,255,255,.11);
+      --text: #cbd5e1; --text-strong: #ffffff; --text-soft: #e2e8f0; --text-muted: #94a3b8; --text-faint: #7c8ba1;
+      --accent-soft: #e0915c; --accent-rgb: 224 145 92;
+      --card-shadow: 0 10px 30px -10px rgba(0,0,0,.45);
+    }
+    :root[data-theme="light"] {
+      color-scheme: light;
+      --bg: #f6f7f9; --surface: rgba(255,255,255,.94); --header-bg: rgba(246,247,249,.85);
+      --border: rgba(15,23,42,.09); --chip-bg-active: rgba(15,23,42,.09);
+      --text: #334155; --text-strong: #0f172a; --text-soft: #1e293b; --text-muted: #475569; --text-faint: #5b6a7f;
+      --accent-soft: #b4531a; --accent-rgb: 180 83 26;
+      --card-shadow: 0 8px 24px -4px rgba(15,23,42,.05), 0 2px 6px -1px rgba(15,23,42,.03);
+    }
+    html { scroll-behavior: smooth; }
+    ::selection { background: rgb(var(--accent-rgb) / .28); color: var(--text-strong); }
+    :focus-visible { outline: 2px solid var(--accent-soft); outline-offset: 3px; }
+    h1, h2 { text-wrap: balance; }
+    p { text-wrap: pretty; }
+    .lang-btn { border-radius: .375rem; padding: .25rem .625rem; color: var(--text-muted); transition: color .2s; }
+    .lang-btn:hover { color: var(--text-strong); }
+    .lang-btn[aria-pressed="true"] { background: var(--chip-bg-active); color: var(--text-strong); }
+    .legal a:not(.plain) { color: var(--accent-soft); text-decoration: underline; text-underline-offset: 3px; }
+    .legal a:not(.plain):hover { text-decoration-thickness: 2px; }
+
+    /* Mise en page autonome, commune aux versions française et anglaise. */
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.7 'Inter', 'Inter Fallback', system-ui, sans-serif; }
+    a { color: inherit; overflow-wrap: anywhere; }
+    button { font: inherit; cursor: pointer; }
+    header { position: sticky; top: 0; z-index: 50; background: var(--header-bg); border-bottom: 1px solid var(--border); backdrop-filter: blur(12px); }
+    header nav { max-width: 800px; margin: auto; min-height: 64px; padding: 10px 24px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    header nav > a { display: flex; gap: 8px; text-decoration: none; font-size: 14px; }
+    header nav > div { display: flex; align-items: center; gap: 12px; }
+    [role="group"] { display: flex; border: 1px solid var(--border); border-radius: 8px; padding: 2px; }
+    .lang-btn { border: 0; background: transparent; font: 12px 'JetBrains Mono', monospace; min-height: 30px; }
+    #theme-toggle { width: 36px; height: 36px; padding: 8px; display: grid; place-items: center; color: var(--text-muted); background: transparent; border: 1px solid var(--border); border-radius: 8px; }
+    #theme-toggle svg { width: 16px; height: 16px; }
+    #main { max-width: 800px; margin: auto; padding: 72px 24px; outline: none; }
+    #main > p:first-child { font-size: 12px; text-transform: uppercase; font-weight: 600; letter-spacing: .12em; color: var(--text-muted); }
+    h1 { margin: 8px 0 12px; color: var(--text-strong); font: 700 48px/1.1 'Barlow Semi Condensed', 'Inter', sans-serif; letter-spacing: -.02em; }
+    [data-i18n="updated"] { color: var(--text-faint); font: 12px/1.6 'JetBrains Mono', monospace; }
+    .legal > div { margin-top: 48px; }
+    .legal section + section { margin-top: 40px; }
+    .legal h2 { font-size: 21px; line-height: 1.35; color: var(--text-strong); margin: 0 0 12px; }
+    .legal h3 { font-size: 17px; color: var(--text-strong); margin: 24px 0 8px; }
+    .legal p { margin: 12px 0 0; }
+    .legal strong { color: var(--text-soft); }
+    .legal ul { padding-left: 24px; }
+    .legal li + li { margin-top: 8px; }
+    .privacy { padding-top: 32px; border-top: 1px solid var(--border); }
+    .legal .no-print { margin-top: 56px; }
+    .legal .plain { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--border); border-radius: 8px; padding: 12px 20px; text-decoration: none; font-size: 14px; font-weight: 600; color: var(--text-soft); }
+    footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; color: var(--text-faint); font: 12px/1.6 'JetBrains Mono', monospace; }
+    body > a[href="#main"] { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+    body > a[href="#main"]:focus { position: fixed; top: 8px; left: 8px; z-index: 60; width: auto; height: auto; clip-path: none; padding: 8px 16px; background: var(--bg); }
+    @media (max-width: 480px) { #main { padding: 44px 20px; } h1 { font-size: 40px; } header nav { padding: 10px 16px; } header nav > div { gap: 8px; } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+    @media print {
+      header, .no-print { display: none !important; }
+      :root[data-theme] { --bg:#fff; --surface:#fff; --text:#1f2937; --text-strong:#000; --text-soft:#111827; --text-muted:#374151; --text-faint:#4b5563; --border:#d1d5db; --accent-soft:#9a3f10; }
+    }
+  </style>
+    <!-- seo:head:start -->
+    <meta name="description" content="Legal notice and privacy information for Aurélien Capron’s personal, non-professional portfolio." />
+    <meta name="author" content="Aurélien Capron" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Aurélien Capron — Portfolio" />
+    <meta property="og:title" content="Legal notice — Aurélien CAPRON" />
+    <meta property="og:description" content="Legal notice and privacy information for Aurélien Capron’s personal, non-professional portfolio." />
+    <meta property="og:url" content="https://aureliencapron.github.io/en/mentions-legales.html" />
+    <meta property="og:image" content="https://aureliencapron.github.io/assets/seo/portfolio-social-en.png" />
+    <meta property="og:image:alt" content="Legal notice and privacy — Aurélien Capron" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="fr_FR" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Legal notice — Aurélien CAPRON" />
+    <meta name="twitter:description" content="Legal notice and privacy information for Aurélien Capron’s personal, non-professional portfolio." />
+    <meta name="twitter:image" content="https://aureliencapron.github.io/assets/seo/portfolio-social-en.png" />
+    <meta name="twitter:image:alt" content="Legal notice and privacy — Aurélien Capron" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
+    <link rel="canonical" href="https://aureliencapron.github.io/en/mentions-legales.html" />
+    <link rel="alternate" hreflang="fr" href="https://aureliencapron.github.io/mentions-legales.html" />
+    <link rel="alternate" hreflang="en" href="https://aureliencapron.github.io/en/mentions-legales.html" />
+    <link rel="alternate" hreflang="x-default" href="https://aureliencapron.github.io/mentions-legales.html" />
+    <link rel="stylesheet" href="/assets/site-seo.css" />
+    <link rel="describedby" href="/portfolio.json" type="application/json" title="Portfolio data" />
+    <script src="/assets/site-seo.js" defer></script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://aureliencapron.github.io/#website",
+      "url": "https://aureliencapron.github.io/",
+      "name": "Aurélien Capron — Portfolio",
+      "inLanguage": [
+        "fr",
+        "en"
+      ],
+      "publisher": {
+        "@id": "https://aureliencapron.github.io/#aurelien-capron"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://aureliencapron.github.io/#aurelien-capron",
+      "name": "Aurélien Capron",
+      "url": "https://aureliencapron.github.io/",
+      "jobTitle": "Élève-ingénieur — Systèmes Électroniques Intégrés",
+      "affiliation": {
+        "@type": "CollegeOrUniversity",
+        "name": "Grenoble INP – Phelma"
+      },
+      "sameAs": [
+        "https://github.com/AurelienCapron",
+        "https://www.linkedin.com/in/aurelien-capron"
+      ],
+      "knowsAbout": [
+        "Électronique",
+        "Systèmes embarqués",
+        "KiCad",
+        "Python",
+        "C/C++",
+        "Arduino",
+        "Essais sur banc"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://aureliencapron.github.io/en/mentions-legales.html#webpage",
+      "url": "https://aureliencapron.github.io/en/mentions-legales.html",
+      "name": "Legal notice — Aurélien CAPRON",
+      "description": "Legal notice and privacy information for Aurélien Capron’s personal, non-professional portfolio.",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://aureliencapron.github.io/#website"
+      },
+      "author": {
+        "@id": "https://aureliencapron.github.io/#aurelien-capron"
+      },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://aureliencapron.github.io/assets/seo/portfolio-social-en.png"
+      },
+      "dateModified": "2026-11-09"
+    }
+  ]
+}
+    </script>
+    <noscript><style>.reveal{opacity:1!important;transform:none!important}.typewriter{max-width:none!important;animation:none!important}</style></noscript>
+    <!-- seo:head:end -->
+  </head>
+
+<body class="bg-[var(--bg)] font-sans text-[var(--text)] antialiased">
+
+  <a href="#main" data-i18n="skip"
+     class="sr-only z-[60] rounded-md bg-accent px-4 py-2 font-semibold text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4">Skip to content</a>
+
+  <!-- Navigation principale. -->
+  <header class="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--header-bg)] backdrop-blur-md">
+    <nav class="mx-auto flex h-16 max-w-3xl items-center justify-between px-6" aria-label="Navigation">
+      <a href="/en/" class="flex items-center gap-2 text-sm font-medium text-[var(--text-muted)] transition-colors hover:text-[var(--text-strong)]">
+        <span aria-hidden="true">←</span><span data-i18n="back">Back to portfolio</span>
+      </a>
+      <div class="flex items-center gap-3">
+        <div class="flex items-center rounded-lg border border-[var(--border)] p-0.5 font-mono text-xs" role="group" aria-label="Language">
+          <a class="lang-btn" href="/mentions-legales.html" hreflang="fr" lang="fr" data-site-language="fr">FR</a>
+          <a class="lang-btn" href="/en/mentions-legales.html" hreflang="en" lang="en" data-site-language="en" aria-current="page">EN</a>
+        </div>
+        <button id="theme-toggle" type="button"
+                class="grid h-9 w-9 place-items-center rounded-lg border border-[var(--border)] text-[var(--text-muted)] transition-colors hover:text-[var(--text-strong)]"
+                data-i18n-aria="aria.theme" aria-label="Toggle light/dark theme">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path id="theme-icon" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/>
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Contenu principal. -->
+  <main id="main" tabindex="-1" class="legal mx-auto max-w-3xl px-6 py-16 outline-none sm:py-20">
+    <p class="text-xs font-semibold uppercase tracking-widest text-[var(--text-muted)]" data-i18n="eyebrow">Legal information</p>
+    <h1 class="mt-2 font-display text-4xl font-bold tracking-tight text-[var(--text-strong)] sm:text-5xl" data-i18n="title">Legal notice</h1>
+    <p class="mt-3 font-mono text-xs text-[var(--text-faint)]" data-i18n="updated">Last updated: November 9, 2026</p>
+
+    <div>
+
+      <section>
+        <h2 data-i18n="s1.t">Publisher and purpose</h2>
+        <p data-i18n="s1.p">This is a <strong>personal, non-professional portfolio</strong>, published by <strong>Aurélien Capron</strong>, who is also the publication director. It presents his background, technical projects, experience and community involvement. It offers no products or services for sale and includes no online payments.<br>Contact: <a href="mailto:aurelien-capron@outlook.fr">aurelien-capron@outlook.fr</a></p>
+        <p data-i18n="s1.status"><a href="https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000049568614" target="_blank" rel="noopener noreferrer">Article 1-1, II of the French Digital Economy Act</a> provides simplified identification requirements for non-professional publishers wishing to preserve their anonymity, provided they have supplied the required personal identification details to their hosting provider. The publisher’s home address and personal telephone number are not published on this page. Hosting details appear below. If the site develops into an activity selling products or services, the notice must be adapted to the relevant status and activity.</p>
+      </section>
+
+      <section>
+        <h2 data-i18n="s2.t">Hosting</h2>
+        <p data-i18n="s2.p"><strong>GitHub, Inc.</strong> — GitHub Pages service.<br>88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, United States.<br>GitHub Ops technical contact telephone: <a href="tel:+14157354488">+1 415 735 4488</a>.<br>Support: <a href="https://support.github.com/" target="_blank" rel="noopener noreferrer">support.github.com</a>.</p>
+      </section>
+
+      <section>
+        <h2 data-i18n="s3.t">Content rights and credits</h2>
+        <p data-i18n="s3.p">Original works by Aurélien Capron remain protected by copyright. Third-party photographs, videos, press excerpts, posters, logos, trademarks and other works belong to their respective rights holders; their inclusion here transfers no rights. Source references and credits displayed alongside content must be retained in any authorised reuse. Team projects may include contributions by several authors.<br>Code, libraries and fonts remain subject to their accompanying licences, including those in linked repositories and licence files. Reuse must comply with those licences, rights-holder permissions and statutory exceptions. Crediting a source does not by itself authorise reproduction.</p>
+      </section>
+
+      <!-- Information sur les données et les droits des visiteurs. -->
+      <section class="privacy" id="confidentialite" aria-labelledby="privacy-title">
+        <h2 id="privacy-title" data-i18n="s4.t">Personal data and privacy</h2>
+        <p data-i18n="s4.p">Aurélien Capron is the contact for processing connected with this portfolio: <a href="mailto:aurelien-capron@outlook.fr">aurelien-capron@outlook.fr</a>. The site has no data-collection form or user accounts. Personal data sent by email is nevertheless subject to data-protection rules.</p>
+        <h3 data-i18n="privacy.mail.title">Email correspondence</h3>
+        <p data-i18n="privacy.mail">A contact link opens your email application. If you send a message, your address, any identity details and its content are used to answer and follow up on your request, based on the legitimate interest in communicating with visitors and professional contacts. Sending is voluntary; without reply details, an answer may be impossible. This information is intended for Aurélien Capron and handled by the email providers needed for the exchange, including Microsoft for the Outlook address. It is retained as needed to handle and follow up on the request, then deleted unless retention is justified by a legal obligation or the defence of a legal claim. It is not used for automated advertising.</p>
+        <h3 data-i18n="privacy.host.title">Technical data and providers</h3>
+        <p data-i18n="privacy.host">GitHub states that it logs GitHub Pages visitors’ IP addresses for security. Its processing, retention and international transfer arrangements are described in the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer">GitHub Privacy Statement</a>. Some project pages load a 3D viewer from jsDelivr when you request the 3D view: this request sends your IP address and technical information needed for delivery. See the <a href="https://www.jsdelivr.com/terms/privacy-policy" target="_blank" rel="noopener noreferrer">jsDelivr Privacy Policy</a>. Hosting, technical delivery and email providers may process data outside the European Union, under the safeguards and arrangements described in their policies. For email, see the <a href="https://www.microsoft.com/en-us/privacy/privacystatement" target="_blank" rel="noopener noreferrer">Microsoft Privacy Statement</a>.</p>
+        <h3 data-i18n="privacy.rights.title">Exercising your rights</h3>
+        <p data-i18n="privacy.rights">Depending on the processing and the conditions set by the GDPR, you may request access, rectification, erasure or restriction, object to processing based on legitimate interests and, where applicable, request portability or withdraw consent. Contact: <a href="mailto:aurelien-capron@outlook.fr">aurelien-capron@outlook.fr</a>. Describe your request and provide information to locate the relevant data, without sending unnecessary identity documents. A response is provided within GDPR deadlines, normally one month. You may also lodge a complaint with the <a href="https://www.cnil.fr/fr/adresser-une-plainte" target="_blank" rel="noopener noreferrer">CNIL</a>.</p>
+      </section>
+
+      <section>
+        <h2 data-i18n="storage.title">Local preferences and statistics</h2>
+        <p data-i18n="storage.p">The site remembers language and theme choices in your browser’s local storage (“localStorage”, keys “lang” and “theme”), solely to restore your chosen presentation. Portfolio code does not send these values to a server. They have no programmed expiry and remain until changed or deleted, including by clearing site data in your browser settings.<br>No audience measurement tool, advertising pixel or cross-site tracking is enabled in this version. The portfolio therefore does not request advertising consent. Hosting security logs and the policies of sites opened through links are separate from these local preferences.</p>
+      </section>
+
+      <section>
+        <h2 data-i18n="s6.t">External links and videos</h2>
+        <p data-i18n="s6.p">The portfolio includes links to YouTube, Instagram, Facebook, LinkedIn, GitHub, Linktree, news outlets, educational institutions and partners. YouTube videos are accessed through links to that platform; no YouTube or Instagram player is embedded in this version. Videos played directly in the portfolio are served by its hosting provider. Following an external link takes you to another service with its own terms and privacy rules, such as the <a href="https://policies.google.com/privacy?hl=en" target="_blank" rel="noopener noreferrer">Google policy applicable to YouTube</a>. These services may use their own trackers. Their content may change; a link does not imply endorsement of all their content or guarantee availability.</p>
+      </section>
+
+      <section>
+        <h2 data-i18n="image.title">Photographs, reports and right of reply</h2>
+        <p data-i18n="image.p">Photographs and videos document the projects, events and activities presented. Their publication must respect copyright, image rights and the privacy of those shown, especially people who were minors when photographed. To report an incorrect credit, request a correction, exercise a right of reply or request removal of content concerning you, write to <a href="mailto:aurelien-capron@outlook.fr">aurelien-capron@outlook.fr</a> and identify the page and content. Requests are reviewed under applicable rights. This procedure does not replace permissions required for publication.</p>
+      </section>
+    </div>
+
+    <p class="no-print mt-14">
+      <a href="/en/" class="plain inline-flex items-center gap-2 rounded-md border border-[var(--border)] px-5 py-3 text-sm font-semibold text-[var(--text-soft)] transition-colors hover:border-accent/50 hover:text-accent-soft">
+        <span aria-hidden="true">←</span><span data-i18n="back">Back to portfolio</span>
+      </a>
+    </p>
+  </main>
+
+  <footer class="border-t border-[var(--border)] px-6 py-6 text-center font-mono text-xs text-[var(--text-faint)]">
+    © <span id="year">2026</span> Aurélien Capron
+<!-- seo:footer:start -->
+<p class="seo-footer"><a href="/en/plan-du-site.html">Site map</a></p>
+<!-- seo:footer:end -->
+</footer>
+
+  <script>
+  (() => {
+    const $  = (s, r = document) => r.querySelector(s);
+    const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+    $('#year').textContent = new Date().getFullYear();
+
+    /* Gestion du thème et de sa préférence mémorisée. */
+    const MOON = 'M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z';
+    const SUN  = 'M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8ZM12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41';
+    /**
+     * Applique le thème et synchronise les commandes et métadonnées du navigateur.
+     * @param {'light'|'dark'} theme - Thème demandé.
+     * @param {boolean} persist - Enregistre le choix dans le navigateur.
+     */
+    function applyTheme(theme, persist) {
+      document.documentElement.setAttribute('data-theme', theme);
+      $('#theme-icon').setAttribute('d', theme === 'light' ? MOON : SUN);
+      $('meta[name="theme-color"]')?.setAttribute('content', theme === 'light' ? '#f6f7f9' : '#0c0e11');
+      $('meta[name="color-scheme"]')?.setAttribute('content', theme);
+      if (persist) { try { localStorage.setItem('theme', theme); } catch (e) {} }
+    }
+    applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light', false);
+    $('#theme-toggle').addEventListener('click', () => {
+      applyTheme(document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light', true);
+    });
+
+    /* Dictionnaires et commandes de langue. */
+    const FR = {};
+    $$('[data-i18n]').forEach(el => { FR[el.dataset.i18n] = el.innerHTML.trim(); });
+    $$('[data-i18n-aria]').forEach(el => { FR[el.dataset.i18nAria] = el.getAttribute('aria-label'); });
+    FR['meta.title'] = document.title;
+    FR['meta.desc']  = $('meta[name="description"]').content;
+
+    const EN = {
+      "meta.title": "Legal notice — Aurélien CAPRON",
+      "meta.desc": "Legal notice and privacy information for Aurélien Capron’s personal, non-professional portfolio.",
+      "skip": "Skip to content",
+      "back": "Back to portfolio",
+      "aria.theme": "Toggle light/dark theme",
+      "eyebrow": "Legal information",
+      "title": "Legal notice",
+      "updated": "Last updated: November 9, 2026",
+      "s1.t": "Publisher and purpose",
+      "s1.p": "This is a <strong>personal, non-professional portfolio</strong>, published by <strong>Aurélien Capron</strong>, who is also the publication director. It presents his background, technical projects, experience and community involvement. It offers no products or services for sale and includes no online payments.<br>Contact: <a href=\"mailto:aurelien-capron@outlook.fr\">aurelien-capron@outlook.fr</a>",
+      "s2.t": "Hosting",
+      "s2.p": "<strong>GitHub, Inc.</strong> — GitHub Pages service.<br>88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, United States.<br>GitHub Ops technical contact telephone: <a href=\"tel:+14157354488\">+1 415 735 4488</a>.<br>Support: <a href=\"https://support.github.com/\" target=\"_blank\" rel=\"noopener noreferrer\">support.github.com</a>.",
+      "s3.t": "Content rights and credits",
+      "s3.p": "Original works by Aurélien Capron remain protected by copyright. Third-party photographs, videos, press excerpts, posters, logos, trademarks and other works belong to their respective rights holders; their inclusion here transfers no rights. Source references and credits displayed alongside content must be retained in any authorised reuse. Team projects may include contributions by several authors.<br>Code, libraries and fonts remain subject to their accompanying licences, including those in linked repositories and licence files. Reuse must comply with those licences, rights-holder permissions and statutory exceptions. Crediting a source does not by itself authorise reproduction.",
+      "s4.t": "Personal data and privacy",
+      "s4.p": "Aurélien Capron is the contact for processing connected with this portfolio: <a href=\"mailto:aurelien-capron@outlook.fr\">aurelien-capron@outlook.fr</a>. The site has no data-collection form or user accounts. Personal data sent by email is nevertheless subject to data-protection rules.",
+      "privacy.mail.title": "Email correspondence",
+      "privacy.mail": "A contact link opens your email application. If you send a message, your address, any identity details and its content are used to answer and follow up on your request, based on the legitimate interest in communicating with visitors and professional contacts. Sending is voluntary; without reply details, an answer may be impossible. This information is intended for Aurélien Capron and handled by the email providers needed for the exchange, including Microsoft for the Outlook address. It is retained as needed to handle and follow up on the request, then deleted unless retention is justified by a legal obligation or the defence of a legal claim. It is not used for automated advertising.",
+      "privacy.host.title": "Technical data and providers",
+      "privacy.host": "GitHub states that it logs GitHub Pages visitors’ IP addresses for security. Its processing, retention and international transfer arrangements are described in the <a href=\"https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub Privacy Statement</a>. Some project pages load a 3D viewer from jsDelivr when you request the 3D view: this request sends your IP address and technical information needed for delivery. See the <a href=\"https://www.jsdelivr.com/terms/privacy-policy\" target=\"_blank\" rel=\"noopener noreferrer\">jsDelivr Privacy Policy</a>. Hosting, technical delivery and email providers may process data outside the European Union, under the safeguards and arrangements described in their policies. For email, see the <a href=\"https://www.microsoft.com/en-us/privacy/privacystatement\" target=\"_blank\" rel=\"noopener noreferrer\">Microsoft Privacy Statement</a>.",
+      "privacy.rights.title": "Exercising your rights",
+      "privacy.rights": "Depending on the processing and the conditions set by the GDPR, you may request access, rectification, erasure or restriction, object to processing based on legitimate interests and, where applicable, request portability or withdraw consent. Contact: <a href=\"mailto:aurelien-capron@outlook.fr\">aurelien-capron@outlook.fr</a>. Describe your request and provide information to locate the relevant data, without sending unnecessary identity documents. A response is provided within GDPR deadlines, normally one month. You may also lodge a complaint with the <a href=\"https://www.cnil.fr/fr/adresser-une-plainte\" target=\"_blank\" rel=\"noopener noreferrer\">CNIL</a>.",
+      "storage.title": "Local preferences and statistics",
+      "storage.p": "The site remembers language and theme choices in your browser’s local storage (“localStorage”, keys “lang” and “theme”), solely to restore your chosen presentation. Portfolio code does not send these values to a server. They have no programmed expiry and remain until changed or deleted, including by clearing site data in your browser settings.<br>No audience measurement tool, advertising pixel or cross-site tracking is enabled in this version. The portfolio therefore does not request advertising consent. Hosting security logs and the policies of sites opened through links are separate from these local preferences.",
+      "s6.t": "External links and videos",
+      "s6.p": "The portfolio includes links to YouTube, Instagram, Facebook, LinkedIn, GitHub, Linktree, news outlets, educational institutions and partners. YouTube videos are accessed through links to that platform; no YouTube or Instagram player is embedded in this version. Videos played directly in the portfolio are served by its hosting provider. Following an external link takes you to another service with its own terms and privacy rules, such as the <a href=\"https://policies.google.com/privacy?hl=en\" target=\"_blank\" rel=\"noopener noreferrer\">Google policy applicable to YouTube</a>. These services may use their own trackers. Their content may change; a link does not imply endorsement of all their content or guarantee availability.",
+      "image.title": "Photographs, reports and right of reply",
+      "image.p": "Photographs and videos document the projects, events and activities presented. Their publication must respect copyright, image rights and the privacy of those shown, especially people who were minors when photographed. To report an incorrect credit, request a correction, exercise a right of reply or request removal of content concerning you, write to <a href=\"mailto:aurelien-capron@outlook.fr\">aurelien-capron@outlook.fr</a> and identify the page and content. Requests are reviewed under applicable rights. This procedure does not replace permissions required for publication.",
+      "s1.status": "<a href=\"https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000049568614\" target=\"_blank\" rel=\"noopener noreferrer\">Article 1-1, II of the French Digital Economy Act</a> provides simplified identification requirements for non-professional publishers wishing to preserve their anonymity, provided they have supplied the required personal identification details to their hosting provider. The publisher’s home address and personal telephone number are not published on this page. Hosting details appear below. If the site develops into an activity selling products or services, the notice must be adapted to the relevant status and activity."
+};
+/* seo:translations:start */
+Object.assign(EN, {"meta.title": "Legal notice — Aurélien CAPRON", "meta.desc": "Legal notice and privacy information for Aurélien Capron’s personal, non-professional portfolio."});
+/* seo:translations:end */
+const DICT = { fr: FR, en: EN };
+
+    /**
+     * Actualise les textes, les libellés accessibles et les métadonnées de la page.
+     * @param {'fr'|'en'} lang - Langue demandée.
+     * @param {boolean} persist - Enregistre le choix dans le navigateur.
+     */
+    function setLang(lang, persist) {
+      const d = DICT[lang];
+      document.documentElement.lang = lang;
+      $$('[data-i18n]').forEach(el => { const v = d[el.dataset.i18n]; if (v != null) el.innerHTML = v; });
+      $$('[data-i18n-aria]').forEach(el => {
+        const v = d[el.dataset.i18nAria];
+        if (v != null) { el.setAttribute('aria-label', v); el.setAttribute('title', v); }
+      });
+      document.title = d['meta.title'];
+      $('meta[name="description"]').setAttribute('content', d['meta.desc']);
+      $$('.legacy-lang-btn').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+      if (persist) { try { localStorage.setItem('lang', lang); } catch (e) {} }
+    }
+    $$('.legacy-lang-btn').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang, true)));
+
+    let urlLang = null, saved = null;
+    try { urlLang = new URLSearchParams(location.search).get('lang'); } catch (e) {}
+    try { saved = localStorage.getItem('lang'); } catch (e) {}
+    const browserLang = (navigator.language || '').toLowerCase().startsWith('fr') ? 'fr' : 'en';
+    const initial = document.documentElement.lang;
+    if (initial === 'en') setLang('en', false);
+  })();
+  </script>
+</body>
+</html>

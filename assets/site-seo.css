@@ -1,0 +1,10 @@
+/* Auteur : Aurélien Capron. Navigation éditoriale et variantes de langue. */
+.lang-btn[aria-current="page"]{background:var(--chip-bg-active);color:var(--text-strong)}
+a.lang-btn{text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.seo-breadcrumb{margin:0 0 24px;color:var(--text-muted);font:12px/1.7 'JetBrains Mono',monospace}
+.seo-breadcrumb ol{list-style:none;display:flex;flex-wrap:wrap;gap:6px 10px;margin:0;padding:0}
+.seo-breadcrumb li+li:before{content:'/';margin-right:10px;color:var(--text-faint)}
+.seo-breadcrumb a{text-decoration:underline;text-underline-offset:3px}
+.seo-breadcrumb [aria-current]{color:var(--text-strong)}
+.seo-footer{text-align:center;padding:12px 20px;margin:0;font:12px/1.6 'JetBrains Mono',monospace;color:var(--text-muted)}
+.seo-footer a{text-decoration:underline;text-underline-offset:3px}

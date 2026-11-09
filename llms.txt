@@ -1,0 +1,33 @@
+# Aurélien Capron — Portfolio
+
+> Portfolio personnel d’un élève-ingénieur à Grenoble INP – Phelma, en Systèmes Électroniques Intégrés.
+
+## Profil
+
+[Profil et parcours](https://aureliencapron.github.io/) : conception électronique, réalisation de prototypes, essais sur banc et travail en équipe.
+[English version](https://aureliencapron.github.io/en/).
+
+## Projets techniques
+
+- [Télécommande autonome](https://aureliencapron.github.io/telecommande.html) : Projet industriel à Phelma : éteindre automatiquement des vidéoprojecteurs après le départ des occupants. Mars–mai 2026 Avec Amaury Simonnot, Corentin Pilleux, Corentin Eletti et Reda Lounis. Chef de projet : coordination, conception du PCB, rétro-ingénierie infrarouge, firmware et intégration. KiCad · Raspberry Pi Pico 2WH · MicroPython · Arduino · infrarouge NEC Prototype assemblé et démontré : détection de présence, lecture de l’état des projecteurs et commande infrarouge.
+- [Amplificateur audio piézoélectrique](https://aureliencapron.github.io/amplificateur.html) : Bureau d’études à Phelma : amplifier le signal d’une guitare acoustique avec réglage de tonalité. Février–avril 2026 Aurélien Capron et Amaury Simonnot. Travail en binôme : conception électronique, assemblage des cartes et caractérisation sur banc. KiCad · SPICE · correcteur de Baxandall · classes AB et D Deux cartes CMS assemblées et mesurées, de l’entrée piézoélectrique à la sortie de puissance sur 8 Ω.
+- [TIPE : vision et lanceur de badminton](https://aureliencapron.github.io/tipe.html) : TIPE en classes préparatoires : localiser un joueur et étudier la commande d’un lanceur de volants. 2023–2025 · classes préparatoires TIPE présenté par Aurélien Capron. Traitement d’image, calibration, triangulation, réalisation du prototype et étude balistique. Python · OpenCV · Arduino UNO · liaison série Prototype testé ; écarts de distance de 19 à 32 mm sur trois positions de référence. L’automatisation du tir reste à poursuivre.
+- [Myha · Domethic System](https://aureliencapron.github.io/domethic.html) : Contribution à l’industrialisation des centrales domotiques Myha chez Domethic System. Depuis février 2022 Au sein de l’équipe Domethic System. Assemblage et soudure, configuration du programme et de la mémoire, appairage radio et essais sur charges réelles. Électronique CMS et traversante · GSM/SMS · radio · EEPROM Centrales assemblées et configurées, avec essais de commutation et de robustesse pendant les émissions cellulaires.
+- [Porte de poulailler automatisée](https://aureliencapron.github.io/poulailler.html) : Projet personnel : automatiser un pont-levis de poulailler en fonction de la lumière extérieure. Avril 2025 Projet personnel · Aurélien Capron. Réalisation du mécanisme, de la commande électronique et du programme embarqué. ATmega328P · C++ / Arduino · photorésistance · relais · motoréducteur Pont-levis motorisé en fonctionnement, commandé par la luminosité avec contact de fermeture et temporisation.
+- [Chronométrage Backyard Ultra](https://aureliencapron.github.io/backyard.html) : BDS Phelma : suivre les passages, les classements et les écrans d’une Backyard Ultra. Septembre–octobre 2026 Développement : Aurélien Capron. Organisation avec Amaury Simonnot et Damien Bouichou. Conception et développement du système, installation puis pointage pendant l’événement. Python · Flask · API REST · CSV · export Excel Utilisé pendant la course : pointage multi-postes et export de résultats regroupant 94 coureurs classés.
+
+## Loisirs et engagements
+
+- [Sacha Heritage](https://aureliencapron.github.io/sacha-heritage.html) : Mon rôle chez Sacha Heritage : suivi financier, rentabilité des produits et des ventes, budget, flux de stocks, vente directe et figuration dans les vidéos.
+- [Bureau des Sports de Phelma](https://aureliencapron.github.io/bds.html) : Responsable partenariats du BDS Phelma en 2026–2027 : intégration, volley, Olymps, organisation de la Backyard Ultra et préparation d’Unirox.
+- [Judo et vie de club](https://aureliencapron.github.io/judo.html) : Judo depuis 2011 : ceinture noire 1er dan, championnats de France de kata avec Gaëtan Peyronnet, bénévolat en club et stage international à Bardonecchia.
+- [Salon du mariage de Pérouges](https://aureliencapron.github.io/perouges.html) : Mon expérience au salon du mariage Tout Commence Ici à Pérouges : bénévole depuis 2023, modèle en 2025, accueil des visiteurs et aide à l’installation des exposants.
+- [Saxhorn alto et musique](https://aureliencapron.github.io/saxhorn.html) : Mon parcours musical de 2018 à 2023 : cornet et saxhorn alto en mi bémol, cours avec Vincent Gerbe, orchestres, brass band et projet Bluebird.
+
+## Ressources
+
+- [Plan du site](https://aureliencapron.github.io/plan-du-site.html)
+- [Données structurées du portfolio](https://aureliencapron.github.io/portfolio.json)
+- [Mentions légales et confidentialité](https://aureliencapron.github.io/mentions-legales.html)
+
+Les pages liées constituent les sources détaillées. Les travaux collectifs et contributions sont distingués dans chaque étude de cas. Les contenus de tiers conservent leurs droits respectifs.

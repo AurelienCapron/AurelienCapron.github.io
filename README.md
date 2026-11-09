@@ -50,7 +50,7 @@ Les loisirs suivent l’ordre **Sacha Heritage → BDS → Judo → Pérouges �
 
 ## Fonctionnalités du site
 
-- Contenus en **français et en anglais**, avec mémorisation de la langue choisie.
+- Versions **française et anglaise servies en HTML**, sur des URL distinctes et reliées par de vrais liens de langue.
 - **Thèmes clair et sombre**, avec mémorisation de la préférence.
 - Affichage adapté aux ordinateurs, tablettes et téléphones.
 - Carrousels de projets et de loisirs, avec filtres pour les projets.
@@ -66,7 +66,7 @@ Les loisirs suivent l’ordre **Sacha Heritage → BDS → Judo → Pérouges �
 - Barre de progression de lecture et bouton de retour en haut.
 - Navigation au clavier, liens d’évitement, libellés accessibles et prise en compte de la préférence de réduction des animations.
 - CV en français et en anglais, liens de contact et copie de l’adresse e-mail.
-- Métadonnées de référencement et de partage, URL canoniques et données structurées sur l’accueil.
+- Métadonnées de référencement et de partage sur les pages, URL canoniques, variantes linguistiques et données structurées reliant le profil et les études de cas.
 
 ## Technologies et organisation
 
@@ -117,3 +117,14 @@ Conserver la licence Tailwind avec les styles distribués. Les bibliothèques, m
 
 **Aurélien Capron** · Grenoble, France  
 [E-mail](mailto:aurelien-capron@outlook.fr) · [LinkedIn](https://www.linkedin.com/in/aurelien-capron) · [GitHub](https://github.com/AurelienCapron)
+
+## Référencement et lecture par les outils d’IA
+
+Les pages françaises à la racine et leurs dictionnaires anglais sont les sources. Le générateur produit les pages anglaises dans `en/`, les plans de site HTML et XML, les graphes JSON-LD, `robots.txt`, `portfolio.json` et `llms.txt`. Les URL propres, les métadonnées et les contenus anglais sont présents sans dépendre de JavaScript. Les fichiers de licence et les droits sur les médias restent applicables.
+
+```bash
+python3 scripts/seo.py .
+python3 scripts/verifier_seo.py .
+```
+
+Le contrôle GitHub Actions vérifie la synchronisation après les modifications. Voir [SEO_ET_IA.md](SEO_ET_IA.md) pour l’architecture, les limites et les démarches à effectuer dans Search Console et Bing Webmaster Tools. Les fichiers techniques ne garantissent ni classement, ni indexation, ni citation par une IA.

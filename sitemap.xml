@@ -1,56 +1,197 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<?xml version='1.0' encoding='utf-8'?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://aureliencapron.github.io/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-11-09</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aureliencapron.github.io/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aureliencapron.github.io/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aureliencapron.github.io/" />
   </url>
   <url>
-    <loc>https://aureliencapron.github.io/domethic.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://aureliencapron.github.io/en/</loc>
+    <lastmod>2026-11-09</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aureliencapron.github.io/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aureliencapron.github.io/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aureliencapron.github.io/" />
   </url>
   <url>
     <loc>https://aureliencapron.github.io/telecommande.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-11-09</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aureliencapron.github.io/telecommande.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aureliencapron.github.io/en/telecommande.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aureliencapron.github.io/telecommande.html" />
+  </url>
+  <url>
+    <loc>https://aureliencapron.github.io/en/telecommande.html</loc>
+    <lastmod>2026-11-09</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aureliencapron.github.io/telecommande.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aureliencapron.github.io/en/telecommande.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aureliencapron.github.io/telecommande.html" />
+  </url>
+  <url>
+    <loc>https://aureliencapron.github.io/amplificateur.html</loc>
+    <lastmod>2026-11-09</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aureliencapron.github.io/amplificateur.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aureliencapron.github.io/en/amplificateur.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aureliencapron.github.io/amplificateur.html" />
+  </url>
+  <url>
+    <loc>https://aureliencapron.github.io/en/amplificateur.html</loc>
+    <lastmod>2026-11-09</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aureliencapron.github.io/amplificateur.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aureliencapron.github.io/en/amplificateur.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aureliencapron.github.io/amplificateur.html" />
   </url>
   <url>
     <loc>https://aureliencapron.github.io/tipe.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-11-09</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aureliencapron.github.io/tipe.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aureliencapron.github.io/en/tipe.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aureliencapron.github.io/tipe.html" />
   </url>
   <url>
-    <loc>https://aureliencapron.github.io/judo.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://aureliencapron.github.io/en/tipe.html</loc>
+    <lastmod>2026-11-09</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aureliencapron.github.io/tipe.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aureliencapron.github.io/en/tipe.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aureliencapron.github.io/tipe.html" />
   </url>
   <url>
-    <loc>https://aureliencapron.github.io/perouges.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://aureliencapron.github.io/domethic.html</loc>
+    <lastmod>2026-11-09</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aureliencapron.github.io/domethic.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aureliencapron.github.io/en/domethic.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aureliencapron.github.io/domethic.html" />
+  </url>
+  <url>
+    <loc>https://aureliencapron.github.io/en/domethic.html</loc>
+    <lastmod>2026-11-09</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aureliencapron.github.io/domethic.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aureliencapron.github.io/en/domethic.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aureliencapron.github.io/domethic.html" />
+  </url>
+  <url>
+    <loc>https://aureliencapron.github.io/poulailler.html</loc>
+    <lastmod>2026-11-09</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aureliencapron.github.io/poulailler.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aureliencapron.github.io/en/poulailler.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aureliencapron.github.io/poulailler.html" />
+  </url>
+  <url>
+    <loc>https://aureliencapron.github.io/en/poulailler.html</loc>
+    <lastmod>2026-11-09</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aureliencapron.github.io/poulailler.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aureliencapron.github.io/en/poulailler.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aureliencapron.github.io/poulailler.html" />
+  </url>
+  <url>
+    <loc>https://aureliencapron.github.io/backyard.html</loc>
+    <lastmod>2026-11-09</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aureliencapron.github.io/backyard.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aureliencapron.github.io/en/backyard.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aureliencapron.github.io/backyard.html" />
+  </url>
+  <url>
+    <loc>https://aureliencapron.github.io/en/backyard.html</loc>
+    <lastmod>2026-11-09</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aureliencapron.github.io/backyard.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aureliencapron.github.io/en/backyard.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aureliencapron.github.io/backyard.html" />
   </url>
   <url>
     <loc>https://aureliencapron.github.io/sacha-heritage.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <lastmod>2026-11-09</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aureliencapron.github.io/sacha-heritage.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aureliencapron.github.io/en/sacha-heritage.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aureliencapron.github.io/sacha-heritage.html" />
   </url>
   <url>
-    <loc>https://aureliencapron.github.io/saxhorn.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://aureliencapron.github.io/en/sacha-heritage.html</loc>
+    <lastmod>2026-11-09</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aureliencapron.github.io/sacha-heritage.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aureliencapron.github.io/en/sacha-heritage.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aureliencapron.github.io/sacha-heritage.html" />
   </url>
   <url>
     <loc>https://aureliencapron.github.io/bds.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
+    <lastmod>2026-11-09</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aureliencapron.github.io/bds.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aureliencapron.github.io/en/bds.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aureliencapron.github.io/bds.html" />
+  </url>
+  <url>
+    <loc>https://aureliencapron.github.io/en/bds.html</loc>
+    <lastmod>2026-11-09</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aureliencapron.github.io/bds.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aureliencapron.github.io/en/bds.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aureliencapron.github.io/bds.html" />
+  </url>
+  <url>
+    <loc>https://aureliencapron.github.io/judo.html</loc>
+    <lastmod>2026-11-09</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aureliencapron.github.io/judo.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aureliencapron.github.io/en/judo.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aureliencapron.github.io/judo.html" />
+  </url>
+  <url>
+    <loc>https://aureliencapron.github.io/en/judo.html</loc>
+    <lastmod>2026-11-09</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aureliencapron.github.io/judo.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aureliencapron.github.io/en/judo.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aureliencapron.github.io/judo.html" />
+  </url>
+  <url>
+    <loc>https://aureliencapron.github.io/perouges.html</loc>
+    <lastmod>2026-11-09</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aureliencapron.github.io/perouges.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aureliencapron.github.io/en/perouges.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aureliencapron.github.io/perouges.html" />
+  </url>
+  <url>
+    <loc>https://aureliencapron.github.io/en/perouges.html</loc>
+    <lastmod>2026-11-09</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aureliencapron.github.io/perouges.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aureliencapron.github.io/en/perouges.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aureliencapron.github.io/perouges.html" />
+  </url>
+  <url>
+    <loc>https://aureliencapron.github.io/saxhorn.html</loc>
+    <lastmod>2026-11-09</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aureliencapron.github.io/saxhorn.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aureliencapron.github.io/en/saxhorn.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aureliencapron.github.io/saxhorn.html" />
+  </url>
+  <url>
+    <loc>https://aureliencapron.github.io/en/saxhorn.html</loc>
+    <lastmod>2026-11-09</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aureliencapron.github.io/saxhorn.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aureliencapron.github.io/en/saxhorn.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aureliencapron.github.io/saxhorn.html" />
   </url>
   <url>
     <loc>https://aureliencapron.github.io/mentions-legales.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
+    <lastmod>2026-11-09</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aureliencapron.github.io/mentions-legales.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aureliencapron.github.io/en/mentions-legales.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aureliencapron.github.io/mentions-legales.html" />
   </url>
-  <url><loc>https://aureliencapron.github.io/amplificateur.html</loc></url>
-  <url><loc>https://aureliencapron.github.io/poulailler.html</loc></url>
-  <url><loc>https://aureliencapron.github.io/backyard.html</loc></url>
+  <url>
+    <loc>https://aureliencapron.github.io/en/mentions-legales.html</loc>
+    <lastmod>2026-11-09</lastmod>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aureliencapron.github.io/mentions-legales.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aureliencapron.github.io/en/mentions-legales.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aureliencapron.github.io/mentions-legales.html" />
+  </url>
+  <url>
+    <loc>https://aureliencapron.github.io/plan-du-site.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aureliencapron.github.io/plan-du-site.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aureliencapron.github.io/en/plan-du-site.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aureliencapron.github.io/plan-du-site.html" />
+  </url>
+  <url>
+    <loc>https://aureliencapron.github.io/en/plan-du-site.html</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aureliencapron.github.io/plan-du-site.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aureliencapron.github.io/en/plan-du-site.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aureliencapron.github.io/plan-du-site.html" />
+  </url>
 </urlset>
