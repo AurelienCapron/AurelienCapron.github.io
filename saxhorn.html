@@ -23,7 +23,13 @@
        */
 
       try {
-        if (localStorage.getItem('theme') === 'dark') {
+        let t = null;
+        try {
+          t = localStorage.getItem('theme');
+        } catch (e) {}
+        const dark =
+          t === 'dark' || (t !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches);
+        if (dark) {
           document.documentElement.setAttribute('data-theme', 'dark');
           document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#0c0e11');
           document.querySelector('meta[name="color-scheme"]')?.setAttribute('content', 'dark');
@@ -3332,7 +3338,19 @@
         try {
           savedTheme = localStorage.getItem('theme');
         } catch (e) {}
-        applyTheme(savedTheme === 'dark' ? 'dark' : 'light', false);
+        const systemDark = matchMedia('(prefers-color-scheme: dark)');
+        applyTheme(
+          savedTheme === 'dark' || (savedTheme !== 'light' && systemDark.matches) ? 'dark' : 'light',
+          false,
+        );
+        systemDark.addEventListener?.('change', (e) => {
+          let chosen = null;
+          try {
+            chosen = localStorage.getItem('theme');
+          } catch (_) {}
+          if (chosen !== 'dark' && chosen !== 'light')
+            applyTheme(e.matches ? 'dark' : 'light', false);
+        });
         themeBtn?.addEventListener('click', () => {
           const next =
             document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
